@@ -13,7 +13,7 @@
 - [Logging](#logging)
 - [Licensing](#licensing)
 
-## <a id="git"></a>1. Git
+## 1. Git
 * We use GitFlow, read more here [A successful Git branching model » nvie.com](http://nvie.com/posts/a-successful-git-branching-model/)
 * Resolve potential conflicts before making a Pull Request
 * Never Push into `develop` branch.
@@ -29,20 +29,20 @@
 	* OS folder view configuration (.DS_STORE, Desktop.ini etc…)
 	* Thumbnail cache files (._*,  Thumbs.db etc…)
 
-## <a id="documentation"></a>2. Documentation
+## 2. Documentation
 * Follow hive’s  `README.md` template for start (add extra sections if necessary). [hive’s README.md template](./README.sample.md)
 * If project is broken down into more than one repo, provide links in the  `README.md` file.
 * Keep `README.md` updated
 * Comment all your code to make it as clear as possible how your app works, and what you are intending with each major section. 
 * Update your comments
 
-## <a id="environments"></a>3. Environmental Awareness
+## 3. Environmental Awareness
 * Depending on project size, define separate `development`, `test` and `production`  environments. 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
 *  Your config should be correctly separated from the apps internals if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
 
-## <a id="dev"></a>4. Dev Environment
+## 4. Dev Environment
 ### 4.1 Consistent dev environments:
 * Use `engines` in `package.json` to specify the version of node that your stuff works on.
 * Use `nvm` and create a  `.nvmrc`  in your project root.  Mention in documentation
@@ -56,7 +56,7 @@
 * If you use `Yarn` make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency upgrade.
 * Read more [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
 
-## <a id="dependencies"></a>5. Dependencies
+## 5. Dependencies
 Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
 If less known dependency is needed,  discuss it with the team before using it.
 
@@ -68,7 +68,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 * How many maintainers do these packages have? [view | npm Documentation](https://docs.npmjs.com/cli/view)
 * Does this package have known security vulnerabilities? [Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
 
-## <a id="testing"></a>6. Testing
+## 6. Testing
 * Have a test mode environment if needed.
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
 * Put your additional test files to a separate test folder to avoid confusion.
@@ -76,7 +76,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 * Don’t write too many tests to check types, instead use a Static type checker
 * Run tests locally before any pull request to `develop`.
 
-## <a id="structure"></a>7. Structure and Naming
+## 7. Structure and Naming
 * Organise your files around product features / pages / components, not Roles:
 
 ```
@@ -112,7 +112,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js`
 * Ideally the directory name would match the name of the default export of `index.js`
 
-## <a id="code_style"></a>8. Code style
+## 8. Code style
 * Use latest stablished JavaScript syntax for new projects
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
@@ -130,11 +130,11 @@ If less known dependency is needed,  discuss it with the team before using it.
 * Make your names searchable with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
 * Organise your functions in a file according to the stepdown rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
 
-## <a id="logging"></a>9. Logging
+## 9. Logging
 * Avoid client side console logs in production
 * Produce readable production logging. Ideally use production logging libraries to be used in production mode.
 
-## <a id="licensing"></a>10. Licensing
+## 10. Licensing
 Make sure you use resources that you have the rights to use. Copyrighted images and videos, for example, could cause legal problems.
 
 
