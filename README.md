@@ -20,7 +20,7 @@
 * Keep your `develop` and  `master` update.
 * Make a Pull Requests to develop only if your build have been successful on your machine (this includes passing tests and [code style](#code style) checks )
 * Merge your pull requests only after receiving approval from at least one of your team members.
-* Use [hive’s .gitignore file](./README.sample.md).
+* Use [hive’s .gitignore file](./.gitignore).
 * Make sure your `.gitignore` exclude the following from Repo
 	* `.env` or any file containing passwords, keys, tokens or anything similar used in production
 	* Your editor config files (.idea, .vscode etc…)
