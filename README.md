@@ -14,30 +14,30 @@
 - [Licensing](#licensing)
 
 ## 1. Git
-* We use GitFlow, read more here [A successful Git branching model » nvie.com](http://nvie.com/posts/a-successful-git-branching-model/)
+* Use [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/), read more about it [here](http://nvie.com/posts/a-successful-git-branching-model/)
 * Resolve potential conflicts before making a Pull Request
-* Never Push into `develop` branch.
+* Never push into `develop` or `master` branch.
 * Keep your `develop` and  `master` update.
-* Make a Pull Requests to develop only if your build have been successful on your machine (this includes passing tests and [code style](#code style) checks )
-* Merge your pull requests only after receiving approval from at least one of your team members.
+* Make a pull requests to develop only if your build have been successful locally (including tests and [code style](#code style) checks). This is to make sure your code style is matching the Repo's.
+* Only merge your pull request after approval.
 * Use [hive’s .gitignore file](./.gitignore).
-* Make sure your `.gitignore` exclude the following from Repo
+* Make sure your `.gitignore` excludes the following:
 	* `.env` or any file containing passwords, keys, tokens or anything similar used in production
-	* Your editor config files (.idea, .vscode etc…)
-	* Any generated file (compiled sources, build outputs, logs)
+	* Editor config files (.idea, .vscode etc…)
+	* Generated files (compiled sources, build outputs, logs)
 	* You dependencies directory (node_modules, bower_components etc…)
 	* OS folder view configuration (.DS_STORE, Desktop.ini etc…)
 	* Thumbnail cache files (._*,  Thumbs.db etc…)
 
 ## 2. Documentation
-* Follow hive’s  `README.md` template for start (add extra sections if necessary). [hive’s README.md template](./README.sample.md)
-* If project is broken down into more than one repo, provide links in the  `README.md` file.
+* Use [hive’s README.md template](./README.sample.md) `README.md` template (add extra sections if necessary).
+* For project with more than one repo, provide links to all repos in each every project's  `README.md`.
 * Keep `README.md` updated
-* Comment all your code to make it as clear as possible how your app works, and what you are intending with each major section. 
-* Update your comments
+* Comment all your code to make it as clear as possible what you are intending with each major section. 
+* Keep your comments relevent as code evolves.
 
 ## 3. Environmental Awareness
-* Depending on project size, define separate `development`, `test` and `production`  environments. 
+* Depending on project size, define separate `development`, `test` and `production` environments. 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
 *  Your config should be correctly separated from the apps internals if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
@@ -105,11 +105,11 @@ If less known dependency is needed,  discuss it with the team before using it.
 
 * Place Your Test Files Next to The Implementation
 * Put your additional test files to a separate test folder to avoid confusion.
-* Use a `./config` directory
+* Use a `./config` directory. Values to be used in config files are provided by enviromental variables.
 * Put Your Long `npm` Scripts in a `./scripts` directory. This is for bash and node scripts for database synchronisation, front-end build scripts and so on. 
-* Put your compiled or built output in a `./build` folder
-* Use `PascalCase/camelCase` for filenames and directory names too. Which  `PascalCase`  is for Components.
-* `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js`
+* Place your built output in a `./build` folder
+* Use `PascalCase' 'amelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
+* `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 * Ideally the directory name would match the name of the default export of `index.js`
 
 ## 8. Code style
@@ -119,12 +119,11 @@ If less known dependency is needed,  discuss it with the team before using it.
 * Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details) 
 * Use [Flow type linting rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/)
 * Use `.eslintignore` to exclude file or folders from linting. 
-* Remove your `eslint` disable comments before making a Pull Request
+* Remove any of your `eslint` disable comments before making a Pull Request
 * Always use  `//todo:`  comments to remind yourself and others about an unfinished job
 * Always comment and keep them relevant as code changes 
 * Remove commented block of code when possible
-* Avoid console logs on client side code in production
-* Avoid alerts in production
+* Avoid js alerts in production
 * Avoid irrelevant or funny comments, logs or naming.
 * Write testable code, avoid side effect, extract side effects, write pure functions
 * Make your names searchable with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
