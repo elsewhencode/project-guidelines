@@ -5,7 +5,7 @@
 - [Git](#git)
 - [Documentation](#documentation)
 - [Environments](#environments)
-- [Dev Environment](#dev)
+- [Development](#dev)
 - [Dependencies](#dependencies)
 - [Testing](#testing)
 - [Structure and Naming](#structure)
@@ -15,59 +15,98 @@
 - [Licensing](#licensing)
 
 ## 1. Git
-* Use [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/), read more about it [here](http://nvie.com/posts/a-successful-git-branching-model/)
-* Resolve potential conflicts before making a Pull Request
+
+### 1.1 Workflow
+We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
+
+* Checkout a new feature/bug-fix branch
+```
+ git checkout -b <branchname>
+```
+
+* Make Changes
+```
+ git add
+ git commit -m "description of changes"
+```
+
+* Sync with remote to get changes you’ve missed
+```
+ git checkout develop
+ git pull
+```
+
+* Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
+```
+git checkout <branchname>
+git -i rebase develop
+```
+
+* If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
+```
+git rebase --continue
+```
+
+* Push your branch
+```
+git push
+```
+* Make a Pull Request
+* Pull request will be accepted, merged and close
+* Remove your local feature branch
+
+
+### 1.2 Rules
+There are a set of rules to keep in mind:
+* Keep your `develop` and  `master` updated.
+* Perform work in a feature branch.
+* Make a pull requests to `develop`
 * Never push into `develop` or `master` branch.
-* Keep your `develop` and  `master` update.
-* Make a pull requests to develop only if your build have been successful locally (including tests and [code style](#code style) checks). This is to make sure your code style is matching the repository's.
-* Only merge your pull request after approval.
+* Update your `develop` and do a interactive rebase before pushing your feature and making a PR
+* Resolve potential conflicts while rebasing and before making a Pull Request
+* Delete local and remote feature branches after merging.
+* Before making a PR, make sure your feature branch builds successfully abd passes all tests (including code style checks).
 * Use [hive’s .gitignore file](./.gitignore).
-* Make sure your `.gitignore` excludes the following:
-	* `.env` or any file containing passwords, keys, tokens or anything similar used in production
-	* Editor config files (.idea, .vscode etc…)
-	* Generated files (compiled sources, build outputs, logs)
-	* You dependencies directory (node_modules, bower_components etc…)
-	* OS folder view configuration (.DS_STORE, Desktop.ini etc…)
-	* Thumbnail cache files (._*,  Thumbs.db etc…)
 
 ## 2. Documentation
-* Use [hive’s README.md template](./README.sample.md) `README.md` template (add extra sections if necessary).
-* For project with more than one repository, provide links to all repositories in each every project's  `README.md`.
-* Keep `README.md` updated
-* Comment all your code to make it as clear as possible what you are intending with each major section. 
+* Use [hive’s template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
+* For project with more than one repository, provide links to between them in their `README.md` files.
+* Keep `README.md` updated as project evolves.
+* Comment your code. Try to make it as clear as possible what you are intending with each major section. 
+* Comment small sections of code if you think it's not self self explanatory enough. 
 * Keep your comments relevant as code evolves.
 
 ## 3. Environmental Awareness
 * Depending on project size, define separate `development`, `test` and `production` environments. 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
-*  Your config should be correctly separated from the apps internals if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
+*  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
 
-## 4. Dev Environment
+## 4. Development
 ### 4.1 Consistent dev environments:
 * Use `engines` in `package.json` to specify the version of node that your stuff works on.
-* Use `nvm` and create a  `.nvmrc`  in your project root.  Mention in documentation
-* Use a `preinstall` script that checks node and npm versions
+* Additionally, Use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention in documentation
+* You can also use a `preinstall` script that checks node and npm versions
 * Or if it doesn't make things complicated use a docker images 
-* Local modules instead of requiring global installation
+* Use local modules instead of requiring global installation
 
 ### 4.2 Consistent dependencies:
-* Use `package-lock.json` on npm 5 and later
+* Use `package-lock.json` on npm 5 or higher
 * For older versions of npm Use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing.
-* If you use `Yarn` make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency upgrade.
-* Read more [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
+* Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
+* Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
 
 ## 5. Dependencies
 Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
-If less known dependency is needed,  discuss it with the team before using it.
 
-* Which packages am I using? And for each one... [ls | npm Documentation](https://docs.npmjs.com/cli/ls)
-* Am I still using this package?[depcheck](https://www.npmjs.com/package/depcheck) Always get rid of unused packages
-* Are other developers using this package? [npm-stat: download statistics for NPM packages](https://npm-stat.com/)
-* Am I using the latest version of this package? [outdated | npm Documentation](https://docs.npmjs.com/cli/outdated)
-* When was this package last updated? [view | npm Documentation](https://docs.npmjs.com/cli/view)
-* How many maintainers do these packages have? [view | npm Documentation](https://docs.npmjs.com/cli/view)
-* Does this package have known security vulnerabilities? [Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
+* If less known dependency is needed,  discuss it with the team before using it.
+* Keep track of your currently used packages... [ls | npm Documentation](https://docs.npmjs.com/cli/ls)
+* See if any of your packages has become unused and irrelevant by using [depcheck](https://www.npmjs.com/package/depcheck) .Always get rid of unused packages.
+* Check if the dependency is heavily used by community... [npm-stat: download statistics for NPM packages](https://npm-stat.com/)
+* Check to see if the dependency is well maintained... [view | npm Documentation](https://docs.npmjs.com/cli/view)
+* Check to see if the package has enough maintainers... [view | npm Documentation](https://docs.npmjs.com/cli/view)
+* Always make sure your app works with latest versions of dependencies without breaking. [outdated | npm Documentation](https://docs.npmjs.com/cli/outdated)
+* CHeck to see package has known security vulnerabilities...[Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
 
 ## 6. Testing
 * Have a test mode environment if needed.
@@ -76,6 +115,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 * write testable code, avoid side effect, extract side effects, write pure functions
 * Don’t write too many tests to check types, instead use a Static type checker
 * Run tests locally before any pull request to `develop`.
+* Document your tests, with instructions.
 
 ## 7. Structure and Naming
 * Organize your files around product features / pages / components, not Roles:
@@ -104,17 +144,17 @@ If less known dependency is needed,  discuss it with the team before using it.
 |   └── user.test.js
 ```
 
-* Place Your Test Files Next to The Implementation
+* Place your test files next to the implementation.
 * Put your additional test files to a separate test folder to avoid confusion.
-* Use a `./config` directory. Values to be used in config files are provided by environmental variables.
-* Put Your Long `npm` Scripts in a `./scripts` directory. This is for bash and node scripts for database synchronisation, front-end build scripts and so on. 
-* Place your built output in a `./build` folder
+* Use a `./config` folder. Values to be used in config files are provided by environmental variables.
+* Put your scripts in a `./scripts` folder. This includes bash and node scripts for database synchronisation, build and bundling and so on. 
+* Place your build output in a `./build` folder. Add `build/` to `.gitignore`
 * Use `PascalCase' 'camelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 * Ideally the directory name would match the name of the default export of `index.js`
 
 ## 8. Code style
-* Use stage-1 and higher JavaScript (modern) syntax for new projects.
+* Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intent to modernise the project.
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
 * Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details) 
@@ -136,7 +176,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 
 
 ## 10 Api design
-### 10.1 Follow Resource oriented design
+### 10.1 Follow resource oriented design
 This has three main factors Resources, collection and URLs.
 * A resource has data, relationships to other resources, and methods that operate against it
 * A group of resources is called a collection.
@@ -195,7 +235,7 @@ Response messages must be self descriptive. A good error message response might 
 }
 ```
 
-Note: Keep security  exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect.
+Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect.
 
 #### 10.5.2 Align your feedback with HTTP codes. 
 ##### The client and API worked (success – 2xx response code)  
@@ -274,7 +314,7 @@ There are lots of open source tools for good documentation like [API Blueprint |
 
 
 ## 11. Licensing
-Make sure you use resources that you have the rights to use. Copyrighted images and videos, for example, could cause legal problems.
+Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos also could cause legal problems.
 
 
 ---
@@ -282,7 +322,8 @@ Sources:
 [RisingStack Engineering](https://blog.risingstack.com/), 
 [Mozilla Developer Network](https://developer.mozilla.org/), 
 [Heroku Dev Center](https://devcenter.heroku.com), 
-[airbnb/javascript](https://github.com/airbnb/javascript)
+[Airbnb/javascript](https://github.com/airbnb/javascript)
+[Atlassian Git tutorials](https://github.com/airbnb/javascript)
 
 
 
