@@ -19,7 +19,7 @@
 * Resolve potential conflicts before making a Pull Request
 * Never push into `develop` or `master` branch.
 * Keep your `develop` and  `master` update.
-* Make a pull requests to develop only if your build have been successful locally (including tests and [code style](#code style) checks). This is to make sure your code style is matching the Repo's.
+* Make a pull requests to develop only if your build have been successful locally (including tests and [code style](#code style) checks). This is to make sure your code style is matching the repository's.
 * Only merge your pull request after approval.
 * Use [hive’s .gitignore file](./.gitignore).
 * Make sure your `.gitignore` excludes the following:
@@ -32,10 +32,10 @@
 
 ## 2. Documentation
 * Use [hive’s README.md template](./README.sample.md) `README.md` template (add extra sections if necessary).
-* For project with more than one repo, provide links to all repos in each every project's  `README.md`.
+* For project with more than one repository, provide links to all repositories in each every project's  `README.md`.
 * Keep `README.md` updated
 * Comment all your code to make it as clear as possible what you are intending with each major section. 
-* Keep your comments relevent as code evolves.
+* Keep your comments relevant as code evolves.
 
 ## 3. Environmental Awareness
 * Depending on project size, define separate `development`, `test` and `production` environments. 
@@ -48,7 +48,7 @@
 * Use `engines` in `package.json` to specify the version of node that your stuff works on.
 * Use `nvm` and create a  `.nvmrc`  in your project root.  Mention in documentation
 * Use a `preinstall` script that checks node and npm versions
-* Or if it doesn’t make things complicated use a docker images 
+* Or if it doesn't make things complicated use a docker images 
 * Local modules instead of requiring global installation
 
 ### 4.2 Consistent dependencies:
@@ -78,7 +78,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 * Run tests locally before any pull request to `develop`.
 
 ## 7. Structure and Naming
-* Organise your files around product features / pages / components, not Roles:
+* Organize your files around product features / pages / components, not Roles:
 
 ```
 // BAD 
@@ -106,20 +106,20 @@ If less known dependency is needed,  discuss it with the team before using it.
 
 * Place Your Test Files Next to The Implementation
 * Put your additional test files to a separate test folder to avoid confusion.
-* Use a `./config` directory. Values to be used in config files are provided by enviromental variables.
+* Use a `./config` directory. Values to be used in config files are provided by environmental variables.
 * Put Your Long `npm` Scripts in a `./scripts` directory. This is for bash and node scripts for database synchronisation, front-end build scripts and so on. 
 * Place your built output in a `./build` folder
-* Use `PascalCase' 'amelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
+* Use `PascalCase' 'camelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 * Ideally the directory name would match the name of the default export of `index.js`
 
 ## 8. Code style
-* Use latest stablished JavaScript syntax for new projects
+* Use stage-1 and higher JavaScript (modern) syntax for new projects.
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
 * Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details) 
-* Use [Flow type linting rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/)
-* Use `.eslintignore` to exclude file or folders from linting. 
+* Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/)
+* Use `.eslintignore` to exclude file or folders from code style check. 
 * Remove any of your `eslint` disable comments before making a Pull Request
 * Always use  `//todo:`  comments to remind yourself and others about an unfinished job
 * Always comment and keep them relevant as code changes 
@@ -128,7 +128,7 @@ If less known dependency is needed,  discuss it with the team before using it.
 * Avoid irrelevant or funny comments, logs or naming.
 * Write testable code, avoid side effect, extract side effects, write pure functions
 * Make your names searchable with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
-* Organise your functions in a file according to the stepdown rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
+* Organise your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
 
 ## 9. Logging
 * Avoid client side console logs in production
@@ -149,7 +149,7 @@ This has three main factors Resources, collection and URLs.
 * `/users` a collection of users  (plural nouns)
 * `/users/id` a resource with information about a specific user   
 * A resource always should be plural in the url. Keeping verbs out of your resource URLs.
-* Use verb for non-resources. In this case, your API doesn’t return any resources. Instead, you execute an operation and return the result to the client. Hence, you should use verbs instead of nouns in your URL to distinguish clearly the non-resource responses from the resource-related responses.
+* Use verb for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result to the client. Hence, you should use verbs instead of nouns in your URL to distinguish clearly the non-resource responses from the resource-related responses.
 
 GET 	`/translate?text=Hallo`
 
@@ -240,7 +240,7 @@ Attackers can tamper with any part of an HTTP request, including the url, query 
 The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a 406 Not Acceptable response.
 
 #### 10.7.6 JSON encoding
-A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server.Use a JSON serialiser to encode user-supplied data properly to prevent the execution of user input on the browser/server.
+A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server.Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
 
 
 ### 10.8 Document your api

@@ -1,7 +1,7 @@
 ![Logo of the project](./logo.sample.png)
 
 # Name of the project
-> Additional information or tagline
+> Additional information or tag line
 
 A brief description of your project, what it is used for.
 
@@ -21,7 +21,7 @@ Here you should say what actually happens when you execute the code above.
 ### Built With
 List main libraries, frameworks used including versions (React, Angular etc...)
 
-### Prerequisities
+### Prerequisites
 What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
 
 
@@ -36,7 +36,7 @@ cd your-project/
 packagemanager install
 ```
 
-And state what happens step-by-step. If there is any vistual environment, local server or database feeder needed, explain here.
+And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
 
 ### Building
 
@@ -88,10 +88,10 @@ Explain your code style and show how to check it.
 
 ## Api Reference
 
-If the api is external, link to api doscumentation. If not descripe your api including authentication methods as well as explaining all the endpoints with their required parameters.
+If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
 
 
-## Databese
+## Database
 
 Explaining what database (and version) has been used. Provide download links.
 Documents your database design and schemas, relations etc... 
