@@ -320,14 +320,12 @@ Make sure you use resources that you have the rights to use. If you use librarie
 
 
 ---
-<sup>
 Sources:
 [RisingStack Engineering](https://blog.risingstack.com/), 
 [Mozilla Developer Network](https://developer.mozilla.org/), 
 [Heroku Dev Center](https://devcenter.heroku.com), 
 [Airbnb/javascript](https://github.com/airbnb/javascript)
 [Atlassian Git tutorials](https://github.com/airbnb/javascript)
-</sup>
 
 
 
