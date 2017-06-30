@@ -155,7 +155,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Ideally the directory name would match the name of the default export of `index.js`
 
 ## 7. Code style <a name="code-style"></a> 
-* Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intent to modernise the project.
+* Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
 * Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details) 
