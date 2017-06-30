@@ -17,7 +17,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Api Design](#api-design)
 - [Licensing](#licensing)
 
-<a name="git"></a>## 1. Git
+<a name="git"></a> ## 1. Git
 
 ### 1.1 Workflow
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
@@ -71,7 +71,7 @@ There are a set of rules to keep in mind:
 * Before making a PR, make sure your feature branch builds successfully abd passes all tests (including code style checks).
 * Use [hive’s .gitignore file](./.gitignore).
 
-<a name="documentation"></a>## 2. Documentation
+<a name="documentation"></a> ## 2. Documentation
 * Use [hive’s template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 * For project with more than one repository, provide links to between them in their `README.md` files.
 * Keep `README.md` updated as project evolves.
@@ -79,13 +79,13 @@ There are a set of rules to keep in mind:
 * Comment small sections of code if you think it's not self self explanatory enough. 
 * Keep your comments relevant as code evolves.
 
-<a name="environments"></a>## 3. Environments
+<a name="environments"></a> ## 3. Environments
 * Depending on project size, define separate `development`, `test` and `production` environments. 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
 *  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
 
-<a name="development"></a>## 4. Development
+<a name="development"></a> ## 4. Development
 ### 4.1 Consistent dev environments:
 * Use `engines` in `package.json` to specify the version of node that your stuff works on.
 * Additionally, Use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention in documentation
@@ -99,7 +99,7 @@ There are a set of rules to keep in mind:
 * Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
 * Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
 
-<a name="dependencies"></a>## 5. Dependencies
+<a name="dependencies"></a> ## 5. Dependencies
 Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
 
 * If less known dependency is needed,  discuss it with the team before using it.
@@ -111,7 +111,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Always make sure your app works with latest versions of dependencies without breaking. [outdated | npm Documentation](https://docs.npmjs.com/cli/outdated)
 * CHeck to see package has known security vulnerabilities...[Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
 
-<a name="testing"></a>## 6. Testing
+<a name="testing"></a> ## 6. Testing
 * Have a test mode environment if needed.
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
 * Put your additional test files to a separate test folder to avoid confusion.
@@ -120,7 +120,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Run tests locally before any pull request to `develop`.
 * Document your tests, with instructions.
 
-<a name="structure-and-naming"></a>## 7. Structure and Naming
+<a name="structure-and-naming"></a> ## 7. Structure and Naming
 * Organize your files around product features / pages / components, not Roles:
 
 ```
@@ -156,7 +156,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 * Ideally the directory name would match the name of the default export of `index.js`
 
-<a name="code-style"></a>## 8. Code style
+<a name="code-style"></a> ## 8. Code style
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intent to modernise the project.
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
@@ -173,12 +173,12 @@ Before using a package check its Github open issues, daily downloads and number 
 * Make your names searchable with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
 * Organise your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
 
-<a name="logging"></a>## 9. Logging
+<a name="logging"></a> ## 9. Logging
 * Avoid client side console logs in production
 * Produce readable production logging. Ideally use production logging libraries to be used in production mode.
 
 
-<a name="api-design"></a>## 10 Api design
+<a name="api-design"></a> ## 10 Api design
 ### 10.1 Follow resource oriented design
 This has three main factors Resources, collection and URLs.
 * A resource has data, relationships to other resources, and methods that operate against it
@@ -315,7 +315,7 @@ Content: { id : 12 }
 #### 10.8.1 Tools
 There are lots of open source tools for good documentation like [API Blueprint | API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which enable client and documentation systems to update at the same pace as the server.
 
-<a name="licensing"></a>## 11. Licensing
+<a name="licensing"></a> ## 11. Licensing
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos also could cause legal problems.
 
 
