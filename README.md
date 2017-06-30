@@ -323,7 +323,3 @@ Sources:
 [Heroku Dev Center](https://devcenter.heroku.com), 
 [Airbnb/javascript](https://github.com/airbnb/javascript)
 [Atlassian Git tutorials](https://github.com/airbnb/javascript)
-
-
-
-© WeAreHive Limited
