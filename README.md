@@ -85,7 +85,7 @@ There are a set of rules to keep in mind:
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
 
 ### 3.1 Consistent dev environments:
-* Use `engines` in `package.json` to specify the version of node that your stuff works on.
+* Set `engines` in `package.json` to specify the version of node your project works on.
 * Additionally, Use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention in documentation
 * You can also use a `preinstall` script that checks node and npm versions
 * Or if it doesn't make things complicated use a docker images 
