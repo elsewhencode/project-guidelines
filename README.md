@@ -183,7 +183,7 @@ Follow resource oriented design. This has three main factors Resources, collecti
 * URL identifies the online location of a resource.
 
 
-### 9.1 Naming
+### 9.1 Api Naming
 
 #### 9.1.1 Naming URLs
 * `/users` a collection of users  (plural nouns)
@@ -220,7 +220,7 @@ If there is a relation between resources like  employee to a company, use `id` i
 * **PUT**		`/schools/2/students/31`	Should update info of student 31, Use PUT on resource-url only, not collection
 * **POST**	`/schools `					Should create a new school and return the details of the new school created. Use POST on collection-URLs
 
-### 9.4 Versioning 
+### 9.4 Api Versioning 
 When your APIs are public other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your url can prevent that from happening:
 `http://api.domain.com/v1/schools/3/students	`
 
@@ -262,7 +262,7 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 * Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
 
 
-### 9.7 Security 
+### 9.7 Api security 
 #### 9.7.1 TLS
 To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorisation server and access token credentials to use TLS.
 Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication.
@@ -283,7 +283,7 @@ The server should never assume the Content-Type. A lack of Content-Type header o
 A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server.Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
 
 
-### 9.8 Document your api
+### 9.8 Api documentation
 * Fill the `Api Reference` section in [README.md template](./README.sample.md) for api.
 * Describe api authentication methods with a code sample
 * explaining The URL Structure (path only, no root url) including The request type (Method) 
@@ -309,7 +309,7 @@ Content: { id : 12 }
 ```
 
 
-#### 9.8.1 Tools
+#### 9.8.1 Api design tools
 There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which can be used.
 
 ## 10. Licensing <a name="licensing"></a> 
