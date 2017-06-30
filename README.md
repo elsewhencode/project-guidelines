@@ -67,7 +67,7 @@ There are a set of rules to keep in mind:
 * Resolve potential conflicts while rebasing and before making a Pull Request
 * Delete local and remote feature branches after merging.
 * Before making a PR, make sure your feature branch builds successfully abd passes all tests (including code style checks).
-* Use [hive’s .gitignore file](./.gitignore).
+* Use [this .gitignore file](./.gitignore).
 * Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
 ## 2. Documentation <a name="documentation"></a> 
