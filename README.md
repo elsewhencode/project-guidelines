@@ -8,7 +8,6 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Git](#git)
 - [Documentation](#documentation)
 - [Environments](#environments)
-- [Development](#development)
 - [Dependencies](#dependencies)
 - [Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
@@ -19,7 +18,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 
 ## 1. Git <a name="git"></a> 
 
-### 1.1 Workflow
+### 1.1 Git Workflow
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
@@ -55,13 +54,12 @@ git rebase --continue
 git push
 ```
 * Make a Pull Request
-* Pull request will be accepted, merged and close
-* Remove your local feature branch
+* Pull request will be accepted, merged and close by reviewer
+* Remove your local feature branch if you're done
 
 
-### 1.2 Rules
+### 1.2 Some Git Rules
 There are a set of rules to keep in mind:
-* Keep your `develop` and  `master` updated.
 * Perform work in a feature branch.
 * Make a pull requests to `develop`
 * Never push into `develop` or `master` branch.
@@ -70,13 +68,14 @@ There are a set of rules to keep in mind:
 * Delete local and remote feature branches after merging.
 * Before making a PR, make sure your feature branch builds successfully abd passes all tests (including code style checks).
 * Use [hive’s .gitignore file](./.gitignore).
+* Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
 ## 2. Documentation <a name="documentation"></a> 
-* Use [hive’s template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
+* Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 * For project with more than one repository, provide links to between them in their `README.md` files.
 * Keep `README.md` updated as project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section. 
-* Comment small sections of code if you think it's not self self explanatory enough. 
+* Comment small sections of code if you think it's not self explanatory. 
 * Keep your comments relevant as code evolves.
 
 ## 3. Environments <a name="environments"></a> 
@@ -85,21 +84,14 @@ There are a set of rules to keep in mind:
 *  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
 
-## 4. Development <a name="development"></a> 
-### 4.1 Consistent dev environments:
+### 3.1 Consistent dev environments:
 * Use `engines` in `package.json` to specify the version of node that your stuff works on.
 * Additionally, Use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention in documentation
 * You can also use a `preinstall` script that checks node and npm versions
 * Or if it doesn't make things complicated use a docker images 
 * Use local modules instead of requiring global installation
 
-### 4.2 Consistent dependencies:
-* Use `package-lock.json` on npm 5 or higher
-* For older versions of npm Use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing.
-* Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
-* Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
-
-## 5. Dependencies <a name="dependencies"></a> 
+## 4. Dependencies <a name="dependencies"></a> 
 Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
 
 * If less known dependency is needed,  discuss it with the team before using it.
@@ -111,7 +103,13 @@ Before using a package check its Github open issues, daily downloads and number 
 * Always make sure your app works with latest versions of dependencies without breaking. [outdated | npm Documentation](https://docs.npmjs.com/cli/outdated)
 * CHeck to see package has known security vulnerabilities...[Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
 
-## 6. Testing <a name="testing"></a> 
+### 4.1 Consistent dependencies:
+* Use `package-lock.json` on npm 5 or higher
+* For older versions of npm Use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing.
+* Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
+* Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
+
+## 5. Testing <a name="testing"></a> 
 * Have a test mode environment if needed.
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
 * Put your additional test files to a separate test folder to avoid confusion.
@@ -120,7 +118,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Run tests locally before any pull request to `develop`.
 * Document your tests, with instructions.
 
-## 7. Structure and Naming <a name="structure-and-naming"></a> 
+## 6. Structure and Naming <a name="structure-and-naming"></a> 
 * Organize your files around product features / pages / components, not Roles:
 
 ```
@@ -156,7 +154,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 * Ideally the directory name would match the name of the default export of `index.js`
 
-## 8. Code style <a name="code-style"></a> 
+## 7. Code style <a name="code-style"></a> 
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intent to modernise the project.
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
@@ -173,22 +171,21 @@ Before using a package check its Github open issues, daily downloads and number 
 * Make your names searchable with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
 * Organise your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
 
-## 9. Logging <a name="logging"></a> 
+## 8. Logging <a name="logging"></a> 
 * Avoid client side console logs in production
-* Produce readable production logging. Ideally use production logging libraries to be used in production mode.
+* Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or 
+[node-bunyan](https://github.com/trentm/node-bunyan)).
 
-
-## 10 Api design <a name="api-design"></a> 
-### 10.1 Follow resource oriented design
-This has three main factors Resources, collection and URLs.
+## 9 Api design <a name="api-design"></a> 
+Follow resource oriented design. This has three main factors Resources, collection and URLs.
 * A resource has data, relationships to other resources, and methods that operate against it
 * A group of resources is called a collection.
 * URL identifies the online location of a resource.
 
 
-### 10.1 Naming
+### 9.1 Naming
 
-#### 10.1.1 Naming URLs
+#### 9.1.1 Naming URLs
 * `/users` a collection of users  (plural nouns)
 * `/users/id` a resource with information about a specific user   
 * A resource always should be plural in the url. Keeping verbs out of your resource URLs.
@@ -196,15 +193,15 @@ This has three main factors Resources, collection and URLs.
 
 GET 	`/translate?text=Hallo`
 
-#### 10.1.2 Naming fields
+#### 9.1.2 Naming fields
 * The request body or response type is JSON then please follow `camelCase` to maintain the consistency. 
 * Use field labels for resource properties instead of using the same name as data base fields, You can adapt your existing fields to a changed or evolving database without introducing breaking changes. 
 * Only use nouns in your url naming and don’t try to explain their functionality and only explain the resources (elegantly).
 
 
-### 10.2 Operating on resources
+### 9.2 Operating on resources
 
-#### 10.2.1 Use HTTP methods
+#### 9.2.1 Use HTTP methods
 Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` .  Also avoid sending resource operations as a parameter. Instead explain the functionalities using HTTP methods:
 
 * **GET**		Used to retrieve a representation of a resource.
@@ -213,7 +210,7 @@ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/up
 * **PATCH**	Used to update existing resources.  PATCH only updates the fields that were supplied, leaving the others alone
 * **DELETE**	Used to delete existing resources
 
-### 10.3 Use sub-resources
+### 9.3 Use sub-resources
 Sub resources are used to link one resource with another, so use sub resources to represent the relation.
 If there is a relation between resources like  employee to a company, use `id` in the url:
 
@@ -223,12 +220,12 @@ If there is a relation between resources like  employee to a company, use `id` i
 * **PUT**		`/schools/2/students/31`	Should update info of student 31, Use PUT on resource-url only, not collection
 * **POST**	`/schools `					Should create a new school and return the details of the new school created. Use POST on collection-URLs
 
-### 10.4 Versioning 
+### 9.4 Versioning 
 When your APIs are public other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your url can prevent that from happening:
 `http://api.domain.com/v1/schools/3/students	`
 
-### 10.5 Send feedbacks
-#### 10.5.1 Errors
+### 9.5 Send feedbacks
+#### 9.5.1 Errors
 Response messages must be self descriptive. A good error message response might look something like this:
 ```
 {
@@ -240,7 +237,7 @@ Response messages must be self descriptive. A good error message response might 
 
 Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect.
 
-#### 10.5.2 Align your feedback with HTTP codes. 
+#### 9.5.2 Align your feedback with HTTP codes. 
 ##### The client and API worked (success – 2xx response code)  
 * `200` HTTP response representing success for GET, PUT or POST.
 * `201` Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return `201` status code.
@@ -259,43 +256,43 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 * `503` Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
 
 
-### 10.6 Resource parameters and metadata
+### 9.6 Resource parameters and metadata
 * Provide total numbers of resources in your response
 * The amount of data the resource exposes should also be taken into account.
 * Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
 
 
-### 10.7 Security 
-#### 10.7.1 TLS
+### 9.7 Security 
+#### 9.7.1 TLS
 To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorisation server and access token credentials to use TLS.
 Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication.
 
-#### 10.7.2 Rate limiting
+#### 9.7.2 Rate limiting
 If your api is public or have high number of users, any client may be able to call your api thousands of times per hour. You should consider implementing rate limit early on.
 
-#### 10.7.3 Input Validation
+#### 9.7.3 Input Validation
 It's difficult to perform most attacks if the only allowed values are true or false, or a number, or one of a small number of acceptable values. 
 
-#### 10.7.4 URL validations
+#### 9.7.4 URL validations
 Attackers can tamper with any part of an HTTP request, including the url, query string,
 
-#### 10.7.5 Validate incoming content-types.
+#### 9.7.5 Validate incoming content-types.
 The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a 406 Not Acceptable response.
 
-#### 10.7.6 JSON encoding
+#### 9.7.6 JSON encoding
 A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server.Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
 
 
-### 10.8 Document your api
-* There is a `Api Reference` section in Hive’s README.md template for api documentation
+### 9.8 Document your api
+* Fill the `Api Reference` section in [README.md template](./README.sample.md) for api.
 * Describe api authentication methods with a code sample
 * explaining The URL Structure (path only, no root url) including The request type (Method) 
-* URL Params If URL params exist, specify them in accordance with name mentioned in URL section. Separate the section into Optional and Required.
+* URL Params If URL params exist, specify them in accordance with name mentioned in URL section
 ```
 Required: id=[integer]
 Optional: photo_id=[alphanumeric]
-Data Params: If the request type is POST, what should be the body payload look like? URL Params rules apply here too.
 ```
+* If the request type is POST, what should be the body payload look like? URL Params rules apply here too. Separate the section into Optional and Required.
 
 * Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect!
 ```
@@ -312,11 +309,11 @@ Content: { id : 12 }
 ```
 
 
-#### 10.8.1 Tools
-There are lots of open source tools for good documentation like [API Blueprint | API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which enable client and documentation systems to update at the same pace as the server.
+#### 9.8.1 Tools
+There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which can be used.
 
-## 11. Licensing <a name="licensing"></a> 
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos also could cause legal problems.
+## 10. Licensing <a name="licensing"></a> 
+Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos may cause legal problems.
 
 
 ---
