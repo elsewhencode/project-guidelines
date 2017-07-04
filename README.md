@@ -195,7 +195,7 @@ GET 	`/translate?text=Hallo`
 
 #### 9.1.2 Naming fields
 * The request body or response type is JSON then please follow `camelCase` to maintain the consistency. 
-* Use field labels for resource properties instead of using the same name as data base fields, You can adapt your existing fields to a changed or evolving database without introducing breaking changes. 
+* Expose Resources, not your database schema details. You don't have to use your `table_name` for a resource name as well. Same with resource properties, they shouldnt be the same as your column names.  
 * Only use nouns in your url naming and don’t try to explain their functionality and only explain the resources (elegantly).
 
 
@@ -212,6 +212,7 @@ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/up
 
 ### 9.3 Use sub-resources
 Sub resources are used to link one resource with another, so use sub resources to represent the relation.
+An API suppose to be an interface for developers and this is a natural way to make resources explorable.
 If there is a relation between resources like  employee to a company, use `id` in the url:
 
 * **GET**		`/schools/2/students	`	Should get the list of all students from school 2
@@ -234,7 +235,26 @@ Response messages must be self descriptive. A good error message response might 
 “description” : “More details”
 }
 ```
+or for validation errors:
 
+```
+{
+  "code" : 2314,
+  "message" : "Validation Failed",
+  "errors" : [
+    {
+      "code" : 1233,
+      "field" : "email",
+      "message" : "Invalid email"
+    },
+    {
+       "code" : 1234,
+       "field" : "password",
+       "message" : "No password provided"
+    }
+  ]
+}
+```
 Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect.
 
 #### 9.5.2 Align your feedback with HTTP codes. 
@@ -258,20 +278,28 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 
 ### 9.6 Resource parameters and metadata
 * Provide total numbers of resources in your response
-* The amount of data the resource exposes should also be taken into account.
+* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
+```
+GET /student?fields=id,name,age,class
+```
 * Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
 
 
 ### 9.7 Api security 
 #### 9.7.1 TLS
 To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorisation server and access token credentials to use TLS.
-Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication.
+Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication. Throw an error for non-secure access to API URLs.
 
 #### 9.7.2 Rate limiting
 If your api is public or have high number of users, any client may be able to call your api thousands of times per hour. You should consider implementing rate limit early on.
 
 #### 9.7.3 Input Validation
-It's difficult to perform most attacks if the only allowed values are true or false, or a number, or one of a small number of acceptable values. 
+It's difficult to perform most attacks if the allowed values are limited. 
+* Validate required fields, field types (e.g. string, integer, boolean, etc), and format requirements. Return 400 Bad Request with details about any errors from bad or missing data.
+
+* Escape parameters that will become part of the SQL statement to protect from SQL injection attacks
+
+* As also mentioned before, don't expose your database scheme when naming your resources and defining your responses
 
 #### 9.7.4 URL validations
 Attackers can tamper with any part of an HTTP request, including the url, query string,
@@ -286,13 +314,15 @@ A key concern with JSON encoders is preventing arbitrary JavaScript remote code 
 ### 9.8 Api documentation
 * Fill the `Api Reference` section in [README.md template](./README.sample.md) for api.
 * Describe api authentication methods with a code sample
-* explaining The URL Structure (path only, no root url) including The request type (Method) 
+* Explaining The URL Structure (path only, no root url) including The request type (Method)
+
+For each endpoint explain:
 * URL Params If URL params exist, specify them in accordance with name mentioned in URL section
 ```
 Required: id=[integer]
 Optional: photo_id=[alphanumeric]
 ```
-* If the request type is POST, what should be the body payload look like? URL Params rules apply here too. Separate the section into Optional and Required.
+* If the request type is POST, provide a working examples. URL Params rules apply here too. Separate the section into Optional and Required.
 
 * Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect!
 ```
@@ -300,7 +330,7 @@ Code: 200
 Content: { id : 12 }
 ```
 
-* Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example 
+  * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example 
 
 ```
 "Code": 403
