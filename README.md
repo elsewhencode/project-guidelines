@@ -66,7 +66,7 @@ There are a set of rules to keep in mind:
 * Update your `develop` and do a interactive rebase before pushing your feature and making a PR
 * Resolve potential conflicts while rebasing and before making a Pull Request
 * Delete local and remote feature branches after merging.
-* Before making a PR, make sure your feature branch builds successfully abd passes all tests (including code style checks).
+* Before making a PR, make sure your feature branch builds successfully and passes all tests (including code style checks).
 * Use [this .gitignore file](./.gitignore).
 * Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
