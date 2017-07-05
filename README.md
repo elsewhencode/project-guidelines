@@ -13,7 +13,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
 - [Logging](#logging)
-- [Api Design](#api-design)
+- [API Design](#api-design)
 - [Licensing](#licensing)
 
 ## 1. Git <a name="git"></a> 
@@ -81,8 +81,8 @@ There are a set of rules to keep in mind:
 ## 3. Environments <a name="environments"></a> 
 * Depending on project size, define separate `development`, `test` and `production` environments. 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
-*  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
-* It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values: 
+*  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `.gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
+* It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values:
 
 ### 3.1 Consistent dev environments:
 * Set `engines` in `package.json` to specify the version of node your project works on.
@@ -101,7 +101,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Check to see if the dependency is well maintained... [view | npm Documentation](https://docs.npmjs.com/cli/view)
 * Check to see if the package has enough maintainers... [view | npm Documentation](https://docs.npmjs.com/cli/view)
 * Always make sure your app works with latest versions of dependencies without breaking. [outdated | npm Documentation](https://docs.npmjs.com/cli/outdated)
-* CHeck to see package has known security vulnerabilities...[Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
+* Check to see package has known security vulnerabilities...[Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
 
 ### 4.1 Consistent dependencies:
 * Use `package-lock.json` on npm 5 or higher
@@ -168,35 +168,35 @@ Before using a package check its Github open issues, daily downloads and number 
 * Avoid js alerts in production
 * Avoid irrelevant or funny comments, logs or naming.
 * Write testable code, avoid side effect, extract side effects, write pure functions
-* Make your names searchable with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
-* Organise your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
+* Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
+* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
 
 ## 8. Logging <a name="logging"></a> 
 * Avoid client side console logs in production
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or 
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
-## 9 Api design <a name="api-design"></a> 
+## 9 API design <a name="api-design"></a>
 Follow resource oriented design. This has three main factors Resources, collection and URLs.
 * A resource has data, relationships to other resources, and methods that operate against it
 * A group of resources is called a collection.
 * URL identifies the online location of a resource.
 
 
-### 9.1 Api Naming
+### 9.1 API Naming
 
 #### 9.1.1 Naming URLs
 * `/users` a collection of users  (plural nouns)
 * `/users/id` a resource with information about a specific user   
-* A resource always should be plural in the url. Keeping verbs out of your resource URLs.
+* A resource always should be plural in the URL. Keeping verbs out of your resource URLs.
 * Use verb for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result to the client. Hence, you should use verbs instead of nouns in your URL to distinguish clearly the non-resource responses from the resource-related responses.
 
 GET 	`/translate?text=Hallo`
 
 #### 9.1.2 Naming fields
-* The request body or response type is JSON then please follow `camelCase` to maintain the consistency. 
-* Expose Resources, not your database schema details. You don't have to use your `table_name` for a resource name as well. Same with resource properties, they shouldnt be the same as your column names.  
-* Only use nouns in your url naming and don’t try to explain their functionality and only explain the resources (elegantly).
+* The request body or response type is JSON then please follow `camelCase` to maintain the consistency.
+* Expose Resources, not your database schema details. You don't have to use your `table_name` for a resource name as well. Same with resource properties, they shouldn't be the same as your column names.
+* Only use nouns in your URL naming and don’t try to explain their functionality and only explain the resources (elegantly).
 
 
 ### 9.2 Operating on resources
@@ -212,17 +212,17 @@ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/up
 
 ### 9.3 Use sub-resources
 Sub resources are used to link one resource with another, so use sub resources to represent the relation.
-An API suppose to be an interface for developers and this is a natural way to make resources explorable.
-If there is a relation between resources like  employee to a company, use `id` in the url:
+An API is supposed to be an interface for developers and this is a natural way to make resources explorable.
+If there is a relation between resources like  employee to a company, use `id` in the URL:
 
 * **GET**		`/schools/2/students	`	Should get the list of all students from school 2
 * **GET**		`/schools/2/students/31`	Should get the details of student 31, which belongs to school 2
 * **DELETE**	`/schools/2/students/31`	Should delete student 31, which belongs to school 2
-* **PUT**		`/schools/2/students/31`	Should update info of student 31, Use PUT on resource-url only, not collection
+* **PUT**		`/schools/2/students/31`	Should update info of student 31, Use PUT on resource-URL only, not collection
 * **POST**	`/schools `					Should create a new school and return the details of the new school created. Use POST on collection-URLs
 
-### 9.4 Api Versioning 
-When your APIs are public other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your url can prevent that from happening:
+### 9.4 API Versioning
+When your APIs are public other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
 `http://api.domain.com/v1/schools/3/students	`
 
 ### 9.5 Send feedbacks
@@ -285,16 +285,16 @@ GET /student?fields=id,name,age,class
 * Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
 
 
-### 9.7 Api security 
+### 9.7 API security
 #### 9.7.1 TLS
-To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorisation server and access token credentials to use TLS.
+To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorization server and access token credentials to use TLS.
 Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication. Throw an error for non-secure access to API URLs.
 
 #### 9.7.2 Rate limiting
-If your api is public or have high number of users, any client may be able to call your api thousands of times per hour. You should consider implementing rate limit early on.
+If your API is public or have high number of users, any client may be able to call your API thousands of times per hour. You should consider implementing rate limit early on.
 
 #### 9.7.3 Input Validation
-It's difficult to perform most attacks if the allowed values are limited. 
+It's difficult to perform most attacks if the allowed values are limited.
 * Validate required fields, field types (e.g. string, integer, boolean, etc), and format requirements. Return 400 Bad Request with details about any errors from bad or missing data.
 
 * Escape parameters that will become part of the SQL statement to protect from SQL injection attacks
@@ -302,22 +302,22 @@ It's difficult to perform most attacks if the allowed values are limited.
 * As also mentioned before, don't expose your database scheme when naming your resources and defining your responses
 
 #### 9.7.4 URL validations
-Attackers can tamper with any part of an HTTP request, including the url, query string,
+Attackers can tamper with any part of an HTTP request, including the URL, query string,
 
 #### 9.7.5 Validate incoming content-types.
-The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a 406 Not Acceptable response.
+The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `406` Not Acceptable response.
 
 #### 9.7.6 JSON encoding
-A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server.Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
+A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server. Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
 
 
-### 9.8 Api documentation
-* Fill the `Api Reference` section in [README.md template](./README.sample.md) for api.
-* Describe api authentication methods with a code sample
-* Explaining The URL Structure (path only, no root url) including The request type (Method)
+### 9.8 API documentation
+* Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
+* Describe API authentication methods with a code sample
+* Explaining The URL Structure (path only, no root URL) including The request type (Method)
 
 For each endpoint explain:
-* URL Params If URL params exist, specify them in accordance with name mentioned in URL section
+* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section
 ```
 Required: id=[integer]
 Optional: photo_id=[alphanumeric]
