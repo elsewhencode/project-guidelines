@@ -210,7 +210,7 @@ GET 	`/translate?text=Hallo`
 Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` .  Also avoid sending resource operations as a parameter. Instead explain the functionalities using HTTP methods:
 
 * **GET**		Used to retrieve a representation of a resource.
-* **POST**	Used to create new new resources and sub-resources
+* **POST**	Used to create new resources and sub-resources
 * **PUT**		Used to update existing resources
 * **PATCH**	Used to update existing resources.  PATCH only updates the fields that were supplied, leaving the others alone
 * **DELETE**	Used to delete existing resources
