@@ -66,6 +66,18 @@ There are a set of rules to keep in mind:
 * Use [this .gitignore file](./.gitignore).
 * Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
+### 1.3 Writing good commit messages
+
+Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+
+ * Separate the subject from the body with a blank line
+ * Limit the subject line to 50 characters
+ * Capitalize the subject line
+ * Do not end the subject line with a period
+ * Use the imperative mood in the subject line
+ * Wrap the body at 72 characters
+ * Use the body to explain what and why vs. how
+
 ## 2. Documentation <a name="documentation"></a>
 * Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 * For project with more than one repository, provide links to between them in their `README.md` files.
