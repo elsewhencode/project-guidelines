@@ -354,4 +354,4 @@ Sources:
 [Mozilla Developer Network](https://developer.mozilla.org/),
 [Heroku Dev Center](https://devcenter.heroku.com),
 [Airbnb/javascript](https://github.com/airbnb/javascript)
-[Atlassian Git tutorials](https://github.com/airbnb/javascript)
+[Atlassian Git tutorials](https://www.atlassian.com/git/tutorials)
