@@ -45,9 +45,9 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
 	git add <file1> <file2> ...
     git rebase --continue
     ```
-* Push your branch
+* Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease` ([Here is why](https://developer.atlassian.com/blog/2015/04/force-with-lease/)).
     ```
-    git push
+    git push -f
     ```
 * Make a Pull Request
 * Pull request will be accepted, merged and close by reviewer
