@@ -22,37 +22,32 @@ If you want to share a best practice, or think one of these guidelines  should b
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
-```
- git checkout -b <branchname>
-```
-
+    ```
+    git checkout -b <branchname>
+    ```
 * Make Changes
-```
- git add
- git commit -m "description of changes"
-```
-
+    ```
+    git add
+    git commit -m "description of changes"
+    ```
 * Sync with remote to get changes you’ve missed
-```
- git checkout develop
- git pull
-```
-
+    ```
+    git checkout develop
+    git pull
+    ```
 * Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
-```
-git checkout <branchname>
-git -i rebase develop
-```
-
+    ```
+    git checkout <branchname>
+    git -i rebase develop
+    ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
-```
-git rebase --continue
-```
-
+    ```
+    git rebase --continue
+    ```
 * Push your branch
-```
-git push
-```
+    ```
+    git push
+    ```
 * Make a Pull Request
 * Pull request will be accepted, merged and close by reviewer
 * Remove your local feature branch if you're done
@@ -120,31 +115,29 @@ Before using a package check its Github open issues, daily downloads and number 
 
 ## 6. Structure and Naming <a name="structure-and-naming"></a> 
 * Organize your files around product features / pages / components, not Roles:
-
-```
-// BAD 
-.
-├── controllers
-|   ├── product.js
-|   └── user.js
-├── models
-|   ├── product.js
-|   └── user.js
-```
-
-```
-// GOOD
-.
-├── product
-|   ├── index.js
-|   ├── product.js
-|   └── product.test.js
-├── user
-|   ├── index.js
-|   ├── user.js
-|   └── user.test.js
-```
-
+    ```
+    // BAD 
+    .
+    ├── controllers
+    |   ├── product.js
+    |   └── user.js
+    ├── models
+    |   ├── product.js
+    |   └── user.js
+    ```
+    
+    ```
+    // GOOD
+    .
+    ├── product
+    |   ├── index.js
+    |   ├── product.js
+    |   └── product.test.js
+    ├── user
+    |   ├── index.js
+    |   ├── user.js
+    |   └── user.test.js
+    ```
 * Place your test files next to the implementation.
 * Put your additional test files to a separate test folder to avoid confusion.
 * Use a `./config` folder. Values to be used in config files are provided by environmental variables.
@@ -279,9 +272,9 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 ### 9.6 Resource parameters and metadata
 * Provide total numbers of resources in your response
 * The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
-```
-GET /student?fields=id,name,age,class
-```
+    ```
+    GET /student?fields=id,name,age,class
+    ```
 * Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
 
 
@@ -318,25 +311,22 @@ A key concern with JSON encoders is preventing arbitrary JavaScript remote code 
 
 For each endpoint explain:
 * URL Params If URL params exist, specify them in accordance with name mentioned in URL section
-```
-Required: id=[integer]
-Optional: photo_id=[alphanumeric]
-```
+    ```
+    Required: id=[integer]
+    Optional: photo_id=[alphanumeric]
+    ```
 * If the request type is POST, provide a working examples. URL Params rules apply here too. Separate the section into Optional and Required.
-
 * Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect!
-```
-Code: 200
-Content: { id : 12 }
-```
-
-  * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example 
-
-```
-"Code": 403
-"message" : "Authentication failed",
-"description" : "Invalid username or password"
-```
+    ```
+    Code: 200
+    Content: { id : 12 }
+    ```
+* Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example 
+    ```
+    "Code": 403
+    "message" : "Authentication failed",
+    "description" : "Invalid username or password"
+    ```
 
 
 #### 9.8.1 Api design tools
