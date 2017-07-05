@@ -158,7 +158,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Always comment and keep them relevant as code changes.
 * Remove commented block of code when possible.
 * Avoid js alerts in production.
-* Avoid irrelevant or funny comments, logs or naming.
+* Avoid irrelevant or funny comments, logs or naming (source code may get handed over to another company/client and they may not share the same banter).
 * Write testable code, avoid side effect, extract side effects, write pure functions.
 * Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
 * Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it more natural to read the source code.
