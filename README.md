@@ -42,6 +42,7 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
     ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```
+	git add <file1> <file2> ...
     git rebase --continue
     ```
 * Push your branch
