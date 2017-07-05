@@ -2,7 +2,7 @@
 ![Logo of the project](./logo.png)
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-> While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else. 
+> While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
 Here's a list of guidelines we've found, written and gathered that (we think) works really well with most javascript projects.
 If you want to share a best practice, or think one of these guidelines  should be removed, [feel free to share it with us](http://makeapullrequest.com).
 - [Git](#git)
@@ -16,43 +16,38 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [API Design](#api-design)
 - [Licensing](#licensing)
 
-## 1. Git <a name="git"></a> 
+## 1. Git <a name="git"></a>
 
 ### 1.1 Git Workflow
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
-```
- git checkout -b <branchname>
-```
-
+    ```
+    git checkout -b <branchname>
+    ```
 * Make Changes
-```
- git add
- git commit -m "description of changes"
-```
-
+    ```
+    git add
+    git commit -m "description of changes"
+    ```
 * Sync with remote to get changes you’ve missed
-```
- git checkout develop
- git pull
-```
-
+    ```
+    git checkout develop
+    git pull
+    ```
 * Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
-```
-git checkout <branchname>
-git -i rebase develop
-```
-
+    ```
+    git checkout <branchname>
+    git -i rebase develop
+    ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
-```
-git rebase --continue
-```
-
+    ```
+    git rebase --continue
+    ```
 * Push your branch
-```
-git push
-```
+    ```
+    git push
+    ```
 * Make a Pull Request
 * Pull request will be accepted, merged and close by reviewer
 * Remove your local feature branch if you're done
@@ -70,16 +65,16 @@ There are a set of rules to keep in mind:
 * Use [this .gitignore file](./.gitignore).
 * Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
-## 2. Documentation <a name="documentation"></a> 
+## 2. Documentation <a name="documentation"></a>
 * Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 * For project with more than one repository, provide links to between them in their `README.md` files.
 * Keep `README.md` updated as project evolves.
-* Comment your code. Try to make it as clear as possible what you are intending with each major section. 
-* Comment small sections of code if you think it's not self explanatory. 
+* Comment your code. Try to make it as clear as possible what you are intending with each major section.
+* Comment small sections of code if you think it's not self explanatory.
 * Keep your comments relevant as code evolves.
 
-## 3. Environments <a name="environments"></a> 
-* Depending on project size, define separate `development`, `test` and `production` environments. 
+## 3. Environments <a name="environments"></a>
+* Depending on project size, define separate `development`, `test` and `production` environments.
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
 *  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `.gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
 * It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values:
@@ -88,10 +83,10 @@ There are a set of rules to keep in mind:
 * Set `engines` in `package.json` to specify the version of node your project works on.
 * Additionally, Use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention in documentation
 * You can also use a `preinstall` script that checks node and npm versions
-* Or if it doesn't make things complicated use a docker images 
+* Or if it doesn't make things complicated use a docker images
 * Use local modules instead of requiring global installation
 
-## 4. Dependencies <a name="dependencies"></a> 
+## 4. Dependencies <a name="dependencies"></a>
 Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
 
 * If less known dependency is needed,  discuss it with the team before using it.
@@ -109,7 +104,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
 * Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
 
-## 5. Testing <a name="testing"></a> 
+## 5. Testing <a name="testing"></a>
 * Have a test mode environment if needed.
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
 * Put your additional test files to a separate test folder to avoid confusion.
@@ -118,52 +113,50 @@ Before using a package check its Github open issues, daily downloads and number 
 * Run tests locally before any pull request to `develop`.
 * Document your tests, with instructions.
 
-## 6. Structure and Naming <a name="structure-and-naming"></a> 
+## 6. Structure and Naming <a name="structure-and-naming"></a>
 * Organize your files around product features / pages / components, not Roles:
+    ```
+    // BAD
+    .
+    ├── controllers
+    |   ├── product.js
+    |   └── user.js
+    ├── models
+    |   ├── product.js
+    |   └── user.js
+    ```
 
-```
-// BAD 
-.
-├── controllers
-|   ├── product.js
-|   └── user.js
-├── models
-|   ├── product.js
-|   └── user.js
-```
-
-```
-// GOOD
-.
-├── product
-|   ├── index.js
-|   ├── product.js
-|   └── product.test.js
-├── user
-|   ├── index.js
-|   ├── user.js
-|   └── user.test.js
-```
-
+    ```
+    // GOOD
+    .
+    ├── product
+    |   ├── index.js
+    |   ├── product.js
+    |   └── product.test.js
+    ├── user
+    |   ├── index.js
+    |   ├── user.js
+    |   └── user.test.js
+    ```
 * Place your test files next to the implementation.
 * Put your additional test files to a separate test folder to avoid confusion.
 * Use a `./config` folder. Values to be used in config files are provided by environmental variables.
-* Put your scripts in a `./scripts` folder. This includes bash and node scripts for database synchronisation, build and bundling and so on. 
+* Put your scripts in a `./scripts` folder. This includes bash and node scripts for database synchronisation, build and bundling and so on.
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`
 * Use `PascalCase' 'camelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 * Ideally the directory name would match the name of the default export of `index.js`
 
-## 7. Code style <a name="code-style"></a> 
+## 7. Code style <a name="code-style"></a>
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
 * Include code style check before build process
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
-* Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details) 
+* Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)
 * Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/)
-* Use `.eslintignore` to exclude file or folders from code style check. 
+* Use `.eslintignore` to exclude file or folders from code style check.
 * Remove any of your `eslint` disable comments before making a Pull Request
 * Always use  `//todo:`  comments to remind yourself and others about an unfinished job
-* Always comment and keep them relevant as code changes 
+* Always comment and keep them relevant as code changes
 * Remove commented block of code when possible
 * Avoid js alerts in production
 * Avoid irrelevant or funny comments, logs or naming.
@@ -171,9 +164,9 @@ Before using a package check its Github open issues, daily downloads and number 
 * Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
 * Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
 
-## 8. Logging <a name="logging"></a> 
+## 8. Logging <a name="logging"></a>
 * Avoid client side console logs in production
-* Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or 
+* Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
 ## 9 API design <a name="api-design"></a>
@@ -257,7 +250,7 @@ or for validation errors:
 ```
 Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect.
 
-#### 9.5.2 Align your feedback with HTTP codes. 
+#### 9.5.2 Align your feedback with HTTP codes.
 ##### The client and API worked (success – 2xx response code)  
 * `200` HTTP response representing success for GET, PUT or POST.
 * `201` Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return `201` status code.
@@ -279,9 +272,9 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 ### 9.6 Resource parameters and metadata
 * Provide total numbers of resources in your response
 * The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
-```
-GET /student?fields=id,name,age,class
-```
+    ```
+    GET /student?fields=id,name,age,class
+    ```
 * Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
 
 
@@ -323,33 +316,30 @@ Required: id=[integer]
 Optional: photo_id=[alphanumeric]
 ```
 * If the request type is POST, provide a working examples. URL Params rules apply here too. Separate the section into Optional and Required.
-
 * Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect!
-```
-Code: 200
-Content: { id : 12 }
-```
-
-  * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example 
-
-```
-"Code": 403
-"message" : "Authentication failed",
-"description" : "Invalid username or password"
-```
+    ```
+    Code: 200
+    Content: { id : 12 }
+    ```
+* Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
+    ```
+    "Code": 403
+    "message" : "Authentication failed",
+    "description" : "Invalid username or password"
+    ```
 
 
 #### 9.8.1 Api design tools
 There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which can be used.
 
-## 10. Licensing <a name="licensing"></a> 
+## 10. Licensing <a name="licensing"></a>
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos may cause legal problems.
 
 
 ---
 Sources:
-[RisingStack Engineering](https://blog.risingstack.com/), 
-[Mozilla Developer Network](https://developer.mozilla.org/), 
-[Heroku Dev Center](https://devcenter.heroku.com), 
+[RisingStack Engineering](https://blog.risingstack.com/),
+[Mozilla Developer Network](https://developer.mozilla.org/),
+[Heroku Dev Center](https://devcenter.heroku.com),
 [Airbnb/javascript](https://github.com/airbnb/javascript)
 [Atlassian Git tutorials](https://github.com/airbnb/javascript)
