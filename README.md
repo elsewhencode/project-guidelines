@@ -223,9 +223,9 @@ When your APIs are public other third parties, upgrading the APIs with some brea
 Response messages must be self descriptive. A good error message response might look something like this:
 ```
 {
-“code”: 1234,
-“message” : “Something bad happened“,
-“description” : “More details”
+"code": 1234,
+"message" : "Something bad happened",
+"description" : "More details"
 }
 ```
 or for validation errors:
