@@ -90,13 +90,12 @@ There are a set of rules to keep in mind:
 Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
 
 * If less known dependency is needed,  discuss it with the team before using it.
-* Keep track of your currently used packages... [ls | npm Documentation](https://docs.npmjs.com/cli/ls)
-* See if any of your packages has become unused and irrelevant by using [depcheck](https://www.npmjs.com/package/depcheck) .Always get rid of unused packages.
-* Check if the dependency is heavily used by community... [npm-stat: download statistics for NPM packages](https://npm-stat.com/)
-* Check to see if the dependency is well maintained... [view | npm Documentation](https://docs.npmjs.com/cli/view)
-* Check to see if the package has enough maintainers... [view | npm Documentation](https://docs.npmjs.com/cli/view)
-* Always make sure your app works with latest versions of dependencies without breaking. [outdated | npm Documentation](https://docs.npmjs.com/cli/outdated)
-* Check to see package has known security vulnerabilities...[Test | Snyk](https://snyk.io/test?utm_source=risingstack_blog)
+* Keep track of your currently available packages: e.g., `npm ls --depth=0` ([documentation](https://docs.npmjs.com/cli/ls)).
+* See if any of your packages have become unused or irrelevant: `depcheck` ([documentation](https://www.npmjs.com/package/depcheck)).
+* Check download statistics to see if the dependency is heavily used by the community: `npm-stat` ([documentation](https://npm-stat.com/)).
+* Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async` ([documentation](https://docs.npmjs.com/cli/view)).
+* Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated` ([documentation](https://docs.npmjs.com/cli/outdated)).
+* Check to see package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 ### 4.1 Consistent dependencies:
 * Use `package-lock.json` on npm 5 or higher
@@ -142,27 +141,27 @@ Before using a package check its Github open issues, daily downloads and number 
 * Put your additional test files to a separate test folder to avoid confusion.
 * Use a `./config` folder. Values to be used in config files are provided by environmental variables.
 * Put your scripts in a `./scripts` folder. This includes bash and node scripts for database synchronisation, build and bundling and so on.
-* Place your build output in a `./build` folder. Add `build/` to `.gitignore`
+* Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
 * Use `PascalCase' 'camelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
-* Ideally the directory name would match the name of the default export of `index.js`
+* Ideally the directory name would match the name of the default export of `index.js`.
 
 ## 7. Code style <a name="code-style"></a>
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
-* Include code style check before build process
-* Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style
-* Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)
-* Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/)
+* Include code style check before build process.
+* Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
+* Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details).
+* Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/).
 * Use `.eslintignore` to exclude file or folders from code style check.
-* Remove any of your `eslint` disable comments before making a Pull Request
-* Always use  `//todo:`  comments to remind yourself and others about an unfinished job
-* Always comment and keep them relevant as code changes
-* Remove commented block of code when possible
-* Avoid js alerts in production
+* Remove any of your `eslint` disable comments before making a Pull Request.
+* Always use  `//todo:`  comments to remind yourself and others about an unfinished job.
+* Always comment and keep them relevant as code changes.
+* Remove commented block of code when possible.
+* Avoid js alerts in production.
 * Avoid irrelevant or funny comments, logs or naming.
-* Write testable code, avoid side effect, extract side effects, write pure functions
-* Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention
-* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it natural to read the source code.
+* Write testable code, avoid side effect, extract side effects, write pure functions.
+* Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
+* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it more natural to read the source code.
 
 ## 8. Logging <a name="logging"></a>
 * Avoid client side console logs in production
@@ -170,7 +169,7 @@ Before using a package check its Github open issues, daily downloads and number 
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
 ## 9 API design <a name="api-design"></a>
-Follow resource oriented design. This has three main factors Resources, collection and URLs.
+Follow resource-oriented design. This has three main factors: resources, collection, and URLs.
 * A resource has data, relationships to other resources, and methods that operate against it
 * A group of resources is called a collection.
 * URL identifies the online location of a resource.
@@ -179,10 +178,10 @@ Follow resource oriented design. This has three main factors Resources, collecti
 ### 9.1 API Naming
 
 #### 9.1.1 Naming URLs
-* `/users` a collection of users  (plural nouns)
-* `/users/id` a resource with information about a specific user   
-* A resource always should be plural in the URL. Keeping verbs out of your resource URLs.
-* Use verb for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result to the client. Hence, you should use verbs instead of nouns in your URL to distinguish clearly the non-resource responses from the resource-related responses.
+* `/users` a collection of users (plural nouns).
+* `/users/id` a resource with information about a specific user.
+* A resource always should be plural in the URL. Keep verbs out of your resource URLs.
+* Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result to the client. Hence, you should use verbs instead of nouns in your URL to distinguish clearly the non-resource responses from the resource-related responses.
 
 GET 	`/translate?text=Hallo`
 
