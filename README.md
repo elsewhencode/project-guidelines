@@ -38,7 +38,7 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
 * Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
     ```
     git checkout <branchname>
-    git -i rebase develop
+    git rebase -i develop
     ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```
