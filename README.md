@@ -57,7 +57,7 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
 ### 1.2 Some Git Rules
 There are a set of rules to keep in mind:
 * Perform work in a feature branch.
-* Make a pull requests to `develop`
+* Make pull requests to `develop`
 * Never push into `develop` or `master` branch.
 * Update your `develop` and do a interactive rebase before pushing your feature and making a PR
 * Resolve potential conflicts while rebasing and before making a Pull Request
