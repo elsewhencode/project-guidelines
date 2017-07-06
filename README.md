@@ -233,7 +233,7 @@ When your APIs are public other third parties, upgrading the APIs with some brea
 ### 9.5 Send feedbacks
 #### 9.5.1 Errors
 Response messages must be self descriptive. A good error message response might look something like this:
-```
+```json
 {
 "code": 1234,
 "message" : "Something bad happened",
@@ -242,7 +242,7 @@ Response messages must be self descriptive. A good error message response might 
 ```
 or for validation errors:
 
-```
+```json
 {
   "code" : 2314,
   "message" : "Validation Failed",
@@ -334,7 +334,7 @@ Optional: photo_id=[alphanumeric]
     Content: { id : 12 }
     ```
 * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
-    ```
+    ```json
     "Code": 403
     "message" : "Authentication failed",
     "description" : "Invalid username or password"
