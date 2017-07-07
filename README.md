@@ -74,7 +74,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
  * Limit the subject line to 50 characters
  * Capitalize the subject line
  * Do not end the subject line with a period
- * Use imperative mood in the subject line
+ * Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line
  * Wrap the body at 72 characters
  * Use the body to explain **what** and **why** as opposed to **how**
 
