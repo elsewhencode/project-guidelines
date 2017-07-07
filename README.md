@@ -35,7 +35,7 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
     git checkout develop
     git pull
     ```
-* Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
+* Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)). Don't forget to squash all your commits in your branch to a single commit, nobody wants a lot of commits for a single feature in develop branch! 
     ```
     git checkout <branchname>
     git rebase -i develop
