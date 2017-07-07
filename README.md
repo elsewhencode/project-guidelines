@@ -119,7 +119,7 @@ Before using a package check its Github open issues, daily downloads and number 
 ## 5. Testing <a name="testing"></a>
 * Have a test mode environment if needed.
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
-* Put your additional test files to a separate test folder to avoid confusion.
+* Put your additional test files into a separate test folder to avoid confusion.
 * write testable code, avoid side effect, extract side effects, write pure functions
 * Don’t write too many tests to check types, instead use a Static type checker
 * Run tests locally before any pull request to `develop`.
