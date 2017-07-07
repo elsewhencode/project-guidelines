@@ -344,8 +344,8 @@ Optional: photo_id=[alphanumeric]
     ```
 
 
-#### 9.8.1 Api design tools
-There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which can be used.
+#### 9.8.1 API design tools
+There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 ## 10. Licensing <a name="licensing"></a>
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos may cause legal problems.
