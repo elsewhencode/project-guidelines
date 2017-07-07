@@ -74,13 +74,13 @@ Having a good guideline for creating commits and sticking to it makes working wi
  * Limit the subject line to 50 characters
  * Capitalize the subject line
  * Do not end the subject line with a period
- * Use the imperative mood in the subject line
+ * Use imperative mood in the subject line
  * Wrap the body at 72 characters
- * Use the body to explain what and why vs. how
+ * Use the body to explain **what** and **why** as opposed to **how**
 
 ## 2. Documentation <a name="documentation"></a>
 * Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
-* For project with more than one repository, provide links to between them in their `README.md` files.
+* For projects with more than one repository, provide links to them in their respective `README.md` files.
 * Keep `README.md` updated as project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section.
 * Comment small sections of code if you think it's not self explanatory.
@@ -90,29 +90,29 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Depending on project size, define separate `development`, `test` and `production` environments.
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
 *  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `.gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
-* It’s recommended to validate environment variables before your app starts ,  [look at this sample](./configWithTest.sample.js) using `joi` to validate provided values:
+* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
 
 ### 3.1 Consistent dev environments:
 * Set `engines` in `package.json` to specify the version of node your project works on.
-* Additionally, Use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention in documentation
+* Additionally, use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention it in the documentation
 * You can also use a `preinstall` script that checks node and npm versions
-* Or if it doesn't make things complicated use a docker images
-* Use local modules instead of requiring global installation
+* Use Docker images provided it doesn't make things more complicated
+* Use local modules instead of using globally installed modules
 
 ## 4. Dependencies <a name="dependencies"></a>
-Before using a package check its Github open issues, daily downloads and number of contributors as well as the date package last updated.
+Before using a package, check its GitHub. Look for the number of open issues, daily downloads and number of contributors as well as the date the package was last updated.
 
-* If less known dependency is needed,  discuss it with the team before using it.
+* If less known dependency is needed, discuss it with the team before using it.
 * Keep track of your currently available packages: e.g., `npm ls --depth=0` ([documentation](https://docs.npmjs.com/cli/ls)).
 * See if any of your packages have become unused or irrelevant: `depcheck` ([documentation](https://www.npmjs.com/package/depcheck)).
 * Check download statistics to see if the dependency is heavily used by the community: `npm-stat` ([documentation](https://npm-stat.com/)).
 * Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async` ([documentation](https://docs.npmjs.com/cli/view)).
 * Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated` ([documentation](https://docs.npmjs.com/cli/outdated)).
-* Check to see package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+* Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 ### 4.1 Consistent dependencies:
-* Use `package-lock.json` on npm 5 or higher
-* For older versions of npm Use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing.
+* Use `package-lock.json` on `npm@5` or higher
+* For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing.
 * Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
 * Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
 
@@ -120,15 +120,17 @@ Before using a package check its Github open issues, daily downloads and number 
 * Have a test mode environment if needed.
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
 * Put your additional test files into a separate test folder to avoid confusion.
-* write testable code, avoid side effect, extract side effects, write pure functions
-* Don’t write too many tests to check types, instead use a Static type checker
-* Run tests locally before any pull request to `develop`.
+* Write testable code, avoid side effects, extract side effects, write pure functions
+* Don’t write too many tests to check types, instead use a static type checker
+* Run tests locally before making any pull requests to `develop`.
 * Document your tests, with instructions.
 
 ## 6. Structure and Naming <a name="structure-and-naming"></a>
-* Organize your files around product features / pages / components, not Roles:
-    ```
-    // BAD
+* Organize your files around product features / pages / components, not roles
+
+**Bad**
+
+```
     .
     ├── controllers
     |   ├── product.js
@@ -136,10 +138,11 @@ Before using a package check its Github open issues, daily downloads and number 
     ├── models
     |   ├── product.js
     |   └── user.js
-    ```
+```
 
-    ```
-    // GOOD
+**Good**
+
+```
     .
     ├── product
     |   ├── index.js
@@ -149,15 +152,15 @@ Before using a package check its Github open issues, daily downloads and number 
     |   ├── index.js
     |   ├── user.js
     |   └── user.test.js
-    ```
-* Place your test files next to the implementation.
+```
+* Place your test files next to their implementation.
 * Put your additional test files to a separate test folder to avoid confusion.
-* Use a `./config` folder. Values to be used in config files are provided by environmental variables.
-* Put your scripts in a `./scripts` folder. This includes bash and node scripts for database synchronisation, build and bundling and so on.
+* Use a `./config` folder. Values to be used in config files are provided by environment variables.
+* Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts for database synchronisation, build and bundling and so on.
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
-* Use `PascalCase' 'camelCase` for filenames and directory names too. Use  `PascalCase`  only for Components.
+* Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
-* Ideally the directory name would match the name of the default export of `index.js`.
+* Ideally the directory name should match the name of the default export of `index.js`.
 
 ## 7. Code style <a name="code-style"></a>
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
@@ -167,7 +170,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/).
 * Use `.eslintignore` to exclude file or folders from code style check.
 * Remove any of your `eslint` disable comments before making a Pull Request.
-* Always use  `//todo:`  comments to remind yourself and others about an unfinished job.
+* Always use  `//TODO:`  comments to remind yourself and others about an unfinished job.
 * Always comment and keep them relevant as code changes.
 * Remove commented block of code when possible.
 * Avoid js alerts in production.
@@ -177,7 +180,7 @@ Before using a package check its Github open issues, daily downloads and number 
 * Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it more natural to read the source code.
 
 ## 8. Logging <a name="logging"></a>
-* Avoid client side console logs in production
+* Avoid client-side console logs in production
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
