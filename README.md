@@ -230,7 +230,7 @@ If there is a relation between resources like  employee to a company, use `id` i
 * **POST**	`/schools `					Should create a new school and return the details of the new school created. Use POST on collection-URLs
 
 ### 9.4 API Versioning
-When your APIs are public other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
+When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
 `http://api.domain.com/v1/schools/3/students	`
 
 ### 9.5 Send feedbacks
@@ -267,9 +267,9 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 
 #### 9.5.2 Align your feedback with HTTP codes.
 ##### The client and API worked (success – 2xx response code)  
-* `200` HTTP response representing success for GET, PUT or POST.
-* `201` Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return `201` status code.
-* `204` No Content represents the request is successfully processed, but has not returned any content. DELETE can be a good example of this. If there is any error, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
+* `200 OK` This HTTP response represents success for `GET`, `PUT` or `POST` requests.
+* `201 Created` This status code should be returned whenever a new instance is created. E.g on creating a new instance, using `POST` method, should always return `201` status code.s
+* `204 No Content` represents the request was successfully processed, but has not returned any content. `DELETE` can be a good example of this. If there is any error, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
 
 ##### The client application behaved incorrectly (client error – 4xx response code)
 * `400` Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
