@@ -83,8 +83,8 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * For projects with more than one repository, provide links to them in their respective `README.md` files.
 * Keep `README.md` updated as project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section.
-* If there an open discussion on gthub or stackoverflow about the code or approch you're using, include the link in your comment, 
-* Don't use commenting as an excuse for a bad code. Keep your code clean
+* If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
+* Don't use commenting as an excuse for a bad code. Keep your code clean.
 * Don't use clean code as an excuse to not comment at all.
 * Comment even small sections of code if you think it's not self explanatory.
 * Keep comments relevant as your code evolves.
