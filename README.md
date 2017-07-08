@@ -22,36 +22,36 @@ If you want to share a best practice, or think one of these guidelines  should b
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
-    ```
+    ```sh
     git checkout -b <branchname>
     ```
 * Make Changes
-    ```
+    ```sh
     git add
-    git commit -m "description of changes"
+    git commit -m "<description of changes>"
     ```
 * Sync with remote to get changes you’ve missed
-    ```
+    ```sh
     git checkout develop
     git pull
     ```
 * Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
-    ```
+    ```sh
     git checkout <branchname>
     git rebase -i develop
     ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
-    ```
+    ```sh
 	git add <file1> <file2> ...
     git rebase --continue
     ```
 * Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease` ([Here is why](https://developer.atlassian.com/blog/2015/04/force-with-lease/)).
-    ```
+    ```sh
     git push -f
     ```
-* Make a Pull Request
-* Pull request will be accepted, merged and close by reviewer
-* Remove your local feature branch if you're done
+* Make a Pull Request.
+* Pull request will be accepted, merged and close by reviewer.
+* Remove your local feature branch if you're done.
 
 
 ### 1.2 Some Git Rules
@@ -59,10 +59,10 @@ There are a set of rules to keep in mind:
 * Perform work in a feature branch.
 * Make pull requests to `develop`
 * Never push into `develop` or `master` branch.
-* Update your `develop` and do a interactive rebase before pushing your feature and making a PR
+* Update your `develop` and do a interactive rebase before pushing your feature and making a Pull Request
 * Resolve potential conflicts while rebasing and before making a Pull Request
 * Delete local and remote feature branches after merging.
-* Before making a PR, make sure your feature branch builds successfully and passes all tests (including code style checks).
+* Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
 * Use [this .gitignore file](./.gitignore).
 * Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
@@ -83,8 +83,11 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * For projects with more than one repository, provide links to them in their respective `README.md` files.
 * Keep `README.md` updated as project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section.
-* Comment small sections of code if you think it's not self explanatory.
-* Keep your comments relevant as code evolves.
+* If there an open discussion on gthub or stackoverflow about the code or approch you're using, include the link in your comment, 
+* Don't use commenting as an excuse for a bad code. Keep your code clean
+* Don't use clean code as an excuse to not comment at all.
+* Comment even small sections of code if you think it's not self explanatory.
+* Keep comments relevant as your code evolves.
 
 ## 3. Environments <a name="environments"></a>
 * Depending on project size, define separate `development`, `test` and `production` environments.
@@ -338,9 +341,11 @@ Optional: photo_id=[alphanumeric]
     ```
 * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
-    "Code": 403
-    "message" : "Authentication failed",
-    "description" : "Invalid username or password"
+    {
+        "code": 403,
+        "message" : "Authentication failed",
+        "description" : "Invalid username or password"
+    }   
     ```
 
 
