@@ -28,7 +28,7 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
 * Make Changes
     ```sh
     git add
-    git commit -m <"description of changes">
+    git commit -m "<description of changes>"
     ```
 * Sync with remote to get changes you’ve missed
     ```sh
