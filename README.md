@@ -233,7 +233,7 @@ If there is a relation between resources like  employee to a company, use `id` i
 * **POST**	`/schools `					Should create a new school and return the details of the new school created. Use POST on collection-URLs
 
 ### 9.4 API Versioning
-When your APIs are public other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
+When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
 `http://api.domain.com/v1/schools/3/students	`
 
 ### 9.5 Send feedbacks
