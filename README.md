@@ -275,16 +275,16 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 * `204 No Content` represents the request was successfully processed, but has not returned any content. `DELETE` can be a good example of this. If there is any error, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
 
 ##### The client application behaved incorrectly (client error – 4xx response code)
-* `400` Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-* `401` Unauthorised indicates that the client is not allowed to access resources, and should re-request with the required credentials.
-* `403` Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason.
-* `404` Not Found indicates that the requested resource is not available now.
-* `406` Not Acceptable response. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content
-* `410` Gone indicates that the requested resource is no longer available which has been intentionally moved.
+* `400 Bad Request` indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
+* `401 Unauthorized` indicates that the request lacks valid credentials needed to access the needed resources, and the client should re-request with the required credentials.
+* `403 Forbidden` indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason.
+* `404 Not Found` indicates that the requested resource was not found. 
+* `406 Not Acceptable` A response matching the list of acceptable values defined in Accept-Charset and Accept-Language headers cannot be served.
+* `410 Gone` indicates that the requested resource is no longer available and has been intentionally and permanently moved.
 
 ##### The API behaved incorrectly (server error – 5xx response code)
-* `500` Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
-* `503` Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
+* `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+* `503 Service Unavailable` indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance or facing a temporary overload.
 
 
 ### 9.6 Resource parameters and metadata
