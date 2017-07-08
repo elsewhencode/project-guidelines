@@ -22,36 +22,36 @@ If you want to share a best practice, or think one of these guidelines  should b
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
-    ```
+    ```sh
     git checkout -b <branchname>
     ```
 * Make Changes
-    ```
+    ```sh
     git add
-    git commit -m "description of changes"
+    git commit -m "<description of changes>"
     ```
 * Sync with remote to get changes you’ve missed
-    ```
+    ```sh
     git checkout develop
     git pull
     ```
 * Update your feature branch with latest changes from develop by interactive rebase ([Here is why](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing))
-    ```
+    ```sh
     git checkout <branchname>
     git rebase -i develop
     ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
-    ```
+    ```sh
 	git add <file1> <file2> ...
     git rebase --continue
     ```
 * Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease` ([Here is why](https://developer.atlassian.com/blog/2015/04/force-with-lease/)).
-    ```
+    ```sh
     git push -f
     ```
-* Make a Pull Request
-* Pull request will be accepted, merged and close by reviewer
-* Remove your local feature branch if you're done
+* Make a Pull Request.
+* Pull request will be accepted, merged and close by reviewer.
+* Remove your local feature branch if you're done.
 
 
 ### 1.2 Some Git Rules
@@ -59,10 +59,10 @@ There are a set of rules to keep in mind:
 * Perform work in a feature branch.
 * Make pull requests to `develop`
 * Never push into `develop` or `master` branch.
-* Update your `develop` and do a interactive rebase before pushing your feature and making a PR
+* Update your `develop` and do a interactive rebase before pushing your feature and making a Pull Request
 * Resolve potential conflicts while rebasing and before making a Pull Request
 * Delete local and remote feature branches after merging.
-* Before making a PR, make sure your feature branch builds successfully and passes all tests (including code style checks).
+* Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
 * Use [this .gitignore file](./.gitignore).
 * Protect your `develop` and `master` branch (How to in [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)).
 
@@ -74,7 +74,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
  * Limit the subject line to 50 characters
  * Capitalize the subject line
  * Do not end the subject line with a period
- * Use imperative mood in the subject line
+ * Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line
  * Wrap the body at 72 characters
  * Use the body to explain **what** and **why** as opposed to **how**
 
@@ -83,8 +83,11 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * For projects with more than one repository, provide links to them in their respective `README.md` files.
 * Keep `README.md` updated as project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section.
-* Comment small sections of code if you think it's not self explanatory.
-* Keep your comments relevant as code evolves.
+* If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
+* Don't use commenting as an excuse for a bad code. Keep your code clean.
+* Don't use clean code as an excuse to not comment at all.
+* Comment even small sections of code if you think it's not self explanatory.
+* Keep comments relevant as your code evolves.
 
 ## 3. Environments <a name="environments"></a>
 * Depending on project size, define separate `development`, `test` and `production` environments.
@@ -166,8 +169,8 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
 * Include code style check before build process.
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
-* Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details).
-* Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/).
+* We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
+* We use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
 * Use `.eslintignore` to exclude file or folders from code style check.
 * Remove any of your `eslint` disable comments before making a Pull Request.
 * Always use  `//TODO:`  comments to remind yourself and others about an unfinished job.
@@ -268,7 +271,7 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 #### 9.5.2 Align your feedback with HTTP codes.
 ##### The client and API worked (success – 2xx response code)  
 * `200 OK` This HTTP response represents success for `GET`, `PUT` or `POST` requests.
-* `201 Created` This status code should be returned whenever a new instance is created. E.g on creating a new instance, using `POST` method, should always return `201` status code.s
+* `201 Created` This status code should be returned whenever a new instance is created. E.g on creating a new instance, using `POST` method, should always return `201` status code.
 * `204 No Content` represents the request was successfully processed, but has not returned any content. `DELETE` can be a good example of this. If there is any error, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
 
 ##### The client application behaved incorrectly (client error – 4xx response code)
@@ -338,14 +341,16 @@ Optional: photo_id=[alphanumeric]
     ```
 * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
-    "Code": 403
-    "message" : "Authentication failed",
-    "description" : "Invalid username or password"
+    {
+        "code": 403,
+        "message" : "Authentication failed",
+        "description" : "Invalid username or password"
+    }   
     ```
 
 
-#### 9.8.1 Api design tools
-There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/), Swagger , ENUNCIATE and Miredot, which can be used.
+#### 9.8.1 API design tools
+There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 ## 10. Licensing <a name="licensing"></a>
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos may cause legal problems.
