@@ -169,8 +169,8 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
 * Include code style check before build process.
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
-* Use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.  [Read more · GitBook](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details).
-* Use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) for [FlowType](https://flow.org/).
+* We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
+* We use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
 * Use `.eslintignore` to exclude file or folders from code style check.
 * Remove any of your `eslint` disable comments before making a Pull Request.
 * Always use  `//TODO:`  comments to remind yourself and others about an unfinished job.
