@@ -268,7 +268,7 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 #### 9.5.2 Align your feedback with HTTP codes.
 ##### The client and API worked (success – 2xx response code)  
 * `200 OK` This HTTP response represents success for `GET`, `PUT` or `POST` requests.
-* `201 Created` This status code should be returned whenever a new instance is created. E.g on creating a new instance, using `POST` method, should always return `201` status code.s
+* `201 Created` This status code should be returned whenever a new instance is created. E.g on creating a new instance, using `POST` method, should always return `201` status code.
 * `204 No Content` represents the request was successfully processed, but has not returned any content. `DELETE` can be a good example of this. If there is any error, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
 
 ##### The client application behaved incorrectly (client error – 4xx response code)
