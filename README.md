@@ -52,7 +52,7 @@ There are a set of rules to keep in mind:
 * Use [this .gitignore file](./.gitignore).
     
     _why:_
-    > It already has a list of system files that should not be sent with your code into remote repository. In addition, it excludes setting folders and files for mostly used editoes, as well as most common dependency folders.
+    > It already has a list of system files that should not be sent with your code into remote repository. In addition, it excludes setting folders and files for mostly used editors, as well as most common dependency folders.
 
 * Protect your `develop` and `master` branch .
   
