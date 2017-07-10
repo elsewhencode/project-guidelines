@@ -142,7 +142,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
 * Depending on project size, define separate `development`, `test` and `production` environments.
 
     _why:_
-    > Different data, tokens, APIs, ports etc... may be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enbale google analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    > Different data, tokens, APIs, ports etc... may be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
@@ -157,7 +157,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
 * It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
     
     _why:_
-    > One day it will save someone from troubleshooting.
+    > It may save others from hours of troubleshooting.
 
 ### 3.1 Consistent dev environments:
 * Set your node version in `engines` in `package.json`
@@ -191,28 +191,87 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * If less known dependency is needed, discuss it with the team before using it.
 * Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
 * See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
+    
+    _why:_
+    > The is a potential risk that you import this unused library in your bundle and ship it for production and as the result increase your bundle size. Find them, get rid of them.
+
 * Check download statistics to see if the dependency is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
+    
+    _why:_
+    > More usage mostly means more contributors, which usually means better maintenance which results in bugs get discovered and fixed way quicker.
+
 * Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
+
+    _why:_
+    > Having loads of contributors wont be as effective, if maintainers dont merge those fixes and patches quickly enough.
+
 * Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
+
+    _why:_
+    > Dependency updates sometimes have breaking changes, and you should be aware of that as quick as possible. Always check their release notes. Update your dependencies one by one, that makes troubleshooting easier (If breaking changes happens). Use cool tools such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+
 * Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
+
 ### 4.1 Consistent dependencies:
-* Use `package-lock.json` on `npm@5` or higher
-* For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing.
-* Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update.
-* Read more here: [package-locks | npm Documentation](https://docs.npmjs.com/files/package-locks)
+
+* Make sure your team member gets the exact same dependencies as you
+
+    _why:_
+    > Because you want the code to behave as expected and identical in any development machine [read more...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
+
+    _how:_
+    > Use `package-lock.json` on `npm@5` or higher
+
+    _I don't have npm@5:_
+    > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [read more...](https://yarnpkg.com/en/)
+
+    _I don't like the name `Yarn`:_
+    > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
+
 
 ## 5. Testing <a name="testing"></a>
-* Have a test mode environment if needed.
-* Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `module_name.spec.js`
+
+* Have a `test` mode environment if needed.
+
+    _why:_
+    > Some believe for unit testing `development` mode and for end to end testing  `production` mode will be enough. While this is partly true, there are some exceptions. One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. Or your API may apply rate limits in `production` and block your many test calls. 
+
+* Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
+
+    _why:_
+    > You don't want to dig through a folder structure every time you have to find a unit test. Additionally, this naming convention is standard now and gets picked up by most JavaScript testing frameworks.
+    
+
 * Put your additional test files into a separate test folder to avoid confusion.
+
+    _why:_
+    > Some test files don't particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: `__test__` folder. This name: `__test__`  is also standard now and gets picked up by most JavaScript testing frameworks.
+
 * Write testable code, avoid side effects, extract side effects, write pure functions
-* Don’t write too many tests to check types, instead use a static type checker
+
+    _why:_
+    > You want to test a business logic as a separate units. You have to "minimize the impact of randomness and non-deterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+
+
+* Don’t write tests to check types, instead use a static type checker
+
+    _why:_
+    > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+
+
 * Run tests locally before making any pull requests to `develop`.
+
+     _why:_
+    > Because you don't want to be the one who caused production-ready branch build to fail.
+
 * Document your tests, with instructions.
 
+     _why:_
+    > Other developers or DevOps experts may get desperate to know where these stuff are and how to run them.
+
 ## 6. Structure and Naming <a name="structure-and-naming"></a>
-* Organize your files around product features / pages / components, not roles
+* Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
 
 **Bad**
 
@@ -239,9 +298,19 @@ Before using a package, check its GitHub. Look for the number of open issues, da
     |   ├── user.js
     |   └── user.test.js
 ```
-* Place your test files next to their implementation.
+
+
+     _why:_
+    > Instead of a long list of files You will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance 
+
+
 * Put your additional test files to a separate test folder to avoid confusion.
+
+     _why:_
+    > Other developers or DevOps experts may get desperate to know where these stuff are and how to run them.
+
 * Use a `./config` folder. Values to be used in config files are provided by environment variables.
+
 * Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts for database synchronisation, build and bundling and so on.
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
 * Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
