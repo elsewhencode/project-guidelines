@@ -1,5 +1,6 @@
 
-![Logo of the project](./logo.png)
+[<img src="./logo.png">](http://wearehive.co.uk/){:target="_blank"}
+
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 > While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
@@ -188,11 +189,11 @@ thst useful for a code reviewer. if you can link to an associated Jira ticket, G
 Before using a package, check its GitHub. Look for the number of open issues, daily downloads and number of contributors as well as the date the package was last updated.
 
 * If less known dependency is needed, discuss it with the team before using it.
-* Keep track of your currently available packages: e.g., `npm ls --depth=0` ([documentation](https://docs.npmjs.com/cli/ls)).
-* See if any of your packages have become unused or irrelevant: `depcheck` ([documentation](https://www.npmjs.com/package/depcheck)).
-* Check download statistics to see if the dependency is heavily used by the community: `npm-stat` ([documentation](https://npm-stat.com/)).
-* Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async` ([documentation](https://docs.npmjs.com/cli/view)).
-* Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated` ([documentation](https://docs.npmjs.com/cli/outdated)).
+* Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
+* See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
+* Check download statistics to see if the dependency is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
+* Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
+* Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
 * Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 ### 4.1 Consistent dependencies:
