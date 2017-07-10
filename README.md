@@ -1,5 +1,5 @@
 
-[<img src="./logo.png">](http://wearehive.co.uk/)
+[<img src="./images/logo.png">](http://wearehive.co.uk/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -145,7 +145,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
     > Different data, tokens, APIs, ports etc... may be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
-* Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
+* Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./samples/config.sample.js).
 
     _why:_
     > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
@@ -154,7 +154,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
     >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead commit a `.env.example`  which serves as a guide for developers. For production you should still set your environment variables in the standard way.
     [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
+* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./samples/configWithTest.sample.js) using `joi` to validate provided values.
     
     _why:_
     > It may save others from hours of troubleshooting.
@@ -305,25 +305,69 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 
 * Put your additional test files to a separate test folder to avoid confusion.
 
-     _why:_
+    _why:_
     > Other developers or DevOps experts may get desperate to know where these stuff are and how to run them.
 
-* Use a `./config` folder. Values to be used in config files are provided by environment variables.
+* Use a `./config` folder and don't make different config files for different environments.
 
-* Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts for database synchronisation, build and bundling and so on.
+    _why:_
+    >When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recoginzable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly. As more deploys of the app are created, new environment names are necessary.
+    Values to be used in config files should provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+    
+
+* Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
+
+    _why:_
+    >It's very likely you may end up with more than one script. Production build, Development build, database synchronisation and so on.
+    
+
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
+
+    _why:_
+    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. Whet gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point commiting them into your remote repository. 
+
 * Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
+
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
+
 * Ideally the directory name should match the name of the default export of `index.js`.
 
+    _why:_
+    > Then you can expect what component or module you will receive by simply just importing its parent folder.   
+
 ## 7. Code style <a name="code-style"></a>
-* Use stage-1 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
-* Include code style check before build process.
+* Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
+
+    _why:_
+    > This is all up to you. We use transpilers to use advantages of new syntax. stage-2 is more likely to eventually become part of the spec with only minor revisions. 
+
+* Include code style check in your build process.
+
+    _why:_
+    > Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously. Do it for both client and server-side code. [read more...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
+
+    _Why:_
+    > We simply prefer `eslint`, you don't have to. It has more number of rules supported, ability to configure the rules, and ability to add custom rules.
+
 * We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
+
 * We use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
+
+    _Why:_
+    > Flow introduces few syntaxes that also need to follow certain code style and be checked.
+
 * Use `.eslintignore` to exclude file or folders from code style check.
+
+    _Why:_
+    > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude couple of files from style checking.
+
 * Remove any of your `eslint` disable comments before making a Pull Request.
+
+    _Why:_
+    > It's normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those `eslint-disable` comments and follow the rules.
+
 * Always use  `//TODO:`  comments to remind yourself and others about an unfinished job.
 * Always comment and keep them relevant as code changes.
 * Remove commented block of code when possible.
