@@ -142,7 +142,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
 * Depending on project size, define separate `development`, `test` and `production` environments.
 
     _why:_
-    > Different data, tokens, APIs, ports etc... may be needed on different environmenyts. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enbale google analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    > Different data, tokens, APIs, ports etc... may be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enbale google analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
