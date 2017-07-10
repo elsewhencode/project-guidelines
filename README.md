@@ -119,7 +119,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
     _why:_
     > Having a `body` section lets you explain the context
-thst useful for a code reviewer. if you can link to an associated Jira ticket, GitHub issue, Basecamp to-do, etc. Also most desktop Git clients have clear separation between message line and body in their GUI.
+that's useful for a code reviewer. if you can link to an associated Jira ticket, GitHub issue, Basecamp to-do, etc. Also most desktop Git clients have clear separation between message line and body in their GUI.
 
  * Limit the subject line to 50 characters
  * Capitalize the subject line
