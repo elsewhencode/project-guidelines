@@ -18,7 +18,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Licensing](#licensing)
 
 ## 1. Git <a name="git"></a>
-### 1.2 Some Git Rules
+### 1.1 Some Git Rules
 There are a set of rules to keep in mind:
 * Perform work in a feature branch.
     
