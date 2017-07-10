@@ -27,14 +27,14 @@ There are a set of rules to keep in mind:
 * Branch out from `develop`
     
     _why:_
-    >This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for many projects).
+    >This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for some projects).
 
 * Never push into `develop` or `master` branch. Make a Pull Request.
     
     _why:_
     > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature
 
-* Update your `develop` and do a interactive rebase before pushing your feature and making a Pull Request
+* Update your local `develop` branch and do a interactive rebase before pushing your feature and making a Pull Request
 
     _why:_
     > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
@@ -48,7 +48,7 @@ There are a set of rules to keep in mind:
 * Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
     
     _why:_
-    > You are about to add your code to a stable branch. If your feature-branch tests fails, there is a high chance that your destination branch build will fail. Additionaly you need to apply code style check before making a Pull Request.It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
+    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionaly you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
 * Use [this .gitignore file](./.gitignore).
     
@@ -58,7 +58,7 @@ There are a set of rules to keep in mind:
 * Protect your `develop` and `master` branch .
   
     _why:_
-    > It protects your production-ready branches from reciving unexpected and irreversable changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
+    > It protects your production-ready branches from reciving unexpected and irreversible changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 
 ### 1.2 Git Workflow
 Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
@@ -87,11 +87,11 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
 * Update your feature branch with latest changes from develop by interactive rebase
     ```sh
     git checkout <branchname>
-    git rebase -i develop
+    git rebase -i --autosquash develop
     ```
     
     _why:_
-    > To apply your changes to the top of the history, as well as to have a nice and clean history [read more...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)
+    > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```sh
