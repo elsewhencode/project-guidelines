@@ -60,7 +60,7 @@ There are a set of rules to keep in mind:
     > It protects your production-ready branches from reciving unexpected and irreversable changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 
 ### 1.2 Git Workflow
-We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
+Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
     ```sh
@@ -69,8 +69,11 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
 * Make Changes
     ```sh
     git add
-    git commit -m "<description of changes>"
+    git commit -a
     ```
+    _why:_
+    > `git commit -a` will start an editor which lets your separate the subject from the body. Read more about it in *section 1.3*.
+
 * Sync with remote to get changes you’ve missed
     ```sh
     git checkout develop
@@ -111,7 +114,12 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
 
 Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
- * Separate the subject from the body with a blank line
+ * **Separate the subject from the body with a newline between the two**
+
+    _why:_
+    > Having a `body` section lets you explain the context
+thst useful for a code reviewer. if you can link to an associated Jira ticket, GitHub issue, Basecamp to-do, etc. Also most desktop Git clients have clear separation between message line and body in their GUI.
+
  * Limit the subject line to 50 characters
  * Capitalize the subject line
  * Do not end the subject line with a period
@@ -127,21 +135,54 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
 * Don't use commenting as an excuse for a bad code. Keep your code clean.
 * Don't use clean code as an excuse to not comment at all.
-* Comment even small sections of code if you think it's not self explanatory.
 * Keep comments relevant as your code evolves.
 
-## 3. Environments <a name="environments"></a>
+## 3. Environments<a name="environments"></a>
 * Depending on project size, define separate `development`, `test` and `production` environments.
+
+    _why:_
+    > Different data, tokens, APIs, ports etc... may be needed on different environmenyts. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enbale google analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+
+
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
-*  Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.  Use `.env` files to store your variables and add them to `.gitignore` to be excluded from your code base because of course, you want the environment to provide them. Instead commit a `.env.example`  which serves as a guide for developers to know which environment variables the project needs. It is important to remember that this setup should only be used for development. For production you should still set your environment variables in the standard way.
+
+    _why:_
+    > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
+
+    _How:_
+    >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead commit a `.env.example`  which serves as a guide for developers. For production you should still set your environment variables in the standard way.
+    [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+
 * It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
+    
+    _why:_
+    > One day it will save someone from troubleshooting.
 
 ### 3.1 Consistent dev environments:
-* Set `engines` in `package.json` to specify the version of node your project works on.
+* Set your node version in `engines` in `package.json`
+    
+    _why:_
+    > It lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
+
 * Additionally, use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention it in the documentation
+
+    _why:_
+    > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
+
 * You can also use a `preinstall` script that checks node and npm versions
+
+    _why:_
+    > Some dependencies may fail when used by newer versions of node.
+    
 * Use Docker images provided it doesn't make things more complicated
+
+    _why:_
+    > It can give you a consistent environment across the entire workflow. Without much neeed to fiddle with libs, dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+
 * Use local modules instead of using globally installed modules
+
+    _why:_
+    > Lets you share your tooling with your colleague instead of expecting them to have it on their systems.
 
 ## 4. Dependencies <a name="dependencies"></a>
 Before using a package, check its GitHub. Look for the number of open issues, daily downloads and number of contributors as well as the date the package was last updated.
