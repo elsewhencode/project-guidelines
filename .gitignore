@@ -20,8 +20,9 @@ yarn-error.log*
 # Optional eslint cache
 .eslintcache
 
-# dotenv environment variables file
+# dotenv environment variables file(s)
 .env
+.env.*
 
 #Build generated
 dist/
