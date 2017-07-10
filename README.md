@@ -273,6 +273,9 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 ## 6. Structure and Naming <a name="structure-and-naming"></a>
 * Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
 
+    _why:_
+    > Instead of a long list of files You will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance 
+
 **Bad**
 
 ```
@@ -298,10 +301,6 @@ Before using a package, check its GitHub. Look for the number of open issues, da
     |   ├── user.js
     |   └── user.test.js
 ```
-
-
-     _why:_
-    > Instead of a long list of files You will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance 
 
 
 * Put your additional test files to a separate test folder to avoid confusion.
