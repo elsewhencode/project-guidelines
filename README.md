@@ -325,7 +325,7 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
 
     _why:_
-    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. Whet gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point commiting them into your remote repository. Unless you specifically want to. 
+    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point commiting them into your remote repository. Unless you specifically want to. 
 
 * Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
 
