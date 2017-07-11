@@ -372,10 +372,10 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Depending on the size of the task use  `//TODO:` comments or open a ticket.
 
     _Why:_
-    > So you remind yourself and others about a task. One approach is using `//TODO(#3456)` where the number is a ticket and it's enforced by a lint rule.
+    > So then you can remind yourself and others about a small task (like refactoring a function, or updating a comment). For larger tasks  use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
 
 
-* Always comment and keep them relevant as code changes. Remove commented block of code when possible.
+* Always comment and keep them relevant as code changes. Remove commented blocks of code.
     
     _Why:_
     > Your code should be as readable as possible, you should get rid of anything distraction. If you refactored a function, don't just comment out the old one, remove it.
@@ -413,11 +413,14 @@ Before using a package, check its GitHub. Look for the number of open issues, da
     > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 ## 9 API design <a name="api-design"></a>
-Follow resource-oriented design. This has three main factors: resources, collection, and URLs.
-* A resource has data, relationships to other resources, and methods that operate against it
-* A group of resources is called a collection.
-* URL identifies the online location of a resource.
 
+* We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+    * A resource has data, relationships to other resources, and methods that operate against it
+    * A group of resources is called a collection.
+    * URL identifies the online location of a resource.
+    
+    _Why:_
+    > This is a very well-known design to developers (your main API audience). The core idea of REST is the resource and each resource is identified by a URL, and you retrieve that resource by sending a GET request to that URL. Very simple.
 
 ### 9.1 API Naming
 
@@ -431,8 +434,17 @@ GET 	`/translate?text=Hallo`
 
 #### 9.1.2 Naming fields
 * The request body or response type is JSON then please follow `camelCase` to maintain the consistency.
-* Expose Resources, not your database schema details. You don't have to use your `table_name` for a resource name as well. Same with resource properties, they shouldn't be the same as your column names.
-* Only use nouns in your URL naming and don’t try to explain their functionality and only explain the resources (elegantly).
+    
+    _Why:_
+    > This is a JavaScript project guideline, so we assume your json is being consumed by JavaScript, so we try to keep things consistent.
+
+
+* You don't have to use your `table_name` for a resource name as well. Same with resource properties, they shouldn't be the same as your column names in the database.
+
+    _Why:_
+    > Mostly for security. your intention is to expose Resources, not your database schema details
+
+* Only use nouns in your URL when naming your resources and don’t try to explain their functionality.
 
 
 ### 9.2 Operating on resources
@@ -447,15 +459,16 @@ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/up
 * **DELETE**	Used to delete existing resources
 
 ### 9.3 Use sub-resources
-Sub resources are used to link one resource with another, so use sub resources to represent the relation.
-An API is supposed to be an interface for developers and this is a natural way to make resources explorable.
-If there is a relation between resources like  employee to a company, use `id` in the URL:
+Sub resources are used to link one resource with another, so use sub resources to represent the relation. If there is a relation between resources like  employee to a company, use `id` in the URL:
 
 * **GET**		`/schools/2/students	`	Should get the list of all students from school 2
 * **GET**		`/schools/2/students/31`	Should get the details of student 31, which belongs to school 2
 * **DELETE**	`/schools/2/students/31`	Should delete student 31, which belongs to school 2
 * **PUT**		`/schools/2/students/31`	Should update info of student 31, Use PUT on resource-URL only, not collection
-* **POST**	`/schools `					Should create a new school and return the details of the new school created. Use POST on collection-URLs
+* **POST**	`/schools `					    Should create a new school and return the details of the new school created. Use POST on collection-URLs
+
+_why:_
+>An API is supposed to be an interface for developers and this is a natural way to make resources explorable.
 
 ### 9.4 API Versioning
 When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
@@ -505,6 +518,7 @@ Note: Keep security exception messages as generic as possible. For instance, Ins
 * `403 Forbidden` indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason.
 * `404 Not Found` indicates that the requested resource was not found. 
 * `406 Not Acceptable` A response matching the list of acceptable values defined in Accept-Charset and Accept-Language headers cannot be served.
+* `409 Conflict` The request could not be completed due to a conflict with the current state of the target resource. This code is used in situations where the user might be able to resolve the conflict and resubmit the request.
 * `410 Gone` indicates that the requested resource is no longer available and has been intentionally and permanently moved.
 
 ##### The API behaved incorrectly (server error – 5xx response code)
