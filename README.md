@@ -145,7 +145,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
     > Different data, tokens, APIs, ports etc... may be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
-* Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./samples/config.sample.js).
+* Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
 
     _why:_
     > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
@@ -154,7 +154,7 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
     >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead commit a `.env.example`  which serves as a guide for developers. For production you should still set your environment variables in the standard way.
     [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./samples/configWithTest.sample.js) using `joi` to validate provided values.
+* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
     
     _why:_
     > It may save others from hours of troubleshooting.
