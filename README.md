@@ -268,7 +268,7 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Document your tests, with instructions.
 
      _why:_
-    > Other developers or DevOps experts may get desperate to know where these stuff are and how to run them.
+    > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
 
 ## 6. Structure and Naming <a name="structure-and-naming"></a>
 * Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
@@ -302,30 +302,30 @@ Before using a package, check its GitHub. Look for the number of open issues, da
     ```
 
     _why:_
-    > Instead of a long list of files You will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance 
-    
+    > Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
+
 * Put your additional test files to a separate test folder to avoid confusion.
 
     _why:_
-    > Other developers or DevOps experts may get desperate to know where these stuff are and how to run them.
+    > It is a time saver for other developers or DevOps experts in your team.
 
 * Use a `./config` folder and don't make different config files for different environments.
 
     _why:_
-    >When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recoginzable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly. As more deploys of the app are created, new environment names are necessary.
+    >When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly, as more deploys of the app are created, new environment names are necessary.
     Values to be used in config files should provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
     
 
 * Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
 
     _why:_
-    >It's very likely you may end up with more than one script. Production build, Development build, database synchronisation and so on.
+    >It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronisation and so on.
     
 
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
 
     _why:_
-    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. Whet gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point commiting them into your remote repository. 
+    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. Whet gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point commiting them into your remote repository. Unless you specifically want to. 
 
 * Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
 
@@ -369,19 +369,48 @@ Before using a package, check its GitHub. Look for the number of open issues, da
     _Why:_
     > It's normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those `eslint-disable` comments and follow the rules.
 
-* Always use  `//TODO:`  comments to remind yourself and others about an unfinished job.
-* Always comment and keep them relevant as code changes.
-* Remove commented block of code when possible.
-* Avoid js alerts in production.
-* Avoid irrelevant or funny comments, logs or naming (source code may get handed over to another company/client and they may not share the same banter).
+* Depending on the size of the task use  `//TODO:` comments or open a ticket.
+
+    _Why:_
+    > So you remind yourself and others about a task. One approach is using `//TODO(#3456)` where the number is a ticket and it's enforced by a lint rule.
+
+
+* Always comment and keep them relevant as code changes. Remove commented block of code when possible.
+    
+    _Why:_
+    > Your code should be as readable as possible, you should get rid of anything distraction. If you refactored a function, don't just comment out the old one, remove it.
+
+* Avoid irrelevant or funny comments, logs or naming.
+
+    _Why:_
+    > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
+
 * Write testable code, avoid side effect, extract side effects, write pure functions.
+
+    _Why:_
+    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+
 * Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
-* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below. It makes it more natural to read the source code.
+
+    _Why:_
+    > It makes it more natural to read the source code.
+
+* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
+
+    _Why:_
+    > It makes it more natural to read the source code.
 
 ## 8. Logging <a name="logging"></a>
 * Avoid client-side console logs in production
+
+    _Why:_
+    > Even though it is most likely that your build process gets rid of it, but make sure your code style check gives your warning about console logs.
+
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
+
+    _Why:_
+    > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 ## 9 API design <a name="api-design"></a>
 Follow resource-oriented design. This has three main factors: resources, collection, and URLs.
