@@ -7,8 +7,8 @@
 Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [hive](http://wearehive.co.uk).
 If you want to share a best practice, or think one of these guidelines  should be removed, [feel free to share it with us](http://makeapullrequest.com).
 - [Git](#git)
-    - [Some Git Rules](#some-git-rules)
-    - [Git Workflow](#git-workflow)
+    - [Some Git rules](#some-git-rules)
+    - [Git workflow](#git-workflow)
     - [Writing good commit messages](#writing-good-commit-messages)
 - [Documentation](#documentation)
 - [Environments](#environments)
@@ -33,7 +33,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 <a name="git"></a>
 ## 1. Git
 <a name="some-git-rules"></a>
-### 1.1 Some Git Rules
+### 1.1 Some Git rules
 There are a set of rules to keep in mind:
 * Perform work in a feature branch.
     
@@ -76,7 +76,7 @@ There are a set of rules to keep in mind:
     > It protects your production-ready branches from reciving unexpected and irreversible changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 
 <a name="git-workflow"></a>
-### 1.2 Git Workflow
+### 1.2 Git workflow
 Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
 * Checkout a new feature/bug-fix branch
