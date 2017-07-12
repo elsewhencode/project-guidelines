@@ -19,13 +19,8 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
 - [Logging](#logging)
-- [API Design](#api-design)
-    - [API naming](#api-naming)
-    - [Operating on resources](#operating-on-resources)
-    - [Sub-resources](#aub-resources)
-    - [API versioning](#api-versioning)
-    - [API feedbacks](#api-feedbacks)
-    - [Resource parameters and metadata](#resource-parameters-and-metadata)
+- [API](#api)
+    - [API Design](#api-design)
     - [API security](#api-security)
     - [API documentation](#api-documentation)
 - [Licensing](#licensing)
@@ -232,26 +227,24 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="dependencies"></a>
 ## 4. Dependencies
-Before using a dependency, stalk it for a bit. Look for the number of open issues, daily downloads, number of contributors and date it was last updated.
-
-* If less known dependency is needed, discuss it with the team before using it.
 * Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
 * See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
     
     _Why:_
     > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
 
-* Check download statistics to see if the dependency is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
+* Before using a dependency, check its download statistics to see if it is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
     
     _Why:_
     > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
 
-* Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
+* Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
 
     _Why:_
     > Having loads of contributors wont be as effective, if maintainers dont merge fixes and patches quickly enough.
 
-* Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
+* If a less known dependency is needed, discuss it with the team before using it.
+* Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
 
     _Why:_
     > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
@@ -266,6 +259,11 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
 
     _Why:_
     > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after certain amount of requests. 
+
+* Write testable code, avoid side effect, extract side effects, write pure functions.
+
+    _Why:_
+    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
 
@@ -292,18 +290,17 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
 
 * Run tests locally before making any pull requests to `develop`.
 
-     _Why:_
+    _Why:_
     > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to remote repository.
 
 * Document your tests including instructions in the relevant section of your `README.md` file.
 
-     _Why:_
+    _Why:_
     > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
 
 <a name="structure-and-naming"></a>
 ## 6. Structure and Naming
 * Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
-
 
 
     **Bad**
@@ -417,11 +414,6 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
     _Why:_
     > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
 
-* Write testable code, avoid side effect, extract side effects, write pure functions.
-
-    _Why:_
-    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
-
 * Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
 
     _Why:_
@@ -437,7 +429,7 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
 * Avoid client-side console logs in production
 
     _Why:_
-    > Even though it is most likely that your build process gets rid of it, but make sure your code style check gives your warning about console logs.
+    > Even though your build process can(should) get rid of them, but make sure your code style check gives your warning about console logs.
 
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
@@ -445,146 +437,184 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
     _Why:_
     > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
+
+<a name="api"></a>
+## 9. API
 <a name="api-design"></a>
-## 9 API design
-
-* We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
-    * A resource has data, relationships to other resources, and methods that operate against it
-    * A group of resources is called a collection.
-    * URL identifies the online location of a resource.
-    
-    _Why:_
-    > This is a very well-known design to developers (your main API audience). The core idea of REST is the resource and each resource is identified by a URL, and you retrieve that resource by sending a GET request to that URL. Very simple.
-
-<a name="api-naming"></a>
-### 9.1 API naming
-
-#### 9.1.1 Naming URLs
-* `/users` a collection of users (plural nouns).
-* `/users/id` a resource with information about a specific user.
-* A resource always should be plural in the URL. Keep verbs out of your resource URLs.
-* Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result to the client. Hence, you should use verbs instead of nouns in your URL to distinguish clearly the non-resource responses from the resource-related responses.
-
-GET 	`/translate?text=Hallo`
-
-#### 9.1.2 Naming fields
-* The request body or response type is JSON then please follow `camelCase` to maintain the consistency.
-    
-    _Why:_
-    > This is a JavaScript project guideline, so we assume your json is being consumed by JavaScript, so we try to keep things consistent.
-
-
-* You don't have to use your `table_name` for a resource name as well. Same with resource properties, they shouldn't be the same as your column names in the database.
-
-    _Why:_
-    > Mostly for security. your intention is to expose Resources, not your database schema details
-
-* Only use nouns in your URL when naming your resources and don’t try to explain their functionality.
-
-<a name="operating-on-resources"></a>
-### 9.2 Operating on resources
-
-#### 9.2.1 Use HTTP methods
-Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` .  Also avoid sending resource operations as a parameter. Instead explain the functionalities using HTTP methods:
-
-* **GET**		Used to retrieve a representation of a resource.
-* **POST**	Used to create new resources and sub-resources
-* **PUT**		Used to update existing resources
-* **PATCH**	Used to update existing resources.  PATCH only updates the fields that were supplied, leaving the others alone
-* **DELETE**	Used to delete existing resources
-
-<a name="Sub-resources"></a>
-### 9.3 Sub-resources
-Sub resources are used to link one resource with another, so use sub resources to represent the relation. If there is a relation between resources like  employee to a company, use `id` in the URL:
-
-* **GET**		`/schools/2/students	`	Should get the list of all students from school 2
-* **GET**		`/schools/2/students/31`	Should get the details of student 31, which belongs to school 2
-* **DELETE**	`/schools/2/students/31`	Should delete student 31, which belongs to school 2
-* **PUT**		`/schools/2/students/31`	Should update info of student 31, Use PUT on resource-URL only, not collection
-* **POST**	`/schools `					    Should create a new school and return the details of the new school created. Use POST on collection-URLs
+### 9.1 API design
 
 _Why:_
->An API is supposed to be an interface for developers and this is a natural way to make resources explorable.
+> Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.  
 
-<a name="api-versioning"></a>
-### 9.4 API versioning
-When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening:
-`http://api.domain.com/v1/schools/3/students	`
+_Why:_
+> Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
 
-<a name="api-feedbacks"></a>
-### 9.5 API feedbacks
-#### 9.5.1 Errors
-Response messages must be self descriptive. A good error message response might look something like this:
-```json
-{
-"code": 1234,
-"message" : "Something bad happened",
-"description" : "More details"
-}
-```
-or for validation errors:
+* We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+    * A resource has data, gets nested, and there are methods that operate against it
+    * A group of resources is called a collection.
+    * URL identifies the online location of resource or collection.
+    
+    _Why:_
+    > This is a very well-known design to developers (your main API consumers). The core idea of REST is the resource and each resource is identified by a URL, and you retrieve that resource by sending a GET request to that URL. Very simple.
 
-```json
-{
-  "code" : 2314,
-  "message" : "Validation Failed",
-  "errors" : [
+* Always use a plural nouns for naming a url pointing to a collection: `/users`.
+
+* Always use a singular concept that starts with a collection and ends to an identifier:
+
+    ```
+    /students/245743
+    /airports/kjfk
+    ```
+
+* Keep verbs out of your resource URLs.
+
+    _Why:_
+    > because we use verbs for something else
+
+* Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
+
+    ```
+    GET 	`/translate?text=Hallo`
+    ```
+
+    _Why:_
+    > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+
+* The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
+    
+    _Why:_
+    > This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript. 
+
+* Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
+
+    _Why:_
+    > Because your intention is to expose Resources, not your database schema details
+
+* Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
+
+    _Why:_
+    > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` .  Also avoid sending resource operations as a parameter.
+
+* Explain the CRUD functionalities using HTTP methods:
+
+    _How:_
+    > `GET`: To retrieve a representation of a resource.
+    
+    > `POST`: To create new resources and sub-resources
+   
+    > `PUT`: To update existing resources
+    
+    > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone
+    
+    > `DELETE`:	To delete existing resources
+
+
+* For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
+
+    _Why:_
+    > This is a natural way to make resources explorable.
+
+    _How:_
+
+    > `GET      /schools/2/students	` , should get the list of all students from school 2
+
+    > `GET      /schools/2/students/31`	, should get the details of student 31, which belongs to school 2
+
+    > `DELETE   /schools/2/students/31`	, should delete student 31, which belongs to school 2
+
+    > `PUT      /schools/2/students/31`	, should update info of student 31, Use PUT on resource-URL only, not collection
+
+    > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs
+
+* Use a simple ordinal number for version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
+    ```
+    http://api.domain.com/v1/schools/3/students	
+    ```
+
+    _Why:_
+    > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+
+
+
+* Response messages must be self descriptive. A good error message response might look something like this:
+    ```json
     {
-      "code" : 1233,
-      "field" : "email",
-      "message" : "Invalid email"
-    },
-    {
-       "code" : 1234,
-       "field" : "password",
-       "message" : "No password provided"
+        "code": 1234,
+        "message" : "Something bad happened",
+        "description" : "More details"
     }
-  ]
-}
-```
-Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect.
+    ```
+    or for validation errors:
+    ```json
+    {
+        "code" : 2314,
+        "message" : "Validation Failed",
+        "errors" : [
+            {
+                "code" : 1233,
+                "field" : "email",
+                "message" : "Invalid email"
+            },
+            {
+                "code" : 1234,
+                "field" : "password",
+                "message" : "No password provided"
+            }
+          ]
+    }
+    ```
 
-#### 9.5.2 Align your feedback with HTTP codes.
-##### The client and API worked (success – 2xx response code)  
-* `200 OK` This HTTP response represents success for `GET`, `PUT` or `POST` requests.
-* `201 Created` This status code should be returned whenever a new instance is created. E.g on creating a new instance, using `POST` method, should always return `201` status code.
-* `204 No Content` represents the request was successfully processed, but has not returned any content. `DELETE` can be a good example of this. If there is any error, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
+    _Why:_
+    > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
 
-##### The client application behaved incorrectly (client error – 4xx response code)
-* `400 Bad Request` indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-* `401 Unauthorized` indicates that the request lacks valid credentials needed to access the needed resources, and the client should re-request with the required credentials.
-* `403 Forbidden` indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason.
-* `404 Not Found` indicates that the requested resource was not found. 
-* `406 Not Acceptable` A response matching the list of acceptable values defined in Accept-Charset and Accept-Language headers cannot be served.
-* `409 Conflict` The request could not be completed due to a conflict with the current state of the target resource. This code is used in situations where the user might be able to resolve the conflict and resubmit the request.
-* `410 Gone` indicates that the requested resource is no longer available and has been intentionally and permanently moved.
 
-##### The API behaved incorrectly (server error – 5xx response code)
-* `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
-* `503 Service Unavailable` indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance or facing a temporary overload.
+    _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect._
 
-<a name="resource-parameters-and-metadata"></a>
-### 9.6 Resource parameters and metadata
+* Use only these 8 status codes to send with you response to describe whether **everything worked**,
+The **client app did something wrong** or The **API did something wrong**.
+    
+    - `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+
+    - `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+
+    - `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
+
+    - `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
+
+    - `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+
+    - `403 Forbidden` means the server understood the request but refuses to authorize it.
+
+    - `404 Not Found` indicates that the requested resource was not found. 
+
+    - `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
+
+    _Why:_
+    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+
+
 * Provide total numbers of resources in your response
+* Accept `limit` and `offset` parameters
+
 * The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
     ```
     GET /student?fields=id,name,age,class
     ```
-* Pagination, filtering and sorting don’t need to be supported by default for all resources. Document those resources that offer filtering and sorting.
+* Pagination, filtering and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
 
 <a name="api-security"></a>
-### 9.7 API security
-#### 9.7.1 TLS
+### 9.2 API security
+#### 9.2.1 TLS
 To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorization server and access token credentials to use TLS.
 Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication. Throw an error for non-secure access to API URLs.
 
-#### 9.7.2 Rate limiting
-If your API is public, you may want to consider Rate Limiting
+#### 9.2.2 Rate limiting
+* If your API is public, you may want to consider Rate Limiting
 
     _Why:_
     > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
 
-#### 9.7.3 Input Validation
+#### 9.2.3 Input Validation
 It's difficult to perform most attacks if the allowed values are limited.
 * Validate required fields, field types (e.g. string, integer, boolean, etc), and format requirements. Return 400 Bad Request with details about any errors from bad or missing data.
 
@@ -592,17 +622,17 @@ It's difficult to perform most attacks if the allowed values are limited.
 
 * As also mentioned before, don't expose your database scheme when naming your resources and defining your responses
 
-#### 9.7.4 URL validations
+#### 9.2.4 URL validations
 Attackers can tamper with any part of an HTTP request, including the URL, query string,
 
-#### 9.7.5 Validate incoming content-types.
+#### 9.2.5 Validate incoming content-types.
 The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `406` Not Acceptable response.
 
-#### 9.7.6 JSON encoding
+#### 9.2.6 JSON encoding
 A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server. Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
 
 <a name="api-documentation"></a>
-### 9.8 API documentation
+### 9.3 API documentation
 * Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
 * Describe API authentication methods with a code sample
 * Explaining The URL Structure (path only, no root URL) including The request type (Method)
@@ -629,7 +659,7 @@ Optional: photo_id=[alphanumeric]
     ```
 
 
-#### 9.8.1 API design tools
+#### 9.3.1 API design tools
 There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
@@ -642,5 +672,6 @@ Sources:
 [RisingStack Engineering](https://blog.risingstack.com/),
 [Mozilla Developer Network](https://developer.mozilla.org/),
 [Heroku Dev Center](https://devcenter.heroku.com),
-[Airbnb/javascript](https://github.com/airbnb/javascript)
-[Atlassian Git tutorials](https://www.atlassian.com/git/tutorials)
+[Airbnb/javascript](https://github.com/airbnb/javascript),
+[Atlassian Git tutorials](https://www.atlassian.com/git/tutorials),
+[Apigee](https://apigee.com/about/blog)
