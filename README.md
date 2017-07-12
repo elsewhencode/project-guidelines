@@ -170,52 +170,52 @@ that's useful for a code reviewer. if you can link to an associated Jira ticket,
     _why:_
     > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
 
-* You can also use a `preinstall` script that checks node and npm versions
+* It's a good idea to setup a `preinstall` script that checks node and npm versions
 
     _why:_
-    > Some dependencies may fail when used by newer versions of node.
+    > Some dependencies may fail when installed by newer versions of npm.
     
-* Use Docker images provided it doesn't make things more complicated
+* Use Docker image if you can.
 
     _why:_
-    > It can give you a consistent environment across the entire workflow. Without much neeed to fiddle with libs, dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+    > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
 * Use local modules instead of using globally installed modules
 
     _why:_
-    > Lets you share your tooling with your colleague instead of expecting them to have it on their systems.
+    > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
 
 ## 4. Dependencies <a name="dependencies"></a>
-Before using a package, check its GitHub. Look for the number of open issues, daily downloads and number of contributors as well as the date the package was last updated.
+Before using a dependency, stalk it for a bit. Look for the number of open issues, daily downloads, number of contributors and date it was last updated.
 
 * If less known dependency is needed, discuss it with the team before using it.
 * Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
 * See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
     
     _why:_
-    > The is a potential risk that you import this unused library in your bundle and ship it for production and as the result increase your bundle size. Find them, get rid of them.
+    > You may import an unused library in your production and increase your bundle size. Find unused dependencies and get rid of them.
 
 * Check download statistics to see if the dependency is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
     
     _why:_
-    > More usage mostly means more contributors, which usually means better maintenance which results in bugs get discovered and fixed way quicker.
+    > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
 
 * Check to see if the dependency has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
 
     _why:_
-    > Having loads of contributors wont be as effective, if maintainers dont merge those fixes and patches quickly enough.
+    > Having loads of contributors wont be as effective, if maintainers dont merge fixes and patches quickly enough.
 
 * Always make sure your app works with the latest versions of dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
 
     _why:_
-    > Dependency updates sometimes have breaking changes, and you should be aware of that as quick as possible. Always check their release notes. Update your dependencies one by one, that makes troubleshooting easier (If breaking changes happens). Use cool tools such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+    > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
 * Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 
 ### 4.1 Consistent dependencies:
 
-* Make sure your team member gets the exact same dependencies as you
+* Make sure your team members get the exact same dependencies as you
 
     _why:_
     > Because you want the code to behave as expected and identical in any development machine [read more...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
@@ -235,12 +235,12 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Have a `test` mode environment if needed.
 
     _why:_
-    > Some believe for unit testing `development` mode and for end to end testing  `production` mode will be enough. While this is partly true, there are some exceptions. One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. Or your API may apply rate limits in `production` and block your many test calls. 
+    > While sometimes end to end testing  `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after certain amount of requests. 
 
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
 
     _why:_
-    > You don't want to dig through a folder structure every time you have to find a unit test. Additionally, this naming convention is standard now and gets picked up by most JavaScript testing frameworks.
+    > You don't want to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
     
 
 * Put your additional test files into a separate test folder to avoid confusion.
@@ -254,7 +254,7 @@ Before using a package, check its GitHub. Look for the number of open issues, da
     > You want to test a business logic as a separate units. You have to "minimize the impact of randomness and non-deterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
 
-* Don’t write tests to check types, instead use a static type checker
+* Use a static type checker 
 
     _why:_
     > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
@@ -263,9 +263,9 @@ Before using a package, check its GitHub. Look for the number of open issues, da
 * Run tests locally before making any pull requests to `develop`.
 
      _why:_
-    > Because you don't want to be the one who caused production-ready branch build to fail.
+    > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to remote repository.
 
-* Document your tests, with instructions.
+* Document your tests including instructions in the relevant section of your `README.md` file.
 
      _why:_
     > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
