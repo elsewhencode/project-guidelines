@@ -265,7 +265,7 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
 * Have a `test` mode environment if needed.
 
     _Why:_
-    > While sometimes end to end testing  `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after certain amount of requests. 
+    > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after certain amount of requests. 
 
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
 
