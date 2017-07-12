@@ -672,5 +672,6 @@ Sources:
 [RisingStack Engineering](https://blog.risingstack.com/),
 [Mozilla Developer Network](https://developer.mozilla.org/),
 [Heroku Dev Center](https://devcenter.heroku.com),
-[Airbnb/javascript](https://github.com/airbnb/javascript)
-[Atlassian Git tutorials](https://www.atlassian.com/git/tutorials)
+[Airbnb/javascript](https://github.com/airbnb/javascript),
+[Atlassian Git tutorials](https://www.atlassian.com/git/tutorials),
+[Apigee](https://apigee.com/about/blog)
