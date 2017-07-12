@@ -239,7 +239,7 @@ Before using a dependency, stalk it for a bit. Look for the number of open issue
 * See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
     
     _Why:_
-    > You may import an unused library in your production and increase your bundle size. Find unused dependencies and get rid of them.
+    > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
 
 * Check download statistics to see if the dependency is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
     
