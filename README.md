@@ -579,7 +579,7 @@ To secure your web API authentication, all authentications should use SSL. OAuth
 Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication. Throw an error for non-secure access to API URLs.
 
 #### 9.7.2 Rate limiting
-If your API is public you may want to consider Rate Limiting
+If your API is public, you may want to consider Rate Limiting
 
     _Why:_
     > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
