@@ -403,7 +403,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Always comment and keep them relevant as code changes. Remove commented blocks of code.
     
     _Why:_
-    > Your code should be as readable as possible, you should get rid of anything distraction. If you refactored a function, don't just comment out the old one, remove it.
+    > Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
 
 * Avoid irrelevant or funny comments, logs or naming.
 
