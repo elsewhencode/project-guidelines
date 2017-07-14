@@ -44,7 +44,7 @@ There are a set of rules to keep in mind:
     _Why:_
     > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature
 
-* Update your local `develop` branch and do a interactive rebase before pushing your feature and making a Pull Request
+* Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request
 
     _Why:_
     > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
