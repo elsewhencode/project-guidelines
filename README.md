@@ -522,15 +522,6 @@ _Why:_
 
     > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs
 
-* Use a simple ordinal number for version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
-    ```
-    http://api.domain.com/v1/schools/3/students	
-    ```
-
-    _Why:_
-    > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
-
-
 
 * Response messages must be self descriptive. A good error message response might look something like this:
     ```json
@@ -597,6 +588,21 @@ The **client app did something wrong** or The **API did something wrong**.
     GET /student?fields=id,name,age,class
     ```
 * Pagination, filtering and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+
+#### 9.1.1 API Versioning
+
+An API versioning is a practice that enables services to evolve their APIs with new changes, signatures and the overall API contract without interrupting API consumers and forcing them to repeatedly make changes in order to keep in pace with changes to APIs.
+
+Several methodologies exist to version your API:
+* URL: A request specifies the version for the resource: `http://api.domain.com/api/v1/schools/3/students`
+* Query String: A request specifies the resource in a query string: `http://api.domain.com/api/schools/3/students?api-version=1`
+* Custom HTTP Header: A request to a resource `http://api.domain.com/api/schools/3/students` with a custom HTTP header set in the request `X-Api-Version: 1`
+* MIME Type content negotiation: A request to a resource `http://api.domain.com/api/schools/3/students` with an `Accept` header that specifies the requested content and its version: `Accept: application/vnd.ecma.app-v2+json`
+
+There is no strict rule on which methodology to follow and each has their own pros and cons. The RESTful approach is the semantic mime-type content negotiation, but a more pragmatic solution is the URL or custom HTTP header. e.g., expressJS middleware that facilitates API versioning is [express-version-route](https://github.com/lirantal/express-version-route).
+
+_why:_
+>Upgrading APIs with some breaking change would lead to breaking existing products, services or even your own frontend web application which is dependent on your API contract. By implementing API versioning you can ensure that changes you make to your underlying API endpoints are not affecting systems that consume them, and using a new version of an API is an opt-in on the consumer. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 <a name="api-security"></a>
 ### 9.2 API security
