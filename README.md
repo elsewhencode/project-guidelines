@@ -621,32 +621,40 @@ The **client app did something wrong** or The **API did something wrong**.
 
 <a name="api-security"></a>
 ### 9.2 API security
-#### 9.2.1 TLS
-To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorization server and access token credentials to use TLS.
-Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication. Throw an error for non-secure access to API URLs.
+These are some basic security best practices:
 
-#### 9.2.2 Rate limiting
-* If your API is public, you may want to consider Rate Limiting
+* Don't use basic authentication. Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
+
+    _Why:_
+    > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+
+* Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`
+
+* Authorization Code should be short-lived.
+
+* Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
+
+* Consider using Rate Limiting
 
     _Why:_
     > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
 
-#### 9.2.3 Input Validation
-It's difficult to perform most attacks if the allowed values are limited.
-* Validate required fields, field types (e.g. string, integer, boolean, etc), and format requirements. Return 400 Bad Request with details about any errors from bad or missing data.
+* Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
 
-* Escape parameters that will become part of the SQL statement to protect from SQL injection attacks
+* Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
-* As also mentioned before, don't expose your database scheme when naming your resources and defining your responses
+* All the data exchanged with the ReST API must be validated by the API.
 
-#### 9.2.4 URL validations
-Attackers can tamper with any part of an HTTP request, including the URL, query string,
+* Serialize your JSON 
 
-#### 9.2.5 Validate incoming content-types.
-The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `406` Not Acceptable response.
+    _Why:_
+    > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
 
-#### 9.2.6 JSON encoding
-A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server. Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
+* Validate the content-type and mostly use `application/*json` (Content-Type header).
+    
+    _Why:_
+    > For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
+
 
 <a name="api-documentation"></a>
 ### 9.3 API documentation
@@ -655,17 +663,22 @@ A key concern with JSON encoders is preventing arbitrary JavaScript remote code 
 * Explaining The URL Structure (path only, no root URL) including The request type (Method)
 
 For each endpoint explain:
-* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section
-```
-Required: id=[integer]
-Optional: photo_id=[alphanumeric]
-```
+* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+
+    ```
+    Required: id=[integer]
+    Optional: photo_id=[alphanumeric]
+    ```
+
 * If the request type is POST, provide a working examples. URL Params rules apply here too. Separate the section into Optional and Required.
-* Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect!
+
+* Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+
     ```
     Code: 200
     Content: { id : 12 }
     ```
+
 * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
     {
@@ -676,8 +689,7 @@ Optional: photo_id=[alphanumeric]
     ```
 
 
-#### 9.3.1 API design tools
-There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+* Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 ## 10. Licensing
