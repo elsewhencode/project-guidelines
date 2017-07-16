@@ -122,6 +122,14 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
 * Pull request will be accepted, merged and close by reviewer.
 * Remove your local feature branch if you're done.
 
+  ```sh
+  git branch -d <branchname>
+  ```
+  to remove all branches which are no longer on remote
+  ```sh
+  git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+  ```
+
 <a name="writing-good-commit-messages"></a>
 ### 1.3 Writing good commit messages
 
