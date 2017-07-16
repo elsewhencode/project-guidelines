@@ -445,18 +445,28 @@ _Why:_
 _Why:_
 > Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
 
+
 * We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
     * A resource has data, gets nested, and there are methods that operate against it
     * A group of resources is called a collection.
     * URL identifies the online location of resource or collection.
     
     _Why:_
-    > This is a very well-known design to developers (your main API consumers). The core idea of REST is the resource and each resource is identified by a URL, and you retrieve that resource by sending a GET request to that URL. Very simple.
+    > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
+
+* use kebab-case for URLs.
+* use camelCase for parameters in the query string or resource fields.
+* use plural kebab-case for resource names in URLs.
 
 * Always use a plural nouns for naming a url pointing to a collection: `/users`.
 
     _Why:_
     > Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
+* In the source code convert plurals to variables and properties with a List suffix.
+
+    _Why_:
+    > Plural is nice in the URL but in the source code, it’s just too subtile and error-prone.
 
 * Always use a singular concept that starts with a collection and ends to an identifier:
 
@@ -464,6 +474,13 @@ _Why:_
     /students/245743
     /airports/kjfk
     ```
+* Avoid URLs like this: 
+    ```
+    GET /blogs/:blogId/posts/:postId/summary
+    ```
+
+    _Why:_
+    > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
 
 * Keep verbs out of your resource URLs.
 
@@ -590,7 +607,7 @@ The **client app did something wrong** or The **API did something wrong**.
     > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
 
     _Why:_
-    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
 * Provide total numbers of resources in your response
@@ -674,4 +691,6 @@ Sources:
 [Heroku Dev Center](https://devcenter.heroku.com),
 [Airbnb/javascript](https://github.com/airbnb/javascript),
 [Atlassian Git tutorials](https://www.atlassian.com/git/tutorials),
-[Apigee](https://apigee.com/about/blog)
+[Apigee](https://apigee.com/about/blog),
+[Wishtack](https://blog.wishtack.com)
+
