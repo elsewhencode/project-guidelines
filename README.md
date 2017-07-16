@@ -20,7 +20,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Code style](#code-style)
 - [Logging](#logging)
 - [API](#api)
-    - [API Design](#api-design)
+    - [API design](#api-design)
     - [API security](#api-security)
     - [API documentation](#api-documentation)
 - [Licensing](#licensing)
@@ -453,15 +453,28 @@ _Why:_
 _Why:_
 > Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
 
+
 * We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
     * A resource has data, gets nested, and there are methods that operate against it
     * A group of resources is called a collection.
     * URL identifies the online location of resource or collection.
     
     _Why:_
-    > This is a very well-known design to developers (your main API consumers). The core idea of REST is the resource and each resource is identified by a URL, and you retrieve that resource by sending a GET request to that URL. Very simple.
+    > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
+
+* use kebab-case for URLs.
+* use camelCase for parameters in the query string or resource fields.
+* use plural kebab-case for resource names in URLs.
 
 * Always use a plural nouns for naming a url pointing to a collection: `/users`.
+
+    _Why:_
+    > Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
+* In the source code convert plurals to variables and properties with a List suffix.
+
+    _Why_:
+    > Plural is nice in the URL but in the source code, it’s just too subtile and error-prone.
 
 * Always use a singular concept that starts with a collection and ends to an identifier:
 
@@ -469,16 +482,23 @@ _Why:_
     /students/245743
     /airports/kjfk
     ```
+* Avoid URLs like this: 
+    ```
+    GET /blogs/:blogId/posts/:postId/summary
+    ```
+
+    _Why:_
+    > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
 
 * Keep verbs out of your resource URLs.
 
     _Why:_
-    > because we use verbs for something else
+    > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else
 
 * Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
 
     ```
-    GET 	`/translate?text=Hallo`
+    /translate?text=Hallo
     ```
 
     _Why:_
@@ -577,24 +597,25 @@ _Why:_
 * Use only these 8 status codes to send with you response to describe whether **everything worked**,
 The **client app did something wrong** or The **API did something wrong**.
     
-    - `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+    _Which ones:_
+    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-    - `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
 
-    - `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
+    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
 
-    - `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
+    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
 
-    - `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
 
-    - `403 Forbidden` means the server understood the request but refuses to authorize it.
+    > `403 Forbidden` means the server understood the request but refuses to authorize it.
 
-    - `404 Not Found` indicates that the requested resource was not found. 
+    > `404 Not Found` indicates that the requested resource was not found. 
 
-    - `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
+    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
 
     _Why:_
-    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
 * Provide total numbers of resources in your response
@@ -608,32 +629,40 @@ The **client app did something wrong** or The **API did something wrong**.
 
 <a name="api-security"></a>
 ### 9.2 API security
-#### 9.2.1 TLS
-To secure your web API authentication, all authentications should use SSL. OAuth2 requires the authorization server and access token credentials to use TLS.
-Switching between HTTP and HTTPS introduces security weaknesses and best practice is to use TLS by default for all communication. Throw an error for non-secure access to API URLs.
+These are some basic security best practices:
 
-#### 9.2.2 Rate limiting
-* If your API is public, you may want to consider Rate Limiting
+* Don't use basic authentication. Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
+
+    _Why:_
+    > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+
+* Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`
+
+* Authorization Code should be short-lived.
+
+* Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
+
+* Consider using Rate Limiting
 
     _Why:_
     > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
 
-#### 9.2.3 Input Validation
-It's difficult to perform most attacks if the allowed values are limited.
-* Validate required fields, field types (e.g. string, integer, boolean, etc), and format requirements. Return 400 Bad Request with details about any errors from bad or missing data.
+* Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
 
-* Escape parameters that will become part of the SQL statement to protect from SQL injection attacks
+* Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
-* As also mentioned before, don't expose your database scheme when naming your resources and defining your responses
+* All the data exchanged with the ReST API must be validated by the API.
 
-#### 9.2.4 URL validations
-Attackers can tamper with any part of an HTTP request, including the URL, query string,
+* Serialize your JSON 
 
-#### 9.2.5 Validate incoming content-types.
-The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `406` Not Acceptable response.
+    _Why:_
+    > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
 
-#### 9.2.6 JSON encoding
-A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or node.js, on the server. Use a JSON serialiser to entered data to prevent the execution of user input on the browser/server.
+* Validate the content-type and mostly use `application/*json` (Content-Type header).
+    
+    _Why:_
+    > For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
+
 
 <a name="api-documentation"></a>
 ### 9.3 API documentation
@@ -642,17 +671,22 @@ A key concern with JSON encoders is preventing arbitrary JavaScript remote code 
 * Explaining The URL Structure (path only, no root URL) including The request type (Method)
 
 For each endpoint explain:
-* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section
-```
-Required: id=[integer]
-Optional: photo_id=[alphanumeric]
-```
+* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+
+    ```
+    Required: id=[integer]
+    Optional: photo_id=[alphanumeric]
+    ```
+
 * If the request type is POST, provide a working examples. URL Params rules apply here too. Separate the section into Optional and Required.
-* Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect!
+
+* Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+
     ```
     Code: 200
     Content: { id : 12 }
     ```
+
 * Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
     {
@@ -663,8 +697,7 @@ Optional: photo_id=[alphanumeric]
     ```
 
 
-#### 9.3.1 API design tools
-There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+* Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 ## 10. Licensing
@@ -678,4 +711,6 @@ Sources:
 [Heroku Dev Center](https://devcenter.heroku.com),
 [Airbnb/javascript](https://github.com/airbnb/javascript),
 [Atlassian Git tutorials](https://www.atlassian.com/git/tutorials),
-[Apigee](https://apigee.com/about/blog)
+[Apigee](https://apigee.com/about/blog),
+[Wishtack](https://blog.wishtack.com)
+
