@@ -20,7 +20,7 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Code style](#code-style)
 - [Logging](#logging)
 - [API](#api)
-    - [API Design](#api-design)
+    - [API design](#api-design)
     - [API security](#api-security)
     - [API documentation](#api-documentation)
 - [Licensing](#licensing)
@@ -455,6 +455,9 @@ _Why:_
 
 * Always use a plural nouns for naming a url pointing to a collection: `/users`.
 
+    _Why:_
+    > Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
 * Always use a singular concept that starts with a collection and ends to an identifier:
 
     ```
@@ -465,12 +468,12 @@ _Why:_
 * Keep verbs out of your resource URLs.
 
     _Why:_
-    > because we use verbs for something else
+    > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else
 
 * Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
 
     ```
-    GET 	`/translate?text=Hallo`
+    /translate?text=Hallo
     ```
 
     _Why:_
@@ -569,21 +572,22 @@ _Why:_
 * Use only these 8 status codes to send with you response to describe whether **everything worked**,
 The **client app did something wrong** or The **API did something wrong**.
     
-    - `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+    _Which ones:_
+    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-    - `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
 
-    - `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
+    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
 
-    - `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
+    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
 
-    - `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
 
-    - `403 Forbidden` means the server understood the request but refuses to authorize it.
+    > `403 Forbidden` means the server understood the request but refuses to authorize it.
 
-    - `404 Not Found` indicates that the requested resource was not found. 
+    > `404 Not Found` indicates that the requested resource was not found. 
 
-    - `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
+    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
 
     _Why:_
     > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
