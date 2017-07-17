@@ -442,10 +442,35 @@ Before jumping into setting up a Git hook configuration within your JS project, 
 
 * Git hooks for a given Git repository lie inside `.git/hooks`
 * Your Git hook script need not be written in pure shell script. It can be written in any programming language of your choice, given that you declare the file as an executable before running the hook.<br />
-For Git hooks created from scratch, you may also need to change the file permissions and set it to an executable by using `chmod +x git-hook` where `git-hook` is the the file name of your hook
+For Git hooks created from scratch, you may also need to change the file permissions and set it to an executable by using `chmod +x git_hook` where `git_hook` is the the file name of your hook
 * Hooks are local to any given Git repository, and they are not copied over to the new repository when you run `git clone`. And, since hooks are local, **they can be altered by anybody with access to the repository**
 
 #### 7.1.2 Using `lint-staged` with `husky` along with `prettier`
+
+Very often, code style concerns are largely opinionated. Thankfully, because of an ever-growing JavaScript community, we have [Prettier](https://github.com/prettier/prettier). Prettier is an opinionated code formatter that removes all original styling and ensures that all outputted code conforms to a consistent style. Read more on the philosophy of Prettier [here](http://jlongster.com/A-Prettier-Formatter).
+
+While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play.
+
+Start by installing `lint-staged`, `husky` and `prettier` as dev dependencies. Then, add this to your `package.json`
+
+```json
+{
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
+```
+
+ This little tweak to your `package.json` will now lint all staged *.js files and run `prettier` with the passed flags against them and add them to your staged files once the `pre-commit` hook exits successfully.
+
+ Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration).<br />
+ Read more on configuring `husky` [here](https://github.com/typicode/husky).
 
 #### 7.1.3 Inside your Editor
 
