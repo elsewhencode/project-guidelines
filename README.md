@@ -18,6 +18,9 @@ If you want to share a best practice, or think one of these guidelines  should b
 - [Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
+    - [Git Hooks](#git-hooks)
+    - [Using `lint-staged` with `husky` along with `prettier`](#using-lint-staged-with-husky-along-with-prettier)
+    - [Inside your Editor](#inside-your-editor)
 - [Logging](#logging)
 - [API](#api)
     - [API design](#api-design)
@@ -428,8 +431,10 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > It makes it more natural to read the source code.
 
+<a name="code-style-check"></a>
 ### 7.1 Code Style Check
 
+<a name="git-hooks"></a>
 #### 7.1.1 Git Hooks
 
 Before jumping into the _why_, let's get to the _what_. So what are Git hooks? Git hooks are scripts that Git executes before or after events such as commit, push, and receive. Git hooks are a built-in feature &mdash; no need to download anything. Git hooks are run locally.
@@ -445,6 +450,7 @@ Before jumping into setting up a Git hook configuration within your JS project, 
 For Git hooks created from scratch, you may also need to change the file permissions and set it to an executable by using `chmod +x git_hook` where `git_hook` is the the file name of your hook
 * Hooks are local to any given Git repository, and they are not copied over to the new repository when you run `git clone`. And, since hooks are local, **they can be altered by anybody with access to the repository**
 
+<a name="using-lint-staged-with-husky-along-with-prettier"></a>
 #### 7.1.2 Using `lint-staged` with `husky` along with `prettier`
 
 Very often, code style concerns are largely opinionated. Thankfully, because of an ever-growing JavaScript community, we have [Prettier](https://github.com/prettier/prettier). Prettier is an opinionated code formatter that removes all original styling and ensures that all outputted code conforms to a consistent style. Read more on the philosophy of Prettier [here](http://jlongster.com/A-Prettier-Formatter).
@@ -472,6 +478,7 @@ Start by installing `lint-staged`, `husky` and `prettier` as dev dependencies. T
  Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration).<br />
  Read more on configuring `husky` [here](https://github.com/typicode/husky).
 
+<a name="inside-your-editor"></a>
 #### 7.1.3 Inside your Editor
 
 The full capabilities of `prettier` can be extended in your text editor with a few simple steps. Start by adding [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) to your project. Then add (assuming you're using `.eslintrc.js`)
