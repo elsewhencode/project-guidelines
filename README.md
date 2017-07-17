@@ -428,6 +428,31 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > It makes it more natural to read the source code.
 
+### 7.1 Code Style Check
+
+#### 7.1.1 Inside your Editor
+
+<!-- Still working on this section  -->
+
+#### 7.1.2 Git Hooks
+
+Before jumping into the _why_, let's get to the _what_. So what are Git hooks? Git hooks are scripts that Git executes before or after events such as commit, push, and receive. Git hooks are a built-in feature &mdash; no need to download anything. Git hooks are run locally.
+
+Some Git hooks are invoked by certain Git sub-commands. [Here's](https://git-scm.com/docs/githooks#_hooks) a list of Git hooks currently supported by Git.
+
+These hook scripts are highly configurable. For example, after each `post-commit`, one can send an email to all team members, notifying them of a new commit using [git-multimail](https://git.kernel.org/pub/scm/git/git.git/tree/contrib/hooks/multimail/README?id=HEAD). One could also lint each staged file before committing them in the `pre-commit` hook, as you'll see [below](https://github.com/wearehive/project-guidelines#713-using-lint-staged-with-husky-along-with-prettier).
+
+Before jumping into setting up a Git hook configuration within your JS project, here's a few gotcha's:
+
+* Git hooks for a given Git repository lie inside `.git/hooks`
+* Your Git hook script need not be written in pure shell script. It can be written in any programming language of your choice, given that you declare the file as an executable before running the hook.<br />
+For Git hooks created from scratch, you may also need to change the file permissions and set it to an executable by using `chmod +x git-hook` where `git-hook` is the the file name of your hook
+* Hooks are local to any given Git repository, and they are not copied over to the new repository when you run `git clone`. And, since hooks are local, they can be altered by anybody with access to the repository
+
+#### 7.1.3 Using `lint-staged` with `husky` along with `prettier`
+
+
+
 <a name="logging"></a>
 ## 8. Logging
 * Avoid client-side console logs in production
