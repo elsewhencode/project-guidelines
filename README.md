@@ -21,6 +21,12 @@ If you want to share a best practice, or think one of these guidelines  should b
 ### 1.1 Git Workflow
 We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
+* For a new project, initialize a git repository in the project directory. __For susequent features/changes this step should be ignored__.
+   ```
+   cd <project directory>
+   git init
+   ```
+
 * Checkout a new feature/bug-fix branch
     ```
     git checkout -b <branchname>
@@ -42,7 +48,7 @@ We use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/compari
     ```
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```
-	git add <file1> <file2> ...
+    git add <file1> <file2> ...
     git rebase --continue
     ```
 * Push your branch
