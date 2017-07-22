@@ -120,56 +120,56 @@ javascript工程项目的一系列最佳实践策略
     > 当你rebase时，你会改变需求功能分支的提交历史。结果呢，Git却拒绝了正常的“git push”。那么，您只能使用-f或--force标志了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
     
     
-* Make a Pull Request.
-* Pull request will be accepted, merged and close by a reviewer.
-* Remove your local feature branch if you're done.
+* 提交一个pull request.
+* Pull request 会被代码审查的同事来接受，合并和关闭.
+* 如果你完成了开发，请删除你的本地分支.
 
   ```sh
-  git branch -d <branchname>
+  git branch -d <分支>
   ```
-  to remove all branches which are no longer on remote
+  删除所有不在原创仓库维护的分支
   ```sh
   git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
   ```
 
 <a name="writing-good-commit-messages"></a>
-### 1.3 Writing good commit messages
+### 1.3 如何写好提交说明
 
-Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+坚持关于提交的良好指南，会让在与他人合作git时更容易。这里有一些经验法则 ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
- * Separate the subject from the body with a newline between the two
+ * 将主题与主体用换行后的两条空行分开
 
     为什么:_
-    > Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only
+    > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用git shortlog，而不是git log，你会看到一个很长的提交消息列表，其中包含提交的id和摘要
 
- * Limit the subject line to 50 characters and Wrap the body at 72 characters
+ * 将主题行限制为50个字符，并将主体控制在72个字符
 
     为什么_
-    > Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [更多请阅读...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+    > 提交应尽可能简洁明了，而不是写一堆冗余的描述。 [更多请阅读...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
- * Capitalize the subject line
- * Do not end the subject line with a period
- * Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line
+ * 大写的主题线
+ * 不要用句号结束主题句
+ * 使用 [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) 在主题线
 
     为什么:_
-    > Rather than writing messages that say what a committer has done. It's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [更多请阅读...](https://news.ycombinator.com/item?id=2079612)
+    > 不是简单的写这次提交者做了什么。最好写明提交者将要进一步做什么事情。[更多请阅读...](https://news.ycombinator.com/item?id=2079612)
 
 
- * Use the body to explain **what** and **why** as opposed to **how**
+ * Use the body to explain **what** and **why** as opposed to **how** //UFO
 
- <a name="documentation"></a>
-## 2. Documentation
-* Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
-* For projects with more than one repository, provide links to them in their respective `README.md` files.
-* Keep `README.md` updated as a project evolves.
-* Comment your code. Try to make it as clear as possible what you are intending with each major section.
-* If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
-* Don't use comments as an excuse for a bad code. Keep your code clean.
-* Don't use clean code as an excuse to not comment at all.
-* Keep comments relevant as your code evolves.
+ <a name="文档"></a>
+## 2. 文档
+* 使用这个 [模板](./README.sample.md) 给 `README.md`, 欢迎添加里面没有的内容。
+* 对于具有多个存储库的项目，请在各自的`README.md`文件中提供它们的链接。
+* 随项目持续的更新 `README.md`.
+* 给你的代码添加详细的注释，这样就可以清楚每个主要部分的意思。
+* 如果您正在使用的某些代码和方法，在github或stackoverflow上有公开讨论，请在您的评论中包含这些链接，
+* 不要把注释作为坏代码的借口。保持你的代码干净整洁。
+* 也不要把那些清晰的代码作为不写注释的借口。
+* 代码的更新，也请确保注释的同步更新。
 
-<a name="environments"></a>
-## 3. Environments
+<a name="环境"></a>
+## 3. 环境
 * Define separate `development`, `test` and `production` environments if needed.
 
     为什么:_
