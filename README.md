@@ -6,7 +6,7 @@
 
 javascript工程项目的一系列最佳实践策略
 
-> 每当开发一个新项目，就像在田里打滚，对其他人来说维护这样一个项目简直就是一个潜在的噩梦。以下内容是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践列表（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些内容应该删除，那请随时与我们联系。[feel free to share it with us](http://makeapullrequest.com).
+> 每当开发一个新项目，就像在田里打滚，对其他人来说维护这样一个项目简直就是一个潜在的噩梦。以下内容是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践列表（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些内容应该删除。[欢迎随时与我们分享。](http://makeapullrequest.com).
 - [Git](#git)
     - [一些git规则](#some-git-rules)
     - [Git workflow](#git-workflow)
@@ -36,22 +36,22 @@ javascript工程项目的一系列最佳实践策略
     
     为什么:_
     >因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull请求而不会导致代码混淆。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
-* Branch out from `develop`
+* 如何从`develop`来分支
     
     为什么:_
-    >This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for some projects).
+    >这样，您可以确保master中的代码非常稳定，不会导致构建问题，并且可以直接用于发版（当然，这可能对某些项目会比较过分）.
 
-* Never push into `develop` or `master` branch. Make a Pull Request.
+* 在确保Pull之前，千万不要push到 `develop` 或者 `master` 分支
     
     为什么:_
-    > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature
+    > 开发成员如果完成功能，需要马上通知团队。这样开发伙伴更容易对代码进行评审，同时还可以互相讨论所开发的需求功能
 
-* Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request
+* 在更新您本地的`develop`分支时，并在push和pull之前，先进行rebase操作
 
     为什么:_
-    > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+    > Rebasing将合并到你正在操作的分支（`master`或`develop`）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的merge提交（假设没有冲突的话）。这样可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-* Resolve potential conflicts while rebasing and before making a Pull Request
+* 请在rebase的时候解决潜在的冲突，且请保证在pull之前
 * Delete local and remote feature branches after merging.
     
     为什么:_
