@@ -264,47 +264,47 @@ javascript工程项目的一系列最佳实践策略
 <a name="testing"></a>
 ## 5. 测试
 
-* Have a `test` mode environment if needed.
+* 如果需要，建一个 `test` 环境.
 
     为什么:
-    > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests. 
+    > 虽然有时在`production`模式下端到端测试可能看起来已经足够了，但有一些例外：比如您可能不想在生产环境下启用数据分析功能，只能用测试数据来填充（污染）某人的仪表板。另一个例子是，您的API可能在`production`中具有速率限制，并在请求达到一定量级后会阻止您的测试请求。
 
-* Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
+* 将测试文件放在使用`* .test.js`或`* .spec.js`命名约定的测试模块，比如`moduleName.spec.js`
 
     为什么:
-    > You don't want to dig through a folder structure to find a unit test. [更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    > 你肯定不想深入一个文件夹的层层结构来查找里面的单元测试。[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
     
 
-* Put your additional test files into a separate test folder to avoid confusion.
+* 将其他测试文件放入独立的测试文件夹中以避免混淆。
 
     为什么:
-    > Some test files don't particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: `__test__` folder. This name: `__test__`  is also standard now and gets picked up by most JavaScript testing frameworks.
+    > 一些测试文件与任何特定的文件实现没有特别的关系。你只需将它放在最有可能被其他开发人员找到的文件夹中：`__test__`文件夹。这个名字：`__test__`也是现在的标准，被大多数JavaScript测试框架所接受。
 
-* Write testable code, avoid side effects, extract side effects, write pure functions
+* 编写可测试代码，避免不良代码，提取，并写成纯函数 //UFO
 
     为什么:
-    > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [更多请阅读...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+    > 您想要将业务逻辑测试为单独的单元。您必须“尽量减少不可预测性和非确定性过程对代码可靠性的影响”。 [更多请阅读...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
     
-    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    > 纯函数是一个函数，它总是为相同的输入返回相同的输出。相反，不纯的函数是可能具有不可预测性或取决于来自外部的条件来决定产生对应的输出值。这使得它不那么可预测[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-* Use a static type checker 
-
-    为什么:
-    > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [更多请阅读...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
-
-
-* Run tests locally before making any pull requests to `develop`.
+* 使用静态类型检查器
 
     为什么:
-    > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to a remote repository.
+    > 有时您可能需要一个静态类型检查器。它为您的代码带来一定程度的可靠性。[更多请阅读...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
-* Document your tests including instructions in the relevant section of your `README.md` file.
+
+* 在进行任何pull请求时，先在本地`develop`分支运行测试 .
 
     为什么:
-    > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
+    > 你不想成为一个导致生产分支构建失败的人。在您的`rebase`之后运行测试，然后将您的需求功能分支改动推送到远程仓库。
+
+* 记录您的测试，包括在`README.md`文件中的相关部分说明。
+
+    为什么:
+    > 这个记录的笔记非常的方便，便于留给其他开发人员或DevOps专家或QA或任何幸运的人，让他们更方便的来处理您的代码。
 
 <a name="structure-and-naming"></a>
-## 6. Structure and Naming
+## 6. 结构布局与命名
 * Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
 
 
