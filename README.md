@@ -236,34 +236,33 @@ javascript工程项目的一系列最佳实践策略
     > 太糟糕了。对于旧版本的“`npm`，在安装新的依赖关系时使用`-save --save-exact`，并在发布之前创建`npm-shrinkwrap.json`。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
-## 4. Dependencies
-* Keep track of your currently available packages: e.g., `npm ls --depth=0`. [更多请阅读...](https://docs.npmjs.com/cli/ls)
-* See if any of your packages have become unused or irrelevant: `depcheck`. [更多请阅读...](https://www.npmjs.com/package/depcheck)
+## 4. 依赖
+* 持续跟踪你当前的可用依赖包: e.g., `npm ls --depth=0`. [更多请阅读...](https://docs.npmjs.com/cli/ls)
+* 查看这些软件包是否已经变得不可用或者已经废弃: `depcheck`. [更多请阅读...](https://www.npmjs.com/package/depcheck)
     
     为什么:
-    > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
+    > 您可能会在代码中包含未使用的库，这会增大生产包的大小。请搜索出这些未使用的依赖关系并摆脱它们吧。
 
-* Before using a dependency, check its download statistics to see if it is heavily used by the community: `npm-stat`. [更多请阅读...](https://npm-stat.com/)
+* 在使用依赖之前，请检查他的下载统计信息，看看它是否被社区大量使用： `npm-stat`. [更多请阅读...](https://npm-stat.com/)
     
     为什么:
-    > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
+    > 更多的使用将意味着更多的贡献者，这通常意味着拥有更好的维护，这些才能确保快速发现错误和快速修复错误。
 
-* Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [更多请阅读...](https://docs.npmjs.com/cli/view)
-
-    为什么:
-    > Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
-
-* If a less known dependency is needed, discuss it with the team before using it.
-* Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [更多请阅读...](https://docs.npmjs.com/cli/outdated)
+* 在使用依赖关系之前，请检查它是否具有良好的成熟版本发布频率与大量的维护者：例如， `npm view async`. [更多请阅读...](https://docs.npmjs.com/cli/view)
 
     为什么:
-    > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+    > 如果维护者没有够快地merge修补程序，那么这些贡献者也将不会变得积极高效。
 
-* Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+* 如果需要使用那些不太熟悉的依赖包，请在使用之前与团队进行充分讨论。始终确保您的应用程序在最新版本的依赖包上面能正常运行，而不是坏掉：`npm outdated`. [更多请阅读...](https://docs.npmjs.com/cli/outdated)
+
+    为什么:
+    > 依赖关系更新有时包含破坏性更改。当显示需要更新时，请始终先查看其发行说明。并逐一的更新您的依赖项，如果出现任何问题，可以使故障排除更容易。使用一个很酷的工具，如 [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+
+* 检查包是否有已知安全漏洞，例如： [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 
 <a name="testing"></a>
-## 5. Testing
+## 5. 测试
 
 * Have a `test` mode environment if needed.
 
