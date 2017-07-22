@@ -185,55 +185,55 @@ javascript工程项目的一系列最佳实践策略
     >使用`.env`文件来存储环境变量，并将这个文件添加到`.gitignore`中以便不提交到git仓库。另外，在提交一个`.env.example`作为开发人员的参考。对于生产环境，您应该以标准化的方式设置环境变量。
     [更多请阅读](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
+* 建议您在应用程序启动之前校验一下环境变量。  [看这个例子](./configWithTest.sample.js) 使用 `joi` 去校验提供的值.
     
     为什么:
-    > It may save others from hours of troubleshooting.
+    > 在排查问题的痛苦经历中你一定需要他。
 
 <a name="consistent-dev-environments"></a>
-### 3.1 Consistent dev environments:
-* Set your node version in `engines` in `package.json`
+### 3.1 一直的开发环境:
+* 在`package.json`里的`engines`中设置你的node版本
     
     为什么:
-    > It lets others know the version of node the project works on. [更多请阅读...](https://docs.npmjs.com/files/package.json#engines)
+    > 让其他人可以清晰的知道这个项目中用的什么node版本 [更多请阅读...](https://docs.npmjs.com/files/package.json#engines)
 
-* Additionally, use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention it in the documentation
-
-    为什么:
-    > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [更多请阅读...](https://github.com/creationix/nvm)
-
-* It's a good idea to setup a `preinstall` script that checks node and npm versions
+* 另外，使用`nvm`并在你的项目根目录下创建一个`.nvmrc`文件。不要忘了在文档中标注。
 
     为什么:
-    > Some dependencies may fail when installed by newer versions of npm.
+    > 任何使用`nvm`的人都可以使用`nvm use`来切换到自己想要的node版本。 [更多请阅读...](https://github.com/creationix/nvm)
+
+* 最好设置一个检查node和npm版本的“preinstall”脚本
+
+    为什么:
+    > 某些依赖项可能会在新版本的npm中安装失败。
     
-* Use Docker image if you can.
+* 如果可以的话最好使用Docker image
 
     为什么:
-    > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [更多请阅读...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+    > 它可以在整个工作流程中为您提供一致的环境。不用花太多的时间来解决依赖或配置。 [更多请阅读...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
-* Use local modules instead of using globally installed modules
+* 使用本地模块，而不是使用全局安装的模块
 
     为什么:
-    > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
+    > 你不能指望你的同事在自己的全局环境都安装了相应的模块，本地模块可以方便你分享你的工具。
 
 
 <a name="consistent-dependencies"></a>
-### 3.2 Consistent dependencies:
+### 3.2 依赖一致性:
 
-* Make sure your team members get the exact same dependencies as you
+* 确保您的团队成员获得与您完全相同的依赖关系
 
     为什么:
-    > Because you want the code to behave as expected and identical in any development machine [更多请阅读...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
+    > 因为您希望代码在任何开发环境中运行都能像预期的一样 [更多请阅读...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
 
     _how:_
-    > Use `package-lock.json` on `npm@5` or higher
+    > 在`npm@5`或者更高版本中使用 `package-lock.json`
 
-    _I don't have npm@5:_
-    > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [更多请阅读...](https://yarnpkg.com/en/)
+    _我们没有npm@5:_
+    > 或者，您可以使用“yarn”，并确保在“README.md”中标注。您的锁文件和`package.json`在每次依赖关系更新后应该具有相同的版本。[更多请阅读...](https://yarnpkg.com/en/)
 
-    _I don't like the name `Yarn`:_
-    > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [更多请阅读...](https://docs.npmjs.com/files/package-locks)
+    _我不太喜欢 `Yarn`:_
+    > 太糟糕了。对于旧版本的“`npm`，在安装新的依赖关系时使用`-save --save-exact`，并在发布之前创建`npm-shrinkwrap.json`。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
 ## 4. Dependencies

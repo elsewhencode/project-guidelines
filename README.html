@@ -1,0 +1,1869 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  max-width: 980px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 45px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>README</title></head><body><article class="markdown-body"><p><a href="http://wearehive.co.uk/"><img src="/Users/didi/workspaces/project-guidelines/images/logo.png"></a></p>
+<h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>项目规范 &middot; <a href="http://makeapullrequest.com"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" /></a></h1>
+<p>javascript工程项目的一系列最佳实践策略</p>
+<blockquote>
+<p>每当开发一个新项目，就像在田里打滚，对其他人来说维护这样一个项目简直就是一个潜在的噩梦。以下内容是我们在<a href="http://wearehive.co.uk">hive</a>的大多数JavaScript项目中发现，撰写和收集的最佳实践列表（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些内容应该删除。<a href="http://makeapullrequest.com">欢迎随时与我们分享。</a>.<br />
+- <a href="#git">Git</a><br />
+    - <a href="#some-git-rules">一些git规则</a><br />
+    - <a href="#git-workflow">Git workflow</a><br />
+    - <a href="#writing-good-commit-messages">编写良好的提交备注信息</a><br />
+- <a href="#documentation">文档</a><br />
+- <a href="#environments">环境</a><br />
+    - <a href="#consistent-dev-environments">一致的dev环境</a><br />
+    - <a href="#consistent-dependencies">一致性的依赖配置</a><br />
+- <a href="#dependencies">依赖</a><br />
+- <a href="#testing">测试</a><br />
+- <a href="#structure-and-naming">结构与命名规则</a><br />
+- <a href="#code-style">代码风格</a><br />
+- <a href="#logging">日志</a><br />
+- <a href="#api">API</a><br />
+    - <a href="#api-design">API 设计</a><br />
+    - <a href="#api-security">API 安全</a><br />
+    - <a href="#api-documentation">API 文档</a><br />
+- <a href="#licensing">许可</a></p>
+</blockquote>
+<p><a name="git"></a></p>
+<h2 id="1-git"><a name="user-content-1-git" href="#1-git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1. Git</h2>
+<p><a name="some-git-rules"></a></p>
+<h3 id="11-git"><a name="user-content-11-git" href="#11-git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1.1 一些Git规则</h3>
+<p>有一套规则要牢记：<br />
+* 在需求分支中执行工作。</p>
+<pre><code>为什么:
+&gt;因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull请求而不会导致代码混淆。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+</code></pre>
+<ul>
+<li>
+<p>如何从<code>develop</code>来分支</p>
+<p>为什么:</p>
+<blockquote>
+<p>这样，您可以确保master中的代码非常稳定，不会导致构建问题，并且可以直接用于发版（当然，这可能对某些项目会比较过分）.</p>
+</blockquote>
+</li>
+<li>
+<p>在确保Pull之前，千万不要push到 <code>develop</code> 或者 <code>master</code> 分支</p>
+<p>为什么:</p>
+<blockquote>
+<p>开发成员如果完成功能，需要马上通知团队。这样开发伙伴更容易对代码进行评审，同时还可以互相讨论所开发的需求功能</p>
+</blockquote>
+</li>
+<li>
+<p>在更新您本地的<code>develop</code>分支时，并在push和pull之前，先进行rebase操作</p>
+<p>为什么:</p>
+<blockquote>
+<p>Rebasing将合并到你正在操作的分支（<code>master</code>或<code>develop</code>）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的merge提交（假设没有冲突的话）。这样可以保持一个漂亮而干净的历史提交记录。 <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">更多请阅读 &hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>请确保在pull rebase的时候解决潜在的冲突</p>
+</li>
+<li>
+<p>merge后删除本地和远程需求分支。</p>
+<p>为什么:</p>
+<blockquote>
+<p>如果不删除需求分支，会导致大量僵尸分支存在，导致混乱.请确保一次性合并到 (<code>master</code> or <code>develop</code>). 只有到这个feature需求分支还在开发中时才应该存在。</p>
+</blockquote>
+</li>
+<li>
+<p>在进行Pull请求之前，请确保您的需求分支已经建立，并已经通过了所有的测试（包括代码规则检查）。</p>
+<p>为什么:</p>
+<blockquote>
+<p>您即将将代码提交到这个稳定的分支。而如果您的需求分支功能测试都失败了，那您的目标分支构建很可能也会失败。此外，确保在进行pull请求之前应用代码规则检查。因为它有助于我们代码的可读性，并减少格式化的代码与实际业务代码更改混合在一起导致的混乱问题。</p>
+</blockquote>
+</li>
+<li>
+<p>使用 <a href="/Users/didi/workspaces/project-guidelines/.gitignore">.gitignore 文件</a>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>此文件包含一个文件列表描述，描述那些文件和代码不会被发送到远程git仓库中。这个文件里面应该添加那些为大多数IDE自己产生的文件和文件夹以及大多数常见的依赖文件夹和文件（比npm的node_modules），这些文件我们都不会上传到远程代码库，这些文件不是我们需要的。</p>
+</blockquote>
+</li>
+<li>
+<p>保户 <code>develop</code> 和 <code>master</code> 分支.</p>
+<p>为什么:</p>
+<blockquote>
+<p>它保护您的生产分支免受意外情况和不可回退的变更. 更多请阅读&hellip; <a href="https://help.github.com/articles/about-protected-branches/">Github</a> and <a href="https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html">Bitbucket</a></p>
+</blockquote>
+</li>
+</ul>
+<p><a name="git-workflow"></a></p>
+<h3 id="12-git-workflow"><a name="user-content-12-git-workflow" href="#12-git-workflow" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1.2 Git workflow</h3>
+<p>因为以上原因, 我们使用 <a href="https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow">需求功能分支-workflow</a> 并配合 <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing">Rebasing的使用方法</a> 和 一些关于 <a href="https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow">Gitflow</a> (命名和使用一个develop branch). 主要步骤如下:</p>
+<ul>
+<li>Checkout 一个新的 feature/bug-fix 分支<br />
+    <pre><code class="sh">git checkout -b &lt;分支名称&gt;
+</code></pre></li>
+<li>
+<p>新增一下代码变更<br />
+    <pre><code class="sh">git add
+git commit -a
+</code></pre><br />
+    为什么:<br />
+    &gt; <code>git commit -a</code> 这样会启动一个编辑器，编辑你的说明信息，这样可以保持专注于写这些注释说明. 更多请阅读 <em>section 1.3</em>.</p>
+</li>
+<li>
+<p>保持与远程的同步，以便拿到最新变更<br />
+    <pre><code class="sh">git checkout develop
+git pull
+</code></pre></p>
+<p>为什么:</p>
+<blockquote>
+<p>这其实是在rebasing的时候给了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。</p>
+</blockquote>
+</li>
+<li>
+<p>通过使用rebase从develop更新最新的代码提交<br />
+    <pre><code class="sh">git checkout &lt;branchname&gt;
+git rebase -i --autosquash develop
+</code></pre></p>
+<p>为什么:</p>
+<blockquote>
+<p>您可以使用&ndash;autosquash将所有相同类型提交压缩到单个提交。没有人想要在开发分支中提交一大堆单个功能的提交 <a href="https://robots.thoughtbot.com/autosquashing-git-commits">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>如果没有冲突请跳过此步骤，如果你有冲突, <a href="https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/">解决方式</a>  就通过&ndash;continue参数继续rebase<br />
+    <pre><code class="sh">git add &lt;file1&gt; &lt;file2&gt; ...
+git rebase --continue
+</code></pre></p>
+</li>
+<li>
+<p>Push 你的分支. Rebase 将会改变提交历史, 所以你可以使用 <code>-f</code> 强制push到远程分支. 如果其他人正在您的这个分支上面开发，请使用不那么破坏性的 <code>--force-with-lease</code>.<br />
+    <pre><code class="sh">git push -f
+</code></pre></p>
+<p>为什么:</p>
+<blockquote>
+<p>当你rebase时，你会改变需求功能分支的提交历史。结果呢，Git却拒绝了正常的“git push”。那么，您只能使用-f或&ndash;force标志了。<a href="https://developer.atlassian.com/blog/2015/04/force-with-lease/">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>提交一个pull request.</p>
+</li>
+<li>Pull request 会被代码审查的同事来接受，合并和关闭.</li>
+<li>如果你完成了开发，请删除你的本地分支.</li>
+</ul>
+<p><pre><code class="sh">git branch -d &lt;分支&gt;
+</code></pre><br />
+  删除所有不在原创仓库维护的分支<br />
+  <pre><code class="sh">git fetch -p &amp;&amp; for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+</code></pre></p>
+<p><a name="writing-good-commit-messages"></a></p>
+<h3 id="13"><a name="user-content-13" href="#13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1.3 如何写好提交说明</h3>
+<p>坚持关于提交的良好指南，会让在与他人合作git时更容易。这里有一些经验法则 (<a href="https://chris.beams.io/posts/git-commit/#seven-rules">source</a>):</p>
+<ul>
+<li>
+<p>将主题与主体用换行后的两条空行分开</p>
+<p>为什么:</p>
+<blockquote>
+<p>Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用git shortlog，而不是git log，你会看到一个很长的提交消息列表，其中包含提交的id和摘要</p>
+</blockquote>
+</li>
+<li>
+<p>将主题行限制为50个字符，并将主体控制在72个字符</p>
+<p>为什么_</p>
+<blockquote>
+<p>提交应尽可能简洁明了，而不是写一堆冗余的描述。 <a href="https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>大写的主题线</p>
+</li>
+<li>不要用句号结束主题句</li>
+<li>
+<p>使用 <a href="https://en.wikipedia.org/wiki/Imperative_mood">imperative mood</a> 在主题线</p>
+<p>为什么:</p>
+<blockquote>
+<p>不是简单的写这次提交者做了什么。最好写明提交者将要进一步做什么事情。<a href="https://news.ycombinator.com/item?id=2079612">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Use the body to explain <strong>what</strong> and <strong>why</strong> as opposed to <strong>how</strong> //UFO</p>
+</li>
+</ul>
+<p><a name="文档"></a></p>
+<h2 id="2"><a name="user-content-2" href="#2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2. 文档</h2>
+<ul>
+<li>使用这个 <a href="/Users/didi/workspaces/project-guidelines/README.sample.md">模板</a> 给 <code>README.md</code>, 欢迎添加里面没有的内容。</li>
+<li>对于具有多个存储库的项目，请在各自的<code>README.md</code>文件中提供它们的链接。</li>
+<li>随项目持续的更新 <code>README.md</code>.</li>
+<li>给你的代码添加详细的注释，这样就可以清楚每个主要部分的意思。</li>
+<li>如果您正在使用的某些代码和方法，在github或stackoverflow上有公开讨论，请在您的评论中包含这些链接，</li>
+<li>不要把注释作为坏代码的借口。保持你的代码干净整洁。</li>
+<li>也不要把那些清晰的代码作为不写注释的借口。</li>
+<li>代码的更新，也请确保注释的同步更新。</li>
+</ul>
+<p><a name="环境"></a></p>
+<h2 id="3"><a name="user-content-3" href="#3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3. 环境</h2>
+<ul>
+<li>
+<p>如果需要，请分别定义 <code>development</code>, <code>test</code> 和 <code>production</code> 环境.</p>
+<p>为什么:</p>
+<blockquote>
+<p>不同的环境可能需要不同的数据，token，API，端口等。您可能需要一个隔离的<code>development</code>模式，它调用mock的API，它会返回我们需要的数据，使自动化和手动测试变得更加容易。或者您可能只想在<code>production</code> 上才启用Google Analytics（分析）。 <a href="https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>从环境变量加载部署的相关配置，不要将这些配置作为常量添加到代码库中， <a href="/Users/didi/workspaces/project-guidelines/config.sample.js">看这个例子</a>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>你会有令牌，密码和其他有价值的信息。这些配置应正确地从应用程序内部分离开来，这样代码库就可以随时独立发布，不会包含这些敏感配置信息。</p>
+</blockquote>
+<p><em>How:</em></p>
+<blockquote>
+<p>使用<code>.env</code>文件来存储环境变量，并将这个文件添加到<code>.gitignore</code>中以便不提交到git仓库。另外，在提交一个<code>.env.example</code>作为开发人员的参考。对于生产环境，您应该以标准化的方式设置环境变量。<br />
+<a href="https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f">更多请阅读</a></p>
+</blockquote>
+</li>
+<li>
+<p>建议您在应用程序启动之前校验一下环境变量。  <a href="/Users/didi/workspaces/project-guidelines/configWithTest.sample.js">看这个例子</a> 使用 <code>joi</code> 去校验提供的值.</p>
+<p>为什么:</p>
+<blockquote>
+<p>在排查问题的痛苦经历中你一定需要他。</p>
+</blockquote>
+</li>
+</ul>
+<p><a name="consistent-dev-environments"></a></p>
+<h3 id="31"><a name="user-content-31" href="#31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.1 一直的开发环境:</h3>
+<ul>
+<li>
+<p>在<code>package.json</code>里的<code>engines</code>中设置你的node版本</p>
+<p>为什么:</p>
+<blockquote>
+<p>让其他人可以清晰的知道这个项目中用的什么node版本 <a href="https://docs.npmjs.com/files/package.json#engines">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>另外，使用<code>nvm</code>并在你的项目根目录下创建一个<code>.nvmrc</code>文件。不要忘了在文档中标注。</p>
+<p>为什么:</p>
+<blockquote>
+<p>任何使用<code>nvm</code>的人都可以使用<code>nvm use</code>来切换到自己想要的node版本。 <a href="https://github.com/creationix/nvm">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>最好设置一个检查node和npm版本的“preinstall”脚本</p>
+<p>为什么:</p>
+<blockquote>
+<p>某些依赖项可能会在新版本的npm中安装失败。</p>
+</blockquote>
+</li>
+<li>
+<p>如果可以的话最好使用Docker image</p>
+<p>为什么:</p>
+<blockquote>
+<p>它可以在整个工作流程中为您提供一致的环境。不用花太多的时间来解决依赖或配置。 <a href="https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>使用本地模块，而不是使用全局安装的模块</p>
+<p>为什么:</p>
+<blockquote>
+<p>你不能指望你的同事在自己的全局环境都安装了相应的模块，本地模块可以方便你分享你的工具。</p>
+</blockquote>
+</li>
+</ul>
+<p><a name="consistent-dependencies"></a></p>
+<h3 id="32"><a name="user-content-32" href="#32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.2 依赖一致性:</h3>
+<ul>
+<li>
+<p>确保您的团队成员获得与您完全相同的依赖关系</p>
+<p>为什么:</p>
+<blockquote>
+<p>因为您希望代码在任何开发环境中运行都能像预期的一样 <a href="https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277">更多请阅读&hellip;</a></p>
+</blockquote>
+<p><em>how:</em></p>
+<blockquote>
+<p>在<code>npm@5</code>或者更高版本中</p>
+</blockquote>
+<p><em>I don&rsquo;t have npm@5:</em></p>
+<blockquote>
+<p>Alternatively you can use <code>Yarn</code> and make sure to mention it in <code>README.md</code>. Your lock file and <code>package.json</code> should have the same versions after each dependency update. <a href="https://yarnpkg.com/en/">更多请阅读&hellip;</a></p>
+</blockquote>
+<p><em>I don&rsquo;t like the name <code>Yarn</code>:</em></p>
+<blockquote>
+<p>Too bad. For older versions of <code>npm</code>, use <code>—save --save-exact</code> when installing a new dependency and create <code>npm-shrinkwrap.json</code> before publishing. <a href="https://docs.npmjs.com/files/package-locks">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+</ul>
+<p><a name="dependencies"></a></p>
+<h2 id="4-dependencies"><a name="user-content-4-dependencies" href="#4-dependencies" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4. Dependencies</h2>
+<ul>
+<li>Keep track of your currently available packages: e.g., <code>npm ls --depth=0</code>. <a href="https://docs.npmjs.com/cli/ls">更多请阅读&hellip;</a></li>
+<li>
+<p>See if any of your packages have become unused or irrelevant: <code>depcheck</code>. <a href="https://www.npmjs.com/package/depcheck">更多请阅读&hellip;</a></p>
+<p>为什么:</p>
+<blockquote>
+<p>You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.</p>
+</blockquote>
+</li>
+<li>
+<p>Before using a dependency, check its download statistics to see if it is heavily used by the community: <code>npm-stat</code>. <a href="https://npm-stat.com/">更多请阅读&hellip;</a></p>
+<p>为什么:</p>
+<blockquote>
+<p>More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.</p>
+</blockquote>
+</li>
+<li>
+<p>Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., <code>npm view async</code>. <a href="https://docs.npmjs.com/cli/view">更多请阅读&hellip;</a></p>
+<p>为什么:</p>
+<blockquote>
+<p>Having loads of contributors won&rsquo;t be as effective if maintainers don&rsquo;t merge fixes and patches quickly enough.</p>
+</blockquote>
+</li>
+<li>
+<p>If a less known dependency is needed, discuss it with the team before using it.</p>
+</li>
+<li>
+<p>Always make sure your app works with the latest version of its dependencies without breaking: <code>npm outdated</code>. <a href="https://docs.npmjs.com/cli/outdated">更多请阅读&hellip;</a></p>
+<p>为什么:</p>
+<blockquote>
+<p>Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as <a href="https://github.com/tjunnone/npm-check-updates">npm-check-updates</a>.</p>
+</blockquote>
+</li>
+<li>
+<p>Check to see if the package has known security vulnerabilities with, e.g., <a href="https://snyk.io/test?utm_source=risingstack_blog">Snyk</a>.</p>
+</li>
+</ul>
+<p><a name="testing"></a></p>
+<h2 id="5-testing"><a name="user-content-5-testing" href="#5-testing" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>5. Testing</h2>
+<ul>
+<li>
+<p>Have a <code>test</code> mode environment if needed.</p>
+<p>为什么:</p>
+<blockquote>
+<p>While sometimes end to end testing in <code>production</code> mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a &lsquo;production&rsquo; mode and pollute someone&rsquo;s dashboard with test data. The other example is that your API may have rate limits in <code>production</code> and blocks your test calls after a certain amount of requests. </p>
+</blockquote>
+</li>
+<li>
+<p>Place your test files next to the tested modules using <code>*.test.js</code> or <code>*.spec.js</code> naming convention, like <code>moduleName.spec.js</code></p>
+<p>为什么:</p>
+<blockquote>
+<p>You don&rsquo;t want to dig through a folder structure to find a unit test. <a href="https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Put your additional test files into a separate test folder to avoid confusion.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Some test files don&rsquo;t particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: <code>__test__</code> folder. This name: <code>__test__</code>  is also standard now and gets picked up by most JavaScript testing frameworks.</p>
+</blockquote>
+</li>
+<li>
+<p>Write testable code, avoid side effects, extract side effects, write pure functions</p>
+<p>为什么:</p>
+<blockquote>
+<p>You want to test a business logic as separate units. You have to &ldquo;minimize the impact of randomness and nondeterministic processes on the reliability of your code&rdquo;. <a href="https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3">更多请阅读&hellip;</a></p>
+<p>A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable <a href="https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Use a static type checker </p>
+<p>为什么:</p>
+<blockquote>
+<p>Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. <a href="https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Run tests locally before making any pull requests to <code>develop</code>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>You don&rsquo;t want to be the one who caused production-ready branch build to fail. Run your tests after your <code>rebase</code> and before pushing your feature-branch to a remote repository.</p>
+</blockquote>
+</li>
+<li>
+<p>Document your tests including instructions in the relevant section of your <code>README.md</code> file.</p>
+<p>为什么:</p>
+<blockquote>
+<p>It&rsquo;s a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.</p>
+</blockquote>
+</li>
+</ul>
+<p><a name="structure-and-naming"></a></p>
+<h2 id="6-structure-and-naming"><a name="user-content-6-structure-and-naming" href="#6-structure-and-naming" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6. Structure and Naming</h2>
+<ul>
+<li>
+<p>Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.</p>
+<p><strong>Bad</strong></p>
+<pre><code>.
+├── controllers
+|   ├── product.js
+|   └── user.js
+├── models
+|   ├── product.js
+|   └── user.js
+</code></pre>
+
+<p><strong>Good</strong></p>
+<pre><code>.
+├── product
+|   ├── index.js
+|   ├── product.js
+|   └── product.test.js
+├── user
+|   ├── index.js
+|   ├── user.js
+|   └── user.test.js
+</code></pre>
+
+<p>为什么:</p>
+<blockquote>
+<p>Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.</p>
+</blockquote>
+</li>
+<li>
+<p>Put your additional test files to a separate test folder to avoid confusion.</p>
+<p>为什么:</p>
+<blockquote>
+<p>It is a time saver for other developers or DevOps experts in your team.</p>
+</blockquote>
+</li>
+<li>
+<p>Use a <code>./config</code> folder and don&rsquo;t make different config files for different environments.</p>
+<p>为什么:</p>
+<blockquote>
+<p>When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as <code>config</code> makes sense. Just remember not to make different config files for different environments. It doesn&rsquo;t scale cleanly, as more deploys of the app are created, new environment names are necessary.<br />
+Values to be used in config files should be provided by environment variables. <a href="https://medium.com/@fedorHK/no-config-b3f1171eecd5">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Put your scripts in a <code>./scripts</code> folder. This includes <code>bash</code> and <code>node</code> scripts.</p>
+<p>为什么:</p>
+<blockquote>
+<p>It&rsquo;s very likely you may end up with more than one script, production build, development build, database feeders, database synchronization and so on.</p>
+</blockquote>
+</li>
+<li>
+<p>Place your build output in a <code>./build</code> folder. Add <code>build/</code> to <code>.gitignore</code>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Name it what you like, <code>dist</code> is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to. </p>
+</blockquote>
+</li>
+<li>
+<p>Use <code>PascalCase' 'camelCase</code> for filenames and directory names. Use  <code>PascalCase</code>  only for Components.</p>
+</li>
+<li>
+<p><code>CheckBox/index.js</code> should have the <code>CheckBox</code> component, as could <code>CheckBox.js</code>, but <strong>not</strong> <code>CheckBox/CheckBox.js</code> or <code>checkbox/CheckBox.js</code> which are redundant.</p>
+</li>
+<li>
+<p>Ideally the directory name should match the name of the default export of <code>index.js</code>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Then you can expect what component or module you will receive by simply just importing its parent folder.   </p>
+</blockquote>
+</li>
+</ul>
+<p><a name="code-style"></a></p>
+<h2 id="7-code-style"><a name="user-content-7-code-style" href="#7-code-style" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>7. Code style</h2>
+<ul>
+<li>
+<p>Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.</p>
+<p>为什么:</p>
+<blockquote>
+<p>This is all up to you. We use transpilers to use advantages of new syntax. stage-2 is more likely to eventually become part of the spec with only minor revisions. </p>
+</blockquote>
+</li>
+<li>
+<p>Include code style check in your build process.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously. Do it for both client and server-side code. <a href="https://www.robinwieruch.de/react-eslint-webpack-babel/">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Use <a href="http://eslint.org/">ESLint - Pluggable JavaScript linter</a> to enforce code style.</p>
+<p>为什么:</p>
+<blockquote>
+<p>We simply prefer <code>eslint</code>, you don&rsquo;t have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.</p>
+</blockquote>
+</li>
+<li>
+<p>We use <a href="https://github.com/airbnb/javascript">Airbnb JavaScript Style Guide</a> for JavaScript, <a href="https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details">更多请阅读</a>. Use the javascript style guide required by the project or your team.</p>
+</li>
+<li>
+<p>We use <a href="https://github.com/gajus/eslint-plugin-flowtype">Flow type style check rules for ESLint.</a> when using <a href="https://flow.org/">FlowType</a>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Flow introduces few syntaxes that also need to follow certain code style and be checked.</p>
+</blockquote>
+</li>
+<li>
+<p>Use <code>.eslintignore</code> to exclude file or folders from code style check.</p>
+<p>为什么:</p>
+<blockquote>
+<p>You don&rsquo;t have to pollute your code with <code>eslint-disable</code> comments whenever you need to exclude a couple of files from style checking.</p>
+</blockquote>
+</li>
+<li>
+<p>Remove any of your <code>eslint</code> disable comments before making a Pull Request.</p>
+<p>为什么:</p>
+<blockquote>
+<p>It&rsquo;s normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those <code>eslint-disable</code> comments and follow the rules.</p>
+</blockquote>
+</li>
+<li>
+<p>Depending on the size of the task use  <code>//TODO:</code> comments or open a ticket.</p>
+<p>为什么:</p>
+<blockquote>
+<p>So then you can remind yourself and others about a small task (like refactoring a function, or updating a comment). For larger tasks  use <code>//TODO(#3456)</code> which is enforced by a lint rule and the number is an open ticket.</p>
+</blockquote>
+</li>
+<li>
+<p>Always comment and keep them relevant as code changes. Remove commented blocks of code.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don&rsquo;t just comment out the old one, remove it.</p>
+</blockquote>
+</li>
+<li>
+<p>Avoid irrelevant or funny comments, logs or naming.</p>
+<p>为什么:</p>
+<blockquote>
+<p>While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.</p>
+</blockquote>
+</li>
+<li>
+<p>Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.</p>
+<p>为什么:</p>
+<blockquote>
+<p>It makes it more natural to read the source code.</p>
+</blockquote>
+</li>
+<li>
+<p>Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.</p>
+<p>为什么:</p>
+<blockquote>
+<p>It makes it more natural to read the source code.</p>
+</blockquote>
+</li>
+</ul>
+<p><a name="logging"></a></p>
+<h2 id="8-logging"><a name="user-content-8-logging" href="#8-logging" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>8. Logging</h2>
+<ul>
+<li>
+<p>Avoid client-side console logs in production</p>
+<p>为什么:</p>
+<blockquote>
+<p>Even though your build process can(should) get rid of them, but make sure your code style check gives your warning about console logs.</p>
+</blockquote>
+</li>
+<li>
+<p>Produce readable production logging. Ideally use logging libraries to be used in production mode (such as <a href="https://github.com/winstonjs/winston">winston</a> or<br />
+<a href="https://github.com/trentm/node-bunyan">node-bunyan</a>).</p>
+<p>为什么:</p>
+<blockquote>
+<p>It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. <a href="https://blog.risingstack.com/node-js-logging-tutorial/">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+</ul>
+<p><a name="api"></a></p>
+<h2 id="9-api"><a name="user-content-9-api" href="#9-api" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>9. API</h2>
+<p><a name="api-design"></a></p>
+<h3 id="91-api-design"><a name="user-content-91-api-design" href="#91-api-design" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>9.1 API design</h3>
+<p>为什么:</p>
+<blockquote>
+<p>Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.  </p>
+</blockquote>
+<p>为什么:</p>
+<blockquote>
+<p>Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why <code>API design</code> is included in this document.</p>
+</blockquote>
+<ul>
+<li>
+<p>We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.</p>
+<ul>
+<li>A resource has data, gets nested, and there are methods that operate against it</li>
+<li>A group of resources is called a collection.</li>
+<li>URL identifies the online location of resource or collection.</li>
+</ul>
+<p>为什么:</p>
+<blockquote>
+<p>This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.</p>
+</blockquote>
+</li>
+<li>
+<p>use kebab-case for URLs.</p>
+</li>
+<li>use camelCase for parameters in the query string or resource fields.</li>
+<li>
+<p>use plural kebab-case for resource names in URLs.</p>
+</li>
+<li>
+<p>Always use a plural nouns for naming a url pointing to a collection: <code>/users</code>.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Basically, it reads better and keeps URLs consistent. <a href="https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>In the source code convert plurals to variables and properties with a List suffix.</p>
+<p>为什么_:</p>
+<blockquote>
+<p>Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.</p>
+</blockquote>
+</li>
+<li>
+<p>Always use a singular concept that starts with a collection and ends to an identifier:</p>
+<p><pre><code>/students/245743
+/airports/kjfk
+</code></pre><br />
+* Avoid URLs like this: <br />
+<pre><code>GET /blogs/:blogId/posts/:postId/summary
+</code></pre></p>
+<p>为什么:</p>
+<blockquote>
+<p>This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.</p>
+</blockquote>
+</li>
+<li>
+<p>Keep verbs out of your resource URLs.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else</p>
+</blockquote>
+</li>
+<li>
+<p>Use verbs for non-resources. In this case, your API doesn&rsquo;t return any resources. Instead, you execute an operation and return the result. These <strong>are not</strong> CRUD (create, retrieve, update, and delete) operations:</p>
+<pre><code>/translate?text=Hallo
+</code></pre>
+
+<p>为什么:</p>
+<blockquote>
+<p>Because for CRUD we use HTTP methods on <code>resource</code> or <code>collection</code> URLs. The verbs we were talking about are actually <code>Controllers</code>. You usually don&rsquo;t develop many of these. <a href="https://byrondover.github.io/post/restful-api-guidelines/#controller">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>The request body or response type is JSON then please follow <code>camelCase</code> for <code>JSON</code> property names to maintain the consistency.</p>
+<p>为什么:</p>
+<blockquote>
+<p>This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript. </p>
+</blockquote>
+</li>
+<li>
+<p>Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your <code>table_name</code> for a resource name and <code>column_name</code> resource property.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Because your intention is to expose Resources, not your database schema details</p>
+</blockquote>
+</li>
+<li>
+<p>Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.</p>
+<p>为什么:</p>
+<blockquote>
+<p>Only use nouns in your resource URLs, avoid endpoints like <code>/addNewUser</code> or <code>/updateUser</code> .  Also avoid sending resource operations as a parameter.</p>
+</blockquote>
+</li>
+<li>
+<p>Explain the CRUD functionalities using HTTP methods:</p>
+<p><em>How:</em></p>
+<blockquote>
+<p><code>GET</code>: To retrieve a representation of a resource.</p>
+<p><code>POST</code>: To create new resources and sub-resources</p>
+<p><code>PUT</code>: To update existing resources</p>
+<p><code>PATCH</code>: To update existing resources. It only updates the fields that were supplied, leaving the others alone</p>
+<p><code>DELETE</code>: To delete existing resources</p>
+</blockquote>
+</li>
+<li>
+<p>For nested resources, use the relation between them in the URL. For instance, using <code>id</code> to relate an employee to a company.</p>
+<p>为什么:</p>
+<blockquote>
+<p>This is a natural way to make resources explorable.</p>
+</blockquote>
+<p><em>How:</em></p>
+<blockquote>
+<p><code>GET      /schools/2/students</code> , should get the list of all students from school 2</p>
+<p><code>GET      /schools/2/students/31</code> , should get the details of student 31, which belongs to school 2</p>
+<p><code>DELETE   /schools/2/students/31</code> , should delete student 31, which belongs to school 2</p>
+<p><code>PUT      /schools/2/students/31</code> , should update info of student 31, Use PUT on resource-URL only, not collection</p>
+<p><code>POST     /schools</code> , should create a new school and return the details of the new school created. Use POST on collection-URLs</p>
+</blockquote>
+</li>
+<li>
+<p>Use a simple ordinal number for a version with a <code>v</code> prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:<br />
+    <pre><code>http://api.domain.com/v1/schools/3/students 
+</code></pre></p>
+<p>为什么:</p>
+<blockquote>
+<p>When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. <a href="https://apigee.com/about/blog/technology/restful-api-design-tips-versioning">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Response messages must be self-descriptive. A good error message response might look something like this:<br />
+    <pre><code class="json">{
+    &quot;code&quot;: 1234,
+    &quot;message&quot; : &quot;Something bad happened&quot;,
+    &quot;description&quot; : &quot;More details&quot;
+}
+</code></pre><br />
+    or for validation errors:<br />
+    <pre><code class="json">{
+    &quot;code&quot; : 2314,
+    &quot;message&quot; : &quot;Validation Failed&quot;,
+    &quot;errors&quot; : [
+        {
+            &quot;code&quot; : 1233,
+            &quot;field&quot; : &quot;email&quot;,
+            &quot;message&quot; : &quot;Invalid email&quot;
+        },
+        {
+            &quot;code&quot; : 1234,
+            &quot;field&quot; : &quot;password&quot;,
+            &quot;message&quot; : &quot;No password provided&quot;
+        }
+      ]
+}
+</code></pre></p>
+<p>为什么:</p>
+<blockquote>
+<p>developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they&rsquo;ve built using your APIs are in the hands of their users.</p>
+</blockquote>
+<p><em>Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect.</em></p>
+</li>
+<li>
+<p>Use only these 8 status codes to send with you response to describe whether <strong>everything worked</strong>,<br />
+The <strong>client app did something wrong</strong> or The <strong>API did something wrong</strong>.</p>
+<p><em>Which ones:</em></p>
+<blockquote>
+<p><code>200 OK</code> response represents success for <code>GET</code>, <code>PUT</code> or <code>POST</code> requests.</p>
+<p><code>201 Created</code> for when new instance is created. Creating a new instance, using <code>POST</code> method returns <code>201</code> status code.</p>
+<p><code>304 Not Modified</code> response is to minimize information transfer when the recipient already has cached representations</p>
+<p><code>400 Bad Request</code> for when the request was not processed, as the server could not understand what the client is asking for</p>
+<p><code>401 Unauthorized</code> for when the request lacks valid credentials and it should re-request with the required credentials.</p>
+<p><code>403 Forbidden</code> means the server understood the request but refuses to authorize it.</p>
+<p><code>404 Not Found</code> indicates that the requested resource was not found. </p>
+<p><code>500 Internal Server Error</code> indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.</p>
+</blockquote>
+<p>为什么:</p>
+<blockquote>
+<p>Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don&rsquo;t have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you&rsquo;re trying to tell them. <a href="https://apigee.com/about/blog/technology/restful-api-design-what-about-errors">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Provide total numbers of resources in your response</p>
+</li>
+<li>
+<p>Accept <code>limit</code> and <code>offset</code> parameters</p>
+</li>
+<li>
+<p>The amount of data the resource exposes should also be taken into account. The API consumer doesn&rsquo;t always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:<br />
+    <pre><code>GET /student?fields=id,name,age,class
+</code></pre></p>
+</li>
+<li>Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.</li>
+</ul>
+<p><a name="api-security"></a></p>
+<h3 id="92-api-security"><a name="user-content-92-api-security" href="#92-api-security" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>9.2 API security</h3>
+<p>These are some basic security best practices:</p>
+<ul>
+<li>
+<p>Don&rsquo;t use basic authentication. Authentication tokens must not be transmitted in the URL: <code>GET /users/123?token=asdf....</code></p>
+<p>为什么:</p>
+<blockquote>
+<p>Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication">更多请阅读&hellip;</a></p>
+</blockquote>
+</li>
+<li>
+<p>Tokens must be transmitted using the Authorization header on every request: <code>Authorization: Bearer xxxxxx, Extra yyyyy</code></p>
+</li>
+<li>
+<p>Authorization Code should be short-lived.</p>
+</li>
+<li>
+<p>Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by <code>403 Forbidden</code>.</p>
+</li>
+<li>
+<p>Consider using Rate Limiting</p>
+<p>为什么:</p>
+<blockquote>
+<p>To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.</p>
+</blockquote>
+</li>
+<li>
+<p>Setting HTTP headers appropriately can help to lock down and secure your web application. <a href="https://github.com/helmetjs/helmet">更多请阅读&hellip;</a></p>
+</li>
+<li>
+<p>Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.</p>
+</li>
+<li>
+<p>All the data exchanged with the ReST API must be validated by the API.</p>
+</li>
+<li>
+<p>Serialize your JSON </p>
+<p>为什么:</p>
+<blockquote>
+<p>A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser&hellip; or, if you&rsquo;re using node.js, on the server. It&rsquo;s vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.</p>
+</blockquote>
+</li>
+<li>
+<p>Validate the content-type and mostly use <code>application/*json</code> (Content-Type header).</p>
+<p>为什么:</p>
+<blockquote>
+<p>For instance, accepting the <code>application/x-www-form-urlencoded</code> mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a <code>4XX</code> response.</p>
+</blockquote>
+</li>
+</ul>
+<p><a name="api-documentation"></a></p>
+<h3 id="93-api-documentation"><a name="user-content-93-api-documentation" href="#93-api-documentation" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>9.3 API documentation</h3>
+<ul>
+<li>Fill the <code>API Reference</code> section in <a href="/Users/didi/workspaces/project-guidelines/README.sample.md">README.md template</a> for API.</li>
+<li>Describe API authentication methods with a code sample</li>
+<li>Explaining The URL Structure (path only, no root URL) including The request type (Method)</li>
+</ul>
+<p>For each endpoint explain:<br />
+* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:</p>
+<pre><code>```
+Required: id=[integer]
+Optional: photo_id=[alphanumeric]
+```
+</code></pre>
+<ul>
+<li>
+<p>If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.</p>
+</li>
+<li>
+<p>Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:</p>
+<pre><code>Code: 200
+Content: { id : 12 }
+</code></pre>
+
+</li>
+<li>
+<p>Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example<br />
+    <pre><code class="json">{
+    &quot;code&quot;: 403,
+    &quot;message&quot; : &quot;Authentication failed&quot;,
+    &quot;description&quot; : &quot;Invalid username or password&quot;
+}   
+</code></pre></p>
+</li>
+<li>
+<p>Use API design tools, There are lots of open source tools for good documentation such as <a href="https://apiblueprint.org/">API Blueprint</a> and <a href="https://swagger.io/">Swagger</a>.</p>
+</li>
+</ul>
+<p><a name="licensing"></a></p>
+<h2 id="10-licensing"><a name="user-content-10-licensing" href="#10-licensing" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>10. Licensing</h2>
+<p>Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.</p>
+<hr />
+<p>Sources:<br />
+<a href="https://blog.risingstack.com/">RisingStack Engineering</a>,<br />
+<a href="https://developer.mozilla.org/">Mozilla Developer Network</a>,<br />
+<a href="https://devcenter.heroku.com">Heroku Dev Center</a>,<br />
+<a href="https://github.com/airbnb/javascript">Airbnb/javascript</a>,<br />
+<a href="https://www.atlassian.com/git/tutorials">Atlassian Git tutorials</a>,<br />
+<a href="https://apigee.com/about/blog">Apigee</a>,<br />
+<a href="https://blog.wishtack.com">Wishtack</a></p></article></body></html>
