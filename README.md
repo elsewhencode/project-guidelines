@@ -51,73 +51,73 @@ javascript工程项目的一系列最佳实践策略
     为什么:_
     > Rebasing将合并到你正在操作的分支（`master`或`develop`）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的merge提交（假设没有冲突的话）。这样可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-* 请在rebase的时候解决潜在的冲突，且请保证在pull之前
-* Delete local and remote feature branches after merging.
+* 请确保在pull rebase的时候解决潜在的冲突
+* merge后删除本地和远程需求分支。
     
     为什么:_
-    > It will clutter up your list of branches with dead branches.It insures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
+    > 如果不删除需求分支，会导致大量僵尸分支存在，导致混乱.请确保一次性合并到 (`master` or `develop`). 只有到这个feature需求分支还在开发中时才应该存在。
 
-* Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
+* 在进行Pull请求之前，请确保您的需求分支已经建立，并已经通过了所有的测试（包括代码规则检查）。
     
     为什么:_
-    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
+    > 您即将将代码提交到这个稳定的分支。而如果您的需求分支功能测试都失败了，那您的目标分支构建很可能也会失败。此外，确保在进行pull请求之前应用代码规则检查。因为它有助于我们代码的可读性，并减少格式化的代码与实际业务代码更改混合在一起导致的混乱问题。
 
-* Use [this .gitignore file](./.gitignore).
+* 使用 [.gitignore 文件](./.gitignore).
     
     为什么:_
-    > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
+    > 此文件包含一个文件列表描述，描述那些文件和代码不会被发送到远程git仓库中。这个文件里面应该添加那些为大多数IDE自己产生的文件和文件夹以及大多数常见的依赖文件夹和文件（比npm的node_modules），这些文件我们都不会上传到远程代码库，这些文件不是我们需要的。
 
-* Protect your `develop` and `master` branch.
+* 保户 `develop` 和 `master` 分支.
   
     为什么:_
-    > It protects your production-ready branches from receiving unexpected and irreversible changes. 更多请阅读... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
+    > 它保护您的生产分支免受意外情况和不可回退的变更. 更多请阅读... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 
 <a name="git-workflow"></a>
 ### 1.2 Git workflow
-Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
+因为以上原因, 我们使用 [需求功能分支-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) 并配合 [Rebasing的使用方法](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) 和 一些关于 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (命名和使用一个develop branch). 主要步骤如下:
 
-* Checkout a new feature/bug-fix branch
+* Checkout 一个新的 feature/bug-fix 分支
     ```sh
-    git checkout -b <branchname>
+    git checkout -b <分支名称>
     ```
-* Make Changes
+* 新增一下代码变更
     ```sh
     git add
     git commit -a
     ```
     为什么:_
-    > `git commit -a` will start an editor which lets you separate the subject from the body. 更多请阅读 about it in *section 1.3*.
+    > `git commit -a` 这样会启动一个编辑器，编辑你的说明信息，这样可以保持专注于写这些注释说明. 更多请阅读 *section 1.3*.
 
-* Sync with remote to get changes you’ve missed
+* 保持与远程的同步，以便拿到最新变更
     ```sh
     git checkout develop
     git pull
     ```
     
     为什么:_
-    > This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
+    > 这其实是在rebasing的时候给了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。
     
-* Update your feature branch with latest changes from develop by interactive rebase
+* 通过使用rebase从develop更新最新的代码提交
     ```sh
     git checkout <branchname>
     git rebase -i --autosquash develop
     ```
     
     为什么:_
-    > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
+    > 您可以使用--autosquash将所有相同类型提交压缩到单个提交。没有人想要在开发分支中提交一大堆单个功能的提交 [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
-* If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
+* 如果没有冲突请跳过此步骤，如果你有冲突, [解决方式](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  就通过--continue参数继续rebase
     ```sh
 	git add <file1> <file2> ...
     git rebase --continue
     ```
-* Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
+* Push 你的分支. Rebase 将会改变提交历史, 所以你可以使用 `-f` 强制push到远程分支. 如果其他人正在您的这个分支上面开发，请使用不那么破坏性的 `--force-with-lease`.
     ```sh
     git push -f
     ```
     
     为什么:_
-    > When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. [更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+    > 当你rebase时，你会改变需求功能分支的提交历史。结果呢，Git却拒绝了正常的“git push”。那么，您只能使用-f或--force标志了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
     
     
 * Make a Pull Request.
