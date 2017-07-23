@@ -34,42 +34,42 @@ javascript工程项目的一系列最佳实践策略
 有一套规则要牢记：
 * 在需求分支中执行工作。
     
-    为什么:
+    _为什么:_
     >因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull请求而不会导致代码混淆。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 * 如何从`develop`来分支
     
-    为什么:
+    _为什么:_
     >这样，您可以确保master中的代码非常稳定，不会导致构建问题，并且可以直接用于发版（当然，这可能对某些项目会比较过分）.
 
 * 在确保Pull之前，千万不要push到 `develop` 或者 `master` 分支
     
-    为什么:
+    _为什么:_
     > 开发成员如果完成功能，需要马上通知团队。这样开发伙伴更容易对代码进行评审，同时还可以互相讨论所开发的需求功能
 
 * 在更新您本地的`develop`分支时，并在push和pull之前，先进行rebase操作
 
-    为什么:
+    _为什么:_
     > Rebasing将合并到你正在操作的分支（`master`或`develop`）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的merge提交（假设没有冲突的话）。这样可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
 * 请确保在pull rebase的时候解决潜在的冲突
 * merge后删除本地和远程需求分支。
     
-    为什么:
+    _为什么:_
     > 如果不删除需求分支，会导致大量僵尸分支存在，导致混乱.请确保一次性合并到 (`master` or `develop`). 只有到这个feature需求分支还在开发中时才应该存在。
 
 * 在进行Pull请求之前，请确保您的需求分支已经建立，并已经通过了所有的测试（包括代码规则检查）。
     
-    为什么:
+    _为什么:_
     > 您即将将代码提交到这个稳定的分支。而如果您的需求分支功能测试都失败了，那您的目标分支构建很可能也会失败。此外，确保在进行pull请求之前应用代码规则检查。因为它有助于我们代码的可读性，并减少格式化的代码与实际业务代码更改混合在一起导致的混乱问题。
 
 * 使用 [.gitignore 文件](./.gitignore).
     
-    为什么:
+    _为什么:_
     > 此文件包含一个文件列表描述，描述那些文件和代码不会被发送到远程git仓库中。这个文件里面应该添加那些为大多数IDE自己产生的文件和文件夹以及大多数常见的依赖文件夹和文件（比npm的node_modules），这些文件我们都不会上传到远程代码库，这些文件不是我们需要的。
 
 * 保户 `develop` 和 `master` 分支.
   
-    为什么:
+    _为什么:_
     > 它保护您的生产分支免受意外情况和不可回退的变更. 更多请阅读... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 
 <a name="git-workflow"></a>
@@ -85,7 +85,7 @@ javascript工程项目的一系列最佳实践策略
     git add
     git commit -a
     ```
-    为什么:
+    _为什么:_
     > `git commit -a` 这样会启动一个编辑器，编辑你的说明信息，这样可以保持专注于写这些注释说明. 更多请阅读 *section 1.3*.
 
 * 保持与远程的同步，以便拿到最新变更
@@ -94,7 +94,7 @@ javascript工程项目的一系列最佳实践策略
     git pull
     ```
     
-    为什么:
+    _为什么:_
     > 这其实是在rebasing的时候给了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。
     
 * 通过使用rebase从develop更新最新的代码提交
@@ -103,7 +103,7 @@ javascript工程项目的一系列最佳实践策略
     git rebase -i --autosquash develop
     ```
     
-    为什么:
+    _为什么:_
     > 您可以使用--autosquash将所有相同类型提交压缩到单个提交。没有人想要在开发分支中提交一大堆单个功能的提交 [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
 * 如果没有冲突请跳过此步骤，如果你有冲突, [解决方式](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  就通过--continue参数继续rebase
@@ -116,7 +116,7 @@ javascript工程项目的一系列最佳实践策略
     git push -f
     ```
     
-    为什么:
+    _为什么:_
     > 当你rebase时，你会改变需求功能分支的提交历史。结果呢，Git却拒绝了正常的“git push”。那么，您只能使用-f或--force标志了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
     
     
@@ -139,7 +139,7 @@ javascript工程项目的一系列最佳实践策略
 
  * 将主题与主体用换行后的两条空行分开
 
-    为什么:
+    _为什么:_
     > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用git shortlog，而不是git log，你会看到一个很长的提交消息列表，其中包含提交的id和摘要
 
  * 将主题行限制为50个字符，并将主体控制在72个字符
@@ -151,7 +151,7 @@ javascript工程项目的一系列最佳实践策略
  * 不要用句号结束主题句
  * 使用 [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) 在主题线
 
-    为什么:
+    _为什么:_
     > 不是简单的写这次提交者做了什么。最好写明提交者将要进一步做什么事情。[更多请阅读...](https://news.ycombinator.com/item?id=2079612)
 
 
@@ -172,13 +172,13 @@ javascript工程项目的一系列最佳实践策略
 ## 3. 环境
 * 如果需要，请分别定义 `development`, `test` 和 `production` 环境.
 
-    为什么:
+    _为什么:_
     > 不同的环境可能需要不同的数据，token，API，端口等。您可能需要一个隔离的`development`模式，它调用mock的API，它会返回我们需要的数据，使自动化和手动测试变得更加容易。或者您可能只想在`production` 上才启用Google Analytics（分析）。 [更多请阅读...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * 从环境变量加载部署的相关配置，不要将这些配置作为常量添加到代码库中， [看这个例子](./config.sample.js).
 
-    为什么:
+    _为什么:_
     > 你会有令牌，密码和其他有价值的信息。这些配置应正确地从应用程序内部分离开来，这样代码库就可以随时独立发布，不会包含这些敏感配置信息。
 
     _How:_
@@ -187,34 +187,34 @@ javascript工程项目的一系列最佳实践策略
 
 * 建议您在应用程序启动之前校验一下环境变量。  [看这个例子](./configWithTest.sample.js) 使用 `joi` 去校验提供的值.
     
-    为什么:
+    _为什么:_
     > 在排查问题的痛苦经历中你一定需要他。
 
 <a name="consistent-dev-environments"></a>
 ### 3.1 一直的开发环境:
 * 在`package.json`里的`engines`中设置你的node版本
     
-    为什么:
+    _为什么:_
     > 让其他人可以清晰的知道这个项目中用的什么node版本 [更多请阅读...](https://docs.npmjs.com/files/package.json#engines)
 
 * 另外，使用`nvm`并在你的项目根目录下创建一个`.nvmrc`文件。不要忘了在文档中标注。
 
-    为什么:
+    _为什么:_
     > 任何使用`nvm`的人都可以使用`nvm use`来切换到自己想要的node版本。 [更多请阅读...](https://github.com/creationix/nvm)
 
 * 最好设置一个检查node和npm版本的“preinstall”脚本
 
-    为什么:
+    _为什么:_
     > 某些依赖项可能会在新版本的npm中安装失败。
     
 * 如果可以的话最好使用Docker image
 
-    为什么:
+    _为什么:_
     > 它可以在整个工作流程中为您提供一致的环境。不用花太多的时间来解决依赖或配置。 [更多请阅读...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
 * 使用本地模块，而不是使用全局安装的模块
 
-    为什么:
+    _为什么:_
     > 你不能指望你的同事在自己的全局环境都安装了相应的模块，本地模块可以方便你分享你的工具。
 
 
@@ -223,7 +223,7 @@ javascript工程项目的一系列最佳实践策略
 
 * 确保您的团队成员获得与您完全相同的依赖关系
 
-    为什么:
+    _为什么:_
     > 因为您希望代码在任何开发环境中运行都能像预期的一样 [更多请阅读...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
 
     _how:_
@@ -240,22 +240,22 @@ javascript工程项目的一系列最佳实践策略
 * 持续跟踪你当前的可用依赖包: e.g., `npm ls --depth=0`. [更多请阅读...](https://docs.npmjs.com/cli/ls)
 * 查看这些软件包是否已经变得不可用或者已经废弃: `depcheck`. [更多请阅读...](https://www.npmjs.com/package/depcheck)
     
-    为什么:
+    _为什么:_
     > 您可能会在代码中包含未使用的库，这会增大生产包的大小。请搜索出这些未使用的依赖关系并摆脱它们吧。
 
 * 在使用依赖之前，请检查他的下载统计信息，看看它是否被社区大量使用： `npm-stat`. [更多请阅读...](https://npm-stat.com/)
     
-    为什么:
+    _为什么:_
     > 更多的使用将意味着更多的贡献者，这通常意味着拥有更好的维护，这些才能确保快速发现错误和快速修复错误。
 
 * 在使用依赖关系之前，请检查它是否具有良好的成熟版本发布频率与大量的维护者：例如， `npm view async`. [更多请阅读...](https://docs.npmjs.com/cli/view)
 
-    为什么:
+    _为什么:_
     > 如果维护者没有够快地merge修补程序，那么这些贡献者也将不会变得积极高效。
 
 * 如果需要使用那些不太熟悉的依赖包，请在使用之前与团队进行充分讨论。始终确保您的应用程序在最新版本的依赖包上面能正常运行，而不是坏掉：`npm outdated`. [更多请阅读...](https://docs.npmjs.com/cli/outdated)
 
-    为什么:
+    _为什么:_
     > 依赖关系更新有时包含破坏性更改。当显示需要更新时，请始终先查看其发行说明。并逐一的更新您的依赖项，如果出现任何问题，可以使故障排除更容易。使用一个很酷的工具，如 [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
 * 检查包是否有已知安全漏洞，例如： [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
@@ -266,41 +266,41 @@ javascript工程项目的一系列最佳实践策略
 
 * 如果需要，建一个 `test` 环境.
 
-    为什么:
+    _为什么:_
     > 虽然有时在`production`模式下端到端测试可能看起来已经足够了，但有一些例外：比如您可能不想在生产环境下启用数据分析功能，只能用测试数据来填充（污染）某人的仪表板。另一个例子是，您的API可能在`production`中具有速率限制，并在请求达到一定量级后会阻止您的测试请求。
 
 * 将测试文件放在使用`* .test.js`或`* .spec.js`命名约定的测试模块，比如`moduleName.spec.js`
 
-    为什么:
+    _为什么:_
     > 你肯定不想深入一个文件夹的层层结构来查找里面的单元测试。[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
     
 
 * 将其他测试文件放入独立的测试文件夹中以避免混淆。
 
-    为什么:
+    _为什么:_
     > 一些测试文件与任何特定的文件实现没有特别的关系。你只需将它放在最有可能被其他开发人员找到的文件夹中：`__test__`文件夹。这个名字：`__test__`也是现在的标准，被大多数JavaScript测试框架所接受。
 
 * 编写可测试代码，避免不良代码，提取，并写成纯函数 //UFO
 
-    为什么:
+    _为什么:_
     > 您想要将业务逻辑测试为单独的单元。您必须“尽量减少不可预测性和非确定性过程对代码可靠性的影响”。 [更多请阅读...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
     
     > 纯函数是一个函数，它总是为相同的输入返回相同的输出。相反，不纯的函数是可能具有不可预测性或取决于来自外部的条件来决定产生对应的输出值。这使得它不那么可预测[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 * 使用静态类型检查器
 
-    为什么:
+    _为什么:_
     > 有时您可能需要一个静态类型检查器。它为您的代码带来一定程度的可靠性。[更多请阅读...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
 
 * 在进行任何pull请求时，先在本地`develop`分支运行测试 .
 
-    为什么:
+    _为什么:_
     > 你不想成为一个导致生产分支构建失败的人。在您的`rebase`之后运行测试，然后将您的需求功能分支改动推送到远程仓库。
 
 * 记录您的测试，包括在`README.md`文件中的相关部分说明。
 
-    为什么:
+    _为什么:_
     > 这个记录的笔记非常的方便，便于留给其他开发人员或DevOps专家或QA或任何幸运的人，让他们更方便的来处理您的代码。
 
 <a name="structure-and-naming"></a>
@@ -334,29 +334,29 @@ javascript工程项目的一系列最佳实践策略
     |   └── user.test.js
     ```
 
-    为什么:
+    _为什么:_
     > 比起一个冗长的列表文件，创建一个单一责权封装的小模块，并在其中包括测试文件。将会更容易浏览，更一目了然。
 
 * 将其他测试文件放在单独的测试文件夹中以避免混淆。
 
-    为什么:
+    _为什么:_
     > 这样可以节约您的团队中的其他开发人员或DevOps专家的时间。
 
 * 使用`./config`文件夹，不要为不同的环境制作不同的配置文件。
 
-    为什么:
+    _为什么:_
     >当您为不同的目的（数据库，API等）分解不同的配置文件;将它们放在具有容易识别名称（如“config”）的文件夹中才是有意义的。只要记住不要为不同的环境制作不同的配置文件。这样并不是真的具有扩展性，随着更多应用程序部署被创建出来，新的环境名称也会不断被创建，这样会导致换乱。
     配置文件中使用的值应通过环境变量提供。 [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
     
 
 * 将脚本文件放在`./ scripts`文件夹中。包括`bash`脚本和`node`脚本。
-    为什么:
+    _为什么:_
     > 很可能最终会出现很多脚本文件，比如生产构建，开发构建，数据库feeders，数据库同步等。
     
 
 * 将构建输出结果放在`./ build`文件夹中。将`build /`添加到`.gitignore`中以便忽略此文件夹。
 
-    为什么:
+    _为什么:_
     > 命名为你最喜欢的就行，`dist`蛮酷的。但请确保与您的团队保持一致性。哪些东西最有应该放这个文件夹呢？比如（bundle，编译结果，转换结果）。您产生什么编译结果，您的队友也可以生成同样的结果，所以没有必要将这些结果提交到远程仓库中。除非你故意希望提交上去。
 
 * 文件名和目录名请使用`PascalCase''camelCase`风格。组件请使用`PascalCase`风格。
@@ -366,7 +366,7 @@ javascript工程项目的一系列最佳实践策略
 
 * 理想情况下，目录名称应该和`index.js`的默认导出名称相匹配。
 
-    为什么:
+    _为什么:_
     > 这样您就可以通过简单地导入其父文件夹直接使用你预期的组件或模块。
 
 
@@ -374,73 +374,73 @@ javascript工程项目的一系列最佳实践策略
 ## 7. 代码风格
 * 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持老的语法一致，除非您打算把老的项目现代化。
 
-    为什么:
+    _为什么:_
     > 这完全取决于你的选择。我们使用转换器来使用新的语法糖。Stage2更有可能最终成为规范的一部分，而且仅仅只需经过小版本的迭代就会成为规范。
 
 * 在构建过程中包含代码风格检查。
 
-    为什么:
+    _为什么:_
     > 在构建时中断下一步操作是一种强制执行代码风格检查的方法。强制你认真对待代码。请确保在客户端和服务器端代码都执行代码检查。 [更多请阅读...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
 * 使用 [ESLint - Pluggable JavaScript linter](http://eslint.org/) 去强制执行代码检查
 
-    为什么:
+    _为什么:_
     > 我们个人很喜欢`eslint`，不强制你也喜欢。它支持更多的规则，配置规则的能力和添加自定义规则的能力。
 
 * 针对JavaScript我们使用[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) , [更多请阅读](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). 在你的团队和项目中推广此代码风格是必须的。
 
 * 我们使用 [ESLint的流式样式检查规则。](https://github.com/gajus/eslint-plugin-flowtype) 如果使用[FlowType](https://flow.org/).
 
-    为什么:
+    _为什么:_
     > Flow引入了很少的语法，需要遵循这些代码风格并进行检查。
 
 * 使用`.eslintignore`将某些文件或文件夹从代码风格检查中排除。
 
-    为什么:
+    _为什么:_
     > 当您需要从风格检查中排除几个文件时，就再也不需要通过`eslint-disable`注释来污染您的代码了。
 
 * 在pull request之前，请删除任何`eslint`禁用注释。
 
-    为什么:
+    _为什么:_
     > 在处理代码块时禁用风格检查是正常现象，这样就可以关注在业务逻辑。只要记住把那些`eslint-disable`注释删除并遵循这些风格规则。
 
 * 根据任务的大小使用`// TODO：`注释或做一个标签。
 
-    为什么:
+    _为什么:_
     > 这样你就可以提醒自己和他人有这样一个小的任务需要处理（如重构一个函数或更新一个注释）。对于较大的任务，使用由lint规则执行的`// TODO（＃3456）`，其中的`#3456`号码作为一个标签。
 
 
 * 随着代码的变化，始终保持注释的相关性。删除那些注释掉的代码块。
     
-    为什么:
+    _为什么:_
     > 代码应该尽可能的可读，你应该摆脱任何分心的事情。如果你在重构一个函数，就不要注释那些旧代码，直接删除它吧。
 
 * 避免不相关的和搞笑的的注释，日志或命名。
 
-    为什么:
+    _为什么:_
     > 虽然您的构建过程中可能（应该）移除它们，但有可能您的源代码会被移交给另一个公司/客户，你的这些笑话应该无法逗乐你的客户。
 
 * 请使用有意义容易搜索的命名，避免缩写名称。对于函数使用长描述性命名。功能命名应该是一个动词或动词短语，需要是能清楚传达意图的命名。
 
-    为什么:
+    _为什么:_
     > 它使读取源代码变得更加自然。
 
 * Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.（译者注：这一段我翻译不好，大家看看原文吧，是为了说明函数的组织方式）
 
-    为什么:
+    _为什么:_
     > 它使源代码的可读性更好。
 
 <a name="logging"></a>
 ## 8. 日志
 * 避免在生产环境中使用客户端的日志
 
-    为什么:
+    _为什么:_
     > 您在构建过程可以把（应该）它们去掉，但是请确保您在代码风格检查中提供了有关控制台日志的警告信息。
 
 * 用于生产环境的可读生产日志记录。一般使用在生产模式下所使用的日志记录库 (比如 [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
-    为什么:
+    _为什么:_
     > 它通过添加着色、时间戳、log到控制台或者文件中，来减少故障排除中那些令人不愉快的事情，这些文件会每天滚动迭代。[更多请阅读...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 
@@ -449,11 +449,11 @@ javascript工程项目的一系列最佳实践策略
 <a name="api-design"></a>
 ### 9.1 API 设计
 
-为什么:
+_为什么:_
 > 
 因为我们试图实施开发出结构稳健的RESTful接口，让团队成员和客户可以简单而一致地使用它们。
 
-为什么:
+_为什么:_
 >缺乏一致性和简单性会大大增加集成和维护的成本。这就是为什么`API设计'包含在这个文档中的原因
 
 
@@ -462,7 +462,7 @@ javascript工程项目的一系列最佳实践策略
     * 一组资源称为一个集合。
     * URL标识资源或集合的在线位置。
     
-    为什么:
+    _为什么:_
     > 这是针对开发人员（您的主API使用者）非常有名的设计。除了可读性和易用性之外，它还允许我们在无需了解API细节的情况下编写通用库和一些连接器。
 
 
@@ -472,7 +472,7 @@ javascript工程项目的一系列最佳实践策略
 
 * 总是使用复数名词来命名指向一个集合的url：`/ users`.
 
-    为什么:
+    _为什么:_
     > 基本上，它可读性更好，并可以保持URL的一致性。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
 * 在源代码中，将复数转换为具有列表后缀名描述的变量和属性。
@@ -491,12 +491,12 @@ javascript工程项目的一系列最佳实践策略
     GET /blogs/:blogId/posts/:postId/summary
     ```
 
-    为什么:
+    _为什么:_
     > 这不是指向资源，而是指向属性。您可以将属性作为参数传递，以减少响应。
 
 * URLs请尽量少用动词
 
-    为什么:
+    _为什么:_
     > 因为如果你为每个资源操作使用一个动词，你很快就会有一个很大的URL列表，而且没有一致的使用模式，这会使开发人员难以学习。此外，我们还要使用动词做别的事情。
 
 * 为非资源型请求使用动词。在这种情况下，您的API并不需要返回任何资源。而是去执行一个操作并返回执行结果。这些**不是** CRUD（创建，查询，更新和删除）操作：
@@ -505,22 +505,22 @@ javascript工程项目的一系列最佳实践策略
     /translate?text=Hallo
     ```
 
-    为什么:
+    _为什么:_
     > 因为对于CRUD，我们在`资源`或`集合`URL上使用HTTP自己的方法。我们所说的动词实际上是指`Controllers`。你通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
 * 请求体或响应类型如果是JSON，那么请遵循`camelCase`规范为`JSON`属性命名来保持一致性。
     
-    为什么:
+    _为什么:_
     > 这是一个JavaScript项目指南，其中用于生成JSON的编程语言以及用于解析JSON的编程语言被假定为JavaScript。
 
 * 即使资源类似于对象实例或数据库记录这样的单一概念，您也不应该将`table_name`用作资源名称或将`column_name`作为资源属性。
 
-    为什么:
+    _为什么:_
     > 因为您的目的是分析资源，而不是分析数据库模式。
 
 * 再次，只有在您的URL上面命名资源时才使用名词，不要尝试解释其功能。
 
-    为什么:
+    _为什么:_
     > 只能在资源URL中使用名词，避免像`/addNewUser`或`/updateUser`这样的结束点。也避免使用参数作为发送资源的操作。
 
 * 如何使用HTTP方法来操作CRUD功能
@@ -539,7 +539,7 @@ javascript工程项目的一系列最佳实践策略
 
 * 对于嵌套资源，请在URL中把他们的关系表现出来。例如，使用`id`将员工与公司联系起来。
 
-    为什么:
+    _为什么:_
     > 这是一种自然的方式，方便资源的认知。
 
     _How:_
@@ -559,7 +559,7 @@ javascript工程项目的一系列最佳实践策略
     http://api.domain.com/v1/schools/3/students	
     ```
 
-    为什么:
+    _为什么:_
     > 当您的API为第三方公开时，升级API会发生导致一些突然的变化，也会导致使用您的API的人无法使用你的服务和产品。而这时使用URL中的版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 
@@ -592,7 +592,7 @@ javascript工程项目的一系列最佳实践策略
     }
     ```
 
-    为什么:
+    _为什么:_
     > 开发人员在使用API​​构建的应用程序时，难免需要在故障排除和解决问题的关键时刻使用到这些精心设计的错误消息。好的错误消息设计能节约大量的问题排查时间。
 
 
@@ -618,7 +618,7 @@ javascript工程项目的一系列最佳实践策略
 
     > `500 Internal Server Error` 表示请求本身是有效，但由于某些意外情况，服务器无法实现。
 
-    为什么:
+    _为什么:_
     > 大多数API提供程序仅仅只使用一小部分HTTP状态代码而已。例如，Google GData API仅使用了10个状态代码，Netflix使用了9个，而Digg只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过70个HTTP状态代码。然而，大多数开发者不可能全部记住这70个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后还要跑到维基百科上面找出您要告诉他们的内容。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
@@ -637,7 +637,7 @@ javascript工程项目的一系列最佳实践策略
 
 * 不要只使用基本认证。验证令牌不要在URL中传输：`GET /users/123?token=asdf....`
 
-    为什么:
+    _为什么:_
     > 因为令牌或用户ID和密码通过网络作为明文传递（它是base64编码，而base64是可逆编码），所以基本认证方案不安全。 [更多请阅读...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
 * 必须使用授权请求头在每个请求上发送令牌：`Authorization: Bearer xxxxxx, Extra yyyyy`
@@ -648,7 +648,7 @@ javascript工程项目的一系列最佳实践策略
 
 * 考虑使用速率限制
 
-    为什么:
+    _为什么:_
     > 保护您的API免受每小时数千次的机器人扫描威胁。您应该考虑在早期就实施流控。
 
 * 适当地设置HTTP请求头可以帮助锁定和保护您的Web应用程序。[更多请阅读...](https://github.com/helmetjs/helmet)
@@ -659,39 +659,40 @@ javascript工程项目的一系列最佳实践策略
 
 * 序列号JSON 
 
-    为什么:
+    _为什么:_
     > JSON编码器的一个关键问题是阻止浏览器中输入的任意JavaScript代码在远程被执行，或者如果您在服务器上使用node.js。您必须使用适当的JSON序列化程序对用户输入的数据进行正确编码，以防止在浏览器上执行用户提供的输入，这些输入可能会包含恶意代码，而不是正常的用户数据。
 
 * 验证内容类型，主要使用`application/*.json`（Content-Type header）.
     
-    为什么:
+    _为什么:_
     > 例如，接受`application/x-www-form-urlencoded`MIME类型可以允许攻击者创建一个表单并触发一个简单的POST请求。服务器不应该假定Content-Type。缺少Content-Type请求头或异常的Content-Type请求头应该让服务器直接以`4XX`响应内容去拒绝请求。
 
 
 <a name="api-documentation"></a>
 ### 9.3 API 文档
-* Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
-* Describe API authentication methods with a code sample
-* Explaining The URL Structure (path only, no root URL) including The request type (Method)
 
-For each endpoint explain:
-* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+* 在[README.md模板]（./ README.sample.md）为API填写
+`API参考`段落。
+* 尽量使用示例代码来描述API授权方法
+* 解释URL的结构（仅path，不包括根URL），包括请求类型（方法）
 
+对于每个端点（endpoint）说明：
+* 如果存在URL参数就使用URL参数，请根据URL中使用到的名称来指定它们：
     ```
     Required: id=[integer]
     Optional: photo_id=[alphanumeric]
     ```
 
-* If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+* 如果请求类型为POST，请提供如何使用的示例。URL Params也是这样。Params分为`可选`和`必需`。
 
-* Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+* 响应成功，应该对应什么样的状态代码，返回了哪些数据？当人们需要知道他们的回调应该是期望的样子，这是有用的：
 
     ```
     Code: 200
     Content: { id : 12 }
     ```
 
-* Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
+* 错误响应，大多数端点都存在许多失败的可能。比如错误参数导致的未经授权的访问等。所有的都应该列在这里。虽然有可能会重复，但它却有助于防止发生损害。例如
     ```json
     {
         "code": 403,
@@ -701,7 +702,7 @@ For each endpoint explain:
     ```
 
 
-* Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+* 使用API​​设计工具，有很多开源工具可用于良好的文档，例如 [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 ## 10. 许可证
