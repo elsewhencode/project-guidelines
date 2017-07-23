@@ -305,10 +305,10 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="structure-and-naming"></a>
 ## 6. 结构布局与命名
-* Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
+* 围绕产品功能/页面/组件来组织您的文件，而不是围绕角色来组织文件。此外，请将测试文件放在他们对应实现的旁边。
 
 
-    **Bad**
+    **不好**
 
     ```
     .
@@ -320,7 +320,7 @@ javascript工程项目的一系列最佳实践策略
     |   └── user.js
     ```
 
-    **Good**
+    **好**
 
     ```
     .
@@ -335,121 +335,123 @@ javascript工程项目的一系列最佳实践策略
     ```
 
     为什么:
-    > Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
+    > 比起一个冗长的列表文件，创建一个单一责权封装的小模块，并在其中包括测试文件。将会更容易浏览，更一目了然。
 
-* Put your additional test files to a separate test folder to avoid confusion.
-
-    为什么:
-    > It is a time saver for other developers or DevOps experts in your team.
-
-* Use a `./config` folder and don't make different config files for different environments.
+* 将其他测试文件放在单独的测试文件夹中以避免混淆。
 
     为什么:
-    >When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly, as more deploys of the app are created, new environment names are necessary.
-    Values to be used in config files should be provided by environment variables. [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+    > 这样可以节约您的团队中的其他开发人员或DevOps专家的时间。
+
+* 使用`./config`文件夹，不要为不同的环境制作不同的配置文件。
+
+    为什么:
+    >当您为不同的目的（数据库，API等）分解不同的配置文件;将它们放在具有容易识别名称（如“config”）的文件夹中才是有意义的。只要记住不要为不同的环境制作不同的配置文件。这样并不是真的具有扩展性，随着更多应用程序部署被创建出来，新的环境名称也会不断被创建，这样会导致换乱。
+    配置文件中使用的值应通过环境变量提供。 [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
     
 
-* Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
-
+* 将脚本文件放在`./ scripts`文件夹中。包括`bash`脚本和`node`脚本。
     为什么:
-    >It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronization and so on.
+    > 很可能最终会出现很多脚本文件，比如生产构建，开发构建，数据库feeders，数据库同步等。
     
 
-* Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
+* 将构建输出结果放在`./ build`文件夹中。将`build /`添加到`.gitignore`中以便忽略此文件夹。
 
     为什么:
-    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to. 
+    > 命名为你最喜欢的就行，`dist`蛮酷的。但请确保与您的团队保持一致性。哪些东西最有应该放这个文件夹呢？比如（bundle，编译结果，转换结果）。您产生什么编译结果，您的队友也可以生成同样的结果，所以没有必要将这些结果提交到远程仓库中。除非你故意希望提交上去。
 
-* Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
+* 文件名和目录名请使用`PascalCase''camelCase`风格。组件请使用`PascalCase`风格。
 
-* `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 
-* Ideally the directory name should match the name of the default export of `index.js`.
+* `CheckBox/index.js`应该代表`CheckBox`组件，也可以写成`CheckBox.js`，但是**不能**写成冗长的`CheckBox/CheckBox.js`或`checkbox/CheckBox.js`。
+
+* 理想情况下，目录名称应该和`index.js`的默认导出名称相匹配。
 
     为什么:
-    > Then you can expect what component or module you will receive by simply just importing its parent folder.   
+    > 这样您就可以通过简单地导入其父文件夹直接使用你预期的组件或模块。
+
 
 <a name="code-style"></a>
-## 7. Code style
-* Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
+## 7. 代码风格
+* 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持老的语法一致，除非您打算把老的项目现代化。
 
     为什么:
-    > This is all up to you. We use transpilers to use advantages of new syntax. stage-2 is more likely to eventually become part of the spec with only minor revisions. 
+    > 这完全取决于你的选择。我们使用转换器来使用新的语法糖。Stage2更有可能最终成为规范的一部分，而且仅仅只需经过小版本的迭代就会成为规范。
 
-* Include code style check in your build process.
-
-    为什么:
-    > Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously. Do it for both client and server-side code. [更多请阅读...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
-
-* Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
+* 在构建过程中包含代码风格检查。
 
     为什么:
-    > We simply prefer `eslint`, you don't have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.
+    > 在构建时中断下一步操作是一种强制执行代码风格检查的方法。强制你认真对待代码。请确保在客户端和服务器端代码都执行代码检查。 [更多请阅读...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
-* We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [更多请阅读](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
-
-* We use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
+* 使用 [ESLint - Pluggable JavaScript linter](http://eslint.org/) 去强制执行代码检查
 
     为什么:
-    > Flow introduces few syntaxes that also need to follow certain code style and be checked.
+    > 我们个人很喜欢`eslint`，不强制你也喜欢。它支持更多的规则，配置规则的能力和添加自定义规则的能力。
 
-* Use `.eslintignore` to exclude file or folders from code style check.
+* 针对JavaScript我们使用[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) , [更多请阅读](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). 在你的团队和项目中推广此代码风格是必须的。
 
-    为什么:
-    > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
-
-* Remove any of your `eslint` disable comments before making a Pull Request.
+* 我们使用 [ESLint的流式样式检查规则。](https://github.com/gajus/eslint-plugin-flowtype) 如果使用[FlowType](https://flow.org/).
 
     为什么:
-    > It's normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those `eslint-disable` comments and follow the rules.
+    > Flow引入了很少的语法，需要遵循这些代码风格并进行检查。
 
-* Depending on the size of the task use  `//TODO:` comments or open a ticket.
+* 使用`.eslintignore`将某些文件或文件夹从代码风格检查中排除。
 
     为什么:
-    > So then you can remind yourself and others about a small task (like refactoring a function, or updating a comment). For larger tasks  use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
+    > 当您需要从风格检查中排除几个文件时，就再也不需要通过`eslint-disable`注释来污染您的代码了。
+
+* 在pull request之前，请删除任何`eslint`禁用注释。
+
+    为什么:
+    > 在处理代码块时禁用风格检查是正常现象，这样就可以关注在业务逻辑。只要记住把那些`eslint-disable`注释删除并遵循这些风格规则。
+
+* 根据任务的大小使用`// TODO：`注释或做一个标签。
+
+    为什么:
+    > 这样你就可以提醒自己和他人有这样一个小的任务需要处理（如重构一个函数或更新一个注释）。对于较大的任务，使用由lint规则执行的`// TODO（＃3456）`，其中的`#3456`号码作为一个标签。
 
 
-* Always comment and keep them relevant as code changes. Remove commented blocks of code.
+* 随着代码的变化，始终保持注释的相关性。删除那些注释掉的代码块。
     
     为什么:
-    > Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
+    > 代码应该尽可能的可读，你应该摆脱任何分心的事情。如果你在重构一个函数，就不要注释那些旧代码，直接删除它吧。
 
-* Avoid irrelevant or funny comments, logs or naming.
-
-    为什么:
-    > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
-
-* Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
+* 避免不相关的和搞笑的的注释，日志或命名。
 
     为什么:
-    > It makes it more natural to read the source code.
+    > 虽然您的构建过程中可能（应该）移除它们，但有可能您的源代码会被移交给另一个公司/客户，你的这些笑话应该无法逗乐你的客户。
 
-* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
+* 请使用有意义容易搜索的命名，避免缩写名称。对于函数使用长描述性命名。功能命名应该是一个动词或动词短语，需要是能清楚传达意图的命名。
 
     为什么:
-    > It makes it more natural to read the source code.
+    > 它使读取源代码变得更加自然。
+
+* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.（译者注：这一段我翻译不好，大家看看原文吧，是为了说明函数的组织方式）
+
+    为什么:
+    > 它使源代码的可读性更好。
 
 <a name="logging"></a>
-## 8. Logging
-* Avoid client-side console logs in production
+## 8. 日志
+* 避免在生产环境中使用客户端的日志
 
     为什么:
-    > Even though your build process can(should) get rid of them, but make sure your code style check gives your warning about console logs.
+    > 您在构建过程可以把（应该）它们去掉，但是请确保您在代码风格检查中提供了有关控制台日志的警告信息。
 
-* Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
+* 用于生产环境的可读生产日志记录。一般使用在生产模式下所使用的日志记录库 (比如 [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
     为什么:
-    > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [更多请阅读...](https://blog.risingstack.com/node-js-logging-tutorial/)
+    > 它通过添加着色、时间戳、log到控制台或者文件中，来减少故障排除中那些令人不愉快的事情，这些文件会每天滚动迭代。[更多请阅读...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 
 <a name="api"></a>
 ## 9. API
 <a name="api-design"></a>
-### 9.1 API design
+### 9.1 API 设计
 
 为什么:
-> Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.  
+> 
+因为我们试图实施开发出结构稳健的RESTful接口，让团队成员和客户可以简单而一致地使用它们。
 
 为什么:
 > Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
@@ -701,8 +703,8 @@ For each endpoint explain:
 * Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
-## 10. Licensing
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
+## 10. 许可证
+确保使用您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD，但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
 
 
 ---
