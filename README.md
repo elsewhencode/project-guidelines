@@ -137,7 +137,7 @@ javascript工程项目的一系列最佳实践策略
 
 坚持关于提交的良好指南，会让在与他人合作git时更容易。这里有一些经验法则 ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
- * 将主题与主体用换行后的两条空行分开
+ * 将话题和文体用换行后的两条空行分开
 
     _为什么:_
     > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用git shortlog，而不是git log，你会看到一个很长的提交消息列表，其中包含提交的id和摘要
@@ -191,7 +191,7 @@ javascript工程项目的一系列最佳实践策略
     > 在排查问题的痛苦经历中你一定需要他。
 
 <a name="consistent-dev-environments"></a>
-### 3.1 一直的开发环境:
+### 3.1 一致的开发环境:
 * 在`package.json`里的`engines`中设置你的node版本
     
     _为什么:_
