@@ -653,23 +653,23 @@ javascript工程项目的一系列最佳实践策略
 
 * 适当地设置HTTP请求头可以帮助锁定和保护您的Web应用程序。[更多请阅读...](https://github.com/helmetjs/helmet)
 
-* Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
+* 您的API应将收到的数据转换为规范形式，或直接拒绝响应，并返回400错误，并在其中包含有关错误或丢失数据的详细信息。
 
-* All the data exchanged with the ReST API must be validated by the API.
+* 所有通过Rest API交换的数据必须由API来校验。
 
-* Serialize your JSON 
+* 序列号JSON 
 
     为什么:
-    > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
+    > JSON编码器的一个关键问题是阻止浏览器中输入的任意JavaScript代码在远程被执行，或者如果您在服务器上使用node.js。您必须使用适当的JSON序列化程序对用户输入的数据进行正确编码，以防止在浏览器上执行用户提供的输入，这些输入可能会包含恶意代码，而不是正常的用户数据。
 
-* Validate the content-type and mostly use `application/*json` (Content-Type header).
+* 验证内容类型，主要使用`application/*.json`（Content-Type header）.
     
     为什么:
-    > For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
+    > 例如，接受`application/x-www-form-urlencoded`MIME类型可以允许攻击者创建一个表单并触发一个简单的POST请求。服务器不应该假定Content-Type。缺少Content-Type请求头或异常的Content-Type请求头应该让服务器直接以`4XX`响应内容去拒绝请求。
 
 
 <a name="api-documentation"></a>
-### 9.3 API documentation
+### 9.3 API 文档
 * Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
 * Describe API authentication methods with a code sample
 * Explaining The URL Structure (path only, no root URL) including The request type (Method)
