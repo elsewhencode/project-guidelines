@@ -454,116 +454,117 @@ javascript工程项目的一系列最佳实践策略
 因为我们试图实施开发出结构稳健的RESTful接口，让团队成员和客户可以简单而一致地使用它们。
 
 为什么:
-> Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
+>缺乏一致性和简单性会大大增加集成和维护的成本。这就是为什么`API设计'包含在这个文档中的原因
 
 
-* We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
-    * A resource has data, gets nested, and there are methods that operate against it
-    * A group of resources is called a collection.
-    * URL identifies the online location of resource or collection.
+* 我们主要遵循资源导向的设计。它有三个主要要素：资源，集合和URLs。
+    * 资源具有数据，嵌套，和一些操作方法。
+    * 一组资源称为一个集合。
+    * URL标识资源或集合的在线位置。
     
     为什么:
-    > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
+    > 这是针对开发人员（您的主API使用者）非常有名的设计。除了可读性和易用性之外，它还允许我们在无需了解API细节的情况下编写通用库和一些连接器。
 
-* use kebab-case for URLs.
-* use camelCase for parameters in the query string or resource fields.
-* use plural kebab-case for resource names in URLs.
 
-* Always use a plural nouns for naming a url pointing to a collection: `/users`.
+* 使用kebab模式的URL。
+* 在查询字符串或资源字段中使用camelCase模式。
+* 在URL中使用多个kebab-case作为资源名称。
+
+* 总是使用复数名词来命名指向一个集合的url：`/ users`.
 
     为什么:
-    > Basically, it reads better and keeps URLs consistent. [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+    > 基本上，它可读性更好，并可以保持URL的一致性。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
-* In the source code convert plurals to variables and properties with a List suffix.
+* 在源代码中，将复数转换为具有列表后缀名描述的变量和属性。
 
     为什么_:
-    > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
+    > 复数形式的URL非常好，但在源代码中它却很微妙而且容易出错。
 
-* Always use a singular concept that starts with a collection and ends to an identifier:
+* 坚持这样一个概念：始终以集合名开始并以标识符结束。
 
     ```
     /students/245743
     /airports/kjfk
     ```
-* Avoid URLs like this: 
+* 避免这样的网址： 
     ```
     GET /blogs/:blogId/posts/:postId/summary
     ```
 
     为什么:
-    > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
+    > 这不是指向资源，而是指向属性。您可以将属性作为参数传递，以减少响应。
 
-* Keep verbs out of your resource URLs.
+* URLs请尽量少用动词
 
     为什么:
-    > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else
+    > 因为如果你为每个资源操作使用一个动词，你很快就会有一个很大的URL列表，而且没有一致的使用模式，这会使开发人员难以学习。此外，我们还要使用动词做别的事情。
 
-* Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
+* 为非资源型请求使用动词。在这种情况下，您的API并不需要返回任何资源。而是去执行一个操作并返回执行结果。这些**不是** CRUD（创建，查询，更新和删除）操作：
 
     ```
     /translate?text=Hallo
     ```
 
     为什么:
-    > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    > 因为对于CRUD，我们在`资源`或`集合`URL上使用HTTP自己的方法。我们所说的动词实际上是指`Controllers`。你通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
-* The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
+* 请求体或响应类型如果是JSON，那么请遵循`camelCase`规范为`JSON`属性命名来保持一致性。
     
     为什么:
-    > This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript. 
+    > 这是一个JavaScript项目指南，其中用于生成JSON的编程语言以及用于解析JSON的编程语言被假定为JavaScript。
 
-* Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
-
-    为什么:
-    > Because your intention is to expose Resources, not your database schema details
-
-* Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
+* 即使资源类似于对象实例或数据库记录这样的单一概念，您也不应该将`table_name`用作资源名称或将`column_name`作为资源属性。
 
     为什么:
-    > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` .  Also avoid sending resource operations as a parameter.
+    > 因为您的目的是分析资源，而不是分析数据库模式。
 
-* Explain the CRUD functionalities using HTTP methods:
+* 再次，只有在您的URL上面命名资源时才使用名词，不要尝试解释其功能。
+
+    为什么:
+    > 只能在资源URL中使用名词，避免像`/addNewUser`或`/updateUser`这样的结束点。也避免使用参数作为发送资源的操作。
+
+* 如何使用HTTP方法来操作CRUD功能
 
     _How:_
-    > `GET`: To retrieve a representation of a resource.
+    > `GET`: 查询资源的表示法。
     
-    > `POST`: To create new resources and sub-resources
+    > `POST`: 创建一些新的资源或者子资源
    
-    > `PUT`: To update existing resources
+    > `PUT`: 更新一个存在的资源
     
-    > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone
+    > `PATCH`: 更新现有资源。它只更新所提供的字段，不管其他字段
     
-    > `DELETE`:	To delete existing resources
+    > `DELETE`:	删除一个存在的资源
 
 
-* For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
+* 对于嵌套资源，请在URL中把他们的关系表现出来。例如，使用`id`将员工与公司联系起来。
 
     为什么:
-    > This is a natural way to make resources explorable.
+    > 这是一种自然的方式，方便资源的认知。
 
     _How:_
 
-    > `GET      /schools/2/students	` , should get the list of all students from school 2
+    > `GET      /schools/2/students	` , 应该从学校2得到所有学生的名单
 
-    > `GET      /schools/2/students/31`	, should get the details of student 31, which belongs to school 2
+    > `GET      /schools/2/students/31`	, 应该得到学生31的详细信息，且此学生属于学校2
 
-    > `DELETE   /schools/2/students/31`	, should delete student 31, which belongs to school 2
+    > `DELETE   /schools/2/students/31`	, 应删除属于学校2的学生31
 
-    > `PUT      /schools/2/students/31`	, should update info of student 31, Use PUT on resource-URL only, not collection
+    > `PUT      /schools/2/students/31`	, 应该更新学生31的信息，仅在资源URL上使用PUT方式，而不要用收集
 
-    > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs
+    > `POST     /schools` , 应该创建一所新学校，并返回创建的新学校的细节。在集合URL上使用POST
 
-* Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
+* 对于具有`v`前缀（v1，v2）的版本，使用简单的序数。并将其移到URL的左侧，使其具有最高的范围表述：
     ```
     http://api.domain.com/v1/schools/3/students	
     ```
 
     为什么:
-    > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+    > 当您的API为第三方公开时，升级API会发生导致一些突然的变化，也会导致使用您的API的人无法使用你的服务和产品。而这时使用URL中的版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 
 
-* Response messages must be self-descriptive. A good error message response might look something like this:
+* 响应消息必须是自我描述的。一个很好的错误消息响应可能如下所示：
     ```json
     {
         "code": 1234,
@@ -571,7 +572,7 @@ javascript工程项目的一系列最佳实践策略
         "description" : "More details"
     }
     ```
-    or for validation errors:
+    或验证错误:
     ```json
     {
         "code" : 2314,
@@ -592,65 +593,65 @@ javascript工程项目的一系列最佳实践策略
     ```
 
     为什么:
-    > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
+    > 开发人员在使用API​​构建的应用程序时，难免需要在故障排除和解决问题的关键时刻使用到这些精心设计的错误消息。好的错误消息设计能节约大量的问题排查时间。
 
 
-    _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
+    _注意：尽可能保持安全异常消息的通用性。例如，别说`不正确的密码`，您可以换成`无效的用户名或密码`，以免我们不知不觉地通知用户用户名确实是正确的，只有密码不正确。这会让用户很懵逼。
 
-* Use only these 8 status codes to send with you response to describe whether **everything worked**,
-The **client app did something wrong** or The **API did something wrong**.
+* 只使用这8个状态代码，并配合您自定义的响应描述来表述程序工作**一切是否正常**，**客户端应用程序发生了什么错误**或**API发生错误**。
     
-    _Which ones:_
-    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+    _选谁呢？:_
+    > `200 OK`  `GET`, `PUT` 或 `POST` 请响应成功.
 
-    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+    > `201 Created` 标识一个新实例创建成功。当创建一个新的实例，请使用`POST`方法并返回`201`状态码。
 
-    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
 
-    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
+    > `304 Not Modified` 当发现资源已经缓存在本地，就可以减少请求次数。
 
-    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+    > `400 Bad Request` 请求未被处理，因为服务器不能理解客户端是要什么。
 
-    > `403 Forbidden` means the server understood the request but refuses to authorize it.
+    > `401 Unauthorized` 因为请求缺少有效的凭据，并且应该使用所需的凭据重新发起请求。
 
-    > `404 Not Found` indicates that the requested resource was not found. 
+    > `403 Forbidden` 意味着服务器理解本次请求，但拒绝授权。
 
-    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+    > `404 Not Found` 表示未找到请求的资源。 
+
+    > `500 Internal Server Error` 表示请求本身是有效，但由于某些意外情况，服务器无法实现。
 
     为什么:
-    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > 大多数API提供程序仅仅只使用一小部分HTTP状态代码而已。例如，Google GData API仅使用了10个状态代码，Netflix使用了9个，而Digg只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过70个HTTP状态代码。然而，大多数开发者不可能全部记住这70个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后还要跑到维基百科上面找出您要告诉他们的内容。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
-* Provide total numbers of resources in your response
-* Accept `limit` and `offset` parameters
+* 在您的响应中提供资源的总数
+* 接受`limit`和`offset`参数
 
-* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
+* 还应考虑资源暴露的数据量。 API消费者并不总是需要资源的完整表述。可以使用一个字段查询参数，该参数用逗号分隔的字段列表来包括：
     ```
     GET /student?fields=id,name,age,class
     ```
-* Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+* 分页，过滤和排序功能并不需要从所有资源一开始就要得到支持。记录下那些提供过滤和排序的资源。
 
 <a name="api-security"></a>
-### 9.2 API security
-These are some basic security best practices:
+### 9.2 API 安全
+这些是一些基本的安全最佳实践：
 
-* Don't use basic authentication. Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
-
-    为什么:
-    > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [更多请阅读...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
-
-* Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`
-
-* Authorization Code should be short-lived.
-
-* Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
-
-* Consider using Rate Limiting
+* 不要只使用基本认证。验证令牌不要在URL中传输：`GET /users/123?token=asdf....`
 
     为什么:
-    > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
+    > 因为令牌或用户ID和密码通过网络作为明文传递（它是base64编码，而base64是可逆编码），所以基本认证方案不安全。 [更多请阅读...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-* Setting HTTP headers appropriately can help to lock down and secure your web application. [更多请阅读...](https://github.com/helmetjs/helmet)
+* 必须使用授权请求头在每个请求上发送令牌：`Authorization: Bearer xxxxxx, Extra yyyyy`
+
+* 授权代码应该是简短的。
+
+* 通过不响应任何HTTP请求来拒绝任何非TLS请求，以避免任何不安全的数据交换。响应`403 Forbidden`的HTTP请求。
+
+* 考虑使用速率限制
+
+    为什么:
+    > 保护您的API免受每小时数千次的机器人扫描威胁。您应该考虑在早期就实施流控。
+
+* 适当地设置HTTP请求头可以帮助锁定和保护您的Web应用程序。[更多请阅读...](https://github.com/helmetjs/helmet)
 
 * Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
