@@ -1,314 +1,315 @@
 
+[中文版](./README-zh.md)
+
 [<img src="./images/logo.png">](http://wearehive.co.uk/)
 
 
-# 项目规范 &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-javascript工程项目的一系列最佳实践策略
-
-> 每当开发一个新项目，就像在田里打滚，对其他人来说维护这样一个项目简直就是一个潜在的噩梦。以下内容是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践列表（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些内容应该删除。[欢迎随时与我们分享。](http://makeapullrequest.com).
+# Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+> While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
+Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [hive](http://wearehive.co.uk).
+If you want to share a best practice, or think one of these guidelines should be removed, [feel free to share it with us](http://makeapullrequest.com).
 - [Git](#git)
-    - [一些git规则](#some-git-rules)
+    - [Some Git rules](#some-git-rules)
     - [Git workflow](#git-workflow)
-    - [编写良好的提交备注信息](#writing-good-commit-messages)
-- [文档](#documentation)
-- [环境](#environments)
-    - [一致的dev环境](#consistent-dev-environments)
-    - [一致性的依赖配置](#consistent-dependencies)
-- [依赖](#dependencies)
-- [测试](#testing)
-- [结构与命名规则](#structure-and-naming)
-- [代码风格](#code-style)
-- [日志](#logging)
+    - [Writing good commit messages](#writing-good-commit-messages)
+- [Documentation](#documentation)
+- [Environments](#environments)
+    - [Consistent dev environments](#consistent-dev-environments)
+    - [Consistent dependencies](#consistent-dependencies)
+- [Dependencies](#dependencies)
+- [Testing](#testing)
+- [Structure and Naming](#structure-and-naming)
+- [Code style](#code-style)
+- [Logging](#logging)
 - [API](#api)
-    - [API 设计](#api-design)
-    - [API 安全](#api-security)
-    - [API 文档](#api-documentation)
-- [许可](#licensing)
+    - [API design](#api-design)
+    - [API security](#api-security)
+    - [API documentation](#api-documentation)
+- [Licensing](#licensing)
 
 <a name="git"></a>
 ## 1. Git
 <a name="some-git-rules"></a>
-### 1.1 一些Git规则
-
-有一套规则要牢记：
-* 在需求分支中执行工作。
+### 1.1 Some Git rules
+There are a set of rules to keep in mind:
+* Perform work in a feature branch.
     
-    _为什么:_
-    >因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull请求而不会导致代码混淆。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
-* 如何从`develop`来分支
+    _Why:_
+    >Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+* Branch out from `develop`
     
-    _为什么:_
-    >这样，您可以确保master中的代码非常稳定，不会导致构建问题，并且可以直接用于发版（当然，这可能对某些项目会比较过分）.
+    _Why:_
+    >This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for some projects).
 
-* 在确保Pull之前，千万不要push到 `develop` 或者 `master` 分支
+* Never push into `develop` or `master` branch. Make a Pull Request.
     
-    _为什么:_
-    > 开发成员如果完成功能，需要马上通知团队。这样开发伙伴更容易对代码进行评审，同时还可以互相讨论所开发的需求功能
+    _Why:_
+    > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature
 
-* 在更新您本地的`develop`分支时，并在push和pull之前，先进行rebase操作
+* Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request
 
-    _为什么:_
-    > Rebasing将合并到你正在操作的分支（`master`或`develop`）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的merge提交（假设没有冲突的话）。这样可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+    _Why:_
+    > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-* 请确保在pull rebase的时候解决潜在的冲突
-* merge后删除本地和远程需求分支。
+* Resolve potential conflicts while rebasing and before making a Pull Request
+* Delete local and remote feature branches after merging.
     
-    _为什么:_
-    > 如果不删除需求分支，会导致大量僵尸分支存在，导致混乱.请确保一次性合并到 (`master` or `develop`). 只有到这个feature需求分支还在开发中时才应该存在。
+    _Why:_
+    > It will clutter up your list of branches with dead branches.It insures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
 
-* 在进行Pull请求之前，请确保您的需求分支已经建立，并已经通过了所有的测试（包括代码规则检查）。
+* Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
     
-    _为什么:_
-    > 您即将将代码提交到这个稳定的分支。而如果您的需求分支功能测试都失败了，那您的目标分支构建很可能也会失败。此外，确保在进行pull请求之前应用代码规则检查。因为它有助于我们代码的可读性，并减少格式化的代码与实际业务代码更改混合在一起导致的混乱问题。
+    _Why:_
+    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
-* 使用 [.gitignore 文件](./.gitignore).
+* Use [this .gitignore file](./.gitignore).
     
-    _为什么:_
-    > 此文件包含一个文件列表描述，描述那些文件和代码不会被发送到远程git仓库中。这个文件里面应该添加那些为大多数IDE自己产生的文件和文件夹以及大多数常见的依赖文件夹和文件（比npm的node_modules），这些文件我们都不会上传到远程代码库，这些文件不是我们需要的。
+    _Why:_
+    > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
 
-* 保户 `develop` 和 `master` 分支.
+* Protect your `develop` and `master` branch.
   
-    _为什么:_
-    > 它保护您的生产分支免受意外情况和不可回退的变更. 更多请阅读... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
+    _Why:_
+    > It protects your production-ready branches from receiving unexpected and irreversible changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 
 <a name="git-workflow"></a>
 ### 1.2 Git workflow
-因为以上原因, 我们使用 [需求功能分支-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) 并配合 [Rebasing的使用方法](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) 和 一些关于 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (命名和使用一个develop branch). 主要步骤如下:
+Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
-* Checkout 一个新的 feature/bug-fix 分支
+* Checkout a new feature/bug-fix branch
     ```sh
-    git checkout -b <分支名称>
+    git checkout -b <branchname>
     ```
-* 新增一下代码变更
+* Make Changes
     ```sh
     git add
     git commit -a
     ```
-    _为什么:_
-    > `git commit -a` 这样会启动一个编辑器，编辑你的说明信息，这样可以保持专注于写这些注释说明. 更多请阅读 *section 1.3*.
+    _Why:_
+    > `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
 
-* 保持与远程的同步，以便拿到最新变更
+* Sync with remote to get changes you’ve missed
     ```sh
     git checkout develop
     git pull
     ```
     
-    _为什么:_
-    > 这其实是在rebasing的时候给了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。
+    _Why:_
+    > This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
     
-* 通过使用rebase从develop更新最新的代码提交
+* Update your feature branch with latest changes from develop by interactive rebase
     ```sh
     git checkout <branchname>
     git rebase -i --autosquash develop
     ```
     
-    _为什么:_
-    > 您可以使用--autosquash将所有相同类型提交压缩到单个提交。没有人想要在开发分支中提交一大堆单个功能的提交 [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
+    _Why:_
+    > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
-* 如果没有冲突请跳过此步骤，如果你有冲突, [解决方式](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  就通过--continue参数继续rebase
+* If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```sh
 	git add <file1> <file2> ...
     git rebase --continue
     ```
-* Push 你的分支. Rebase 将会改变提交历史, 所以你可以使用 `-f` 强制push到远程分支. 如果其他人正在您的这个分支上面开发，请使用不那么破坏性的 `--force-with-lease`.
+* Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
     ```sh
     git push -f
     ```
     
-    _为什么:_
-    > 当你rebase时，你会改变需求功能分支的提交历史。结果呢，Git却拒绝了正常的“git push”。那么，您只能使用-f或--force标志了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+    _Why:_
+    > When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. [read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
     
     
-* 提交一个pull request.
-* Pull request 会被代码审查的同事来接受，合并和关闭.
-* 如果你完成了开发，请删除你的本地分支.
+* Make a Pull Request.
+* Pull request will be accepted, merged and close by a reviewer.
+* Remove your local feature branch if you're done.
 
   ```sh
-  git branch -d <分支>
+  git branch -d <branchname>
   ```
-  删除所有不在原创仓库维护的分支
+  to remove all branches which are no longer on remote
   ```sh
   git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
   ```
 
 <a name="writing-good-commit-messages"></a>
-### 1.3 如何写好提交说明
+### 1.3 Writing good commit messages
 
-坚持关于提交的良好指南，会让在与他人合作git时更容易。这里有一些经验法则 ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
- * 将话题和文体用换行后的两条空行分开
+ * Separate the subject from the body with a newline between the two
 
-    _为什么:_
-    > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用git shortlog，而不是git log，你会看到一个很长的提交消息列表，其中包含提交的id和摘要
+    _Why:_
+    > Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only
 
- * 将主题行限制为50个字符，并将主体控制在72个字符
+ * Limit the subject line to 50 characters and Wrap the body at 72 characters
 
-    为什么_
-    > 提交应尽可能简洁明了，而不是写一堆冗余的描述。 [更多请阅读...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+    _why_
+    > Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [read more...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
- * 大写的主题线
- * 不要用句号结束主题句
- * 使用 [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) 在主题线
+ * Capitalize the subject line
+ * Do not end the subject line with a period
+ * Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line
 
-    _为什么:_
-    > 不是简单的写这次提交者做了什么。最好写明提交者将要进一步做什么事情。[更多请阅读...](https://news.ycombinator.com/item?id=2079612)
-
-
- * Use the body to explain **what** and **why** as opposed to **how** //UFO
-
- <a name="文档"></a>
-## 2. 文档
-* 使用这个 [模板](./README.sample.md) 给 `README.md`, 欢迎添加里面没有的内容。
-* 对于具有多个存储库的项目，请在各自的`README.md`文件中提供它们的链接。
-* 随项目持续的更新 `README.md`.
-* 给你的代码添加详细的注释，这样就可以清楚每个主要部分的意思。
-* 如果您正在使用的某些代码和方法，在github或stackoverflow上有公开讨论，请在您的评论中包含这些链接，
-* 不要把注释作为坏代码的借口。保持你的代码干净整洁。
-* 也不要把那些清晰的代码作为不写注释的借口。
-* 代码的更新，也请确保注释的同步更新。
-
-<a name="环境"></a>
-## 3. 环境
-* 如果需要，请分别定义 `development`, `test` 和 `production` 环境.
-
-    _为什么:_
-    > 不同的环境可能需要不同的数据，token，API，端口等。您可能需要一个隔离的`development`模式，它调用mock的API，它会返回我们需要的数据，使自动化和手动测试变得更加容易。或者您可能只想在`production` 上才启用Google Analytics（分析）。 [更多请阅读...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    _Why:_
+    > Rather than writing messages that say what a committer has done. It's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [read more...](https://news.ycombinator.com/item?id=2079612)
 
 
-* 从环境变量加载部署的相关配置，不要将这些配置作为常量添加到代码库中， [看这个例子](./config.sample.js).
+ * Use the body to explain **what** and **why** as opposed to **how**
 
-    _为什么:_
-    > 你会有令牌，密码和其他有价值的信息。这些配置应正确地从应用程序内部分离开来，这样代码库就可以随时独立发布，不会包含这些敏感配置信息。
+ <a name="documentation"></a>
+## 2. Documentation
+* Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
+* For projects with more than one repository, provide links to them in their respective `README.md` files.
+* Keep `README.md` updated as a project evolves.
+* Comment your code. Try to make it as clear as possible what you are intending with each major section.
+* If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
+* Don't use comments as an excuse for a bad code. Keep your code clean.
+* Don't use clean code as an excuse to not comment at all.
+* Keep comments relevant as your code evolves.
+
+<a name="environments"></a>
+## 3. Environments
+* Define separate `development`, `test` and `production` environments if needed.
+
+    _Why:_
+    > Different data, tokens, APIs, ports etc... might be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+
+
+* Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
+
+    _Why:_
+    > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
 
     _How:_
-    >使用`.env`文件来存储环境变量，并将这个文件添加到`.gitignore`中以便不提交到git仓库。另外，在提交一个`.env.example`作为开发人员的参考。对于生产环境，您应该以标准化的方式设置环境变量。
-    [更多请阅读](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+    >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example`  which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
+    [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-* 建议您在应用程序启动之前校验一下环境变量。  [看这个例子](./configWithTest.sample.js) 使用 `joi` 去校验提供的值.
+* It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
     
-    _为什么:_
-    > 在排查问题的痛苦经历中你一定需要他。
+    _Why:_
+    > It may save others from hours of troubleshooting.
 
 <a name="consistent-dev-environments"></a>
-### 3.1 一致的开发环境:
-* 在`package.json`里的`engines`中设置你的node版本
+### 3.1 Consistent dev environments:
+* Set your node version in `engines` in `package.json`
     
-    _为什么:_
-    > 让其他人可以清晰的知道这个项目中用的什么node版本 [更多请阅读...](https://docs.npmjs.com/files/package.json#engines)
+    _Why:_
+    > It lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
 
-* 另外，使用`nvm`并在你的项目根目录下创建一个`.nvmrc`文件。不要忘了在文档中标注。
+* Additionally, use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention it in the documentation
 
-    _为什么:_
-    > 任何使用`nvm`的人都可以使用`nvm use`来切换到自己想要的node版本。 [更多请阅读...](https://github.com/creationix/nvm)
+    _Why:_
+    > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
 
-* 最好设置一个检查node和npm版本的“preinstall”脚本
+* It's a good idea to setup a `preinstall` script that checks node and npm versions
 
-    _为什么:_
-    > 某些依赖项可能会在新版本的npm中安装失败。
+    _Why:_
+    > Some dependencies may fail when installed by newer versions of npm.
     
-* 如果可以的话最好使用Docker image
+* Use Docker image if you can.
 
-    _为什么:_
-    > 它可以在整个工作流程中为您提供一致的环境。不用花太多的时间来解决依赖或配置。 [更多请阅读...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+    _Why:_
+    > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
-* 使用本地模块，而不是使用全局安装的模块
+* Use local modules instead of using globally installed modules
 
-    _为什么:_
-    > 你不能指望你的同事在自己的全局环境都安装了相应的模块，本地模块可以方便你分享你的工具。
+    _Why:_
+    > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
 
 
 <a name="consistent-dependencies"></a>
-### 3.2 依赖一致性:
+### 3.2 Consistent dependencies:
 
-* 确保您的团队成员获得与您完全相同的依赖关系
+* Make sure your team members get the exact same dependencies as you
 
-    _为什么:_
-    > 因为您希望代码在任何开发环境中运行都能像预期的一样 [更多请阅读...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
+    _Why:_
+    > Because you want the code to behave as expected and identical in any development machine [read more...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
 
     _how:_
-    > 在`npm@5`或者更高版本中使用 `package-lock.json`
+    > Use `package-lock.json` on `npm@5` or higher
 
-    _我们没有npm@5:_
-    > 或者，您可以使用“yarn”，并确保在“README.md”中标注。您的锁文件和`package.json`在每次依赖关系更新后应该具有相同的版本。[更多请阅读...](https://yarnpkg.com/en/)
+    _I don't have npm@5:_
+    > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [read more...](https://yarnpkg.com/en/)
 
-    _我不太喜欢 `Yarn`:_
-    > 太糟糕了。对于旧版本的“`npm`，在安装新的依赖关系时使用`-save --save-exact`，并在发布之前创建`npm-shrinkwrap.json`。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
+    _I don't like the name `Yarn`:_
+    > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
-## 4. 依赖
-* 持续跟踪你当前的可用依赖包: e.g., `npm ls --depth=0`. [更多请阅读...](https://docs.npmjs.com/cli/ls)
-* 查看这些软件包是否已经变得不可用或者已经废弃: `depcheck`. [更多请阅读...](https://www.npmjs.com/package/depcheck)
+## 4. Dependencies
+* Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
+* See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
     
-    _为什么:_
-    > 您可能会在代码中包含未使用的库，这会增大生产包的大小。请搜索出这些未使用的依赖关系并摆脱它们吧。
+    _Why:_
+    > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
 
-* 在使用依赖之前，请检查他的下载统计信息，看看它是否被社区大量使用： `npm-stat`. [更多请阅读...](https://npm-stat.com/)
+* Before using a dependency, check its download statistics to see if it is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
     
-    _为什么:_
-    > 更多的使用将意味着更多的贡献者，这通常意味着拥有更好的维护，这些才能确保快速发现错误和快速修复错误。
+    _Why:_
+    > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
 
-* 在使用依赖关系之前，请检查它是否具有良好的成熟版本发布频率与大量的维护者：例如， `npm view async`. [更多请阅读...](https://docs.npmjs.com/cli/view)
+* Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
 
-    _为什么:_
-    > 如果维护者没有够快地merge修补程序，那么这些贡献者也将不会变得积极高效。
+    _Why:_
+    > Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
 
-* 如果需要使用那些不太熟悉的依赖包，请在使用之前与团队进行充分讨论。始终确保您的应用程序在最新版本的依赖包上面能正常运行，而不是坏掉：`npm outdated`. [更多请阅读...](https://docs.npmjs.com/cli/outdated)
+* If a less known dependency is needed, discuss it with the team before using it.
+* Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
 
-    _为什么:_
-    > 依赖关系更新有时包含破坏性更改。当显示需要更新时，请始终先查看其发行说明。并逐一的更新您的依赖项，如果出现任何问题，可以使故障排除更容易。使用一个很酷的工具，如 [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+    _Why:_
+    > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
-* 检查包是否有已知安全漏洞，例如： [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+* Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 
 <a name="testing"></a>
-## 5. 测试
+## 5. Testing
 
-* 如果需要，建一个 `test` 环境.
+* Have a `test` mode environment if needed.
 
-    _为什么:_
-    > 虽然有时在`production`模式下端到端测试可能看起来已经足够了，但有一些例外：比如您可能不想在生产环境下启用数据分析功能，只能用测试数据来填充（污染）某人的仪表板。另一个例子是，您的API可能在`production`中具有速率限制，并在请求达到一定量级后会阻止您的测试请求。
+    _Why:_
+    > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests. 
 
-* 将测试文件放在使用`* .test.js`或`* .spec.js`命名约定的测试模块，比如`moduleName.spec.js`
+* Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
 
-    _为什么:_
-    > 你肯定不想深入一个文件夹的层层结构来查找里面的单元测试。[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    _Why:_
+    > You don't want to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
     
 
-* 将其他测试文件放入独立的测试文件夹中以避免混淆。
+* Put your additional test files into a separate test folder to avoid confusion.
 
-    _为什么:_
-    > 一些测试文件与任何特定的文件实现没有特别的关系。你只需将它放在最有可能被其他开发人员找到的文件夹中：`__test__`文件夹。这个名字：`__test__`也是现在的标准，被大多数JavaScript测试框架所接受。
+    _Why:_
+    > Some test files don't particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: `__test__` folder. This name: `__test__`  is also standard now and gets picked up by most JavaScript testing frameworks.
 
-* 编写可测试代码，避免不良代码，提取，并写成纯函数 //UFO
+* Write testable code, avoid side effects, extract side effects, write pure functions
 
-    _为什么:_
-    > 您想要将业务逻辑测试为单独的单元。您必须“尽量减少不可预测性和非确定性过程对代码可靠性的影响”。 [更多请阅读...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+    _Why:_
+    > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
     
-    > 纯函数是一个函数，它总是为相同的输入返回相同的输出。相反，不纯的函数是可能具有不可预测性或取决于来自外部的条件来决定产生对应的输出值。这使得它不那么可预测[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-* 使用静态类型检查器
+* Use a static type checker 
 
-    _为什么:_
-    > 有时您可能需要一个静态类型检查器。它为您的代码带来一定程度的可靠性。[更多请阅读...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+    _Why:_
+    > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
 
-* 在进行任何pull请求时，先在本地`develop`分支运行测试 .
+* Run tests locally before making any pull requests to `develop`.
 
-    _为什么:_
-    > 你不想成为一个导致生产分支构建失败的人。在您的`rebase`之后运行测试，然后将您的需求功能分支改动推送到远程仓库。
+    _Why:_
+    > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to a remote repository.
 
-* 记录您的测试，包括在`README.md`文件中的相关部分说明。
+* Document your tests including instructions in the relevant section of your `README.md` file.
 
-    _为什么:_
-    > 这个记录的笔记非常的方便，便于留给其他开发人员或DevOps专家或QA或任何幸运的人，让他们更方便的来处理您的代码。
+    _Why:_
+    > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
 
 <a name="structure-and-naming"></a>
-## 6. 结构布局与命名
-* 围绕产品功能/页面/组件来组织您的文件，而不是围绕角色来组织文件。此外，请将测试文件放在他们对应实现的旁边。
+## 6. Structure and Naming
+* Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
 
 
-    **不好**
+    **Bad**
 
     ```
     .
@@ -320,7 +321,7 @@ javascript工程项目的一系列最佳实践策略
     |   └── user.js
     ```
 
-    **好**
+    **Good**
 
     ```
     .
@@ -334,237 +335,234 @@ javascript工程项目的一系列最佳实践策略
     |   └── user.test.js
     ```
 
-    _为什么:_
-    > 比起一个冗长的列表文件，创建一个单一责权封装的小模块，并在其中包括测试文件。将会更容易浏览，更一目了然。
+    _Why:_
+    > Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
 
-* 将其他测试文件放在单独的测试文件夹中以避免混淆。
+* Put your additional test files to a separate test folder to avoid confusion.
 
-    _为什么:_
-    > 这样可以节约您的团队中的其他开发人员或DevOps专家的时间。
+    _Why:_
+    > It is a time saver for other developers or DevOps experts in your team.
 
-* 使用`./config`文件夹，不要为不同的环境制作不同的配置文件。
+* Use a `./config` folder and don't make different config files for different environments.
 
-    _为什么:_
-    >当您为不同的目的（数据库，API等）分解不同的配置文件;将它们放在具有容易识别名称（如“config”）的文件夹中才是有意义的。只要记住不要为不同的环境制作不同的配置文件。这样并不是真的具有扩展性，随着更多应用程序部署被创建出来，新的环境名称也会不断被创建，这样会导致换乱。
-    配置文件中使用的值应通过环境变量提供。 [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+    _Why:_
+    >When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly, as more deploys of the app are created, new environment names are necessary.
+    Values to be used in config files should be provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
     
 
-* 将脚本文件放在`./ scripts`文件夹中。包括`bash`脚本和`node`脚本。
-    _为什么:_
-    > 很可能最终会出现很多脚本文件，比如生产构建，开发构建，数据库feeders，数据库同步等。
+* Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
+
+    _Why:_
+    >It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronization and so on.
     
 
-* 将构建输出结果放在`./ build`文件夹中。将`build /`添加到`.gitignore`中以便忽略此文件夹。
+* Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
 
-    _为什么:_
-    > 命名为你最喜欢的就行，`dist`蛮酷的。但请确保与您的团队保持一致性。哪些东西最有应该放这个文件夹呢？比如（bundle，编译结果，转换结果）。您产生什么编译结果，您的队友也可以生成同样的结果，所以没有必要将这些结果提交到远程仓库中。除非你故意希望提交上去。
+    _Why:_
+    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to. 
 
-* 文件名和目录名请使用`PascalCase''camelCase`风格。组件请使用`PascalCase`风格。
+* Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
 
+* `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 
-* `CheckBox/index.js`应该代表`CheckBox`组件，也可以写成`CheckBox.js`，但是**不能**写成冗长的`CheckBox/CheckBox.js`或`checkbox/CheckBox.js`。
+* Ideally the directory name should match the name of the default export of `index.js`.
 
-* 理想情况下，目录名称应该和`index.js`的默认导出名称相匹配。
-
-    _为什么:_
-    > 这样您就可以通过简单地导入其父文件夹直接使用你预期的组件或模块。
-
+    _Why:_
+    > Then you can expect what component or module you will receive by simply just importing its parent folder.   
 
 <a name="code-style"></a>
-## 7. 代码风格
-* 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持老的语法一致，除非您打算把老的项目现代化。
+## 7. Code style
+* Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
 
-    _为什么:_
-    > 这完全取决于你的选择。我们使用转换器来使用新的语法糖。Stage2更有可能最终成为规范的一部分，而且仅仅只需经过小版本的迭代就会成为规范。
+    _Why:_
+    > This is all up to you. We use transpilers to use advantages of new syntax. stage-2 is more likely to eventually become part of the spec with only minor revisions. 
 
-* 在构建过程中包含代码风格检查。
+* Include code style check in your build process.
 
-    _为什么:_
-    > 在构建时中断下一步操作是一种强制执行代码风格检查的方法。强制你认真对待代码。请确保在客户端和服务器端代码都执行代码检查。 [更多请阅读...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+    _Why:_
+    > Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously. Do it for both client and server-side code. [read more...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
-* 使用 [ESLint - Pluggable JavaScript linter](http://eslint.org/) 去强制执行代码检查
+* Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
 
-    _为什么:_
-    > 我们个人很喜欢`eslint`，不强制你也喜欢。它支持更多的规则，配置规则的能力和添加自定义规则的能力。
+    _Why:_
+    > We simply prefer `eslint`, you don't have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.
 
-* 针对JavaScript我们使用[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) , [更多请阅读](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). 在你的团队和项目中推广此代码风格是必须的。
+* We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
 
-* 我们使用 [ESLint的流式样式检查规则。](https://github.com/gajus/eslint-plugin-flowtype) 如果使用[FlowType](https://flow.org/).
+* We use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
 
-    _为什么:_
-    > Flow引入了很少的语法，需要遵循这些代码风格并进行检查。
+    _Why:_
+    > Flow introduces few syntaxes that also need to follow certain code style and be checked.
 
-* 使用`.eslintignore`将某些文件或文件夹从代码风格检查中排除。
+* Use `.eslintignore` to exclude file or folders from code style check.
 
-    _为什么:_
-    > 当您需要从风格检查中排除几个文件时，就再也不需要通过`eslint-disable`注释来污染您的代码了。
+    _Why:_
+    > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
 
-* 在pull request之前，请删除任何`eslint`禁用注释。
+* Remove any of your `eslint` disable comments before making a Pull Request.
 
-    _为什么:_
-    > 在处理代码块时禁用风格检查是正常现象，这样就可以关注在业务逻辑。只要记住把那些`eslint-disable`注释删除并遵循这些风格规则。
+    _Why:_
+    > It's normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those `eslint-disable` comments and follow the rules.
 
-* 根据任务的大小使用`// TODO：`注释或做一个标签。
+* Depending on the size of the task use  `//TODO:` comments or open a ticket.
 
-    _为什么:_
-    > 这样你就可以提醒自己和他人有这样一个小的任务需要处理（如重构一个函数或更新一个注释）。对于较大的任务，使用由lint规则执行的`// TODO（＃3456）`，其中的`#3456`号码作为一个标签。
+    _Why:_
+    > So then you can remind yourself and others about a small task (like refactoring a function, or updating a comment). For larger tasks  use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
 
 
-* 随着代码的变化，始终保持注释的相关性。删除那些注释掉的代码块。
+* Always comment and keep them relevant as code changes. Remove commented blocks of code.
     
-    _为什么:_
-    > 代码应该尽可能的可读，你应该摆脱任何分心的事情。如果你在重构一个函数，就不要注释那些旧代码，直接删除它吧。
+    _Why:_
+    > Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
 
-* 避免不相关的和搞笑的的注释，日志或命名。
+* Avoid irrelevant or funny comments, logs or naming.
 
-    _为什么:_
-    > 虽然您的构建过程中可能（应该）移除它们，但有可能您的源代码会被移交给另一个公司/客户，你的这些笑话应该无法逗乐你的客户。
+    _Why:_
+    > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
 
-* 请使用有意义容易搜索的命名，避免缩写名称。对于函数使用长描述性命名。功能命名应该是一个动词或动词短语，需要是能清楚传达意图的命名。
+* Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
 
-    _为什么:_
-    > 它使读取源代码变得更加自然。
+    _Why:_
+    > It makes it more natural to read the source code.
 
-* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.（译者注：这一段我翻译不好，大家看看原文吧，是为了说明函数的组织方式）
+* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
 
-    _为什么:_
-    > 它使源代码的可读性更好。
+    _Why:_
+    > It makes it more natural to read the source code.
 
 <a name="logging"></a>
-## 8. 日志
-* 避免在生产环境中使用客户端的日志
+## 8. Logging
+* Avoid client-side console logs in production
 
-    _为什么:_
-    > 您在构建过程可以把（应该）它们去掉，但是请确保您在代码风格检查中提供了有关控制台日志的警告信息。
+    _Why:_
+    > Even though your build process can(should) get rid of them, but make sure your code style check gives your warning about console logs.
 
-* 用于生产环境的可读生产日志记录。一般使用在生产模式下所使用的日志记录库 (比如 [winston](https://github.com/winstonjs/winston) or
+* Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
 
-    _为什么:_
-    > 它通过添加着色、时间戳、log到控制台或者文件中，来减少故障排除中那些令人不愉快的事情，这些文件会每天滚动迭代。[更多请阅读...](https://blog.risingstack.com/node-js-logging-tutorial/)
+    _Why:_
+    > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 
 <a name="api"></a>
 ## 9. API
 <a name="api-design"></a>
-### 9.1 API 设计
+### 9.1 API design
 
-_为什么:_
-> 
-因为我们试图实施开发出结构稳健的RESTful接口，让团队成员和客户可以简单而一致地使用它们。
+_Why:_
+> Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.  
 
-_为什么:_
->缺乏一致性和简单性会大大增加集成和维护的成本。这就是为什么`API设计'包含在这个文档中的原因
+_Why:_
+> Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
 
 
-* 我们主要遵循资源导向的设计。它有三个主要要素：资源，集合和URLs。
-    * 资源具有数据，嵌套，和一些操作方法。
-    * 一组资源称为一个集合。
-    * URL标识资源或集合的在线位置。
+* We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+    * A resource has data, gets nested, and there are methods that operate against it
+    * A group of resources is called a collection.
+    * URL identifies the online location of resource or collection.
     
-    _为什么:_
-    > 这是针对开发人员（您的主API使用者）非常有名的设计。除了可读性和易用性之外，它还允许我们在无需了解API细节的情况下编写通用库和一些连接器。
+    _Why:_
+    > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
 
+* use kebab-case for URLs.
+* use camelCase for parameters in the query string or resource fields.
+* use plural kebab-case for resource names in URLs.
 
-* 使用kebab模式的URL。
-* 在查询字符串或资源字段中使用camelCase模式。
-* 在URL中使用多个kebab-case作为资源名称。
+* Always use a plural nouns for naming a url pointing to a collection: `/users`.
 
-* 总是使用复数名词来命名指向一个集合的url：`/ users`.
+    _Why:_
+    > Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
-    _为什么:_
-    > 基本上，它可读性更好，并可以保持URL的一致性。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+* In the source code convert plurals to variables and properties with a List suffix.
 
-* 在源代码中，将复数转换为具有列表后缀名描述的变量和属性。
+    _Why_:
+    > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
 
-    为什么_:
-    > 复数形式的URL非常好，但在源代码中它却很微妙而且容易出错。
-
-* 坚持这样一个概念：始终以集合名开始并以标识符结束。
+* Always use a singular concept that starts with a collection and ends to an identifier:
 
     ```
     /students/245743
     /airports/kjfk
     ```
-* 避免这样的网址： 
+* Avoid URLs like this: 
     ```
     GET /blogs/:blogId/posts/:postId/summary
     ```
 
-    _为什么:_
-    > 这不是指向资源，而是指向属性。您可以将属性作为参数传递，以减少响应。
+    _Why:_
+    > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
 
-* URLs请尽量少用动词
+* Keep verbs out of your resource URLs.
 
-    _为什么:_
-    > 因为如果你为每个资源操作使用一个动词，你很快就会有一个很大的URL列表，而且没有一致的使用模式，这会使开发人员难以学习。此外，我们还要使用动词做别的事情。
+    _Why:_
+    > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else
 
-* 为非资源型请求使用动词。在这种情况下，您的API并不需要返回任何资源。而是去执行一个操作并返回执行结果。这些**不是** CRUD（创建，查询，更新和删除）操作：
+* Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
 
     ```
     /translate?text=Hallo
     ```
 
-    _为什么:_
-    > 因为对于CRUD，我们在`资源`或`集合`URL上使用HTTP自己的方法。我们所说的动词实际上是指`Controllers`。你通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    _Why:_
+    > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
-* 请求体或响应类型如果是JSON，那么请遵循`camelCase`规范为`JSON`属性命名来保持一致性。
+* The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
     
-    _为什么:_
-    > 这是一个JavaScript项目指南，其中用于生成JSON的编程语言以及用于解析JSON的编程语言被假定为JavaScript。
+    _Why:_
+    > This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript. 
 
-* 即使资源类似于对象实例或数据库记录这样的单一概念，您也不应该将`table_name`用作资源名称或将`column_name`作为资源属性。
+* Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
 
-    _为什么:_
-    > 因为您的目的是分析资源，而不是分析数据库模式。
+    _Why:_
+    > Because your intention is to expose Resources, not your database schema details
 
-* 再次，只有在您的URL上面命名资源时才使用名词，不要尝试解释其功能。
+* Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
 
-    _为什么:_
-    > 只能在资源URL中使用名词，避免像`/addNewUser`或`/updateUser`这样的结束点。也避免使用参数作为发送资源的操作。
+    _Why:_
+    > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` .  Also avoid sending resource operations as a parameter.
 
-* 如何使用HTTP方法来操作CRUD功能
+* Explain the CRUD functionalities using HTTP methods:
 
     _How:_
-    > `GET`: 查询资源的表示法。
+    > `GET`: To retrieve a representation of a resource.
     
-    > `POST`: 创建一些新的资源或者子资源
+    > `POST`: To create new resources and sub-resources
    
-    > `PUT`: 更新一个存在的资源
+    > `PUT`: To update existing resources
     
-    > `PATCH`: 更新现有资源。它只更新所提供的字段，不管其他字段
+    > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone
     
-    > `DELETE`:	删除一个存在的资源
+    > `DELETE`:	To delete existing resources
 
 
-* 对于嵌套资源，请在URL中把他们的关系表现出来。例如，使用`id`将员工与公司联系起来。
+* For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
 
-    _为什么:_
-    > 这是一种自然的方式，方便资源的认知。
+    _Why:_
+    > This is a natural way to make resources explorable.
 
     _How:_
 
-    > `GET      /schools/2/students	` , 应该从学校2得到所有学生的名单
+    > `GET      /schools/2/students	` , should get the list of all students from school 2
 
-    > `GET      /schools/2/students/31`	, 应该得到学生31的详细信息，且此学生属于学校2
+    > `GET      /schools/2/students/31`	, should get the details of student 31, which belongs to school 2
 
-    > `DELETE   /schools/2/students/31`	, 应删除属于学校2的学生31
+    > `DELETE   /schools/2/students/31`	, should delete student 31, which belongs to school 2
 
-    > `PUT      /schools/2/students/31`	, 应该更新学生31的信息，仅在资源URL上使用PUT方式，而不要用收集
+    > `PUT      /schools/2/students/31`	, should update info of student 31, Use PUT on resource-URL only, not collection
 
-    > `POST     /schools` , 应该创建一所新学校，并返回创建的新学校的细节。在集合URL上使用POST
+    > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs
 
-* 对于具有`v`前缀（v1，v2）的版本，使用简单的序数。并将其移到URL的左侧，使其具有最高的范围表述：
+* Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
     ```
     http://api.domain.com/v1/schools/3/students	
     ```
 
-    _为什么:_
-    > 当您的API为第三方公开时，升级API会发生导致一些突然的变化，也会导致使用您的API的人无法使用你的服务和产品。而这时使用URL中的版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+    _Why:_
+    > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 
 
-* 响应消息必须是自我描述的。一个很好的错误消息响应可能如下所示：
+* Response messages must be self-descriptive. A good error message response might look something like this:
     ```json
     {
         "code": 1234,
@@ -572,7 +570,7 @@ _为什么:_
         "description" : "More details"
     }
     ```
-    或验证错误:
+    or for validation errors:
     ```json
     {
         "code" : 2314,
@@ -592,107 +590,106 @@ _为什么:_
     }
     ```
 
-    _为什么:_
-    > 开发人员在使用API​​构建的应用程序时，难免需要在故障排除和解决问题的关键时刻使用到这些精心设计的错误消息。好的错误消息设计能节约大量的问题排查时间。
+    _Why:_
+    > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
 
 
-    _注意：尽可能保持安全异常消息的通用性。例如，别说`不正确的密码`，您可以换成`无效的用户名或密码`，以免我们不知不觉地通知用户用户名确实是正确的，只有密码不正确。这会让用户很懵逼。
+    _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
 
-* 只使用这8个状态代码，并配合您自定义的响应描述来表述程序工作**一切是否正常**，**客户端应用程序发生了什么错误**或**API发生错误**。
+* Use only these 8 status codes to send with you response to describe whether **everything worked**,
+The **client app did something wrong** or The **API did something wrong**.
     
-    _选谁呢？:_
-    > `200 OK`  `GET`, `PUT` 或 `POST` 请响应成功.
+    _Which ones:_
+    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-    > `201 Created` 标识一个新实例创建成功。当创建一个新的实例，请使用`POST`方法并返回`201`状态码。
+    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+
+    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
+
+    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
+
+    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+
+    > `403 Forbidden` means the server understood the request but refuses to authorize it.
+
+    > `404 Not Found` indicates that the requested resource was not found. 
+
+    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+
+    _Why:_
+    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
-    > `304 Not Modified` 当发现资源已经缓存在本地，就可以减少请求次数。
+* Provide total numbers of resources in your response
+* Accept `limit` and `offset` parameters
 
-    > `400 Bad Request` 请求未被处理，因为服务器不能理解客户端是要什么。
-
-    > `401 Unauthorized` 因为请求缺少有效的凭据，并且应该使用所需的凭据重新发起请求。
-
-    > `403 Forbidden` 意味着服务器理解本次请求，但拒绝授权。
-
-    > `404 Not Found` 表示未找到请求的资源。 
-
-    > `500 Internal Server Error` 表示请求本身是有效，但由于某些意外情况，服务器无法实现。
-
-    _为什么:_
-    > 大多数API提供程序仅仅只使用一小部分HTTP状态代码而已。例如，Google GData API仅使用了10个状态代码，Netflix使用了9个，而Digg只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过70个HTTP状态代码。然而，大多数开发者不可能全部记住这70个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后还要跑到维基百科上面找出您要告诉他们的内容。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
-
-
-* 在您的响应中提供资源的总数
-* 接受`limit`和`offset`参数
-
-* 还应考虑资源暴露的数据量。 API消费者并不总是需要资源的完整表述。可以使用一个字段查询参数，该参数用逗号分隔的字段列表来包括：
+* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
     ```
     GET /student?fields=id,name,age,class
     ```
-* 分页，过滤和排序功能并不需要从所有资源一开始就要得到支持。记录下那些提供过滤和排序的资源。
+* Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
 
 <a name="api-security"></a>
-### 9.2 API 安全
-这些是一些基本的安全最佳实践：
+### 9.2 API security
+These are some basic security best practices:
 
-* 不要只使用基本认证。验证令牌不要在URL中传输：`GET /users/123?token=asdf....`
+* Don't use basic authentication. Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
 
-    _为什么:_
-    > 因为令牌或用户ID和密码通过网络作为明文传递（它是base64编码，而base64是可逆编码），所以基本认证方案不安全。 [更多请阅读...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+    _Why:_
+    > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-* 必须使用授权请求头在每个请求上发送令牌：`Authorization: Bearer xxxxxx, Extra yyyyy`
+* Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`
 
-* 授权代码应该是简短的。
+* Authorization Code should be short-lived.
 
-* 通过不响应任何HTTP请求来拒绝任何非TLS请求，以避免任何不安全的数据交换。响应`403 Forbidden`的HTTP请求。
+* Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
 
-* 考虑使用速率限制
+* Consider using Rate Limiting
 
-    _为什么:_
-    > 保护您的API免受每小时数千次的机器人扫描威胁。您应该考虑在早期就实施流控。
+    _Why:_
+    > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
 
-* 适当地设置HTTP请求头可以帮助锁定和保护您的Web应用程序。[更多请阅读...](https://github.com/helmetjs/helmet)
+* Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
 
-* 您的API应将收到的数据转换为规范形式，或直接拒绝响应，并返回400错误，并在其中包含有关错误或丢失数据的详细信息。
+* Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
-* 所有通过Rest API交换的数据必须由API来校验。
+* All the data exchanged with the ReST API must be validated by the API.
 
-* 序列号JSON 
+* Serialize your JSON 
 
-    _为什么:_
-    > JSON编码器的一个关键问题是阻止浏览器中输入的任意JavaScript代码在远程被执行，或者如果您在服务器上使用node.js。您必须使用适当的JSON序列化程序对用户输入的数据进行正确编码，以防止在浏览器上执行用户提供的输入，这些输入可能会包含恶意代码，而不是正常的用户数据。
+    _Why:_
+    > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
 
-* 验证内容类型，主要使用`application/*.json`（Content-Type header）.
+* Validate the content-type and mostly use `application/*json` (Content-Type header).
     
-    _为什么:_
-    > 例如，接受`application/x-www-form-urlencoded`MIME类型可以允许攻击者创建一个表单并触发一个简单的POST请求。服务器不应该假定Content-Type。缺少Content-Type请求头或异常的Content-Type请求头应该让服务器直接以`4XX`响应内容去拒绝请求。
+    _Why:_
+    > For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
 
 
 <a name="api-documentation"></a>
-### 9.3 API 文档
+### 9.3 API documentation
+* Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
+* Describe API authentication methods with a code sample
+* Explaining The URL Structure (path only, no root URL) including The request type (Method)
 
-* 在[README.md模板]（./ README.sample.md）为API填写
-`API参考`段落。
-* 尽量使用示例代码来描述API授权方法
-* 解释URL的结构（仅path，不包括根URL），包括请求类型（方法）
+For each endpoint explain:
+* URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
 
-对于每个端点（endpoint）说明：
-* 如果存在URL参数就使用URL参数，请根据URL中使用到的名称来指定它们：
     ```
     Required: id=[integer]
     Optional: photo_id=[alphanumeric]
     ```
 
-* 如果请求类型为POST，请提供如何使用的示例。URL Params也是这样。Params分为`可选`和`必需`。
+* If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
 
-* 响应成功，应该对应什么样的状态代码，返回了哪些数据？当人们需要知道他们的回调应该是期望的样子，这是有用的：
+* Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
 
     ```
     Code: 200
     Content: { id : 12 }
     ```
 
-* 错误响应，大多数端点都存在许多失败的可能。比如错误参数导致的未经授权的访问等。所有的都应该列在这里。虽然有可能会重复，但它却有助于防止发生损害。例如
+* Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
     {
         "code": 403,
@@ -702,11 +699,11 @@ _为什么:_
     ```
 
 
-* 使用API​​设计工具，有很多开源工具可用于良好的文档，例如 [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+* Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
-## 10. 许可证
-确保使用您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD，但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
+## 10. Licensing
+Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
 
 
 ---
