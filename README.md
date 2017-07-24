@@ -1,4 +1,6 @@
 
+[中文版](./README-zh.md)
+
 [<img src="./images/logo.png">](http://wearehive.co.uk/)
 
 
