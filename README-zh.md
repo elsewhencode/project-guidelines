@@ -13,7 +13,7 @@ javascript工程项目的一系列最佳实践策略
     - [编写良好的提交备注信息](#writing-good-commit-messages)
 - [文档](#documentation)
 - [环境](#environments)
-    - [一致的dev环境](#consistent-dev-environments)
+    - [一致的开发环境](#consistent-dev-environments)
     - [一致性的依赖配置](#consistent-dependencies)
 - [依赖](#dependencies)
 - [测试](#testing)
@@ -32,30 +32,30 @@ javascript工程项目的一系列最佳实践策略
 ### 1.1 一些Git规则
 
 有一套规则要牢记：
-* 在需求分支中执行工作。
+* 在需求分支中执行开发工作。
     
     _为什么:_
-    >因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull请求而不会导致代码混淆。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
-* 如何从`develop`来分支
+    >因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull请求而不会导致代码冲突。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+* 从`develop`拉出分支。
     
     _为什么:_
-    >这样，您可以确保master中的代码非常稳定，不会导致构建问题，并且可以直接用于发版（当然，这可能对某些项目会比较过分）.
+    >这样，您可以保持master中的代码稳定性，这样就不会导致构建问题，并且可以直接用于发版（当然，这可能对某些项目来说要求会比较高）.
 
-* 在确保Pull之前，千万不要push到 `develop` 或者 `master` 分支
+* 在确保Pull请求之前，千万不要push到 `develop` 或者 `master` 分支。
     
     _为什么:_
-    > 开发成员如果完成功能，需要马上通知团队。这样开发伙伴更容易对代码进行评审，同时还可以互相讨论所开发的需求功能
+    > 开发成员如果完成功能，需要马上通知团队。这样开发伙伴就开源更容易对代码进行评审，同时还可以互相讨论所开发的需求功能
 
-* 在更新您本地的`develop`分支时，并在push和pull之前，先进行rebase操作
+* 在更新您本地的`develop`分支时，并在push和pull之前，先进行rebase操作。
 
     _为什么:_
     > Rebasing将合并到你正在操作的分支（`master`或`develop`）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的merge提交（假设没有冲突的话）。这样可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-* 请确保在pull rebase的时候解决潜在的冲突
+* 请确保在pull rebase的时候解决完潜在的冲突。
 * merge后删除本地和远程需求分支。
     
     _为什么:_
-    > 如果不删除需求分支，会导致大量僵尸分支存在，导致混乱.请确保一次性合并到 (`master` or `develop`). 只有到这个feature需求分支还在开发中时才应该存在。
+    > 如果不删除需求分支，会导致大量僵尸分支存在，会很混乱。请确保一次性合并到 (`master` or `develop`)。只有当这个feature需求分支还处于开发中时才应该存在。
 
 * 在进行Pull请求之前，请确保您的需求分支已经建立，并已经通过了所有的测试（包括代码规则检查）。
     
@@ -67,7 +67,7 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 此文件包含一个文件列表描述，描述那些文件和代码不会被发送到远程git仓库中。这个文件里面应该添加那些为大多数IDE自己产生的文件和文件夹以及大多数常见的依赖文件夹和文件（比npm的node_modules），这些文件我们都不会上传到远程代码库，这些文件不是我们需要的。
 
-* 保户 `develop` 和 `master` 分支.
+* 保护 `develop` 和 `master` 分支.
   
     _为什么:_
     > 它保护您的生产分支免受意外情况和不可回退的变更. 更多请阅读... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
@@ -76,26 +76,32 @@ javascript工程项目的一系列最佳实践策略
 ### 1.2 Git workflow
 因为以上原因, 我们使用 [需求功能分支-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) 并配合 [Rebasing的使用方法](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) 和 一些关于 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (命名和使用一个develop branch). 主要步骤如下:
 
-* Checkout 一个新的 feature/bug-fix 分支
+* 针对一个新项目, 在你的项目目录初始化你的项目. __针对下级目录 features/changes 这一步请忽略__.
+   ```sh
+   cd <项目目录>
+   git init
+   ```
+
+* Checkout 一个新的 feature/bug-fix 分支。
     ```sh
     git checkout -b <分支名称>
     ```
-* 新增一下代码变更
+* 新增一下代码变更。
     ```sh
     git add
     git commit -a
     ```
     _为什么:_
-    > `git commit -a` 这样会启动一个编辑器，编辑你的说明信息，这样可以保持专注于写这些注释说明. 更多请阅读 *section 1.3*.
+    > `git commit -a` 这会启动一个编辑器，编辑你的说明信息，这样的好处是可以专注于写这些注释说明. 更多请阅读 *section 1.3*.
 
-* 保持与远程的同步，以便拿到最新变更
+* 保持与远程的同步，以便拿到最新变更。
     ```sh
     git checkout develop
     git pull
     ```
     
     _为什么:_
-    > 这其实是在rebasing的时候给了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。
+    > 这其实是在rebasing的时候创造了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。
     
 * 通过使用rebase从develop更新最新的代码提交
     ```sh
@@ -181,7 +187,7 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 你会有令牌，密码和其他有价值的信息。这些配置应正确地从应用程序内部分离开来，这样代码库就可以随时独立发布，不会包含这些敏感配置信息。
 
-    _How:_
+    _怎么做:_
     >使用`.env`文件来存储环境变量，并将这个文件添加到`.gitignore`中以便不提交到git仓库。另外，在提交一个`.env.example`作为开发人员的参考。对于生产环境，您应该以标准化的方式设置环境变量。
     [更多请阅读](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
@@ -226,7 +232,7 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 因为您希望代码在任何开发环境中运行都能像预期的一样 [更多请阅读...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
 
-    _how:_
+    _怎么做:_
     > 在`npm@5`或者更高版本中使用 `package-lock.json`
 
     _我们没有npm@5:_
@@ -308,7 +314,7 @@ javascript工程项目的一系列最佳实践策略
 * 围绕产品功能/页面/组件来组织您的文件，而不是围绕角色来组织文件。此外，请将测试文件放在他们对应实现的旁边。
 
 
-    **不好**
+    **不规范**
 
     ```
     .
@@ -320,7 +326,7 @@ javascript工程项目的一系列最佳实践策略
     |   └── user.js
     ```
 
-    **好**
+    **规范**
 
     ```
     .
@@ -525,7 +531,7 @@ _为什么:_
 
 * 如何使用HTTP方法来操作CRUD功能
 
-    _How:_
+    _怎么做:_
     > `GET`: 查询资源的表示法。
     
     > `POST`: 创建一些新的资源或者子资源
@@ -542,7 +548,7 @@ _为什么:_
     _为什么:_
     > 这是一种自然的方式，方便资源的认知。
 
-    _How:_
+    _怎么做:_
 
     > `GET      /schools/2/students	` , 应该从学校2得到所有学生的名单
 
@@ -705,7 +711,7 @@ _为什么:_
 * 使用API​​设计工具，有很多开源工具可用于良好的文档，例如 [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
-## 10. 许可证
+## 10. 证书
 确保使用您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD，但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
 
 
