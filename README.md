@@ -20,9 +20,8 @@ If you want to share a best practice, or think one of these guidelines should be
 - [Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
-    - [Git Hooks](#git-hooks)
-    - [Using `lint-staged` with `husky` along with `prettier`](#using-lint-staged-with-husky-along-with-prettier)
-    - [Inside your Editor](#inside-your-editor)
+    - [Some code style guidelines](#)
+    - [Enforcing code style standards](#)
 - [Logging](#logging)
 - [API](#api)
     - [API design](#api-design)
@@ -381,6 +380,8 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="code-style"></a>
 ## 7. Code style
+### 7.1 Some code style guidelines
+
 * Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
 
     _Why:_
@@ -440,75 +441,23 @@ Having a good guideline for creating commits and sticking to it makes working wi
     > It makes it more natural to read the source code.
 
 <a name="code-style-check"></a>
-### 7.1 Code Style Check
+### 7.2 Enforcing code style standards
 
-<a name="git-hooks"></a>
-#### 7.1.1 Git Hooks
+* Include code style checks as part of your build process
 
-Before jumping into the _why_, let's get to the _what_. So what are Git hooks? Git hooks are scripts that Git executes before or after events such as commit, push, and receive. Git hooks are a built-in feature &mdash; no need to download anything. Git hooks are run locally.
+    _Why:_
 
-Some Git hooks are invoked by certain Git sub-commands. [Here's](https://git-scm.com/docs/githooks#_hooks) a list of Git hooks currently supported by Git.
+    > <!-- TODO -->
 
-These hook scripts are highly configurable. For example, after each `post-commit`, one can send an email to all team members, notifying them of a new commit using [git-multimail](https://git.kernel.org/pub/scm/git/git.git/tree/contrib/hooks/multimail/README?id=HEAD). One could also lint each staged file before committing them in the `pre-commit` hook, as you'll see [below](https://github.com/wearehive/project-guidelines#712-using-lint-staged-with-husky-along-with-prettier).
+* Have your editor notify you about code style errors
 
-Before jumping into setting up a Git hook configuration within your JS project, here's a few gotcha's:
+    _Why:_
+    > This is completely optional. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [Read more](https://github.com/prettier/eslint-config-prettier#installation).
 
-* Git hooks for a given Git repository lie inside `.git/hooks`
-* Your Git hook script need not be written in pure shell script. It can be written in any programming language of your choice, given that you declare the file as an executable before running the hook.<br />
-For Git hooks created from scratch, you may also need to change the file permissions and set it to an executable by using `chmod +x git_hook` where `git_hook` is the the file name of your hook
-* Hooks are local to any given Git repository, and they are not copied over to the new repository when you run `git clone`. And, since hooks are local, **they can be altered by anybody with access to the repository**
+* Consider using Git hooks
 
-<a name="using-lint-staged-with-husky-along-with-prettier"></a>
-#### 7.1.2 Using `lint-staged` with `husky` along with `prettier`
-
-Very often, code style concerns are largely opinionated. Thankfully, because of an ever-growing JavaScript community, we have [Prettier](https://github.com/prettier/prettier). Prettier is an opinionated code formatter that removes all original styling and ensures that all outputted code conforms to a consistent style. Read more on the philosophy of Prettier [here](http://jlongster.com/A-Prettier-Formatter).
-
-While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play.
-
-Start by installing `lint-staged`, `husky` and `prettier` as dev dependencies. Then, add this to your `package.json`
-
-```json
-{
-  "scripts": {
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  }
-}
-```
-
- This little tweak to your `package.json` will now lint all staged *.js files and run `prettier` with the passed flags against them and add them to your staged files once the `pre-commit` hook exits successfully.
-
- Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration).<br />
- Read more on configuring `husky` [here](https://github.com/typicode/husky).
-
-<a name="inside-your-editor"></a>
-#### 7.1.3 Inside your Editor
-
-The full capabilities of `prettier` can be extended in your text editor with a few simple steps. Start by adding [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) to your project. Then add (assuming you're using `.eslintrc.js`)
-
-```js
-{
-  "extends": [
-    ...
-    "prettier"
-  ]
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error"
-  }
-}
-```
-
-**Note**: Make sure to extend `prettier` **last**, so it gets the chance to override other configs.
-
-Once you're done, you'll have successfully turned off all rules that are unnecessary or might conflict with [Prettier](https://github.com/prettier/prettier) and run Prettier as an [ESLint](http://eslint.org) rule and report differences as individual ESLint issues.
+    _Why:_
+    > While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play. Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) and on configuring `husky` [here](https://github.com/typicode/husky).
 
 
 <a name="logging"></a>
