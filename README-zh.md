@@ -76,6 +76,12 @@ javascript工程项目的一系列最佳实践策略
 ### 1.2 Git workflow
 因为以上原因, 我们使用 [需求功能分支-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) 并配合 [Rebasing的使用方法](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) 和 一些关于 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (命名和使用一个develop branch). 主要步骤如下:
 
+* 针对一个新项目, 在你的项目目录初始化你的项目. __针对下级目录 features/changes 这一步请忽略__.
+   ```sh
+   cd <项目目录>
+   git init
+   ```
+
 * Checkout 一个新的 feature/bug-fix 分支。
     ```sh
     git checkout -b <分支名称>

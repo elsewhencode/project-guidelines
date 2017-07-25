@@ -76,6 +76,12 @@ There are a set of rules to keep in mind:
 ### 1.2 Git workflow
 Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
 
+* For a new project, initialize a git repository in the project directory. __For subsequent features/changes this step should be ignored__.
+   ```sh
+   cd <project directory>
+   git init
+   ```
+
 * Checkout a new feature/bug-fix branch
     ```sh
     git checkout -b <branchname>
@@ -108,7 +114,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```sh
-	git add <file1> <file2> ...
+    git add <file1> <file2> ...
     git rebase --continue
     ```
 * Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
