@@ -1,11 +1,13 @@
 
+[中文版](./README-zh.md)
+
 [<img src="./images/logo.png">](http://wearehive.co.uk/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 > While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
 Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [hive](http://wearehive.co.uk).
-If you want to share a best practice, or think one of these guidelines  should be removed, [feel free to share it with us](http://makeapullrequest.com).
+If you want to share a best practice, or think one of these guidelines should be removed, [feel free to share it with us](http://makeapullrequest.com).
 - [Git](#git)
     - [Some Git rules](#some-git-rules)
     - [Git workflow](#git-workflow)
@@ -61,14 +63,14 @@ There are a set of rules to keep in mind:
 * Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
     
     _Why:_
-    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionaly you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
+    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
 * Use [this .gitignore file](./.gitignore).
     
     _Why:_
-    > It already has a list of system files that should not be sent with your code into remote repository. In addition, it excludes setting folders and files for mostly used editors, as well as most common dependency folders.
+    > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
 
-* Protect your `develop` and `master` branch .
+* Protect your `develop` and `master` branch.
   
     _Why:_
     > It protects your production-ready branches from receiving unexpected and irreversible changes. read more... [Github](https://help.github.com/articles/about-protected-branches/) and [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
@@ -76,6 +78,12 @@ There are a set of rules to keep in mind:
 <a name="git-workflow"></a>
 ### 1.2 Git workflow
 Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follow:
+
+* For a new project, initialize a git repository in the project directory. __For subsequent features/changes this step should be ignored__.
+   ```sh
+   cd <project directory>
+   git init
+   ```
 
 * Checkout a new feature/bug-fix branch
     ```sh
@@ -87,7 +95,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     git commit -a
     ```
     _Why:_
-    > `git commit -a` will start an editor which lets your separate the subject from the body. Read more about it in *section 1.3*.
+    > `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
 
 * Sync with remote to get changes you’ve missed
     ```sh
@@ -109,7 +117,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     
 * If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
     ```sh
-	git add <file1> <file2> ...
+    git add <file1> <file2> ...
     git rebase --continue
     ```
 * Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
@@ -122,7 +130,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     
     
 * Make a Pull Request.
-* Pull request will be accepted, merged and close by reviewer.
+* Pull request will be accepted, merged and close by a reviewer.
 * Remove your local feature branch if you're done.
 
   ```sh
@@ -162,10 +170,10 @@ Having a good guideline for creating commits and sticking to it makes working wi
 ## 2. Documentation
 * Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 * For projects with more than one repository, provide links to them in their respective `README.md` files.
-* Keep `README.md` updated as project evolves.
+* Keep `README.md` updated as a project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section.
 * If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
-* Don't use commenting as an excuse for a bad code. Keep your code clean.
+* Don't use comments as an excuse for a bad code. Keep your code clean.
 * Don't use clean code as an excuse to not comment at all.
 * Keep comments relevant as your code evolves.
 
@@ -183,7 +191,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
 
     _How:_
-    >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead commit a `.env.example`  which serves as a guide for developers. For production you should still set your environment variables in the standard way.
+    >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example`  which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
     [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 * It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
@@ -252,7 +260,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
 
     _Why:_
-    > Having loads of contributors wont be as effective, if maintainers dont merge fixes and patches quickly enough.
+    > Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
 
 * If a less known dependency is needed, discuss it with the team before using it.
 * Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
@@ -269,7 +277,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Have a `test` mode environment if needed.
 
     _Why:_
-    > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after certain amount of requests. 
+    > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests. 
 
 * Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
 
@@ -285,7 +293,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Write testable code, avoid side effects, extract side effects, write pure functions
 
     _Why:_
-    > You want to test a business logic as a separate units. You have to "minimize the impact of randomness and non-deterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+    > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
     
     > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
@@ -298,7 +306,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Run tests locally before making any pull requests to `develop`.
 
     _Why:_
-    > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to remote repository.
+    > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to a remote repository.
 
 * Document your tests including instructions in the relevant section of your `README.md` file.
 
@@ -348,19 +356,19 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
     _Why:_
     >When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly, as more deploys of the app are created, new environment names are necessary.
-    Values to be used in config files should provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+    Values to be used in config files should be provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
     
 
 * Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
 
     _Why:_
-    >It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronisation and so on.
+    >It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronization and so on.
     
 
 * Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
 
     _Why:_
-    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point commiting them into your remote repository. Unless you specifically want to. 
+    >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to. 
 
 * Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
 
@@ -386,7 +394,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
 
     _Why:_
-    > We simply prefer `eslint`, you don't have to. It has more number of rules supported, ability to configure the rules, and ability to add custom rules.
+    > We simply prefer `eslint`, you don't have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.
 
 * We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
 
@@ -398,7 +406,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Use `.eslintignore` to exclude file or folders from code style check.
 
     _Why:_
-    > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude couple of files from style checking.
+    > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
 
 * Remove any of your `eslint` disable comments before making a Pull Request.
 
@@ -549,7 +557,7 @@ _Why:_
 * In the source code convert plurals to variables and properties with a List suffix.
 
     _Why_:
-    > Plural is nice in the URL but in the source code, it’s just too subtile and error-prone.
+    > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
 
 * Always use a singular concept that starts with a collection and ends to an identifier:
 
@@ -625,7 +633,7 @@ _Why:_
 
     > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs
 
-* Use a simple ordinal number for version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
+* Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
     ```
     http://api.domain.com/v1/schools/3/students	
     ```
@@ -635,7 +643,7 @@ _Why:_
 
 
 
-* Response messages must be self descriptive. A good error message response might look something like this:
+* Response messages must be self-descriptive. A good error message response might look something like this:
     ```json
     {
         "code": 1234,
@@ -667,7 +675,7 @@ _Why:_
     > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
 
 
-    _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only password was incorrect._
+    _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
 
 * Use only these 8 status codes to send with you response to describe whether **everything worked**,
 The **client app did something wrong** or The **API did something wrong**.
@@ -687,7 +695,7 @@ The **client app did something wrong** or The **API did something wrong**.
 
     > `404 Not Found` indicates that the requested resource was not found. 
 
-    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfil it due to some unexpected condition.
+    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
 
     _Why:_
     > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
@@ -700,7 +708,7 @@ The **client app did something wrong** or The **API did something wrong**.
     ```
     GET /student?fields=id,name,age,class
     ```
-* Pagination, filtering and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+* Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
 
 <a name="api-security"></a>
 ### 9.2 API security
@@ -753,7 +761,7 @@ For each endpoint explain:
     Optional: photo_id=[alphanumeric]
     ```
 
-* If the request type is POST, provide a working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+* If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
 
 * Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
 
@@ -762,7 +770,7 @@ For each endpoint explain:
     Content: { id : 12 }
     ```
 
-* Error Response, Most endpoints have many ways to fail. From unauthorised access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
+* Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
     {
         "code": 403,
@@ -776,7 +784,7 @@ For each endpoint explain:
 
 <a name="licensing"></a>
 ## 10. Licensing
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into licence details. Copyrighted images and videos may cause legal problems.
+Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
 
 
 ---
