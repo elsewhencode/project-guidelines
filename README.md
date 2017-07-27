@@ -1,7 +1,7 @@
 
 [中文版](./README-zh.md)
 
-[<img src="./images/hive-red-logo.png" width="200" height="200">](http://wearehive.co.uk/)
+[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
