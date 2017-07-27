@@ -29,7 +29,7 @@ If you want to share a best practice, or think one of these guidelines should be
 
 <a name="git"></a>
 ## 1. Git
-![Github](/images/branching.png)
+![Git](/images/branching.png)
 <a name="some-git-rules"></a>
 
 ### 1.1 Some Git rules
