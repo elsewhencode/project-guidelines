@@ -1,6 +1,8 @@
 
-[<img src="./images/logo.png">](http://wearehive.co.uk/)
+[EN](./README.md)
 
+
+[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
 
 # 项目规范 &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
@@ -29,6 +31,9 @@ javascript工程项目的一系列最佳实践策略
 <a name="git"></a>
 ## 1. Git
 <a name="some-git-rules"></a>
+
+![git](/images/branching.png)
+
 ### 1.1 一些Git规则
 
 有一套规则要牢记：
@@ -165,6 +170,9 @@ javascript工程项目的一系列最佳实践策略
 
  <a name="文档"></a>
 ## 2. 文档
+
+![文档](/images/documentation.png)
+
 * 使用这个 [模板](./README.sample.md) 给 `README.md`, 欢迎添加里面没有的内容。
 * 对于具有多个存储库的项目，请在各自的`README.md`文件中提供它们的链接。
 * 随项目持续的更新 `README.md`.
@@ -174,8 +182,9 @@ javascript工程项目的一系列最佳实践策略
 * 也不要把那些清晰的代码作为不写注释的借口。
 * 当代码更新，也请确保注释的同步更新。
 
-<a name="环境"></a>
+<a name="environments"></a>
 ## 3. 环境
+![环境](/images/laptop.png)
 * 如果需要，请分别定义 `development`, `test` 和 `production` 三个环境.
 
     _为什么:_
@@ -243,6 +252,9 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="dependencies"></a>
 ## 4. 依赖
+
+![依赖](/images/modules.png)
+
 * 持续跟踪你当前的可用依赖包: e.g., `npm ls --depth=0`. [更多请阅读...](https://docs.npmjs.com/cli/ls)
 * 查看这些软件包是否已经变得不可用或者已经废弃: `depcheck`. [更多请阅读...](https://www.npmjs.com/package/depcheck)
     
@@ -269,6 +281,8 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="testing"></a>
 ## 5. 测试
+
+![测试](/images/testing.png)
 
 * 如果需要，构建一个 `test` 环境.
 
@@ -311,6 +325,9 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="structure-and-naming"></a>
 ## 6. 结构布局与命名
+
+![结构布局与命名](/images/folder-tree.png)
+
 * 围绕产品功能/页面/组件来组织您的文件，而不是围绕角色来组织文件。此外，请将测试文件放在他们对应实现的旁边。
 
 
@@ -378,6 +395,9 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="code-style"></a>
 ## 7. 代码风格
+
+![代码风格](/images/code-style.png)
+
 * 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持与老的语法一致，除非您打算把老的项目也更新为现代化风格。
 
     _为什么:_
@@ -438,6 +458,9 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="logging"></a>
 ## 8. 日志
+
+![日志](/images/logging.png)
+
 * 避免在生产环境中使用客户端的日志
 
     _为什么:_
@@ -452,6 +475,9 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="api"></a>
 ## 9. API
+
+![API](/images/api.png)
+
 <a name="api-design"></a>
 ### 9.1 API 设计
 
@@ -712,6 +738,9 @@ _为什么:_
 
 <a name="licensing"></a>
 ## 10. 证书
+
+![证书](/images/licensing.png)
+
 确保使用您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD，但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
 
 
