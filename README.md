@@ -64,7 +64,7 @@ There are a set of rules to keep in mind:
     _Why:_
     > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
-* Use [this .gitignore file](./.gitignore).
+* Use [this](./.gitignore) `.gitignore` file.
     
     _Why:_
     > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
