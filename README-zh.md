@@ -1,6 +1,8 @@
 
-[<img src="./images/logo.png">](http://wearehive.co.uk/)
+[EN](./README.md)
 
+
+[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
 
 # 项目规范 &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
