@@ -103,37 +103,37 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 这其实是在rebasing的时候创造了一个解决冲突的时机，而不是创建通过包含冲突的Pull请求。
     
-* 通过使用rebase从develop更新最新的代码提交
+* 通过使用rebase从develop拉取最新的代码提交
     ```sh
     git checkout <branchname>
     git rebase -i --autosquash develop
     ```
     
     _为什么:_
-    > 您可以使用--autosquash将所有相同类型提交压缩到单个提交。没有人想要在开发分支中提交一大堆单个功能的提交 [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
+    > 您可以使用--autosquash将所有相同类型提交压缩到单个提交。一般没有人想在开发分支中提交一大堆相同功能的提交吧？ [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
-* 如果没有冲突请跳过此步骤，如果你有冲突, [解决方式](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  就通过--continue参数继续rebase
+* 如果没有冲突请跳过此步骤，如果你有冲突, [解决方式](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) 就可以通过--continue参数继续rebase
     ```sh
 	git add <file1> <file2> ...
     git rebase --continue
     ```
-* Push 你的分支. Rebase 将会改变提交历史, 所以你可以使用 `-f` 强制push到远程分支. 如果其他人正在您的这个分支上面开发，请使用不那么破坏性的 `--force-with-lease`.
+* Push你的分支. Rebase将会改变提交历史, 所以你可以使用 `-f` 强制push到远程分支. 如果其他人正在您的这个分支上面进行开发，请使用不那么破坏性的 `--force-with-lease`.
     ```sh
     git push -f
     ```
     
     _为什么:_
-    > 当你rebase时，你会改变需求功能分支的提交历史。结果呢，Git却拒绝了正常的“git push”。那么，您只能使用-f或--force标志了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+    > 当你rebase时，你会改变需求功能分支的提交历史。结果呢？Git却拒绝了正常的“git push”。那么，您只能使用`-f`或`--force`参数了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
     
     
-* 提交一个pull request.
-* Pull request 会被代码审查的同事来接受，合并和关闭.
-* 如果你完成了开发，请删除你的本地分支.
+* 提交一个Pull Request.
+* Pull Request 会被负责代码审查的同事接受，合并和关闭.
+* 如果你完成了开发，请记得删除你的本地分支.
 
   ```sh
   git branch -d <分支>
   ```
-  删除所有不在原创仓库维护的分支
+  删除所有已经不在远程仓库维护的分支
   ```sh
   git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
   ```
@@ -141,45 +141,45 @@ javascript工程项目的一系列最佳实践策略
 <a name="writing-good-commit-messages"></a>
 ### 1.3 如何写好提交说明
 
-坚持关于提交的良好指南，会让在与他人合作git时更容易。这里有一些经验法则 ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+坚持遵循关于提交的标准指南，会让在与他人合作使用Git时更容易。这里有一些经验法则 ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
- * 将话题和文体用换行后的两条空行分开
+ * 将标题和文体用换行后的两条空行分开
 
     _为什么:_
-    > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用git shortlog，而不是git log，你会看到一个很长的提交消息列表，其中包含提交的id和摘要
+    > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果你尝试使用`git shortlog`，而不是`git log`，你会看到一个很长的提交消息列表，其中包含提交的id和摘要。
 
- * 将主题行限制为50个字符，并将主体控制在72个字符
+ * 将标题行限制为50个字符，并将文体控制在72个字符。
 
     为什么_
     > 提交应尽可能简洁明了，而不是写一堆冗余的描述。 [更多请阅读...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
- * 大写的主题线
- * 不要用句号结束主题句
- * 使用 [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) 在主题线
+ * 大写的标题线
+ * 不要用句号结束标题句
+ * 使用 [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) 在标题线
 
     _为什么:_
-    > 不是简单的写这次提交者做了什么。最好写明提交者将要进一步做什么事情。[更多请阅读...](https://news.ycombinator.com/item?id=2079612)
+    > 不是简单的写提交者这次做了什么。最好写明提交者将要进一步做什么事情。[更多请阅读...](https://news.ycombinator.com/item?id=2079612)
 
 
- * Use the body to explain **what** and **why** as opposed to **how** //UFO
+ * 使用文体去解释 **是什么** 和 **为什么** 而不是 **怎么做**
 
  <a name="文档"></a>
 ## 2. 文档
 * 使用这个 [模板](./README.sample.md) 给 `README.md`, 欢迎添加里面没有的内容。
 * 对于具有多个存储库的项目，请在各自的`README.md`文件中提供它们的链接。
 * 随项目持续的更新 `README.md`.
-* 给你的代码添加详细的注释，这样就可以清楚每个主要部分的意思。
-* 如果您正在使用的某些代码和方法，在github或stackoverflow上有公开讨论，请在您的评论中包含这些链接，
+* 给你的代码添加详细的注释，这样就可以清楚每个主要部分的含义。
+* 如果您正在使用的某些代码和方法，在github或stackoverflow上已经有公开讨论，请在您的评论中包含这些链接，
 * 不要把注释作为坏代码的借口。保持你的代码干净整洁。
 * 也不要把那些清晰的代码作为不写注释的借口。
-* 代码的更新，也请确保注释的同步更新。
+* 当代码更新，也请确保注释的同步更新。
 
 <a name="环境"></a>
 ## 3. 环境
-* 如果需要，请分别定义 `development`, `test` 和 `production` 环境.
+* 如果需要，请分别定义 `development`, `test` 和 `production` 三个环境.
 
     _为什么:_
-    > 不同的环境可能需要不同的数据，token，API，端口等。您可能需要一个隔离的`development`模式，它调用mock的API，它会返回我们需要的数据，使自动化和手动测试变得更加容易。或者您可能只想在`production` 上才启用Google Analytics（分析）。 [更多请阅读...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    > 不同的环境可能需要不同的数据，token，API，端口等。您可能需要一个隔离的`development`环境，它调用mock的API，mock会返回我们需要的数据，使自动和手动测试变得更加容易。或者您可能只想在`production` 环境中才启用Google Analytics（分析）。 [更多请阅读...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * 从环境变量加载部署的相关配置，不要将这些配置作为常量添加到代码库中， [看这个例子](./config.sample.js).
@@ -188,7 +188,7 @@ javascript工程项目的一系列最佳实践策略
     > 你会有令牌，密码和其他有价值的信息。这些配置应正确地从应用程序内部分离开来，这样代码库就可以随时独立发布，不会包含这些敏感配置信息。
 
     _怎么做:_
-    >使用`.env`文件来存储环境变量，并将这个文件添加到`.gitignore`中以便不提交到git仓库。另外，在提交一个`.env.example`作为开发人员的参考。对于生产环境，您应该以标准化的方式设置环境变量。
+    >使用`.env`文件来存储环境变量，并将不提交到git仓库的文件添加到`.gitignore`中。另外，再提交一个`.env.example`作为开发人员的参考配置。对于生产环境，您应该以标准化的方式设置环境变量。
     [更多请阅读](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 * 建议您在应用程序启动之前校验一下环境变量。  [看这个例子](./configWithTest.sample.js) 使用 `joi` 去校验提供的值.
@@ -239,7 +239,7 @@ javascript工程项目的一系列最佳实践策略
     > 或者，您可以使用“yarn”，并确保在“README.md”中标注。您的锁文件和`package.json`在每次依赖关系更新后应该具有相同的版本。[更多请阅读...](https://yarnpkg.com/en/)
 
     _我不太喜欢 `Yarn`:_
-    > 太糟糕了。对于旧版本的“`npm`，在安装新的依赖关系时使用`-save --save-exact`，并在发布之前创建`npm-shrinkwrap.json`。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
+    > 居然不喜欢Yarn，太糟糕了。对于旧版本的“`npm`，在安装新的依赖关系时使用`-save --save-exact`，并在发布之前创建`npm-shrinkwrap.json`。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
 ## 4. 依赖
@@ -254,31 +254,31 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 更多的使用将意味着更多的贡献者，这通常意味着拥有更好的维护，这些才能确保快速发现错误和快速修复错误。
 
-* 在使用依赖关系之前，请检查它是否具有良好的成熟版本发布频率与大量的维护者：例如， `npm view async`. [更多请阅读...](https://docs.npmjs.com/cli/view)
+* 在使用依赖关系之前，请检查它是否具有良好而成熟的版本发布频率与大量的维护者：例如， `npm view async`. [更多请阅读...](https://docs.npmjs.com/cli/view)
 
     _为什么:_
-    > 如果维护者没有够快地merge修补程序，那么这些贡献者也将不会变得积极高效。
+    > 如果维护者没有足够快地merge修补程序，那么这些贡献者也将会变得不积极不高效。
 
-* 如果需要使用那些不太熟悉的依赖包，请在使用之前与团队进行充分讨论。始终确保您的应用程序在最新版本的依赖包上面能正常运行，而不是坏掉：`npm outdated`. [更多请阅读...](https://docs.npmjs.com/cli/outdated)
+* 如果需要使用那些不太熟悉的依赖包，请在使用之前与团队进行充分讨论。始终确保您的应用程序在最新版本的依赖包上面能正常运行，而不是无法使用：`npm outdated`. [更多请阅读...](https://docs.npmjs.com/cli/outdated)
 
     _为什么:_
-    > 依赖关系更新有时包含破坏性更改。当显示需要更新时，请始终先查看其发行说明。并逐一的更新您的依赖项，如果出现任何问题，可以使故障排除更容易。使用一个很酷的工具，如 [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+    > 依赖关系更新有时包含破坏性更改。当显示需要更新时，请始终先查看其发行说明。并逐一的更新您的依赖项，如果出现任何问题，可以使故障排除更容易。这里有一个很酷的工具，如 [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
-* 检查包是否有已知安全漏洞，例如： [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+* 检查包是否有已知的安全漏洞，例如： [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 
 <a name="testing"></a>
 ## 5. 测试
 
-* 如果需要，建一个 `test` 环境.
+* 如果需要，构建一个 `test` 环境.
 
     _为什么:_
-    > 虽然有时在`production`模式下端到端测试可能看起来已经足够了，但有一些例外：比如您可能不想在生产环境下启用数据分析功能，只能用测试数据来填充（污染）某人的仪表板。另一个例子是，您的API可能在`production`中具有速率限制，并在请求达到一定量级后会阻止您的测试请求。
+    > 虽然有时在`production`模式下端到端测试可能看起来已经足够了，但有一些例外：比如您可能不想在生产环境下启用数据分析功能，只能用测试数据来填充（污染）某人的仪表板。另一个例子是，您的API可能在`production`中才具有速率限制，并在请求达到一定量级后会阻止您的测试请求。
 
 * 将测试文件放在使用`* .test.js`或`* .spec.js`命名约定的测试模块，比如`moduleName.spec.js`
 
     _为什么:_
-    > 你肯定不想深入一个文件夹的层层结构来查找里面的单元测试。[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    > 你肯定不想进入一个层次很深的文件夹结构来查找里面的单元测试。[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
     
 
 * 将其他测试文件放入独立的测试文件夹中以避免混淆。
@@ -286,10 +286,10 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 一些测试文件与任何特定的文件实现没有特别的关系。你只需将它放在最有可能被其他开发人员找到的文件夹中：`__test__`文件夹。这个名字：`__test__`也是现在的标准，被大多数JavaScript测试框架所接受。
 
-* 编写可测试代码，避免不良代码，提取，并写成纯函数 //UFO
+* 编写可测试代码，避免不良代码，提取并写成纯函数 //UFO
 
     _为什么:_
-    > 您想要将业务逻辑测试为单独的单元。您必须“尽量减少不可预测性和非确定性过程对代码可靠性的影响”。 [更多请阅读...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+    > 您想要将业务逻辑拆分为为单独的测试单元。您必须“尽量减少不可预测性和非确定性过程对代码可靠性的影响”。 [更多请阅读...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
     
     > 纯函数是一个函数，它总是为相同的输入返回相同的输出。相反，不纯的函数是可能具有不可预测性或取决于来自外部的条件来决定产生对应的输出值。这使得它不那么可预测[更多请阅读...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
@@ -299,15 +299,15 @@ javascript工程项目的一系列最佳实践策略
     > 有时您可能需要一个静态类型检查器。它为您的代码带来一定程度的可靠性。[更多请阅读...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
 
-* 在进行任何pull请求时，先在本地`develop`分支运行测试 .
+* 先在本地`develop`分支运行测试，待测试通过后，再进行pull请求。
 
     _为什么:_
-    > 你不想成为一个导致生产分支构建失败的人。在您的`rebase`之后运行测试，然后将您的需求功能分支改动推送到远程仓库。
+    > 你不想成为一个导致生产分支构建失败的人吧。在您的`rebase`之后运行测试，然后再将您的需求功能分支改动推送到远程仓库。
 
 * 记录您的测试，包括在`README.md`文件中的相关部分说明。
 
     _为什么:_
-    > 这个记录的笔记非常的方便，便于留给其他开发人员或DevOps专家或QA或任何幸运的人，让他们更方便的来处理您的代码。
+    > 这个记录的笔记非常的方便，便于留给其他开发人员或DevOps专家及QA和任何幸运的人，让他们更方便的来处理您的代码。
 
 <a name="structure-and-naming"></a>
 ## 6. 结构布局与命名
@@ -351,21 +351,21 @@ javascript工程项目的一系列最佳实践策略
 * 使用`./config`文件夹，不要为不同的环境制作不同的配置文件。
 
     _为什么:_
-    >当您为不同的目的（数据库，API等）分解不同的配置文件;将它们放在具有容易识别名称（如“config”）的文件夹中才是有意义的。只要记住不要为不同的环境制作不同的配置文件。这样并不是真的具有扩展性，随着更多应用程序部署被创建出来，新的环境名称也会不断被创建，这样会导致换乱。
+    >当您为不同的目的（数据库，API等）分解不同的配置文件;将它们放在具有容易识别名称（如“config”）的文件夹中才是有意义的。只要记住不要为不同的环境制作不同的配置文件。这样并不是具有扩展性的做法，如果这样，就会导致随着更多应用程序部署被创建出来，新的环境名称也会不断被创建，非常混乱。
     配置文件中使用的值应通过环境变量提供。 [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
     
 
-* 将脚本文件放在`./ scripts`文件夹中。包括`bash`脚本和`node`脚本。
+* 将脚本文件放在`./scripts`文件夹中。包括`bash`脚本和`node`脚本。
     _为什么:_
     > 很可能最终会出现很多脚本文件，比如生产构建，开发构建，数据库feeders，数据库同步等。
     
 
-* 将构建输出结果放在`./ build`文件夹中。将`build /`添加到`.gitignore`中以便忽略此文件夹。
+* 将构建输出结果放在`./build`文件夹中。将`build/`添加到`.gitignore`中以便忽略此文件夹。
 
     _为什么:_
-    > 命名为你最喜欢的就行，`dist`蛮酷的。但请确保与您的团队保持一致性。哪些东西最有应该放这个文件夹呢？比如（bundle，编译结果，转换结果）。您产生什么编译结果，您的队友也可以生成同样的结果，所以没有必要将这些结果提交到远程仓库中。除非你故意希望提交上去。
+    > 命名为你最喜欢的就行，`dist`看起来蛮酷的。但请确保与您的团队保持一致性。哪些东西最有应该放这个文件夹呢？比如（bundle，编译结果，转换结果）。您产生什么编译结果，您的队友也可以生成同样的结果，所以没有必要将这些结果提交到远程仓库中。除非你故意希望提交上去。
 
-* 文件名和目录名请使用`PascalCase''camelCase`风格。组件请使用`PascalCase`风格。
+* 文件名和目录名请使用`PascalCase``camelCase`风格。组件请使用`PascalCase`风格。
 
 
 * `CheckBox/index.js`应该代表`CheckBox`组件，也可以写成`CheckBox.js`，但是**不能**写成冗长的`CheckBox/CheckBox.js`或`checkbox/CheckBox.js`。
@@ -378,7 +378,7 @@ javascript工程项目的一系列最佳实践策略
 
 <a name="code-style"></a>
 ## 7. 代码风格
-* 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持老的语法一致，除非您打算把老的项目现代化。
+* 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持与老的语法一致，除非您打算把老的项目也更新为现代化风格。
 
     _为什么:_
     > 这完全取决于你的选择。我们使用转换器来使用新的语法糖。Stage2更有可能最终成为规范的一部分，而且仅仅只需经过小版本的迭代就会成为规范。
@@ -405,33 +405,33 @@ javascript工程项目的一系列最佳实践策略
     _为什么:_
     > 当您需要从风格检查中排除几个文件时，就再也不需要通过`eslint-disable`注释来污染您的代码了。
 
-* 在pull request之前，请删除任何`eslint`禁用注释。
+* 在Pull Request之前，请删除任何`eslint`的禁用注释。
 
     _为什么:_
     > 在处理代码块时禁用风格检查是正常现象，这样就可以关注在业务逻辑。只要记住把那些`eslint-disable`注释删除并遵循这些风格规则。
 
-* 根据任务的大小使用`// TODO：`注释或做一个标签。
+* 根据任务的大小使用`//TODO：`注释或做一个标签。
 
     _为什么:_
-    > 这样你就可以提醒自己和他人有这样一个小的任务需要处理（如重构一个函数或更新一个注释）。对于较大的任务，使用由lint规则执行的`// TODO（＃3456）`，其中的`#3456`号码作为一个标签。
+    > 这样你就可以提醒自己和他人有这样一个小的任务需要处理（如重构一个函数或更新一个注释）。对于较大的任务，使用由lint规则执行的`//TODO（＃3456）`，其中的`#3456`号码是一个标签，方便查找。
 
 
 * 随着代码的变化，始终保持注释的相关性。删除那些注释掉的代码块。
     
     _为什么:_
-    > 代码应该尽可能的可读，你应该摆脱任何分心的事情。如果你在重构一个函数，就不要注释那些旧代码，直接删除它吧。
+    > 代码应该尽可能的可读，你应该摆脱任何分心的事情。如果你在重构一个函数，就不要注释那些旧代码，直接把要注释的代码删除吧。
 
 * 避免不相关的和搞笑的的注释，日志或命名。
 
     _为什么:_
     > 虽然您的构建过程中可能（应该）移除它们，但有可能您的源代码会被移交给另一个公司/客户，你的这些笑话应该无法逗乐你的客户。
 
-* 请使用有意义容易搜索的命名，避免缩写名称。对于函数使用长描述性命名。功能命名应该是一个动词或动词短语，需要是能清楚传达意图的命名。
+* 请使用有意义容易搜索的命名，避免缩写名称。对于函数使用长描述性命名。功能命名应该是一个动词或动词短语，需要能清楚传达意图的命名。
 
     _为什么:_
     > 它使读取源代码变得更加自然。
 
-* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.（译者注：这一段我翻译不好，大家看看原文吧，是为了说明函数的组织方式）
+* Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.（译者注：这一段我翻译不好，大家看看原文吧，大体意思是为了说明函数的组织方式，根据逐级下降的规则，把底层函数和上层函数按照具有具有条理性的规则拆分开。也有朋友说这个是高阶函数的封装。此中文翻译已经被官方采纳，我们等hive的同事给出进一步解释吧。也请读者给出您的宝贵建议。）
 
     _为什么:_
     > 它使源代码的可读性更好。
@@ -457,36 +457,36 @@ javascript工程项目的一系列最佳实践策略
 
 _为什么:_
 > 
-因为我们试图实施开发出结构稳健的RESTful接口，让团队成员和客户可以简单而一致地使用它们。
+因为我们试图实施开发出结构稳健的Restful接口，让团队成员和客户可以简单而一致地使用它们。
 
 _为什么:_
->缺乏一致性和简单性会大大增加集成和维护的成本。这就是为什么`API设计'包含在这个文档中的原因
+>缺乏一致性和简单性会大大增加集成和维护的成本。这就是为什么`API设计`这部分会包含在这个文档中的原因
 
 
-* 我们主要遵循资源导向的设计。它有三个主要要素：资源，集合和URLs。
+* 我们主要遵循资源导向的设计方式。它有三个主要要素：资源，集合和URLs。
     * 资源具有数据，嵌套，和一些操作方法。
     * 一组资源称为一个集合。
     * URL标识资源或集合的在线位置。
     
     _为什么:_
-    > 这是针对开发人员（您的主API使用者）非常有名的设计。除了可读性和易用性之外，它还允许我们在无需了解API细节的情况下编写通用库和一些连接器。
+    > 这是针对开发人员（您的主API使用者）非常著名的设计方式。除了可读性和易用性之外，它还允许我们在无需了解API细节的情况下编写通用库和一些连接器。
 
 
-* 使用kebab模式的URL。
-* 在查询字符串或资源字段中使用camelCase模式。
-* 在URL中使用多个kebab-case作为资源名称。
+* 使用`kebab`模式的URL。
+* 在查询字符串或资源字段中使用`camelCase`模式。
+* 在URL中使用多个`kebab-case`作为资源名称。
 
-* 总是使用复数名词来命名指向一个集合的url：`/ users`.
+* 总是使用复数名词来命名指向一个集合的url：`/users`.
 
     _为什么:_
-    > 基本上，它可读性更好，并可以保持URL的一致性。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+    > 基本上，它可读性会更好，并可以保持URL的一致性。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
 * 在源代码中，将复数转换为具有列表后缀名描述的变量和属性。
 
     为什么_:
-    > 复数形式的URL非常好，但在源代码中它却很微妙而且容易出错。
+    > 复数形式的URL非常好，但在源代码中使用它却很微妙而且容易出错，所以要小心谨慎。
 
-* 坚持这样一个概念：始终以集合名开始并以标识符结束。
+* 坚持这样一个概念：始终以集合名起始并以标识符结束。
 
     ```
     /students/245743
@@ -498,12 +498,12 @@ _为什么:_
     ```
 
     _为什么:_
-    > 这不是指向资源，而是指向属性。您可以将属性作为参数传递，以减少响应。
+    > 这不是在指向资源，而是在指向属性。您可以将属性作为参数传递，以减少响应。
 
-* URLs请尽量少用动词
+* URLs里面请尽量少用动词
 
     _为什么:_
-    > 因为如果你为每个资源操作使用一个动词，你很快就会有一个很大的URL列表，而且没有一致的使用模式，这会使开发人员难以学习。此外，我们还要使用动词做别的事情。
+    > 因为如果你为每个资源操作使用一个动词，你很快就会维护一个很大的URL列表，而且没有一致的使用模式，这会使开发人员难以学习。此外，我们还要使用动词做别的事情。
 
 * 为非资源型请求使用动词。在这种情况下，您的API并不需要返回任何资源。而是去执行一个操作并返回执行结果。这些**不是** CRUD（创建，查询，更新和删除）操作：
 
@@ -512,7 +512,7 @@ _为什么:_
     ```
 
     _为什么:_
-    > 因为对于CRUD，我们在`资源`或`集合`URL上使用HTTP自己的方法。我们所说的动词实际上是指`Controllers`。你通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    > 因为对于CRUD，我们在`资源`或`集合`URL上使用HTTP自己带的方法。我们所说的动词实际上是指`Controllers`。你通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
 * 请求体或响应类型如果是JSON，那么请遵循`camelCase`规范为`JSON`属性命名来保持一致性。
     
