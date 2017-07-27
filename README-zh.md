@@ -524,7 +524,7 @@ _为什么:_
     ```
 
     _为什么:_
-    > 这不是在指向资源，而是在指向属性。您可以将属性作为参数传递，以减少响应。
+    > 这不是在指向资源，而是在指向属性。您完全可以将属性作为参数传递，以减少响应。
 
 * URLs里面请尽量少用动词
 
@@ -558,7 +558,7 @@ _为什么:_
 * 如何使用HTTP方法来操作CRUD功能
 
     _怎么做:_
-    > `GET`: 查询资源的表示法。
+    > `GET`: 查询资源的表示法
     
     > `POST`: 创建一些新的资源或者子资源
    
@@ -592,7 +592,7 @@ _为什么:_
     ```
 
     _为什么:_
-    > 当您的API为第三方公开时，升级API会发生导致一些突然的变化，也会导致使用您的API的人无法使用你的服务和产品。而这时使用URL中的版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+    > 当您的API为第三方公开时，升级API会导致发生一些意料之外的影响，也可能导致使用您API的人无法使用你的服务和产品。而这时使用URL中版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 
 
@@ -625,33 +625,33 @@ _为什么:_
     ```
 
     _为什么:_
-    > 开发人员在使用API​​构建的应用程序时，难免需要在故障排除和解决问题的关键时刻使用到这些精心设计的错误消息。好的错误消息设计能节约大量的问题排查时间。
+    > 开发人员在使用这些由API​​构建的应用程序时，难免会需要在故障排除和解决问题的关键时刻使用到这些精心设计的错误消息。好的错误消息设计能节约大量的问题排查时间。
 
 
-    _注意：尽可能保持安全异常消息的通用性。例如，别说`不正确的密码`，您可以换成`无效的用户名或密码`，以免我们不知不觉地通知用户用户名确实是正确的，只有密码不正确。这会让用户很懵逼。
+    _注意：尽可能保持安全异常消息的通用性。例如，别说`不正确的密码`，您可以换成`无效的用户名或密码`，以免我们不知不觉地通知用户他的用户名确实是正确的，只有密码不正确。这会让用户很懵逼。
 
 * 只使用这8个状态代码，并配合您自定义的响应描述来表述程序工作**一切是否正常**，**客户端应用程序发生了什么错误**或**API发生错误**。
     
     _选谁呢？:_
-    > `200 OK`  `GET`, `PUT` 或 `POST` 请响应成功.
+    > `200 OK`  `GET`, `PUT` 或 `POST` 请求响应成功.
 
     > `201 Created` 标识一个新实例创建成功。当创建一个新的实例，请使用`POST`方法并返回`201`状态码。
 
 
-    > `304 Not Modified` 当发现资源已经缓存在本地，就可以减少请求次数。
+    > `304 Not Modified` 发现资源已经缓存在本地，浏览器会自动减少请求次数。
 
     > `400 Bad Request` 请求未被处理，因为服务器不能理解客户端是要什么。
 
-    > `401 Unauthorized` 因为请求缺少有效的凭据，并且应该使用所需的凭据重新发起请求。
+    > `401 Unauthorized` 因为请求缺少有效的凭据，应该使用所需的凭据重新发起请求。
 
     > `403 Forbidden` 意味着服务器理解本次请求，但拒绝授权。
 
     > `404 Not Found` 表示未找到请求的资源。 
 
-    > `500 Internal Server Error` 表示请求本身是有效，但由于某些意外情况，服务器无法实现。
+    > `500 Internal Server Error` 表示请求本身是有效，但由于某些意外情况，服务器无法实现，服务器发生了故障。
 
     _为什么:_
-    > 大多数API提供程序仅仅只使用一小部分HTTP状态代码而已。例如，Google GData API仅使用了10个状态代码，Netflix使用了9个，而Digg只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过70个HTTP状态代码。然而，大多数开发者不可能全部记住这70个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后还要跑到维基百科上面找出您要告诉他们的内容。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > 大多数API提供程序仅仅只使用一小部分HTTP状态代码而已。例如，Google GData API仅使用了10个状态代码，Netflix使用了9个，而Digg只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过70个HTTP状态代码。然而，大多数开发者不可能全部记住这70个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后你还要跑到维基百科上面找出您要告诉他们的内容，多累啊。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
 * 在您的响应中提供资源的总数
@@ -667,10 +667,10 @@ _为什么:_
 ### 9.2 API 安全
 这些是一些基本的安全最佳实践：
 
-* 不要只使用基本认证。验证令牌不要在URL中传输：`GET /users/123?token=asdf....`
+* 不要只使用基本认证。不要在URL中传输验证令牌：`GET /users/123?token=asdf....`
 
     _为什么:_
-    > 因为令牌或用户ID和密码通过网络作为明文传递（它是base64编码，而base64是可逆编码），所以基本认证方案不安全。 [更多请阅读...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+    > 因为令牌、用户ID和密码通过网络是明文传递的（它是base64编码，而base64是可逆编码），所以基本认证方案是不安全的。 [更多请阅读...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
 * 必须使用授权请求头在每个请求上发送令牌：`Authorization: Bearer xxxxxx, Extra yyyyy`
 
@@ -694,16 +694,16 @@ _为什么:_
     _为什么:_
     > JSON编码器的一个关键问题是阻止浏览器中输入的任意JavaScript代码在远程被执行，或者如果您在服务器上使用node.js。您必须使用适当的JSON序列化程序对用户输入的数据进行正确编码，以防止在浏览器上执行用户提供的输入，这些输入可能会包含恶意代码，而不是正常的用户数据。
 
-* 验证内容类型，主要使用`application/*.json`（Content-Type header）.
+* 验证内容类型，主要使用`application/*.json`（Content-Type 头字段）.
     
     _为什么:_
-    > 例如，接受`application/x-www-form-urlencoded`MIME类型可以允许攻击者创建一个表单并触发一个简单的POST请求。服务器不应该假定Content-Type。缺少Content-Type请求头或异常的Content-Type请求头应该让服务器直接以`4XX`响应内容去拒绝请求。
+    > 例如，接受`application/x-www-form-urlencoded`MIME类型可以允许攻击者创建一个表单并触发一个简单的POST请求。服务器不应该假定`Content-Type`。缺少`Content-Type`请求头或异常的`Content-Type`请求头应该让服务器直接以`4XX`响应内容去拒绝请求。
 
 
 <a name="api-documentation"></a>
 ### 9.3 API 文档
 
-* 在[README.md模板]（./ README.sample.md）为API填写
+* 在[README.md模板]（./README.sample.md）为API填写
 `API参考`段落。
 * 尽量使用示例代码来描述API授权方法
 * 解释URL的结构（仅path，不包括根URL），包括请求类型（方法）
@@ -717,7 +717,7 @@ _为什么:_
 
 * 如果请求类型为POST，请提供如何使用的示例。URL Params也是这样。Params分为`可选`和`必需`。
 
-* 响应成功，应该对应什么样的状态代码，返回了哪些数据？当人们需要知道他们的回调应该是期望的样子，这是有用的：
+* 响应成功，应该对应什么样的状态代码，返回了哪些数据？当人们需要知道他们的回调应该是期望的样子，这很有用：
 
     ```
     Code: 200
@@ -734,18 +734,18 @@ _为什么:_
     ```
 
 
-* 使用API​​设计工具，有很多开源工具可用于良好的文档，例如 [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+* 使用API​​设计工具，有很多开源工具可用于提供良好的文档，例如 [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 ## 10. 证书
 
 ![证书](/images/licensing.png)
 
-确保使用您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD，但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
+确保您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD，但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
 
 
 ---
-Sources:
+资源:
 [RisingStack Engineering](https://blog.risingstack.com/),
 [Mozilla Developer Network](https://developer.mozilla.org/),
 [Heroku Dev Center](https://devcenter.heroku.com),
