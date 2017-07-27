@@ -730,7 +730,7 @@ For each endpoint explain:
 
 <a name="licensing"></a>
 ## 10. Licensing
-![Licensing](/images/Licensing.png)
+![Licensing](/images/licensing.png)
 
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
 
