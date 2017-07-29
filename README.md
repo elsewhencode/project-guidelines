@@ -1,7 +1,7 @@
 
 [中文版](./README-zh.md)
 
-[<img src="./images/logo.png">](http://wearehive.co.uk/)
+[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -31,7 +31,9 @@ If you want to share a best practice, or think one of these guidelines should be
 
 <a name="git"></a>
 ## 1. Git
+![Git](/images/branching.png)
 <a name="some-git-rules"></a>
+
 ### 1.1 Some Git rules
 There are a set of rules to keep in mind:
 * Perform work in a feature branch.
@@ -64,7 +66,7 @@ There are a set of rules to keep in mind:
     _Why:_
     > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
-* Use [this .gitignore file](./.gitignore).
+* Use [this](./.gitignore) `.gitignore` file.
     
     _Why:_
     > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
@@ -167,6 +169,9 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
  <a name="documentation"></a>
 ## 2. Documentation
+
+![Documentation](/images/documentation.png)
+
 * Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 * For projects with more than one repository, provide links to them in their respective `README.md` files.
 * Keep `README.md` updated as a project evolves.
@@ -178,6 +183,9 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="environments"></a>
 ## 3. Environments
+
+![Environments](/images/laptop.png)
+
 * Define separate `development`, `test` and `production` environments if needed.
 
     _Why:_
@@ -245,6 +253,9 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="dependencies"></a>
 ## 4. Dependencies
+
+![Github](/images/modules.png)
+
 * Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
 * See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
     
@@ -272,7 +283,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="testing"></a>
 ## 5. Testing
-
+![Testing](/images/testing.png)
 * Have a `test` mode environment if needed.
 
     _Why:_
@@ -314,6 +325,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="structure-and-naming"></a>
 ## 6. Structure and Naming
+![Structure and Naming](/images/folder-tree.png)
 * Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
 
 
@@ -380,6 +392,9 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="code-style"></a>
 ## 7. Code style
+
+![Code style](/images/code-style.png)
+
 ### 7.1 Some code style guidelines
 
 * Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
@@ -462,6 +477,9 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="logging"></a>
 ## 8. Logging
+
+![Logging](/images/logging.png)
+
 * Avoid client-side console logs in production
 
     _Why:_
@@ -477,6 +495,9 @@ Having a good guideline for creating commits and sticking to it makes working wi
 <a name="api"></a>
 ## 9. API
 <a name="api-design"></a>
+
+![API](/images/api.png)
+
 ### 9.1 API design
 
 _Why:_
@@ -663,7 +684,7 @@ The **client app did something wrong** or The **API did something wrong**.
 ### 9.2 API security
 These are some basic security best practices:
 
-* Don't use basic authentication. Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
+* Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
 
     _Why:_
     > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
@@ -733,6 +754,8 @@ For each endpoint explain:
 
 <a name="licensing"></a>
 ## 10. Licensing
+![Licensing](/images/licensing.png)
+
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
 
 
@@ -745,4 +768,6 @@ Sources:
 [Atlassian Git tutorials](https://www.atlassian.com/git/tutorials),
 [Apigee](https://apigee.com/about/blog),
 [Wishtack](https://blog.wishtack.com)
+
+Icons by [icons8](https://icons8.com/)
 
