@@ -20,8 +20,8 @@ If you want to share a best practice, or think one of these guidelines should be
 - [Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
-    - [Some code style guidelines](#)
-    - [Enforcing code style standards](#)
+    - [Some code style guidelines](#code-style-check)
+    - [Enforcing code style standards](#enforcing-code-style-standards)
 - [Logging](#logging)
 - [API](#api)
     - [API design](#api-design)
@@ -395,6 +395,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 ![Code style](/images/code-style.png)
 
+<a name="code-style-check"></a>
 ### 7.1 Some code style guidelines
 
 * Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
@@ -455,21 +456,19 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > It makes it more natural to read the source code.
 
-<a name="code-style-check"></a>
+<a name="enforcing-code-style-standards"></a>
 ### 7.2 Enforcing code style standards
 
 * Include code style checks as part of your build process
 
-    _Why:_
-
-    > <!-- TODO -->
-
-* Have your editor notify you about code style errors
-
-    _Why:_
-    > This is completely optional. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [Read more](https://github.com/prettier/eslint-config-prettier#installation).
+* Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [Read more](https://github.com/prettier/eslint-config-prettier#installation).
 
 * Consider using Git hooks
+
+    _Why:_
+    > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [Read more](http://githooks.com/).
+
+* Use Prettier with a precommit hook
 
     _Why:_
     > While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play. Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) and on configuring `husky` [here](https://github.com/typicode/husky).
