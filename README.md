@@ -459,14 +459,12 @@ Having a good guideline for creating commits and sticking to it makes working wi
 <a name="enforcing-code-style-standards"></a>
 ### 7.2 Enforcing code style standards
 
-* Include code style checks as part of your build process
-
-* Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [Read more](https://github.com/prettier/eslint-config-prettier#installation).
+* Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [read more...](https://github.com/prettier/eslint-config-prettier#installation)
 
 * Consider using Git hooks
 
     _Why:_
-    > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [Read more](http://githooks.com/).
+    > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [read more...](http://githooks.com/)
 
 * Use Prettier with a precommit hook
 
