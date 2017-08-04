@@ -48,14 +48,14 @@ There are a set of rules to keep in mind:
 * Never push into `develop` or `master` branch. Make a Pull Request.
     
     _Why:_
-    > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature
+    > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
 
-* Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request
+* Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request.
 
     _Why:_
     > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-* Resolve potential conflicts while rebasing and before making a Pull Request
+* Resolve potential conflicts while rebasing and before making a Pull Request.
 * Delete local and remote feature branches after merging.
     
     _Why:_
@@ -86,11 +86,11 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
    git init
    ```
 
-* Checkout a new feature/bug-fix branch
+* Checkout a new feature/bug-fix branch.
     ```sh
     git checkout -b <branchname>
     ```
-* Make Changes
+* Make Changes.
     ```sh
     git add
     git commit -a
@@ -98,7 +98,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     _Why:_
     > `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
 
-* Sync with remote to get changes you’ve missed
+* Sync with remote to get changes you’ve missed.
     ```sh
     git checkout develop
     git pull
@@ -107,16 +107,16 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     _Why:_
     > This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
     
-* Update your feature branch with latest changes from develop by interactive rebase
+* Update your feature branch with latest changes from develop by interactive rebase.
     ```sh
     git checkout <branchname>
     git rebase -i --autosquash develop
     ```
     
     _Why:_
-    > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
+    > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
     
-* If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase
+* If you don’t have conflict skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)  and continue rebase.
     ```sh
     git add <file1> <file2> ...
     git rebase --continue
@@ -147,25 +147,25 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
 
 Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
- * Separate the subject from the body with a newline between the two
+ * Separate the subject from the body with a newline between the two.
 
     _Why:_
-    > Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only
+    > Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only.
 
- * Limit the subject line to 50 characters and Wrap the body at 72 characters
+ * Limit the subject line to 50 characters and Wrap the body at 72 characters.
 
     _why_
     > Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [read more...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
- * Capitalize the subject line
- * Do not end the subject line with a period
- * Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line
+ * Capitalize the subject line.
+ * Do not end the subject line with a period.
+ * Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line.
 
     _Why:_
     > Rather than writing messages that say what a committer has done. It's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [read more...](https://news.ycombinator.com/item?id=2079612)
 
 
- * Use the body to explain **what** and **why** as opposed to **how**
+ * Use the body to explain **what** and **why** as opposed to **how**.
 
  <a name="documentation"></a>
 ## 2. Documentation
@@ -176,7 +176,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * For projects with more than one repository, provide links to them in their respective `README.md` files.
 * Keep `README.md` updated as a project evolves.
 * Comment your code. Try to make it as clear as possible what you are intending with each major section.
-* If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment, 
+* If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment. 
 * Don't use comments as an excuse for a bad code. Keep your code clean.
 * Don't use clean code as an excuse to not comment at all.
 * Keep comments relevant as your code evolves.
@@ -208,17 +208,17 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="consistent-dev-environments"></a>
 ### 3.1 Consistent dev environments:
-* Set your node version in `engines` in `package.json`
+* Set your node version in `engines` in `package.json`.
     
     _Why:_
     > It lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
 
-* Additionally, use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention it in the documentation
+* Additionally, use `nvm` and create a  `.nvmrc`  in your project root. Don't forget to mention it in the documentation.
 
     _Why:_
     > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
 
-* It's a good idea to setup a `preinstall` script that checks node and npm versions
+* It's a good idea to setup a `preinstall` script that checks node and npm versions.
 
     _Why:_
     > Some dependencies may fail when installed by newer versions of npm.
@@ -228,7 +228,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
-* Use local modules instead of using globally installed modules
+* Use local modules instead of using globally installed modules.
 
     _Why:_
     > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
@@ -237,7 +237,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 <a name="consistent-dependencies"></a>
 ### 3.2 Consistent dependencies:
 
-* Make sure your team members get the exact same dependencies as you
+* Make sure your team members get the exact same dependencies as you.
 
     _Why:_
     > Because you want the code to behave as expected and identical in any development machine [read more...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
@@ -289,7 +289,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests. 
 
-* Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`
+* Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`.
 
     _Why:_
     > You don't want to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
@@ -305,7 +305,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
     
-    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 * Use a static type checker 
 
@@ -415,7 +415,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 * We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
 
-* We use [Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
+* We use [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
 
     _Why:_
     > Flow introduces few syntaxes that also need to follow certain code style and be checked.
@@ -461,12 +461,12 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 * Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [read more...](https://github.com/prettier/eslint-config-prettier#installation)
 
-* Consider using Git hooks
+* Consider using Git hooks.
 
     _Why:_
     > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [read more...](http://githooks.com/)
 
-* Use Prettier with a precommit hook
+* Use Prettier with a precommit hook.
 
     _Why:_
     > While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play. Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) and on configuring `husky` [here](https://github.com/typicode/husky).
@@ -505,7 +505,7 @@ _Why:_
 
 
 * We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
-    * A resource has data, gets nested, and there are methods that operate against it
+    * A resource has data, gets nested, and there are methods that operate against it.
     * A group of resources is called a collection.
     * URL identifies the online location of resource or collection.
     
@@ -543,7 +543,7 @@ _Why:_
 * Keep verbs out of your resource URLs.
 
     _Why:_
-    > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else
+    > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
 
 * Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
 
@@ -562,7 +562,7 @@ _Why:_
 * Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
 
     _Why:_
-    > Because your intention is to expose Resources, not your database schema details
+    > Because your intention is to expose Resources, not your database schema details.
 
 * Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
 
@@ -574,13 +574,13 @@ _Why:_
     _How:_
     > `GET`: To retrieve a representation of a resource.
     
-    > `POST`: To create new resources and sub-resources
+    > `POST`: To create new resources and sub-resources.
    
-    > `PUT`: To update existing resources
+    > `PUT`: To update existing resources.
     
-    > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone
+    > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone.
     
-    > `DELETE`:	To delete existing resources
+    > `DELETE`:	To delete existing resources.
 
 
 * For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
@@ -590,15 +590,15 @@ _Why:_
 
     _How:_
 
-    > `GET      /schools/2/students	` , should get the list of all students from school 2
+    > `GET      /schools/2/students	` , should get the list of all students from school 2.
 
-    > `GET      /schools/2/students/31`	, should get the details of student 31, which belongs to school 2
+    > `GET      /schools/2/students/31`	, should get the details of student 31, which belongs to school 2.
 
-    > `DELETE   /schools/2/students/31`	, should delete student 31, which belongs to school 2
+    > `DELETE   /schools/2/students/31`	, should delete student 31, which belongs to school 2.
 
-    > `PUT      /schools/2/students/31`	, should update info of student 31, Use PUT on resource-URL only, not collection
+    > `PUT      /schools/2/students/31`	, should update info of student 31, Use PUT on resource-URL only, not collection.
 
-    > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs
+    > `POST     /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
 
 * Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
     ```
@@ -652,9 +652,9 @@ The **client app did something wrong** or The **API did something wrong**.
 
     > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
 
-    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations
+    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
 
-    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for
+    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
 
     > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
 
@@ -668,8 +668,8 @@ The **client app did something wrong** or The **API did something wrong**.
     > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
-* Provide total numbers of resources in your response
-* Accept `limit` and `offset` parameters
+* Provide total numbers of resources in your response.
+* Accept `limit` and `offset` parameters.
 
 * The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
     ```
@@ -686,13 +686,13 @@ These are some basic security best practices:
     _Why:_
     > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-* Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`
+* Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
 
 * Authorization Code should be short-lived.
 
 * Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
 
-* Consider using Rate Limiting
+* Consider using Rate Limiting.
 
     _Why:_
     > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
@@ -703,7 +703,7 @@ These are some basic security best practices:
 
 * All the data exchanged with the ReST API must be validated by the API.
 
-* Serialize your JSON 
+* Serialize your JSON.
 
     _Why:_
     > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
@@ -717,8 +717,8 @@ These are some basic security best practices:
 <a name="api-documentation"></a>
 ### 9.3 API documentation
 * Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
-* Describe API authentication methods with a code sample
-* Explaining The URL Structure (path only, no root URL) including The request type (Method)
+* Describe API authentication methods with a code sample.
+* Explaining The URL Structure (path only, no root URL) including The request type (Method).
 
 For each endpoint explain:
 * URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
