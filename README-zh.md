@@ -8,7 +8,7 @@
 
 JavaScript工程项目的一系列最佳实践策略
 
-> 每当开发一个新项目，对于您而言就像在青葱的田里翻滚一般欢乐，但对其他人来说维护这样一个项目简直就是一个潜在的张牙舞爪的梦魇。以下列出的指南是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些指南应该删除。[欢迎随时与我们分享](http://makeapullrequest.com)。
+> 当您在青葱的田野里翻滚一般欢乐（而不受约束）地开发一个新项目，对其他人而言维护这样一个项目简直就是一个潜在的可怕的噩梦。以下列出的指南是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些指南应该删除。[欢迎随时与我们分享](http://makeapullrequest.com)。
 - [Git](#git)
     - [一些git规则](#some-git-rules)
     - [Git工作流](#git-workflow)
@@ -42,7 +42,7 @@ JavaScript工程项目的一系列最佳实践策略
 * 在功能分支中执行开发工作。 
 
     _为什么：_
-    > 因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull合并请求而不会导致混乱。您可以持续迭代提交，而不会污染那些很可能还不稳定而且还未完成代码的主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+    > 因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull合并请求而不会导致混乱。您可以持续迭代提交，而不会使得那些很可能还不稳定而且还未完成的代码污染主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
 * 从 `develop` 独立出分支。  
 
@@ -85,14 +85,14 @@ JavaScript工程项目的一系列最佳实践策略
 ### 1.2 Git 工作流
 基于以上原因, 我们将 [功能分支工作流](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) ， [交互式变基的使用方法](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) 结合一些 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow)中的基础 (比如，命名和使用一个develop branch)一起使用。 主要步骤如下:
 
-* 针对一个新项目, 在您的项目目录初始化您的项目。 __如果是之后的功能开发/代码变动，这一步请忽略__。
+* 针对一个新项目, 在您的项目目录初始化您的项目。 __如果是（已有项目）随后的功能开发/代码变动，这一步请忽略__。
 
    ```sh
    cd <项目目录>
    git init
    ```
 
-* 检出（Checkout） 一个新的 feature/bug-fix 分支。
+* 检出（Checkout） 一个新的功能或故障修复（feature/bug-fix）分支。
 
     ```sh
     git checkout -b <分支名称>
@@ -108,17 +108,16 @@ JavaScript工程项目的一系列最佳实践策略
     _为什么：_
     > `git commit -a` 会独立启动一个编辑器用来编辑您的说明信息，这样的好处是可以专注于写这些注释说明。更多请阅读 *章节 1.3*。
 
-* 保持与远程的同步，以便拿到最新变更。
+* 保持与远程（develop分支）的同步，以便（使得本地develop分支）拿到最新变更。
     ```sh
     git checkout develop
     git pull
     ```
 
     _为什么：_
-    > 当您进行（稍后）变基操作的时候，保持更新会给您一个在您的机器上解决冲突的机会。这比（不同步更新就）发起一个与远程仓库冲突的合并请求要
-    好。
+    > 当您进行（稍后）变基操作的时候，保持更新会给您一个在您的机器上解决冲突的机会。这比（不同步更新就进行下一步的变基操作并且）发起一个与远程仓库冲突的合并请求要好。
 
-* 变基从develop拉取最新的代码提交，以保持您的功能分支的更新。
+* （切换至功能分支并且）通过交互式变基从您的develop分支中获取最新的代码提交，以更新您的功能分支。
 
     ```sh
     git checkout <branchname>
@@ -126,14 +125,14 @@ JavaScript工程项目的一系列最佳实践策略
     ```
 
     _为什么：_
-    > 您可以使用 `--autosquash` 将所有相同类型提交压缩到单个提交。没有人会愿意看到 `develop` 分支中的单个功能开发就占据如此多的提交历史。 [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
+    > 您可以使用 `--autosquash` 将所有提交压缩到单个提交。没有人会愿意（看到） `develop` 分支中的单个功能开发就占据如此多的提交历史。 [更多请阅读...](https://robots.thoughtbot.com/autosquashing-git-commits)
 
-* 如果没有冲突请跳过此步骤，如果您有冲突, [解决方式](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) 就需要解决它们并且继续变基操作。
+* 如果没有冲突请跳过此步骤，如果您有冲突,  就需要[解决它们](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)并且继续变基操作。
     ```sh
     git add <file1> <file2> ...
     git rebase --continue
     ```
-* 推送您的（功能）分支。变基操作会改变提交历史, 所以您必须使用 `-f` 强制推送到远程分支。 如果其他人与您在该分支上进行协同开发，请使用破坏性没那么强的 `--force-with-lease` 参数。
+* 推送您的（功能）分支。变基操作会改变提交历史, 所以您必须使用 `-f` 强制推送到远程（功能）分支。 如果其他人与您在该分支上进行协同开发，请使用破坏性没那么强的 `--force-with-lease` 参数。
     ```sh
     git push -f
     ```
@@ -163,7 +162,7 @@ JavaScript工程项目的一系列最佳实践策略
     _为什么：_
     > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果您尝试使用 `git shortlog` ，而不是 `git log` ，您会看到一个很长的提交消息列表，只会包含提交的id以及摘要（，而不会包含主体部分）。
 
- * 将标题行限制为50个字符，并将主体一行超过72个字符的部分折行显示。
+ * 将标题行限制为50个字符，并将主体中一行超过72个字符的部分折行显示。
 
     _为什么：_
     > 提交应尽可能简洁明了，而不是写一堆冗余的描述。 [更多请阅读...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
@@ -182,7 +181,7 @@ JavaScript工程项目的一系列最佳实践策略
 
 ![文档](/images/documentation.png)
 
-* 使用这个 [模板](./README.sample.md) 给 `README.md` , 欢迎添加里面没有的内容。
+* 可以使用这个 [模板](./README.sample.md) 作为 `README.md` （的一个参考）, 随时欢迎添加里面没有的内容。
 * 对于具有多个存储库的项目，请在各自的 `README.md` 文件中提供它们的链接。
 * 随项目的进展，持续地更新 `README.md` 。
 * 给您的代码添加详细的注释，这样就可以清楚每个主要部分的含义。
