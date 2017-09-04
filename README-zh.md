@@ -1,6 +1,6 @@
 
-[ENGLISH](./README.md)
-
+[ENGLISH](./README.md) | 
+[日本語版](./README-ja.md)
 
 [<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
 
