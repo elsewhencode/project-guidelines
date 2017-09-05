@@ -65,7 +65,7 @@ There are a set of rules to keep in mind:
 * Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
     
     _Why:_
-    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
+    > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally, you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
 * Use [this](./.gitignore) `.gitignore` file.
     
@@ -190,7 +190,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Define separate `development`, `test` and `production` environments if needed.
 
     _Why:_
-    > Different data, tokens, APIs, ports etc... might be needed on different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manually testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    > Different data, tokens, APIs, ports etc... might be needed in different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manual testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
@@ -199,7 +199,8 @@ Having a good guideline for creating commits and sticking to it makes working wi
     > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
 
     _How:_
-    >Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example`  which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
+    >
+    `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example`  which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
     [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 * It’s recommended to validate environment variables before your app starts.  [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
@@ -434,7 +435,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Depending on the size of the task use  `//TODO:` comments or open a ticket.
 
     _Why:_
-    > So then you can remind yourself and others about a small task (like refactoring a function, or updating a comment). For larger tasks  use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
+    > So then you can remind yourself and others about a small task (like refactoring a function or updating a comment). For larger tasks use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
 
 
 * Always comment and keep them relevant as code changes. Remove commented blocks of code.
@@ -447,7 +448,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
 
-* Make your names search-able with meaningful distinctions avoid shortened names. For functions Use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
+* Make your names search-able with meaningful distinctions avoid shortened names. For functions use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
 
     _Why:_
     > It makes it more natural to read the source code.
@@ -558,7 +559,7 @@ _Why:_
 * The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
     
     _Why:_
-    > This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript. 
+    > This is a JavaScript project guideline, where the programming language for generating and parsing JSON is assumed to be JavaScript.
 
 * Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
 
@@ -651,7 +652,7 @@ The **client app did something wrong** or The **API did something wrong**.
     _Which ones:_
     > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+    > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
 
     > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
 
@@ -755,7 +756,7 @@ For each endpoint explain:
 ## 10. Licensing
 ![Licensing](/images/licensing.png)
 
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
+Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
 
 
 ---
