@@ -461,6 +461,11 @@ Having a good guideline for creating commits and sticking to it makes working wi
 <a name="enforcing-code-style-standards"></a>
 ### 7.2 Enforcing code style standards
 
+* Use a [.editorconfig](http://editorconfig.org/) file which helps developers define and maintain consistent coding styles between different editors and IDEs on the project.
+
+    _Why:_
+    > The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+
 * Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [read more...](https://github.com/prettier/eslint-config-prettier#installation)
 
 * Consider using Git hooks.
