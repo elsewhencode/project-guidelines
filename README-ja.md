@@ -1,6 +1,7 @@
 
 [中文版](./README-zh.md)
  | [ENGLISH](./README.md)
+ | [한국어](./README-ko.md)
 
 [<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
 
