@@ -37,28 +37,28 @@
 <a name="some-git-rules"></a>
 
 ### 1.1 Gitのルール
-いくつかのGitのルールを覚えておきましょう
-* featureブランチで作業しましょう
+いくつかのGitのルールを覚えておきましょう。
+* featureブランチで作業しましょう。
 
     _Why:_
-    >全作業が独立したメインブランチではなくて作業専用のブランチで完結するからです。そうすることによって混乱をきたすことなく複数のプルリクエストを作成することができます。作業途中のコードや不安定なコードをmasterブランチを気兼ねすることなく繰り返し作れます。[もっと読む](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+    >全作業がメインブランチではなくて独立した作業専用のブランチで完結するからです。そうすることによって混乱をきたすことなく複数のプルリクエストを作成することができます。作業途中のコードや不安定なコードをmasterブランチを気にすることなく繰り返し作れます。[もっと読む...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 * `develop`ブランチからブランチを切りましょう
 
     _Why:_
-    >こうすることでmasterのコードを問題なくビルドできることができ、masterをリリース用にほとんどそのまま利用できます。(プロジェクトによってはやりすぎかもしれません。)
+    >こうすることでmasterのコードを問題なくビルドできることができ、masterはリリース用にほとんどそのまま利用できます。(プロジェクトによってはやりすぎかもしれません。)
 
-* 自分のローカルリポジトリの`develop` と `master` ブランチ直接Pushするのはやめよう。プルリクエストを作成しよう。
+* `develop`と`master`ブランチに直接Pushするのはやめましょう。プルリクエストを作成しましょう。
 
     _Why:_
     >`develop`と`master`ブランチが更新されるということはチームメンバーにその機能を実装し終わったと伝えることと同義です。直接Pushさえしなければ、コードレビューや新たな機能の議論がしやすくなります。
 
-* featureブランチをPushしてプルリクエストを作成する前にローカルの`develop` ブランチを最新にして、featureブランチをインタラクティブrebaseしましょう。
+* featureブランチをPushしてプルリクエストを作成する前にローカルの`develop` ブランチを最新にして、featureブランチをインタラクティブリベースしましょう。
 
     _Why:_
-    >リベースはブランチ（`master`か`develop`か`）をマージします。またlocalに作ったコミットをマージコミットを作成せずにGitのヒストリーのトップに並べ替えます。コンフリクトがなければ。そうすることで綺麗で素晴らしいヒストリーが残ります。[もっと読む](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+    >リベースはブランチ（`master`か`develop`か）をマージします。またlocalに作ったコミットをマージコミットを作成せずにGitのヒストリーのトップに並べ替えます。コンフリクトがなければ。そうすることで綺麗で素晴らしいヒストリーが残ります。[もっと読む...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-* リベースする間やプルリクエストを作る前にコンフリクトを解消しましょう
-* マージした後のブランチはlocal, remote共に削除しましょう
+* リベースする間やプルリクエストを作る前にコンフリクトを解消しましょう。
+* マージした後のブランチはlocal、remote共に削除しましょう。
 
     _Why:_
     >不要になったブランチをが含まれることで自身localのブランチのリストが乱雑になるでしょう。またマージする時にのみ一回だけブランチ（`master`か`develop`）に戻ることを保証します。feature ブランチは作業中だけ存在すべきです。
@@ -66,17 +66,17 @@
 * プルリクエストを前に、featureブランチのビルドの成功を確認して全てのテストを通しましょう。(コードのスタイルも含めて確認しましょう。)
 
     _Why:_
-    > 安定的なコードを追加しようとする時、もしfeatureブランチのテストが失敗したとすると、最終的なマージ後のテストも失敗する可能性が高いです。加えてプルリクエストを作成する前に、スタイルチェックを行う必要があります。スタイルチェックを行うことで可読性が上がり、実際のコードと一緒にフォーマットの修正をすることを減らすことに繋がります。
+    > 安定的なコードを追加しようとする時、もしfeatureブランチのテストが失敗したとすると、最終的なマージ後のテストも失敗する可能性が高いです。加えてプルリクエストを作成する前に、スタイルチェックを行う必要があります。スタイルチェックを行うことで可読性が上がり、実際のコードと一緒にフォーマットによる修正を減らすことに繋がります。
 
-* [こちらの](./.gitignore)`.gitignore`ファイルを使いましょう
-
-    _Why:_
-    > こちらの.gitignoreファイルにはremoteのリポジトリに含めたくないシステムファイルのリストを列挙しています。またユーザーが多くの人が使うエディター用のフォルダやファイル(依存フォルダも同じように)も含めてます。
-
-* `develop`と`master`ブランチを保護しましょう
+* [こちらの](./.gitignore)`.gitignore`ファイルを使いましょう。
 
     _Why:_
-    > プロダクション準備に当たるブランチに予期しない破壊的なコミットがPushされることを防ぎます。
+    > この.gitignoreファイルにはremoteのリポジトリに含めたくないシステムファイルのリストを列挙しています。またユーザーが多くの人が使うエディタ用のフォルダやファイル(依存フォルダも同じように)も含めてます。
+
+* `develop`と`master`ブランチを保護しましょう。
+
+    _Why:_
+    > プロダクションに備えているブランチに予期しない破壊的なコミットがPushされることを防ぎます。
 
 <a name="git-workflow"></a>
 ### 1.2 Git workflow
@@ -109,31 +109,31 @@
     _Why:_
     >こうすることでコンフリクトを含めながらプルリクエストを作成するのではなくてリベース(のちに)しつつ、コンフリクトに対処できる可能性が高まります。
 
-* featureブランチにインタラクティブリベースでを常にdevelopの変更を取り込みましょう。
+* featureブランチにインタラクティブリベースをすることで常にdevelopの変更を取り込みましょう。
     ```sh
     git checkout <branchname>
     git rebase -i --autosquash develop
     ```
 
     _Why:_
-    > --autosquashは全てのコミットを一つにまとめることができます。一つのfeatureに対して複数のコミットがある状態は望ましくないです。[もっと読む](https://robots.thoughtbot.com/autosquashing-git-commits)
+    > --autosquashは全てのコミットを一つにまとめることができます。一つのfeatureに対して複数のコミットがある状態は望ましくありません。[もっと読む...](https://robots.thoughtbot.com/autosquashing-git-commits)
 
-* もしコンフリクトしてなかったらこの章は飛ばして大丈夫です。ただしもしコンフリクトが起きてたら[解決しましょう](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)。そしてリベースを続けましょう
+* もしコンフリクトしてなかったらこの章は飛ばして大丈夫です。ただしもしコンフリクトが起きてたら[解決しましょう](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)。そしてリベースを続けましょう。
     ```sh
     git add <file1> <file2> ...
     git rebase --continue
     ```
-* 自分のブランチをPushしましょう。リベースはヒストリーを改変しますので、リモートにPushする際は`-f` のオプションをつけてPushする必要があります。もし他の人が同じブランチで作業をしていたらより破壊的でない`--force-with-lease`を使いましょう
+* 自分のブランチをPushしましょう。リベースはヒストリーを改変しますので、リモートにPushする際は`-f` のオプションをつけてPushする必要があります。もし他の人が同じブランチで作業をしていたらより破壊的でない`--force-with-lease`を使いましょう。
     ```sh
     git push -f
     ```
 
     _Why:_
-    > リベースをすると、作業ブランチのコミットヒストリーを変えることになります。結果としてGitに普通の`git push`は拒否されるので代わりに -f や--force フラグを使えば大丈夫です。[もっと読む](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)
+    > リベースをすると、作業ブランチのコミットヒストリーを変えることになります。結果としてGitに普通の`git push`は拒否されるので代わりに -f や--force フラグを使えば大丈夫です。[もっと読む...](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)
 
 
 * プルリクエストを作りましょう。
-* プルリクエストが受け入れられたら、レビュワーによってマージされて　課題が閉じられます。
+* プルリクエストが受け入れられたら、レビュワーによってマージされて課題が閉じられます。
 * マージが完了したらローカルのブランチを消しましょう。
 
   ```sh
@@ -164,7 +164,7 @@
  * 主題部分では[仮定法](https://en.wikipedia.org/wiki/Imperative_mood) を使いましょう。
 
     _Why:_
-    > コミッタが何を行ったかわかりやすいメッセージを書きましょう。コミットがマージされた後にそのコミットが何をしたのかをうまく説明できるように考えるといいでしょう。[もっと読む](https://news.ycombinator.com/item?id=2079612)
+    > コミッタが何を行ったかわかりやすいメッセージを書きましょう。コミットがマージされた後にそのコミットが何をしたのかをうまく説明できるように考えるといいでしょう。[もっと読む...](https://news.ycombinator.com/item?id=2079612)
 
 
  * 本文は **How** ではなくて **What** と **Why**を説明しましょう。
@@ -191,7 +191,7 @@
 * 必要なら`development`, `test` と`production`の環境を分けて定義しましょう。
 
     _Why:_
-    > データやトークンやAPI、ポートなど環境によって必要とされるものは様々です。。。テストの自動化と手動のテストを簡単にさせるために、`development`モードは予測可能なデータを返すフェイクのAPIが欲しいかもしれません。もしくはGoogle Analyticsは`production`でだけ有効にしたかったり様々でしょう。[もっと読む](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    > データやトークンやAPI、ポートなど環境によって必要とされるものは様々です。。。テストの自動化と手動のテストを簡単にさせるために、`development`モードは予測可能なデータを返すフェイクのAPIが欲しいかもしれません。もしくはGoogle Analyticsは`production`でだけ有効にしたかったり様々でしょう。[もっと読む...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * 環境別のConfigファイルを環境毎に適用するようにして、コードベースに定数として決して書き込まないでください。[サンプル](./config.sample.js)
@@ -201,7 +201,7 @@
 
     _How:_
     > `.env`ファイルを情報を保持するために使いましょう。そのファイルは`.gitignore`に加えて、Gitリポジトリからは除外されるようにします。その代わりに`.env.example`のようなサンプルを他の開発者向けのガイドとしてコミットしておきましょう。production環境用に、環境設定は標準的なやり方で設定するようにしましょう。
-    [もっと読む](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+    [もっと読む...](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 * アプリケーションを開始する前に環境変数をvalidateすることをオススメします。[サンプルを参照](./configWithTest.sample.js) 変数をValidateするために`joi`を使っています。
 
@@ -213,12 +213,12 @@
 * nodeのバージョンを`package.json`の中の`engines`に設定しましょう。
 
     _Why:_
-    > どのバージョンのnodeをそのプロジェクトで使うべきかを示すことができます。[もっと読む](https://docs.npmjs.com/files/package.json#engines)
+    > どのバージョンのnodeをそのプロジェクトで使うべきかを示すことができます。[もっと読む...](https://docs.npmjs.com/files/package.json#engines)
 
 * さらに`nvm` を使って`.nvmrc`をプロジェクトルートに作成しましょう。ドキュメント内に記述を残すことを忘れないようにしましょう。
 
     _Why:_
-    > `nvm`を使う人は誰でも誰でも`nvm use`を使うことでnodeのバージョンを切り替えることができます。[もっと読む](https://github.com/creationix/nvm)
+    > `nvm`を使う人は誰でも誰でも`nvm use`を使うことでnodeのバージョンを切り替えることができます。[もっと読む...](https://github.com/creationix/nvm)
 
 * `preinstall`スクリプトを使ってnodeとnpmのバージョンを確かめるのがいいでしょう。
 
@@ -228,7 +228,7 @@
 * できるならばDockerイメージを使いましょう。
 
     _Why:_
-    > Dockerイメージは全てのワークフローを跨いで同じ環境を提供してくれます。依存関係やコンフィグファイルに悩む必要があまりないようになります。[もっと読む](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+    > Dockerイメージは全てのワークフローを跨いで同じ環境を提供してくれます。依存関係やコンフィグファイルに悩む必要があまりないようになります。[もっと読む...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
 * グローバルのモジュールを使うのではなくローカルのモジュールを使いましょう。
 
@@ -242,7 +242,7 @@
 * チームメンバーが同じ依存関係を取得できることを確認しましょう。
 
     _Why:_
-    > コードにはどんな開発マシンでも同じ挙動をしてほしいからです。[もっと読む](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
+    > コードにはどんな開発マシンでも同じ挙動をしてほしいからです。[もっと読む...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
 
     _how:_
     > `npm@5`以上で`package-lock.json`を使いましょう。
@@ -262,14 +262,14 @@
 * 無関係であったり使っていないパッケージを確認しましょう: `depcheck`. [もっと読む...](https://www.npmjs.com/package/depcheck)
 
     _Why:_
-    > もしかしたら使っていないライブラリーがproductionのサイズを増加させているかもしれません。使っていない依存関係を見つけてそれを消すようにしましょう。
+    > もしかしたら使っていないライブラリがproductionのサイズを増加させているかもしれません。使っていない依存関係を見つけてそれを消すようにしましょう。
 
 * ライブラリをインストールする前に、そのライブラリがコミュニティでよく使われているかどうかを確認しましょう。`npm-stat`。[もっと読む...](https://npm-stat.com/)
 
     _Why:_
     > 多く使われているということは多くのコントリビューターがいるということで、それは良いメンテナンスが行われているということになります。そのことはバグが開発者によっていち早く発見され、修正されることに繋がります
 
-* ライブラリをインストールする前に、それがいい機能を持っているか、多くのメンテナーがいて成熟したバージョンを頻繁にリリースしているライブラリかを確認しましょう。: e.g., `npm view async`. [もっと読む](https://docs.npmjs.com/cli/view)
+* ライブラリをインストールする前に、それがいい機能を持っているか、多くのメンテナーがいて成熟したバージョンを頻繁にリリースしているライブラリかを確認しましょう。: e.g., `npm view async`. [もっと読む...](https://docs.npmjs.com/cli/view)
 
     _Why:_
     > もしメンテナーが修正をマージしなかったりパッチを素早く当てないと、コントリビュータが効率的な開発を行えなくなるでしょう。
@@ -305,9 +305,9 @@
 * テストの書きやすコードを書きましょう。副作用を避けましょう。副作用を抽出しましょう。純粋な関数を書きましょう。
 
     _Why:_
-    > 結合を分けてロジックのテストをしたい場合。ランダムで非決定性のプロセスがコードの信頼性に与える影響を最小にする必要があります。[もっと読む](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+    > 結合を分けてロジックのテストをしたい場合。ランダムで非決定性のプロセスがコードの信頼性に与える影響を最小にする必要があります。[もっと読む...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
-    > 純粋関数は同じ入力に対して常に同じ結果を出力します。逆に言えば純粋でない関数は副作用をもっているか結果を出力する際に外部の状況に左右されます。そのような関数は予想通りの結果が返ってきにくくなります。[もっと読む](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+    > 純粋関数は同じ入力に対して常に同じ結果を出力します。逆に言えば純粋でない関数は副作用をもっているか結果を出力する際に外部の状況に左右されます。そのような関数は予想通りの結果が返ってきにくくなります。[もっと読む...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 * 静的解析ツールを使いましょう。
 
@@ -369,7 +369,7 @@
 
     _Why:_
     > 異なる目的(例えばデータベースやAPI等々)のために複数のconfigファイルに分割する時は、同じフォルダに`config`のようなわかりやすい名前でまとめておきましょう。ただし、異なる環境ごとに異なるconfigファイルを作成しないように気をつけてください。新たなデプロイ先が増えた時に新たな環境の名前が必要となり、綺麗にスケールすることができないからです。
-    configファイル内の変数は環境変数から与えるのが良い方法です。[もっと読む](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+    configファイル内の変数は環境変数から与えるのが良い方法です。[もっと読む...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
 
 * スクリプトは`./scripts`フォルダに置きましょう。ここにはnodeやbashのスクリプトが含まれます。
@@ -408,16 +408,16 @@
 * コードスタイルチェックをビルドプロセスに含めましょう。
 
     _Why:_
-    >ビルドを壊すことはコードスタイルを矯正する一つの方法になります。あなたがだんだんコードスタイルを真剣に捉えなくなるということを防いでくれます。クライアントとサーバーサイドのコード両方に導入しましょう。[もっと読む](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+    >ビルドを壊すことはコードスタイルを矯正する一つの方法になります。あなたがだんだんコードスタイルを真剣に捉えなくなるということを防いでくれます。クライアントとサーバーサイドのコード両方に導入しましょう。[もっと読む...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
 * コードスタイルを強制するために[ESLint - Pluggable JavaScript linter](http://eslint.org/)を使いましょう。
 
     _Why:_
     >私たちはシンプルな `eslint` が好きなだけなので、あなたがそうである必要はないです。`eslint` 自体たくさんのルールをサポートしています。ルールを設定でき、カスタムルールを追加することができます。
 
-* 私たちは[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)をJavaScriptに使っています。[もっと読む](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)あなたのチームに求められたJavaScriptのスタイルガイドを使用しましょう。
+* 私たちは[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)をJavaScriptに使っています。[もっと読む...](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)。あなたのチームに求められたJavaScriptのスタイルガイドを使用しましょう。
 
-* 私たちは[FlowType](https://flow.org/)を使用する時には[Flow type style check rules for ESLint.](https://github.com/gajus/eslint-plugin-flowtype)  を使っています。
+* 私たちは[FlowType](https://flow.org/)を使用する時には[Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype)を使っています。
 
     _Why:_
     >Flowには、特定のコードスタイルに従ってチェックする必要がある構文がほとんどありません 
@@ -425,7 +425,7 @@
 * 特定のフォルダやファイルをコードスタイルチェックから除外するために`.eslintignore`を使いましょう。
 
     _Why:_
-    >複数のファイルをスタイルチェックから除外する時に、`eslint-disable`eslintのコメントでコードを汚す必要がありません。
+    >複数のファイルをスタイルチェックから除外する時に、`eslint-disable`のコメントでコードを汚す必要がありません。
 
 * プルリクエストを作成する前には`eslint`のコメントアウトを削除しましょう。
 
@@ -448,7 +448,7 @@
     _Why:_
     >ビルドプロセスでそれらを除去できるかも(すべき)です。あなたのコードは別会社や別クライアントの渡される可能性がありますし、あなたのコードがどこかの誰かに見られて笑われないようにしましょう。
 
-* 短い名前を避けて、意味として区別しやすい検索しやすい名前をつけましょう。関数には長くて記述的な名前を使いましょう。関数の名前は動詞もしくは動詞のフレーズであるべきで、その意図の伝える必要があります。
+* 短い名前を避けて、意味として区別しやすい検索しやすい名前をつけましょう。関数には長くて記述的な名前を使いましょう。関数の名前は動詞もしくは動詞のフレーズにしましょう。その関数の意図を伝える必要があります。
 
     _Why:_
     >ソースコードをより自然により読みやすくさせるためです。
@@ -461,12 +461,17 @@
 <a name="enforcing-code-style-standards"></a>
 ### 7.2 標準的なコードスタイルの強制
 
-* コードスタイルのエラーを伝えてくれるエディターを使いましょう。既存のESLintの設定と一緒に[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)と[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)を使いましょう。[もっと読む](https://github.com/prettier/eslint-config-prettier#installation)
+* .editorconfigファイルを使って開発者が異なるエディタやIDEのプロジェクト間で一貫したコーディングスタイルを定義し維持することができるようにしましょう。
+
+    _Why:_
+    > EditorConfigプロジェクトはコーディングスタイル定義とエディタがファイルフォーマット読み込んでスタイル定義を有効にするエディタプラグインからなります。EditorConfigファイルは可読性が高くバージョンコントロールシステムともうまく機能します。
+
+* コードスタイルのエラーを伝えてくれるエディタを使いましょう。既存のESLintの設定と一緒に[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)と[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)を使いましょう。[もっと読む...](https://github.com/prettier/eslint-config-prettier#installation)
 
 * Git hookの使用を考えましょう。
 
     _Why:_
-    > Git hookは開発者の生産性を大きく高めてくれます。ビルドの破壊を怖がることなく、ステージングやプロダクション環境に変更を作成、コミット、Pushできます。[もっと読む](http://githooks.com/)
+    > Git hookは開発者の生産性を大きく高めてくれます。ビルドの破壊を怖がることなく、ステージングやプロダクション環境に変更を作成、コミット、Pushできます。[もっと読む...](http://githooks.com/)
 
 * Prettierを`precommit hook`とともに使いましょう。
 
@@ -482,13 +487,13 @@
 * クライアントサイドのconsole ログをプロダクション環境で出力するのは避けましょう。
 
     _Why:_
-    > ビルドプロセスを通してConsoleログを取り除くことができます(すべきです)が、コードスタイルチェックが吐き出すconsole logについてのwarningの情報を確認しましょう。
+    > ビルドプロセスを通してConsoleログを取り除くことができます(すべきです)が、コードスタイルチェックが吐き出すconsole logについてのwarningの情報を確認しましょう。
 
 * プロダクションのログは読みやすいように出力しましょう。理想的にはプロダクションモードで使われているロギングライブラリを使いましょう([winston](https://github.com/winstonjs/winston) もしくは
 [node-bunyan](https://github.com/trentm/node-bunyan)のようなものがあります。)
 
     _Why:_
-    > ログのカラー化やタイムスタンプ、ログファイルの出力や日々のログファイルのローテートが、トラブルシューティングの不快感少なくしてくれます。
+    > ログのカラー化やタイムスタンプ、ログファイルの出力や日々のログファイルのローテートが、トラブルシューティングの不快感を少なくしてくれます。
 
 
 <a name="api"></a>
@@ -512,7 +517,7 @@ _Why:_
     * URLはオンラインのリソースの場所はリソースかコレクションで表します。
 
     _Why:_
-    > 上記のことは開発者(あなたのAPIを使う人たち)に周知されていることです。可読性や使いやすさを別にして、REST APIではそのAPIの詳細を知らずとも汎用なライブラリやコネクターを書くができます。
+    > 上記のことは開発者(あなたのAPIを使う人たち)に周知されていることです。可読性や使いやすさを別としても、REST APIではそのAPIの詳細を知らずとも汎用なライブラリやコネクタを書くができます。
 
 * URLにはkebab-caseを使いましょう。
 * リクエスト内のパラメータやリソース内のパラメータにはcamelCaseを使いましょう。
@@ -554,7 +559,7 @@ _Why:_
     ```
 
     _Why:_
-    > CRUDについてはリソースやコレクションのURLに対してHTTPメソッドを使用するからです。説明している動詞はおおよそ`Controller`となります。通常これらのURLをたくさん作成することはないでしょう。[もっと読む](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    > CRUDについてはリソースやコレクションのURLに対してHTTPメソッドを使用するからです。説明している動詞はおおよそ`Controller`となります。通常これらのURLをたくさん作成することはないでしょう。[もっと読む...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
 * リクエストボディやレスポンスタイプは`JSON`にしましょう。そして一貫性あるメンテナンスをしやすくするために、プロパティ名は`camelCase`を使用するようにしましょう。
 
@@ -585,7 +590,7 @@ _Why:_
     > `DELETE`: 存在するリソースの削除。
 
 
-* ネストしているリソースのために関連するURL間にリレーションを使用しましょう。例えば会社の従業員を関連されるために、idを使用したりします。
+* ネストしているリソースのために関連するURL間にリレーションを使用しましょう。例えば会社の従業員を関連されるために、idを使用します。
 
     _Why:_
     > 各リソースを探索しやすくするための自然なやり方です。
@@ -608,7 +613,7 @@ _Why:_
     ```
 
     _Why:_
-    > APIがサードパーティのために公開される時には、APIの破壊的変更を伴うバージョンアップは既存のプロダクトやAPIを使うサービスに多大な影響を与えます。バージョンをURLに含めることで、これらの問題が起きることを防いでくれます。[もっと読む](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+    > APIがサードパーティのために公開される時には、APIの破壊的変更を伴うバージョンアップは既存のプロダクトやAPIを使うサービスに多大な影響を与えます。バージョンをURLに含めることで、これらの問題が起きることを防いでくれます。[もっと読む...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 
 
@@ -646,15 +651,15 @@ _Why:_
 
     _Note: セキュリティの例外のメッセージは極力一般化しましょう。例えば"パスワードが間違っています"と言う代わりに、"ユーザー名もしくはパスワードが間違っています"と言いましょう。私たちの場合はユーザー名が正しくて、パスワードだけ間違っていると伝えることはしないようにしています。_
 
-* **全てがうまく動いていた**、**正常クライアントアプリがおかしかった** 、**APIがおかしかった。** 等
+* **全てがうまく動いていた**、**クライアントアプリがうまく動いてなかった** 、**APIがうまく動いてなかった** 等
 レスポンスの説明には8個のステータスのみを送るようにしましょう。
 
     _一覧:_
     > `200 OK` `GET`、`PUT` 、`POST`リクエストが成功したことを表します。
 
     > `201 Created` 新しいインスタンスが作成された時に返却されます。新しいインスタンスの作成、`POST`メソッドの使用は`201`のステータスコードを返します。
-
-    > `304 Not Modified` ユーザーがすでにレスポンスのキャッシュを持っている場合に返却されます、最小の転送に抑えることになります。
+    
+    > `304 Not Modified` ユーザーがすでにレスポンスのキャッシュを持っている場合に返却されます、最小の転送に抑えることになります。
 
     > `400 Bad Request` リクエストが処理されなかった場合に返却されます。サーバーがクライアントの要求するリクエストを理解できなかったような時です。
 
@@ -667,7 +672,7 @@ _Why:_
     > `500 Internal Server Error` リクエストは正しいが、サーバーが予期せぬ事態により動作しなかったことを示します。
 
     _Why:_
-    > 多くのAPIの提供者は少数のHTTPのステータスコードを使用します。例えばGoogleのGdata APIは10個のステータスコードしか使っていません。Netflixは9つです。Diggは8つだけです。もちろんながらこれらのレスポンスは追加の情報をbodyに含めています。70を超えるHTTPのステータスが存在しますが。あまり一般的でないステータスコードを選択すると、アプリケーションの開発者は開発を離れて、ステータスコードが何を示しているのかを理解しようとwikipedia等で調べざるを得なくなります。[もっと読む](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > 多くのAPIの提供者は少数のHTTPのステータスコードを使用します。例えばGoogleのGdata APIは10個のステータスコードしか使っていません。Netflixは9つです。Diggは8つだけです。もちろんながらこれらのレスポンスは追加の情報をbodyに含めています。70を超えるHTTPのステータスが存在しますが。あまり一般的でないステータスコードを選択すると、アプリケーションの開発者は開発を離れて、ステータスコードが何を示しているのかを理解しようとwikipedia等で調べざるを得なくなります。[もっと読む...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
 * レスポンスにはリソースの数の合計を提供しましょう。
@@ -686,36 +691,36 @@ _Why:_
 * セキュアな通信(HTTPS)以外ではベーシック認証を使わないようにしましょう。認証トークンをURLに含めてはいけません。`GET /users/123?token=asdf....`
 
     _Why:_
-    > トークンやユーザーIDやパスワードが平文としてネットワークを超えてくるので（base64にエンコードされているでしょうが、base64は可逆なエンコード方法です。）、ベーシック認証機構はセキュアではないです。[もっと読む](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+    > トークンやユーザーIDやパスワードが平文としてネットワークを超えてくるので（base64にエンコードされているでしょうが、base64は可逆なエンコード方法です。）、ベーシック認証機構はセキュアではないです。[もっと読む...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
 * トークンは毎回のリクエストの認証ヘッダーに乗せて送信されなければなりません。`Authorization: Bearer xxxxxx, Extra yyyyy`
 
 * 認証コードの生存期間は短く設定されるべきです。
 
-* 安全ではないデータの受け渡しを避けるために全てのTLSではないリクエストに対して、全てのHTTPリクエストに応答しないことで拒否するようにしましょう。`403 Forbidden`で応答しましょう。
+* 安全ではないデータの受け渡しを避けるためにHTTPリクエストに応答しないことでTLSではないリクエストを拒否するようにしましょう。その際には`403 Forbidden`で応答しましょう。
 
 * リクエスト制限を使うことを考えましょう。
 
     _Why:_
     > 一時間あたり何千ものリクエストを送りつけてくるボットから身を守るために、リクエスト制限を早いうちから考えておくべきでしょう。
 
-* HTTPヘッダを適切に設定することはWebアプリケーションをより強固に、より安全にするのに役立ちます。[もっと読む](https://github.com/helmetjs/helmet)
+* HTTPヘッダを適切に設定することはWebアプリケーションをより強固に、より安全にするのに役立ちます。[もっと読む...](https://github.com/helmetjs/helmet)
 
-* APIは標準的なフォームのデータを受け取ってデータを加工しましょう。そうでなければデータを拒否するようにしましょう。400 Bad Requestとともにデータの不足やエラーについての詳細を返却しましょう。
+* APIは標準的なフォームのデータを受け取ってデータを加工しましょう。できなければリクエストを拒否するようにしましょう。400 Bad Requestとともにデータの不足やエラーについての詳細を返却しましょう。
 
 * RESTなAPIで交換される全てのデータはAPI上でValidateするようにしましょう。
 
 * JSONをシリアライズしましょう。
 
     _Why:_
-    > JSONエンコーダの悩みの種は、ブラウザ内でリモートからの任意のJavaScriptの実行を防ぐことです。もしくはnode.jsを使用しているのであれば、サーバーサイドも同様です。ユーザーから与えられた入力がブラウザ内で実行されないように、ユーザーからの情報をエンコードできる適切なJSONシリアライザーを使用することが重要です。
+    > JSONエンコーダの悩みの種は、ブラウザ内でリモートからの任意のJavaScriptの実行を防ぐことです。もしくはnode.jsを使用しているのであれば、サーバーサイドも同様です。ユーザーから与えられた入力がブラウザ内で実行されないように、ユーザーからの情報をエンコードできる適切なJSONシリアライザーを使用することが重要です。
 
 * Content-TypeをValidateするようにしましょう。多くの場合で `application/*json` (Content-Typeヘッダ)を使いましょう。
 
     _Why:_
     > 例えば、`application/x-www-form-urlencoded`のmime-typeを受け入れることは、攻撃者にフォームを作成させ、シンプルなPOSTリクエストを誘引させることを許すことになります。サーバは受け入れるContent-Typeを決して推定させないべきです。Content-Typeヘッダもしくは予期しないContent-Typeヘッダに対しては`4XX`のレスポンスでリクエストを拒否する結果を返却しましょう。
 
-* APIのセキュリティをチェックリストを見て確認しましょう。[もっと読む](https://github.com/shieldfy/API-Security-Checklist)
+* APIのセキュリティをチェックリストを見て確認しましょう。[もっと読む...](https://github.com/shieldfy/API-Security-Checklist)
 
 <a name="api-documentation"></a>
 ### 9.3 APIドキュメント
@@ -740,7 +745,7 @@ _Why:_
     Content: { id : 12 }
     ```
 
-* レスポンスの失敗の時は、ほとんどのエンドポイントの失敗は複数通りあります。認証されていないアクセスからの不正な値等。それら全てをここでは列挙しましょう。繰り返しになりますが、こうすることで憶測のみで開発せざるを得ない状況を防ぎます。例えば
+* レスポンスの失敗の時は、ほとんどのエンドポイントの失敗は複数通りあります。認証されていないアクセスからの不正な値等。それら全てをここでは列挙しましょう。繰り返しになりますが、こうすることで憶測のみで開発せざるを得ない状況を防ぎます。例
     ```json
     {
         "code": 403,
