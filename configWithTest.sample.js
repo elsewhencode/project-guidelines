@@ -2,12 +2,12 @@ const joi = require('joi')
 
 const envVarsSchema = joi.object({  
   NODE_ENV: joi.string()
-    .allow(['development', 'production', 'test', 'provision'])
+    .valid(['development', 'production', 'test', 'provision'])
     .required(),
   PORT: joi.number()
     .required(),
   LOGGER_LEVEL: joi.string()
-    .allow(['error', 'warn', 'info', 'verbose', 'debug', 'silly'])
+    .valid(['error', 'warn', 'info', 'verbose', 'debug', 'silly'])
     .default('info'),
   LOGGER_ENABLED: joi.boolean()
     .truthy('TRUE')
