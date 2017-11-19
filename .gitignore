@@ -50,6 +50,9 @@ build/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### Vim ###
+*.sw[a-p]
+
 ### WebStorm/IntelliJ ###
 /.idea
 modules.xml
