@@ -488,7 +488,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Avoid client-side console logs in production
 
     _Why:_
-    > Even though your build process can(should) get rid of them, but make sure your code style check gives your warning about console logs.
+    > Even though your build process can(should) get rid of them, make sure that your code style checker warns you about leftover console logs.
 
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
