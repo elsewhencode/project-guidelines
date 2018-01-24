@@ -384,7 +384,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     >Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated  (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to. 
 
-* Use `PascalCase' 'camelCase` for filenames and directory names. Use  `PascalCase`  only for Components.
+* Use `camelCase` for filenames and directory names. Use `PascalCase` only for Components.
 
 * `CheckBox/index.js` should have the `CheckBox` component, as could `CheckBox.js`, but **not** `CheckBox/CheckBox.js` or `checkbox/CheckBox.js` which are redundant.
 
