@@ -43,29 +43,29 @@ JavaScript工程项目的一系列最佳实践策略
 * 在功能分支中执行开发工作。 
 
     _为什么：_
-    > 因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个pull合并请求而不会导致混乱。您可以持续迭代提交，而不会使得那些很可能还不稳定而且还未完成的代码污染主分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+    > 因为这样，所有的工作都是在专用的分支而不是在主分支上隔离完成的。它允许您提交多个 pull request 而不会导致混乱。您可以持续迭代提交，而不会使得那些很可能还不稳定而且还未完成的代码污染 master 分支。[更多请阅读...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
 * 从 `develop` 独立出分支。  
 
     _为什么：_
-    > 这样，您可以保持 `master` 中的代码稳定性，这样就不会导致构建问题，并且几乎可以直接用于发布（当然，这可能对某些项目来说要求会比较高）。
+    > 这样，您可以保持 `master` 分支中的代码稳定性，这样就不会导致构建问题，并且几乎可以直接用于发布（当然，这可能对某些项目来说要求会比较高）。
 
 * 永远也不要将分支（直接）推送到 `develop` 或者 `master` ，请使用合并请求（Pull Request）。
 
     _为什么：_
-    > 通过这种方式，它可以通知整个团队他们已经完成了某个功能的开发。这样开发伙伴就可以更容易对代码进行评审，同时还可以互相讨论所提交的需求功能。
+    > 通过这种方式，它可以通知整个团队他们已经完成了某个功能的开发。这样开发伙伴就可以更容易对代码进行 code review，同时还可以互相讨论所提交的需求功能。
 
 * 在推送所开发的功能并且发起合并请求前，请更新您本地的`develop`分支并且完成交互式变基操作（interactive rebase）。
 
     _为什么：_
-    > 变基操作会将（本地开发分支）合并到被请求合并的分支（ `master` 或 `develop` ）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的合并提交（假设没有冲突的话），从而可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+    > rebase 操作会将（本地开发分支）合并到被请求合并的分支（ `master` 或 `develop` ）中，并将您本地进行的提交应用于所有历史提交的最顶端，而不会去创建额外的合并提交（假设没有冲突的话），从而可以保持一个漂亮而干净的历史提交记录。 [更多请阅读 ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
 * 请确保在变基并发起合并请求之前解决完潜在的冲突。
 
 * 合并分支后删除本地和远程功能分支。
 
     _为什么：_
-    > 如果不删除需求分支，大量僵尸分支的存在会导致分支列表的混乱。而且该操作还能确保有且仅有一次合并到`master` 或 `develop`。当且仅当这个功能分支还处于开发中时才应该存在。
+    > 如果不删除需求分支，大量僵尸分支的存在会导致分支列表的混乱。而且该操作还能确保有且仅有一次合并到`master` 或 `develop`。只有当这个功能还在开发中时对应的功能分支才存在。
 
 * 在进行合并请求之前，请确保您的功能分支可以成功构建，并已经通过了所有的测试（包括代码规则检查）。
 
@@ -99,7 +99,7 @@ JavaScript工程项目的一系列最佳实践策略
     git checkout -b <分支名称>
     ```
 
-* 新增一下代码变更。
+* 新增代码变更。
 
     ```sh
     git add
@@ -109,7 +109,7 @@ JavaScript工程项目的一系列最佳实践策略
     _为什么：_
     > `git commit -a` 会独立启动一个编辑器用来编辑您的说明信息，这样的好处是可以专注于写这些注释说明。更多请阅读 *章节 1.3*。
 
-* 保持与远程（develop分支）的同步，以便（使得本地develop分支）拿到最新变更。
+* 保持与远程（develop分支）的同步，以便（使得本地 develop 分支）拿到最新变更。
     ```sh
     git checkout develop
     git pull
@@ -139,10 +139,10 @@ JavaScript工程项目的一系列最佳实践策略
     ```
 
     _为什么:_
-    > 当您进行变基操作时，您会改变功能分支的提交历史。这会导致Git拒绝正常的 `git push` 。那么，您只能使用 `-f` 或 `--force` 参数了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+    > 当您进行 rebase 操作时，您会改变功能分支的提交历史。这会导致 Git 拒绝正常的 `git push` 。那么，您只能使用 `-f` 或 `--force` 参数了。[更多请阅读...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
 * 提交一个合并请求（Pull Request）。
-* 合并请求会被负责代码审查的同事接受，合并和关闭。
+* Pull Request 会被负责代码审查的同事接受，合并和关闭。
 * 如果您完成了开发，请记得删除您的本地分支。
 
     ```sh
@@ -154,14 +154,14 @@ JavaScript工程项目的一系列最佳实践策略
     ```
 
 <a name="writing-good-commit-messages"></a>
-### 1.3 如何写好提交说明
+### 1.3 如何写好 Commit Message
 
-坚持遵循关于提交的标准指南，会让在与他人合作使用Git时更容易。这里有一些经验法则 ([来源](https://chris.beams.io/posts/git-commit/#seven-rules)):
+坚持遵循关于提交的标准指南，会让在与他人合作使用 Git 时更容易。这里有一些经验法则 ([来源](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
  * 用新的空行将标题和主体两者隔开。
 
     _为什么：_
-    > Git非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果您尝试使用 `git shortlog` ，而不是 `git log` ，您会看到一个很长的提交消息列表，只会包含提交的id以及摘要（，而不会包含主体部分）。
+    > Git 非常聪明，它可将您提交消息的第一行识别为摘要。实际上，如果您尝试使用 `git shortlog` ，而不是 `git log` ，您会看到一个很长的提交消息列表，只会包含提交的 id 以及摘要（，而不会包含主体部分）。
 
  * 将标题行限制为50个字符，并将主体中一行超过72个字符的部分折行显示。
 
@@ -197,16 +197,16 @@ JavaScript工程项目的一系列最佳实践策略
 * 如果需要，请分别定义 `development`, `test` 和 `production` 三个环境。
 
     _为什么：_
-    > 不同的环境可能需要不同的数据、token、API、端口等。您可能需要一个隔离的 `development` 环境，它调用mock的API，mock会返回可预测的数据，使自动和手动测试变得更加容易。或者您可能只想在 `production` 环境中才启用Google Analytics（分析）。 [更多请阅读...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+    > 不同的环境可能需要不同的数据、token、API、端口等。您可能需要一个隔离的 `development` 环境，它调用 mock 的 API，mock 会返回可预测的数据，使自动和手动测试变得更加容易。或者您可能只想在 `production` 环境中才启用 Google Analytics（分析）。 [更多请阅读...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 
 * 依据不同的环境变量加载部署的相关配置，不要将这些配置作为常量添加到代码库中， [看这个例子](./config.sample.js).
 
     _为什么：_
     > 您会有令牌，密码和其他有价值的信息。这些配置应正确地从应用程序内部分离开来，这样代码库就可以随时独立发布，不会包含这些敏感配置信息。
-    _怎么做：_
+    > _怎么做：_
     > 使用 `.env` 文件来存储环境变量，并将其添加到 `.gitignore` 中使得排除而不被提交（到仓库）。另外，再提交一个 `.env.example` 作为开发人员的参考配置。对于生产环境，您应该依旧以标准化的方式设置环境变量。
-    [更多请阅读](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+    > [更多请阅读](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 * 建议您在应用程序启动之前校验一下环境变量。  [看这个例子](./configWithTest.sample.js) ，它使用了 `joi` 去校验提供的值。
 
@@ -225,12 +225,12 @@ JavaScript工程项目的一系列最佳实践策略
     _为什么：_
     > 任何使用`nvm`的人都可以使用 `nvm use` 来切换到合适的node版本。 [更多请阅读...](https://github.com/creationix/nvm)
 
-* 最好设置一个检查node和npm版本的 `preinstall` 脚本。
+* 最好设置一个检查 node 和 npm 版本的 `preinstall` 脚本。
 
     _为什么：_
-    > 某些依赖项可能会在新版本的npm中安装失败。
+    > 某些依赖项可能会在新版本的 npm 中安装失败。
 
-* 如果可以的话最好使用Docker镜像。
+* 如果可以的话最好使用 Docker 镜像。
 
     _为什么：_
     > 它可以在整个工作流程中为您提供一致的环境，而且不用花太多的时间来解决依赖或配置。 [更多请阅读...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
@@ -252,11 +252,11 @@ JavaScript工程项目的一系列最佳实践策略
     _怎么做：_
     > 在`npm@5`或者更高版本中使用 `package-lock.json`。
 
-    _我们没有npm@5：_
+    _我们没有 npm@5：_
     > 或者，您可以使用 `yarn` ，并确保在 `README.md` 中标注了使用 `yarn` 。您的锁文件和`package.json`在每次依赖关系更新后应该具有相同的版本。[更多请阅读...](https://yarnpkg.com/en/)
 
     _我不太喜欢 `Yarn` ：_
-    > 居然不喜欢Yarn，太糟糕了。对于旧版本的`npm`，在安装新的依赖关系时使用 `-save --save-exact` ，并在发布之前创建` npm-shrinkwrap.json` 。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
+    > 居然不喜欢 Yarn，太糟糕了。对于旧版本的`npm`，在安装新的依赖关系时使用 `-save --save-exact` ，并在发布之前创建` npm-shrinkwrap.json` 。 [更多请阅读...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
 ## 4. 依赖
@@ -329,7 +329,7 @@ JavaScript工程项目的一系列最佳实践策略
 * 记录您的测试，包括在 `README.md` 文件中的相关说明部分。
 
     _为什么：_
-    > 这是您为其他开发者或者DevOps专家或者QA或者其他如此幸运能和您一起协作的人留下的便捷笔记。
+    > 这是您为其他开发者或者 DevOps 专家或者 QA 或者其他如此幸运能和您一起协作的人留下的便捷笔记。
 
 <a name="structure-and-naming"></a>
 ## 6. 结构布局与命名
@@ -341,7 +341,7 @@ JavaScript工程项目的一系列最佳实践策略
 
     **不规范**
 
-    ```
+    ​```
     .
     ├── controllers
     |   ├── product.js
@@ -349,11 +349,11 @@ JavaScript工程项目的一系列最佳实践策略
     ├── models
     |   ├── product.js
     |   └── user.js
-    ```
-
+    ​```
+    
     **规范**
-
-    ```
+    
+    ​```
     .
     ├── product
     |   ├── index.js
@@ -363,8 +363,8 @@ JavaScript工程项目的一系列最佳实践策略
     |   ├── index.js
     |   ├── user.js
     |   └── user.test.js
-    ```
-
+    ​```
+    
     _为什么：_
     > 比起一个冗长的列表文件，创建一个单一责权封装的小模块，并在其中包括测试文件。将会更容易浏览，更一目了然。
 
@@ -377,7 +377,7 @@ JavaScript工程项目的一系列最佳实践策略
 
     _为什么：_
     > 当您为不同的目的（数据库，API等）分解不同的配置文件;将它们放在具有容易识别名称（如 `config` ）的文件夹中才是有意义的。请记住不要为不同的环境制作不同的配置文件。这样并不是具有扩展性的做法，如果这样，就会导致随着更多应用程序部署被创建出来，新的环境名称也会不断被创建，非常混乱。
-    配置文件中使用的值应通过环境变量提供。 [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+    > 配置文件中使用的值应通过环境变量提供。 [更多请阅读...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
 * 将脚本文件放在`./scripts`文件夹中。包括 `bash` 脚本和 `node` 脚本。
 
@@ -409,7 +409,7 @@ JavaScript工程项目的一系列最佳实践策略
 <a name="code-style-check"></a>
 ### 7.1 若干个代码风格指导
 
-* 对新项目请使用Stage2和更高版本的JavaScript（现代化）语法。对于老项目，保持与老的语法一致，除非您打算把老的项目也更新为现代化风格。
+* 对新项目请使用 Stage2 和更高版本的 JavaScript（现代化）语法。对于老项目，保持与老的语法一致，除非您打算把老的项目也更新为现代化风格。
 
     _为什么：_
     > 这完全取决于您的选择。我们使用转换器来使用新的语法糖。Stage2更有可能最终成为规范的一部分，而且仅仅只需经过小版本的迭代就会成为规范。
@@ -424,12 +424,12 @@ JavaScript工程项目的一系列最佳实践策略
     _为什么：_
     > 我们个人很喜欢 `eslint` ，不强制您也喜欢。它拥有支持更多的规则，配置规则的能力和添加自定义规则的能力。
 
-* 针对JavaScript我们使用[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) , [更多请阅读](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)。 请依据您的项目和您的团队选择使用所需的JavaScript代码风格。
+* 针对 JavaScript 我们使用[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) , [更多请阅读](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)。 请依据您的项目和您的团队选择使用所需的JavaScript 代码风格。
 
 * 当使用[FlowType](https://flow.org/)的时候，我们使用 [ESLint的Flow样式检查规则。](https://github.com/gajus/eslint-plugin-flowtype)。
 
     _为什么：_
-    > Flow引入了很少的语法，而这些语法仍然需要遵循代码风格并进行检查。
+    > Flow 引入了很少的语法，而这些语法仍然需要遵循代码风格并进行检查。
 
 * 使用 `.eslintignore` 将某些文件或文件夹从代码风格检查中排除。
 
@@ -470,7 +470,7 @@ JavaScript工程项目的一系列最佳实践策略
 <a name="enforcing-code-style-standards"></a>
 ### 7.2 强制的代码风格标准
 
-* 让您的编辑器提示您关于代码风格方面的错误。 请将[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) 与 [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) 和您目前的ESLint配置一起搭配使用。 [更多请阅读...](https://github.com/prettier/eslint-config-prettier#installation)
+* 让您的编辑器提示您关于代码风格方面的错误。 请将 [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) 与 [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) 和您目前的ESLint配置一起搭配使用。 [更多请阅读...](https://github.com/prettier/eslint-config-prettier#installation)
 
 * 考虑使用Git钩子。
 
@@ -493,7 +493,7 @@ JavaScript工程项目的一系列最佳实践策略
     > 您在构建过程可以把（应该）它们去掉，但是请确保您在代码风格检查中提供了有关控制台日志的警告信息。
 
 * 产出生产环境的可读生产日志记录。一般使用在生产模式下所使用的日志记录库 (比如 [winston](https://github.com/winstonjs/winston) 或者
-[node-bunyan](https://github.com/trentm/node-bunyan))。
+  [node-bunyan](https://github.com/trentm/node-bunyan))。
 
     _为什么：_
     > 它通过添加着色、时间戳、log到控制台或者文件中，甚至是夜以继日地轮流log到文件，来减少故障排除中那些令人不愉快的事情。[更多请阅读...](https://blog.risingstack.com/node-js-logging-tutorial/)
@@ -508,16 +508,16 @@ JavaScript工程项目的一系列最佳实践策略
 ### 9.1 API 设计
 
 _为什么：_
-> 因为我们试图实施开发出结构稳健的Restful接口，让团队成员和客户可以简单而一致地使用它们。
+> 因为我们试图实施开发出结构稳健的 Restful 接口，让团队成员和客户可以简单而一致地使用它们。
 
 _为什么：_
 > 缺乏一致性和简单性会大大增加集成和维护的成本。这就是为什么`API设计`这部分会包含在这个文档中的原因
 
 
-* 我们主要遵循资源导向的设计方式。它有三个主要要素：资源，集合和URLs。
+* 我们主要遵循资源导向的设计方式。它有三个主要要素：资源，集合和 URLs。
     * 资源具有数据，嵌套，和一些操作方法。
     * 一组资源称为一个集合。
-    * URL标识资源或集合的线上位置。
+    * URL标识资源或集合的线上位置。
 
     _为什么：_
     > 这是针对开发人员（您的主要API使用者）非常著名的设计方式。除了可读性和易用性之外，它还允许我们在无需了解API细节的情况下编写通用库和一些连接器。
@@ -563,12 +563,12 @@ _为什么：_
     ```
 
     _为什么：_
-    > 因为对于CRUD，我们在`资源`或`集合`URL上使用HTTP自己带的方法。我们所说的动词实际上是指`Controllers`。您通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    > 因为对于 CRUD，我们在`资源`或`集合`URL上使用 HTTP 自己带的方法。我们所说的动词实际上是指`Controllers`。您通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
 * 请求体或响应类型如果是JSON，那么请遵循`camelCase`规范为`JSON`属性命名来保持一致性。
 
     _为什么：_
-    > 这是一个JavaScript项目指南，其中用于生成JSON的编程语言以及用于解析JSON的编程语言被假定为JavaScript。
+    > 这是一个 JavaScript 项目指南，其中用于生成JSON的编程语言以及用于解析JSON的编程语言被假定为 JavaScript。
 
 * 即使资源类似于对象实例或数据库记录这样的单一概念，您也不应该将`table_name`用作资源名称或将`column_name`作为资源属性。
 
@@ -617,7 +617,7 @@ _为什么：_
     ```
 
     _为什么：_
-    > 当您的API为第三方公开时，升级API会导致发生一些意料之外的影响，也可能导致使用您API的人无法使用您的服务和产品。而这时使用URL中版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+    > 当您的 API 为第三方公开时，升级API会导致发生一些意料之外的影响，也可能导致使用您API的人无法使用您的服务和产品。而这时使用URL中版本化可以防止这种情况的发生。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 
 
@@ -675,7 +675,7 @@ _为什么：_
     > `500 Internal Server Error` 表示请求本身是有效，但由于某些意外情况，服务器无法实现，服务器发生了故障。
 
     _为什么：_
-    > 大多数API提供程序仅仅只使用一小部分HTTP状态代码而已。例如，Google GData API仅使用了10个状态代码，Netflix使用了9个，而Digg只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过70个HTTP状态代码。然而，大多数开发者不可能全部记住这70个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后您还要跑到维基百科上面找出您要告诉他们的内容，多累啊。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > 大多数 API 提供程序仅仅只使用一小部分 HTTP 状态代码而已。例如，Google GData API 仅使用了10个状态代码，Netflix 使用了9个，而 Digg 只使用了8个。当然，这些响应作为响应主体的附加信息。一共有超过 70 个 HTTP 状态代码。然而，大多数开发者不可能全部记住这 70 个状态码。因此，如果您选择不常用的状态代码，您将使应用程序开发人员厌烦构建应用程序，然后您还要跑到维基百科上面找出您要告诉他们的内容，多累啊。 [更多请阅读...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 
 * 在您的响应中提供资源的总数
@@ -727,18 +727,18 @@ _为什么：_
 <a name="api-documentation"></a>
 ### 9.3 API 文档
 
-* 在[README.md模板](./README.sample.md)为API填写 `API Reference` 段落。
-* 尽量使用示例代码来描述API授权方法
-* 解释URL的结构（仅path，不包括根URL），包括请求类型（方法）
+* 在[README.md模板](./README.sample.md)为 API 填写 `API Reference` 段落。
+* 尽量使用示例代码来描述 API 授权方法
+* 解释 URL 的结构（仅 path，不包括根 URL），包括请求类型（方法）
 
 对于每个端点（endpoint）说明：
-* 如果存在URL参数就使用URL参数，并根据URL中使用到的名称来指定它们：
+* 如果存在 URL 参数就使用 URL 参数，并根据URL中使用到的名称来指定它们：
     ```
     Required: id=[integer]
     Optional: photo_id=[alphanumeric]
     ```
 
-* 如果请求类型为POST，请提供如何使用的示例。上述的URL参数规则在这也可以适用。分为`可选`和`必需`。
+* 如果请求类型为 POST，请提供如何使用的示例。上述的URL参数规则在这也可以适用。分为`可选`和`必需`。
 
 * 响应成功，应该对应什么样的状态代码，返回了哪些数据？当人们需要知道他们的回调应该是期望的样子，这很有用：
 
@@ -765,7 +765,6 @@ _为什么：_
 ![证书](/images/licensing.png)
 
 确保您有权使用的这些资源。如果您使用其中的软件库，请记住先查询MIT，Apache或BSD（以更好地了解您所能够拥有的权限），但如果您打算修改它们，请查看许可证详细信息。图像和视频的版权可能会导致法律问题。
-
 
 ---
 资源:
