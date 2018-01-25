@@ -341,7 +341,7 @@ JavaScript工程项目的一系列最佳实践策略
 
     **不规范**
 
-    ​```
+    ```
     .
     ├── controllers
     |   ├── product.js
@@ -349,11 +349,11 @@ JavaScript工程项目的一系列最佳实践策略
     ├── models
     |   ├── product.js
     |   └── user.js
-    ​```
+    ```
     
     **规范**
     
-    ​```
+    ```
     .
     ├── product
     |   ├── index.js
@@ -363,7 +363,7 @@ JavaScript工程项目的一系列最佳实践策略
     |   ├── index.js
     |   ├── user.js
     |   └── user.test.js
-    ​```
+    ```
     
     _为什么：_
     > 比起一个冗长的列表文件，创建一个单一责权封装的小模块，并在其中包括测试文件。将会更容易浏览，更一目了然。
