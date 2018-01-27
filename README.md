@@ -107,7 +107,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     ```
     
     _Why:_
-    > This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
+    > This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
     
 * Update your feature branch with latest changes from develop by interactive rebase.
     ```sh
@@ -488,7 +488,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Avoid client-side console logs in production
 
     _Why:_
-    > Even though your build process can(should) get rid of them, make sure that your code style checker warns you about leftover console logs.
+    > Even though your build process can (should) get rid of them, make sure that your code style checker warns you about leftover console logs.
 
 * Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
 [node-bunyan](https://github.com/trentm/node-bunyan)).
@@ -679,7 +679,7 @@ The **client app did something wrong** or The **API did something wrong**.
 * Provide total numbers of resources in your response.
 * Accept `limit` and `offset` parameters.
 
-* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
+* The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
     ```
     GET /student?fields=id,name,age,class
     ```
@@ -709,7 +709,7 @@ These are some basic security best practices:
 
 * Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
-* All the data exchanged with the ReST API must be validated by the API.
+* All the data exchanged with the REST API must be validated by the API.
 
 * Serialize your JSON.
 
