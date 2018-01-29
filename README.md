@@ -141,7 +141,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
   ```
   to remove all branches which are no longer on remote
   ```sh
-  git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+  git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
   ```
 
 <a name="writing-good-commit-messages"></a>
