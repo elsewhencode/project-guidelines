@@ -161,7 +161,7 @@
 
  * 主題の先頭は大文字にしましょう。
  * ピリオドで終わるのをやめましょう。
- * 主題部分では[仮定法](https://en.wikipedia.org/wiki/Imperative_mood) を使いましょう。
+ * 主題部分では[命令法](https://en.wikipedia.org/wiki/Imperative_mood) を使いましょう。
 
     _Why:_
     > コミッタが何を行ったかわかりやすいメッセージを書きましょう。コミットがマージされた後にそのコミットが何をしたのかをうまく説明できるように考えるといいでしょう。[もっと読む...](https://news.ycombinator.com/item?id=2079612)
