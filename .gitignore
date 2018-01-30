@@ -62,7 +62,7 @@ modules.xml
 
 
 ### System Files ###
-.DS_Store
+*.DS_Store
 
 # Windows thumbnail cache files
 Thumbs.db
