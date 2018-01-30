@@ -61,7 +61,7 @@ There are a set of rules to keep in mind:
 * Delete local and remote feature branches after merging.
     
     _Why:_
-    > It will clutter up your list of branches with dead branches. It insures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
+    > It will clutter up your list of branches with dead branches. It ensures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
 
 * Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
     
