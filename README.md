@@ -414,7 +414,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
     _Why:_
     > Flow introduces few syntaxes that also need to follow certain code style and be checked.
 
-* Use `.eslintignore` to exclude file or folders from code style check.
+* Use `.eslintignore` to exclude files or folders from code style checks.
 
     _Why:_
     > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
