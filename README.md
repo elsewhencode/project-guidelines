@@ -643,13 +643,15 @@ _Why:_
 
     _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
 
-* Use only these 8 status codes to send with you response to describe whether **everything worked**,
+* Use these status codes to send with you response to describe whether **everything worked**,
 The **client app did something wrong** or The **API did something wrong**.
     
     _Which ones:_
     > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
     > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+
+    > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
 
     > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
 
