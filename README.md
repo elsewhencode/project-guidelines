@@ -643,7 +643,7 @@ _Why:_
 
     _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
 
-* Use these status codes to send with you response to describe whether **everything worked**,
+* Use these status codes to send with your response to describe whether **everything worked**,
 The **client app did something wrong** or The **API did something wrong**.
     
     _Which ones:_
