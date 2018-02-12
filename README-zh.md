@@ -3,13 +3,13 @@
 [日本語版](./README-ja.md) |
 [한국어](./REAMDE-ko.md)
 
-[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
 
 # 项目规范 &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 JavaScript工程项目的一系列最佳实践策略
 
-> 当您在青葱的田野里翻滚一般欢乐（而不受约束）地开发一个新项目，对其他人而言维护这样一个项目简直就是一个潜在的可怕的噩梦。以下列出的指南是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些指南应该删除。[欢迎随时与我们分享](http://makeapullrequest.com)。
+> 当您在青葱的田野里翻滚一般欢乐（而不受约束）地开发一个新项目，对其他人而言维护这样一个项目简直就是一个潜在的可怕的噩梦。以下列出的指南是我们在[elsewhen](http://elsewhen.co)的大多数JavaScript项目中发现，撰写和收集的最佳实践（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些指南应该删除。[欢迎随时与我们分享](http://makeapullrequest.com)。
 - [Git](#git)
     - [一些git规则](#some-git-rules)
     - [Git工作流](#git-workflow)

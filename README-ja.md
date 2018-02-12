@@ -3,12 +3,12 @@
  | [ENGLISH](./README.md)
  | [한국어](./README-ko.md)
 
-[<img src="./images/hive-red-logo.png" width="180" height="180">](http://wearehive.co.uk/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
 
 
 # プロジェクトガイドライン[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 > 開発中の新たなプロジェクトは草原のようですが、メンテナンスは誰にとっても悪夢になります。
-ここには私たちが見つけ記載し、集め考えたガイドラインがあります。 このガイドラインはほとんどの[hive](http://wearehive.co.uk)のJavaScriptのプロジェクトで機能しています。
+ここには私たちが見つけ記載し、集め考えたガイドラインがあります。 このガイドラインはほとんどの[elsewhen](http://elsewhen.co)のJavaScriptのプロジェクトで機能しています。
 もしもベストプラクティスを我々と共有したかったり、このガイドラインの項目は削除した方が良いと思ったら[気軽に私たちに報告してください](http://makeapullrequest.com)。
 - [Git](#git)
     - [Gitのルール](#some-git-rules)
