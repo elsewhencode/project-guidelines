@@ -461,7 +461,7 @@ Git에는 명심해야할 규칙들이 있습니다.
 
 * 서로 다른 에디터들 사이에서도 일관적인 코딩 스타일을 정의하고 유지하도록 돕는 [.editorconfig](http://editorconfig.org/) 파일을 사용하세요.
 
-    _Why:_
+    _이유:_
     > EditorConfig 프로젝트는 코딩 스타일을 정의하는 파일 포맷과, 에디터가 파일 포맷을 읽을 수 있도록 도와주고 정의한 스타일을 고수하는 텍스트 에디터 플러그인들의 모음으로 정의됩니다. EditorConfig 파일은 가독성이 좋고 버전 컨트롤 시스템과도 잘 동작합니다.
 
 * 코드 스타일 에러를 표시해주는 에디터를 사용하세요. 이미 사용하고 있는 ESLint 설정과 함께 [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)와[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)를 사용하세요. [더 읽기](https://github.com/prettier/eslint-config-prettier#installation)
