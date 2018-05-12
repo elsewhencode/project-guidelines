@@ -59,6 +59,7 @@ build/
 /.idea
 modules.xml
 *.ipr
+*.iml
 
 
 ### System Files ###
