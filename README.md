@@ -1,4 +1,4 @@
-[<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
+[<img src="./images/logo.chainstack.png" width="100">](https://chainstack.com/)
 
 
 # Chainstack Project Guidelines
