@@ -98,11 +98,12 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     ```
 * Make Changes.
     ```sh
-    git add
-    git commit -a
+    git add -p
+    git commit
     ```
     _Why:_
-    > `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
+    > `gitadd -p` will let you review all of the introduced changes and decide whether to include them in the commit or not.
+    > `git commit` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
 
 * Sync with remote to get changes you’ve missed.
     ```sh
