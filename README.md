@@ -98,11 +98,18 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
     ```
 * Make Changes.
     ```sh
-    git add
-    git commit -a
+    git add <file1> <file2> ...
+    git commit
     ```
     _Why:_
-    > `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
+    > `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change.
+    
+    > `git commit` will start an editor which lets you separate the subject from the body. 
+    
+    > Read more about it in *section 1.3*.
+    
+    _Tip:_
+    > You could use `git add -p` instead, which will give you chance to review all of the introduced changes one by one, and decide whether to include them in the commit or not.
 
 * Sync with remote to get changes you’ve missed.
     ```sh
