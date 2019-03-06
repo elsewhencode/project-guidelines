@@ -5,7 +5,7 @@
 
 [<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
 
-# Diretrizes de Projeto &middot; [![PRs são bem vindos](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+# Padrões de Projeto &middot; [![PRs são bem vindos](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 > Enquanto desenvolver um novo projeto é apenas diversão para você, manter esse projeto pode ser um dos piores pesadelos para outra pessoa.
 > Isso aqui é uma lista das padrões que encontramos, coletamos e escrevos que (para nós) funciona realmente bem com a maioria dos projetos JavaScript aqui na [elsewhen](http://elsewhen.co).
@@ -207,18 +207,18 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
 <a name="documentation"></a>
 
-## 2. Documentation
+## 2. Documentação
 
 ![Documentation](/images/documentation.png)
 
-- Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
-- For projects with more than one repository, provide links to them in their respective `README.md` files.
-- Keep `README.md` updated as a project evolves.
-- Comment your code. Try to make it as clear as possible what you are intending with each major section.
-- If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment.
-- Don't use comments as an excuse for a bad code. Keep your code clean.
-- Don't use clean code as an excuse to not comment at all.
-- Keep comments relevant as your code evolves.
+- Use esse [template](./README.sample.md) para `README.md`, sinta-se a vontade para adicionar seções que achar necessárias.
+- Para projetos com mais de um repositório adicione todos os respctivos links nos `README.md` de todos os projetos.
+- Mantenha o `README.md` enquanto o projeto evolui.
+- Comente seu código. Tente sempre deixar claro o que uma grande parte do código tem a intenção de fazer.
+- Se existe alguma referência em relação a forma como você resolveu o problema ou uma discussão em aberto, adicione os links.
+- Não use comentários como desculpa para fazer um código ruim. Matenha seu código limpo.
+- Não use código limpo como uma desculpa para não fazer nenhum comentário.
+- Matenha apenas os comentários relevantes enquanto o código evolui.
 
 <a name="environments"></a>
 
