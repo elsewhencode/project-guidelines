@@ -250,7 +250,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
 <a name="consistent-dev-environments"></a>
 
-### 3.1 Consistente ambientes de dev:
+### 3.1 Ambientes de dev consistentes:
 
 - Defina sua versão do node em `engines` no `package.json`.
 
