@@ -22,8 +22,8 @@
 - [Documentação](#documentation)
 - [Ambientes](#environments)
   - [Ambiente de dev consistente](#consistent-dev-environments)
-  - [Dependencias consistentes](#consistent-dependencies)
-- [Dependencias](#dependencies)
+  - [dependências consistentes](#consistent-dependencies)
+- [dependências](#dependencies)
 - [Testes](#testing)
 - [Estrutuaras e nomes](#structure-and-naming)
 - [Estilo de código](#code-style)
@@ -222,86 +222,87 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
 <a name="environments"></a>
 
-## 3. Environments
+## 3. Ambientes
 
 ![Environments](/images/laptop.png)
 
-- Define separate `development`, `test` and `production` environments if needed.
+- Defina ambientes de `desenvolvimento`, `testes` e `produção` separados.
 
-  _Why:_
+  _Por que?_
 
-  > Different data, tokens, APIs, ports etc... might be needed in different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manual testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+  > Diferentes informações, dados, tokens, APIs, portas etc... podem ter que ser diferentes em cada ambiente. Você provavelmente vai querer isolar seu ambiente de `desenvolvimento` para fazer chamadas fake para a API que retornará dados previsíveis, tornando tanto os testes automatizados quanto os manuais muito mais fácil. Ou você pode querer ativar o Google Analytics apenas em `produção` e etc... [Leia mais sobre...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
-* Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
+* Carregue suas configurações específicas de deploy de variáveis de ambiente e nunca as adicione no seu codebase como constantes, [veja aqui um exemplo](./config.sample.js).
 
-  _Why:_
+  _Por que?_
 
-  > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
+  > Você terá tokens, senhas e outras informações sigilosas nessa configuração. Sua configuração deve ser corretamente separada da sua aplicação como se seu codebase pudesse se tornar público a qualquer momento.
 
-  _How:_
+  _Como?_
 
-  > `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example` which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
-  > [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+  > Arquivos `.env` para manter suas variáveis e então adicione-o ao `.gitignore` para ser excluído. Ao invés, commit um `.env.example` que servirá de modelo para outros desenvolvedores. Para produção, você deve setar suas variáveis no jeito padrão. [Leia mais sobre...](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-* It’s recommended to validate environment variables before your app starts. [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
-  _Why:_
-  > It may save others from hours of troubleshooting.
+* É recomendável validar suas variáveis de ambiente antes de inicializar sua aplicação. [De uma olhada nesse exemplo](./configWithTest.sample.js) usando `joi` para validar os valores.
+
+  _Por que?_
+
+  > Pode salvar todos de horas de "dor de cabeça".
 
 <a name="consistent-dev-environments"></a>
 
-### 3.1 Consistent dev environments:
+### 3.1 Consistente ambientes de dev:
 
-- Set your node version in `engines` in `package.json`.
+- Defina sua versão do node em `engines` no `package.json`.
 
-  _Why:_
+  _Por que?_
 
-  > It lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
+  > Permite que todos saibem em qual versão o projeto funciona. [Leia mais sobre...](https://docs.npmjs.com/files/package.json#engines)
 
-- Additionally, use `nvm` and create a `.nvmrc` in your project root. Don't forget to mention it in the documentation.
+- Adicionamente, use `nvm` e crie um arquivo `.nvmrc` na raíz do seu projeto. Não se esqueça de menciona-lo na sua documentação.
 
-  _Why:_
+  _Por que?_
 
-  > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
+  > Qualque pessoa que usar `nvm` pode apenas rodar `nvm use` para trocar para a versão correta. [leia mais sobre...](https://github.com/creationix/nvm)
 
-- It's a good idea to setup a `preinstall` script that checks node and npm versions.
+- É uma boa ideia criar um script `preinstall` para conferir as versões do node e do npm.
 
-  _Why:_
+  _Por que?_
 
-  > Some dependencies may fail when installed by newer versions of npm.
+  > Algumas dependências podem falhar quando instaladas por versões mais recentes do NPM.
 
-- Use Docker image if you can.
+- Use Docker se puder.
 
-  _Why:_
+  _Por que?_
 
-  > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+  > Te dará um ambiente estável durante todo o workflow. Sem muita necessidade de lidar com dependências e configurações. [leia mais sobre...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
-- Use local modules instead of using globally installed modules.
+- Use local modules ao invés de modules instalados globalmente.
 
-  _Why:_
+  _Por que?_
 
-  > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
+  > Você estará compartilhando suas dependências com os outros ao invés de esperar que eles a tenham instalado globalmente.
 
 <a name="consistent-dependencies"></a>
 
-### 3.2 Consistent dependencies:
+### 3.2 Dependências consistentes:
 
-- Make sure your team members get the exact same dependencies as you.
+- Garanta que seus colegas de equipe obtenham exatamente a mesma versão de dependências que você.
 
-  _Why:_
+  _Por que?_
 
-  > Because you want the code to behave as expected and identical in any development machine [read more...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
+  > Porque você quer que se código tenha o mesmo comportamento em qualquer máquina de desenvolvimento [leia mais sobre...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
 
-  _how:_
+  _Como?_
 
-  > Use `package-lock.json` on `npm@5` or higher
+  > Use `package-lock.json` a partir do `npm@5`
 
-  _I don't have npm@5:_
+  _E se eu não tenho npm@5?_
 
-  > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [read more...](https://yarnpkg.com/en/)
+  > Uma alternativa pode ser o `Yarn` e não se esqueça de mencionar o seu uso no `README.md`. Seu lock file e o `package.json` devem manter as mesmas versões após cada atualização. [leia mais sobre...](https://yarnpkg.com/en/)
 
-  _I don't like the name `Yarn`:_
+  _E se eu não gosto do nome `Yarn`?_
 
-  > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
+  > Que pena. Para versões antigas do `npm`, use `—save --save-exact` quando instalando novas dependências e criando um `npm-shrinkwrap.json` antes de publicar. [Leia mais sobre...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
 
