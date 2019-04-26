@@ -1,7 +1,8 @@
 
 [ENGLISH](./README.md) |
 [日本語版](./README-ja.md) |
-[한국어](./REAMDE-ko.md)
+[한국어](./REAMDE-ko.md) | 
+[РУССКИЙ](./README-ru.md)
 
 [<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
 
