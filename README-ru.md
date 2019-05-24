@@ -22,8 +22,8 @@
     - [Пишем хорошее сообщение коммита](#writing-good-commit-messages)
 - [Документация](#documentation)
 - [Окружения](#environments)
-    - [Консистентные dev окружения](#consistent-dev-environments)
-    - [Консистентные зависимости](#consistent-dependencies)
+    - [Единообразные dev окружения](#consistent-dev-environments)
+    - [Единообразные зависимости](#consistent-dependencies)
 - [Зависимости](#dependencies)
 - [Тестирование](#testing)
 - [Структура и Именование](#structure-and-naming)
@@ -234,7 +234,7 @@
 
 <a name="consistent-dev-environments"></a>
 
-### 3.1 Консистентные dev окружения:
+### 3.1 Единообразные dev окружения:
 
 * Установите вашу версию Node.js в `engines` в файле `package.json`.
     
@@ -263,7 +263,7 @@
 
 <a name="consistent-dependencies"></a>
 
-### 3.2 Консистентные зависимости:
+### 3.2 Единообразные зависимости:
 
 * Убедитесь, что ваши коллеги получат точно такие же зависимости, что и вы.
 
