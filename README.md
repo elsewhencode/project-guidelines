@@ -255,7 +255,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 * Make sure your team members get the exact same dependencies as you.
 
     _Why:_
-    > Because you want the code to behave as expected and identical in any development machine [read more...](https://medium.com/@kentcdodds/why-semver-ranges-are-literally-the-worst-817cdcb09277)
+    > Because you want the code to behave as expected and identical in any development machine [read more...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
     _how:_
     > Use `package-lock.json` on `npm@5` or higher
