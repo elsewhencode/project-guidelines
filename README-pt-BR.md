@@ -4,12 +4,12 @@
 | [РУССКИЙ](./README-ru.md)
 | [ENGLISH](./README.md)
 
-[<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
 # Padrões de Projeto &middot; [![PRs são bem vindos](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 > Enquanto desenvolver um novo projeto é apenas diversão para você, manter esse projeto pode ser um dos piores pesadelos para outra pessoa.
-> Isso aqui é uma lista das padrões que encontramos, coletamos e escrevos que (para nós) funciona realmente bem com a maioria dos projetos JavaScript aqui na [elsewhen](http://elsewhen.co).
+> Isso aqui é uma lista das padrões que encontramos, coletamos e escrevos que (para nós) funciona realmente bem com a maioria dos projetos JavaScript aqui na [elsewhen](https://www.elsewhen.com).
 > Se você quer compartilhar alguma prática que considera importante ou acha que alguma das coisas descritas aqui deve ser removida, [Sinta se a vontade para nos dizer](http://makeapullrequest.com).
 
 🔥 [Confira](https://github.com/elsewhencode/react-redux-saucepan) nosso [react redux projeto base](https://github.com/elsewhencode/react-redux-saucepan) em Flow com hot reloading e server-side rendering.

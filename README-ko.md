@@ -5,12 +5,12 @@
  | [РУССКИЙ](./README-ru.md)
  | [Português](./README-pt-BR.md)
 
-[<img src="./images/elsewhen-logo.png" width="180" height="180">](http://elsewhen.co/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 > 새로운 프로젝트를 개발하는 할 때는 초원에서 뛰어노는 것 같지만, 유지보수는 모두에게 잠재적인 악몽입니다.
-이것은 우리가 발견하고, 작성하고 수집한 가이드라인의 목록입니다. 이 가이드라인은 대부분의 [elsewhen](http://elsewhen.co)에서의 JavaScript 프로젝트에 잘 맞습니다.
+이것은 우리가 발견하고, 작성하고 수집한 가이드라인의 목록입니다. 이 가이드라인은 대부분의 [elsewhen](https://www.elsewhen.com)에서의 JavaScript 프로젝트에 잘 맞습니다.
 만약 모범 사례를 공유하고 싶으시거나 여기에 있는 가이드라인 중 어떤 것이 지워져야 한다고 생각하신다면, [부담없이 우리에게 공유해주세요](http://makeapullrequest.com).
 - [Git](#git)
     - [Git 규칙](#some-git-rules)
