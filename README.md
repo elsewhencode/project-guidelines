@@ -5,7 +5,7 @@
  | [Русский](./README-ru.md)
  | [Português](./README-pt-BR.md)
 
-[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.comm/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
 
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
