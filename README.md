@@ -754,7 +754,7 @@ For each endpoint explain:
 * Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
     ```json
     {
-        "code": 403,
+        "code": 401,
         "message" : "Authentication failed",
         "description" : "Invalid username or password"
     }   
