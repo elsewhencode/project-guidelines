@@ -9,7 +9,7 @@
 # Padrões de Projeto &middot; [![PRs são bem vindos](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 > Enquanto desenvolver um novo projeto é apenas diversão para você, manter esse projeto pode ser um dos piores pesadelos para outra pessoa.
-> Isso aqui é uma lista das padrões que encontramos, coletamos e escrevos que (para nós) funciona realmente bem com a maioria dos projetos JavaScript aqui na [elsewhen](https://www.elsewhen.com).
+> Isso aqui é uma lista dos padrões que encontramos, coletamos e escrevemos que (para nós) funcionam realmente bem com a maioria dos projetos JavaScript aqui na [elsewhen](https://www.elsewhen.com).
 > Se você quer compartilhar alguma prática que considera importante ou acha que alguma das coisas descritas aqui deve ser removida, [Sinta se a vontade para nos dizer](http://makeapullrequest.com).
 
 🔥 [Confira](https://github.com/elsewhencode/react-redux-saucepan) nosso [react redux projeto base](https://github.com/elsewhencode/react-redux-saucepan) em Flow com hot reloading e server-side rendering.
@@ -61,11 +61,11 @@ Essas são algumas regras do Git para manter em mente:
 
   > Desse jeito você pode garantir que o código na master vai estar sempre pronto para fazer build sem problemas e poderá ser usado a qualquer momento para fazer releases (isso pode ser exagero para alguns projetos).
 
-- Nunca push direto na `develop` ou `master`. Sempre faça Pull Requests.
+- Nunca dê push direto na `develop` ou `master`. Sempre faça Pull Requests.
 
   _Por que?_
 
-  > Isso permite outros membros do time saber que você terminou uma feature. Também possibilita code review e dicussões sobre o código que está prestes a ser introduzido no code base.
+  > Isso permite outros membros do time saberem que você terminou uma feature. Também possibilita code review e dicussões sobre o código que está prestes a ser introduzido no code base.
 
 - Atualize sua `develop` local e faça rebase interativo antes de subir sua feature e abrir um Pull Request.
 
@@ -78,15 +78,15 @@ Essas são algumas regras do Git para manter em mente:
 
   _Por que?_
 
-  > Vai reduzir sua lista de branches removendo branches mortas. Vai granteir que você apenas faça o merge de uma branch uma única vez. Feature branches só devem existir enquanto o código ainda está em progresso.
+  > Vai reduzir sua lista de branches removendo branches mortas. Vai garantir que você apenas faça o merge de uma branch uma única vez. Feature branches só devem existir enquanto o código ainda está em progresso.
 
 - Antes de fazer um Pull Request, tenha certeza que sua feature branch está fazendo build corretamente e passando em todos os testes (incluindo os padrões de estilo de código).
 
   _Por que?_
 
-  > Você está prestes a colocar seu código em uma branch estável. Se sua feature branch faz algum teste falahar, a chance é alta de que você vai quebrar o build na branch destino. Você também precisa conferir o code style antes de fazer um Pull Request. Isso contribui para legibilidade e reduz a chance de algum problema de formatação is para o code base com as outras alterações.
+  > Você está prestes a colocar seu código em uma branch estável. Se sua feature branch faz algum teste falhar, a chance é alta de que você vai quebrar o build na branch destino. Você também precisa conferir o code style antes de fazer um Pull Request. Isso contribui para legibilidade e reduz a chance de algum problema de formatação is para o code base com as outras alterações.
 
-- Faça uso desse [this](./.gitignore) `.gitignore`.
+- Faça uso desse [`.gitignore`](./.gitignore).
 
   _Por que:_
 
@@ -104,7 +104,7 @@ Essas são algumas regras do Git para manter em mente:
 
 Devido a maioria dos motivos listados acima, nos usamos [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) com [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) e alguns pontos do [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (nomeação e ter uma develop branch). Os principais passos são:
 
-- Em um projecto novo, inicialize o git na pasta do projeto. **Para qualquer features/changes ignore esse passo**.
+- Em um projeto novo, inicialize o git na pasta do projeto. **Para qualquer features/changes ignore esse passo**.
 
   ```sh
   cd <pasta do projeto>
@@ -181,7 +181,7 @@ Devido a maioria dos motivos listados acima, nos usamos [Feature-branch-workflow
 
 <a name="writing-good-commit-messages"></a>
 
-### 1.3 Escrevendo boas mensagens de commit 
+### 1.3 Escrevendo boas mensagens de commit
 
 Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar com Git e colaborar com outros seja muito mais fácil. Aqui estão algumas boas práticas ([fonte](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
@@ -218,9 +218,9 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 - Mantenha o `README.md` enquanto o projeto evolui.
 - Comente seu código. Tente sempre deixar claro o que uma grande parte do código tem a intenção de fazer.
 - Se existe alguma referência em relação a forma como você resolveu o problema ou uma discussão em aberto, adicione os links.
-- Não use comentários como desculpa para fazer um código ruim. Matenha seu código limpo.
+- Não use comentários como desculpa para fazer um código ruim. Mantenha seu código limpo.
 - Não use código limpo como uma desculpa para não fazer nenhum comentário.
-- Matenha apenas os comentários relevantes enquanto o código evolui.
+- Mantenha apenas os comentários relevantes enquanto o código evolui.
 
 <a name="environments"></a>
 
@@ -232,7 +232,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > Diferentes informações, dados, tokens, APIs, portas etc... podem ter que ser diferentes em cada ambiente. Você provavelmente vai querer isolar seu ambiente de `desenvolvimento` para fazer chamadas fake para a API que retornará dados previsíveis, tornando tanto os testes automatizados quanto os manuais muito mais fácil. Ou você pode querer ativar o Google Analytics apenas em `produção` e etc... [Leia mais sobre...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+  > Diferentes informações, dados, tokens, APIs, portas etc... podem ter que ser diferentes em cada ambiente. Você provavelmente vai querer isolar seu ambiente de `desenvolvimento` para fazer chamadas fake para a API que retornará dados previsíveis, tornando tanto os testes automatizados quanto os manuais muito mais facéis. Ou você pode querer ativar o Google Analytics apenas em `produção` e etc... [Leia mais sobre...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 * Carregue suas configurações específicas de deploy de variáveis de ambiente e nunca as adicione no seu codebase como constantes, [veja aqui um exemplo](./config.sample.js).
 
@@ -260,7 +260,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   > Permite que todos saibem em qual versão o projeto funciona. [Leia mais sobre...](https://docs.npmjs.com/files/package.json#engines)
 
-- Adicionamente, use `nvm` e crie um arquivo `.nvmrc` na raíz do seu projeto. Não se esqueça de menciona-lo na sua documentação.
+- Adicionalmente, use `nvm` e crie um arquivo `.nvmrc` na raíz do seu projeto. Não se esqueça de menciona-lo na sua documentação.
 
   _Por que?_
 
@@ -312,7 +312,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
 ![Github](/images/modules.png)
 
-- Acompanhe seus pacoes disponíveis atualmente: e.g., `npm ls --depth=0`. [Leia mais sobre...](https://docs.npmjs.com/cli/ls)
+- Acompanhe seus pacotes disponíveis atualmente: e.g., `npm ls --depth=0`. [Leia mais sobre...](https://docs.npmjs.com/cli/ls)
 - Confira se algum dos seus pacotes não está em uso ou se tornou irrelevante: `depcheck`. [Leia mais sobre...](https://www.npmjs.com/package/depcheck)
 
   _Por que?_
@@ -329,14 +329,14 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > Ter muitos contribuidores não var ser tão efetivo quando se os mantenedores não fizerem os merge fixes e patches rápido.
+  > Ter muitos contribuidores não var ser tão efetivo se os mantenedores não fizerem os merge fixes e patches rápido.
 
 - Se você precisa de uma dependência menos conhecida, discuta com o time antes de usa-la.
 - Sempre tenha certeza que sua aplicação funciona com a ultima versão das dependências: `npm outdated`. [Leia mais sobre...](https://docs.npmjs.com/cli/outdated)
 
   _Por que?_
 
-  > Atualização de dependência as vezes possuem 'breaking changes'. Sempre confira a descrição da nova versão sempre que sair, isso faz com que lidar com os possíveis problemas seja mais fáceis. Use uma dessas ferramentas maneiras, como: [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+  > Atualização de dependência as vezes possuem 'breaking changes'. Sempre confira a descrição da nova versão sempre que sair, isso faz com que lidar com os possíveis problemas seja mais fácil. Use uma dessas ferramentas maneiras, como: [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
 - Confira problemas de segurança com a dependência que você quer adicionar, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
@@ -382,7 +382,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > Você não quer ser a pessoa a fazer a branch com código pronto para produção parar de funcionar. Rode seus teste depois que fizer `rebase` e antes de fazer push para sua feature branch.
+  > Você não quer ser a pessoa a fazer com que a branch com código pronto para produção pare de funcionar. Rode seus teste depois que fizer `rebase` e antes de fazer push para sua feature branch.
 
 - Documente seus testes incluindo instruções importantes em uma seção no arquivo `README.md`.
 
@@ -472,7 +472,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > Nós simplesmente preferimos `eslint`, você não precisa necessariamente. `eslint` da suporte a mais regras, a possibilidade de configura-las e criar regras customizadas.
+  > Nós simplesmente preferimos `eslint`, você não precisa necessariamente o usar. Ele tem mais regras suportadas, a possibilidade de configura-las e criar regras customizadas.
 
 - Nós usamos [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) para JavaScript, [Leia mais sobre](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Escolha os padrões necessário para seu projeto.
 
@@ -492,7 +492,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > É normal desabilitar o `eslint` para focar na lógica de uma parte do código. Apenas se lembre de remover o `eslint-disable` quando terminar.rules.
+  > É normal desabilitar o `eslint` para focar na lógica de uma parte do código. Apenas se lembre de remover o `eslint-disable` quando terminar.
 
 - Dependendo do tamanho da task, use comentários com `//TODO:` para ajudar na criação de novas tasks para o backlog.
 
@@ -510,7 +510,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > Mesmo que seu processo de build possa remove-los, as vezes seu código pode ser pego por alguém diferente, uma empresa terceirizada ou um chefe de outra área e isso pode não ser tão tranquilo.
+  > Mesmo que seu processo de build possa remove-los, as vezes seu código podem ser pegos por alguém diferente, uma empresa terceirizada ou um chefe de outra área e isso pode não ser tão tranquilo.
 
 * Use nomes com significados, fáceis de pesquisar e sem abreviações para suas variáveis ou funções. O nome de uma função deve ser um verbo ou uma frase e precisa de deixar claro a sua intenção.
 
@@ -526,7 +526,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > O EditorConfig consiste em um arquivo para edição de estilo de código e declaração de plugins para habilitar o editor a ler os arquivos em um determinado formato e  formarta-los de acordo com o esperado. EditorConfig são fáceis de ler e funcionam muito bem com sistemas de controle de versão.
+  > O EditorConfig consiste em um arquivo para edição de estilo de código e declaração de plugins para habilitar o editor a ler os arquivos em um determinado formato e  formatá-los de acordo com o esperado. EditorConfig são fáceis de ler e funcionam muito bem com sistemas de controle de versão.
 
 - Configure seu editor para alertar sobre erros de estilo de código. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) com seu arquivo ESLint já existente. [Leia mais sobre...](https://github.com/prettier/eslint-config-prettier#installation)
 
@@ -578,7 +578,7 @@ _Por que?_
 
   > Falta de consistência e simplicidade podem aumentar de forma expressiva os custos de manutenção e integração. E por isso `API design` está nesse documento.
 
-- Devemos seguir o padrão orientado a recursos. O qual tem 3 principais fatore: recursos, coleçÕes, e URLs.
+- Devemos seguir o padrão orientado a recursos. O qual tem 3 principais fatore: recursos, coleções, e URLs.
 
   - Um recurso possui dados, gets aninhados, e methods para permitir operações.
   - Um grupo de recursos é chamado coleção.
@@ -598,7 +598,7 @@ _Por que?_
 
   > Basicamente, é melhor para ler e torna a URL mais consistente. [Leia mais sobre...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
-- No código fonte, converta plurals para variáveis e propriedades com uma lista de sufixos.
+- No código fonte, converta plurais para variáveis e propriedades com uma lista de sufixos.
 
   _Por que?_
 
@@ -625,7 +625,7 @@ _Por que?_
 
   _Por que?_
 
-  > Porque se você usar verbos para cada operação em um recurso você vai acabar com uma lista enrome de URLs e nenhum padrão consistente, o que torna difícil para desenvolvedores lerem. Além disso, nos usamos verbos para outra situação.
+  > Porque se você usar verbos para cada operação em um recurso você vai acabar com uma lista enorme de URLs e nenhum padrão consistente, o que torna difícil para desenvolvedores lerem. Além disso, nos usamos verbos para outra situação.
 
 - Use verbos para 'não recursos'. Nesse caso, sua API não retorna nenhum recurso. Ao invés, você executa uma operação que retorna um resultado. Essas **não são** operações de um CRUD (criar, ler, atualizar, e deletar):
 
@@ -641,19 +641,18 @@ _Por que?_
 
   _Por que?_
 
-  > Esse é um padrão de proejto para JavaScript, onde a linguagem usada para gerar e parsear JSON é, em teoria, JavaScript. 
+  > Esse é um padrão de projeto para JavaScript, onde a linguagem usada para gerar e parsear JSON é, em teoria, JavaScript.
 
-- Mesmo que um recurso seja um conceito singular, similar à uma instancia ou registro do banco de dados, você não deve usar `nome_da_tabela` para o nome de um recurso e `nome_da_coluna` para a propriedade de um recurso.
-
-  _Por que?_
-
-  > Porque sua intenção é expor os recursos, não detalhes do schema do seu banco de dados. 
-
-- Novamente, apenas use substantivos quando nomeando a URL de um recurso e não tente explica a funcionalidade. 
+- Mesmo que um recurso seja um conceito singular, similar à uma instância ou registro do banco de dados, você não deve usar `nome_da_tabela` para o nome de um recurso e `nome_da_coluna` para a propriedade de um recurso.
 
   _Por que?_
 
-  > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
+  > Porque sua intenção é expor os recursos, não detalhes do schema do seu banco de dados.
+
+- Novamente, apenas use substantivos quando nomeando a URL de um recurso e não tente explicar a funcionalidade.
+
+  _Por que?_
+
   > Apenas use substantivos nos recursos na URL, evite coisas como `/addNewUser` ou `/updateUser`. Também, evite enviar operações sobre os recursos como parâmetros.
 
 - Explicite as operações de CRUD usando funcionalidades do métodos HTTP:
@@ -731,14 +730,12 @@ _Por que?_
 
   _Por que?_
 
-  > Desenvolvedores dependem de erros bem descritivos em momentos críticos quando eles estão com dificuldades resolvendo problemas da aplicação que eles construiram usando sua API.
+  > Desenvolvedores dependem de erros bem descritivos em momentos críticos quando eles estão com dificuldades resolvendo problemas da aplicação que eles construíram usando sua API.
 
-    _Nota: Mantenha mensagens relacionadas a exceções de segurança o mais genéricas possível. Por exemplo, ao invés de 'Senha incorreta', você pode responder dizendo 'Usuário ou senha inválidos' para que não vazamos informações sobre dados corretos que não deveriam ser conhecido por terceiros._
-    
-- Use these status codes to send with your response to describe whether **everything worked**,
-  The **client app did something wrong** or The **API did something wrong**.
-- Use códigos de status para enviar descrever suas respostas ao invés de **tudo funcionou corrretamente**,
-  O **App do cliente fez algo errado** ou A **API fez algo errado**.
+    _Nota: Mantenha mensagens relacionadas a exceções de segurança o mais genéricas possível. Por exemplo, ao invés de 'Senha incorreta', você pode responder dizendo 'Usuário ou senha inválidos' para que não vaze informações sobre dados corretos que não deveriam ser conhecido por terceiros._
+
+- Use códigos de status para enviar e descrever suas respostas ao invés de **tudo funcionou corretamente**,
+   **App do cliente fez algo errado** ou A **API fez algo errado**.
 
   _Quais?_ > `200 OK` resposta de sucesso para requisições `GET`, `PUT` ou `POST`.
 
@@ -752,11 +749,11 @@ _Por que?_
 
       > `401 Unauthorized` para quando a requisição não possui credenciais suficientes para ser executada.
 
-      > `403 Forbidden` siginifica que o servidor entendeu a requisição mas recusa a realiza-la.
+      > `403 Forbidden` siginifica que o servidor entendeu a requisição mas se recusa a realizá-la.
 
       > `404 Not Found` indica que o recurso da requisição não foi encontrado.
 
-      > `500 Internal Server Error` indica que a requisição foi recebida mas devida algum erro interno a requisição não pode ser completada.
+      > `500 Internal Server Error` indica que a requisição foi recebida mas devida à algum erro interno a requisição não pode ser completada.
 
       _Por que?_
 
@@ -786,7 +783,7 @@ Algumas boas práticas básicas de segurança:
 
 - Códigos de autorização devem ter "tempo de vida curto".
 
-- Rejeite qualquer requisição não-TLS não respondendo nenhuma requisição HTTP para evitar vazamento de dados. Apenas resposnda `403 Forbidden`.
+- Rejeite qualquer requisição não-TLS não respondendo nenhuma requisição HTTP para evitar vazamento de dados. Apenas responda `403 Forbidden`.
 
 - Considere usar Limite de requisições.
 
@@ -799,14 +796,14 @@ Algumas boas práticas básicas de segurança:
 - Sua API deve converter os dados recebidos para sua forma canônica ou rejeita-los. Retrone status `400 Bad Request` com detalhes sobre os de dados errados ou faltantes.
 
 - Todos os dados trocados com a API REST devem ser validados pela API.
-  
+
 - Serialize seu JSON.
 
   _Por que?_
 
-  > Uma das principais preocupações lidando com JSON encoders é previnir JavaScript malicioso de ser executado no broswer... Ou, se você está usando `node.js`, no servidor. É vital usar JSON corretamente serializados para evitar a execução de código enviado como input pelo broswer.
+  > Uma das principais preocupações lidando com JSON encoders é previnir JavaScript malicioso de ser executado no browser... Ou, se você está usando `node.js`, no servidor. É vital usar JSON corretamente serializados para evitar a execução de código enviado como input pelo broswer.
 
-- Validate o content-type e na maioria dos casos use `application/*json` (Content-Type header).
+- Valide o content-type e na maioria dos casos use `application/*json` (Content-Type header).
 
   _Por que?_
 
@@ -833,7 +830,7 @@ Para cada `endpoint` explique:
 
 - Se o tipo da requisiçõa é POST, forneça alguns exemplos de código. Essa regra se aplica para parâmetros de URL também. Separe a seção entre `Requeridos` e `Opcionais`.
 
-- Resposta de sucesso, qual deverias ser o código de status e tem algum dado à ser retornado junto? Isso é útil quando as pessoas precisam saber o que os seus `callbacks` devem esperar:
+- Resposta de sucesso, qual deveria ser o código de status e tem algum dado à ser retornado junto? Isso é útil quando as pessoas precisam saber o que os seus `callbacks` devem esperar:
 
   ```
   Code: 200
@@ -841,7 +838,7 @@ Para cada `endpoint` explique:
   ```
 
 - Mensagens de erro, a maioria dos `endpoints` possuem várias maneiras de falhar. De acesso negado à parâmetros errados e etc. Todos devem ser listados. Pode parecer repetitivo, mas ajuda a previnir que desenvolvedores tentem prever o que vai acontecer. Por exemplo
-- 
+-
   ```json
   {
     "code": 403,
@@ -850,7 +847,7 @@ Para cada `endpoint` explique:
   }
   ```
 
-* Use ferramentas de desing de API, existem muitas ferramentas de código aberto para uma boa documentação como [API Blueprint](https://apiblueprint.org/) e [Swagger](https://swagger.io/).
+* Use ferramentas de design de API, existem muitas ferramentas de código aberto para uma boa documentação como [API Blueprint](https://apiblueprint.org/) e [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 
@@ -858,7 +855,7 @@ Para cada `endpoint` explique:
 
 ![Licensing](/images/licensing.png)
 
-Tenha certeza de usar recursos aos quais você possui o direito de uso. Se você usa bibliotecas, lembre-se de procurar por MIT, Apache ou BSD mas se você precisa modifica-las, então confira nos detalhes da licensa. Imagens e vídeos com copyright podem te causar problemas.
+Tenha certeza de usar recursos aos quais você possui o direito de uso. Se você usa bibliotecas, lembre-se de procurar por MIT, Apache ou BSD mas se você precisa modifica-las, então confira nos detalhes da licença. Imagens e vídeos com copyright podem te causar problemas.
 
 ---
 
