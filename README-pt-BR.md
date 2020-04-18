@@ -510,7 +510,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > Mesmo que seu processo de build possa remove-los, as vezes seu código podem ser pegos por alguém diferente, uma empresa terceirizada ou um chefe de outra área e isso pode não ser tão tranquilo.
+  > Mesmo que seu processo de build possa remove-los, as vezes seu código pode ser pego por alguém diferente, uma empresa terceirizada ou um chefe de outra área e isso pode não ser tão tranquilo.
 
 * Use nomes com significados, fáceis de pesquisar e sem abreviações para suas variáveis ou funções. O nome de uma função deve ser um verbo ou uma frase e precisa de deixar claro a sua intenção.
 
