@@ -78,7 +78,7 @@ Essas são algumas regras do Git para manter em mente:
 
   _Por que?_
 
-  > Vai reduzir sua lista de branches removendo branches mortas. Vai granteir que você apenas faça o merge de uma branch uma única vez. Feature branches só devem existir enquanto o código ainda está em progresso.
+  > Vai reduzir sua lista de branches removendo branches mortas. Vai garantir que você apenas faça o merge de uma branch uma única vez. Feature branches só devem existir enquanto o código ainda está em progresso.
 
 - Antes de fazer um Pull Request, tenha certeza que sua feature branch está fazendo build corretamente e passando em todos os testes (incluindo os padrões de estilo de código).
 
