@@ -686,7 +686,7 @@ The **client app did something wrong** or The **API did something wrong**.
 
 * The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
     ```
-    GET /student?fields=id,name,age,class
+    GET /students?fields=id,name,age,class
     ```
 * Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
 
