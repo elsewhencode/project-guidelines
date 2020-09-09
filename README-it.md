@@ -491,44 +491,44 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
   > E' normale disabilitare verifiche di stile mentre si lavora a un blocco di codice per focalizzarsi più sulla logica. Solo ricordate di rimuovere quei commenti `eslint-disable` e seguite le regole
 
 - A seconda della dimensione dell'attività usate commenti `//TODO:` oppure aprite un ticket.
-W
+  W
   _Perchè:_
 
-  > So then you can remind yourself and others about a small task (like refactoring a function or updating a comment). For larger tasks use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
+  > In questo modo potete ricordare agli altri e a voi stessi di una piccola attività (tipo refattorizzare una funzione o aggiornare un commento). Per attività più complessi usate `//TODO(#3456)` che viene impostat da una regola di lint e dal numero del ticket aperto.
 
-- Always comment and keep them relevant as code changes. Remove commented blocks of code.
-
-  _Perchè:_
-
-  > Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
-
-- Avoid irrelevant or funny comments, logs or naming.
+- Commentate sempre e mantenete i commenti in linea con le modifiche fino ad ora apportate al codice. Elminate i blocchi di codice commentati.
 
   _Perchè:_
 
-  > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
+  > Il vostro codice dovrebbe essere il più leggibile possibile, dovreste sbarazzarvi di ogni distrazione. Se rifattorizzate una funzione non commentate la vecchia, eliminatela.
 
-- Make your names search-able with meaningful distinctions avoid shortened names. For functions use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
-
-  _Perchè:_
-
-  > It makes it more natural to read the source code.
-
-- Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
+- Evitate commenti, log e attribuzione di nominativi irrilevanti o divertenti.
 
   _Perchè:_
 
-  > It makes it more natural to read the source code.
+  > Anche se il vostro processo di compilazione potrebbe (dovrebbe) sbarazzarsi di questi, talvolta il vostro codice sorgente potrebbe essere affidato ad altra ditta/cliente e potrebbero non non trovarli divertenti.
+
+- Rendete i vostri nomi ricercabili con distinzioni significative ed evitate abbreviazioni di nomi. Per le funzioni usate nomi lunghi e descrittivi. Un nome di funzione dovrebbe essere un verbo o una frase verbale, e deve comuncare le proprie intenzioni.
+
+  _Perchè:_
+
+  > Rende la lettura del codice sorgente più naturale.
+
+- Organizzate le vostre fuznoni in un file a seconda della regole di discesa. Funzioni di alto livello dovrebbero essere in testa e quelle di basso livello più in basso.
+
+  _Perchè:_
+
+  > Rende la lettura del codice sorgente più naturale.
 
 <a name="enforcing-code-style-standards"></a>
 
-### 7.2 Enforcing code style standards
+### 7.2 Imporre standard di stile di codice
 
-- Use a [.editorconfig](http://editorconfig.org/) file which helps developers define and maintain consistent coding styles between different editors and IDEs on the project.
+- Usate un file [.editorconfig](http://editorconfig.org/) che aiuta gli sviluppatori a definire e mantenere stili di codice consistente tra i diversi editor e IDE usati nel progetto.
 
   _Perchè:_
 
-  > The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+  > Il progetto EditorConfig consiste in un formato di file per definire stili di codice e una collezione di plugin per editor testi che consentono agli editor di leggere il formato di stile e aderire a stili definiti. I file EditorConfig sono facilmente leggibili e funzionano bene con sistemi di controllo di versione.
 
 - Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [leggi di più...](https://github.com/prettier/eslint-config-prettier#installation)
 
