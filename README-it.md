@@ -530,19 +530,19 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Il progetto EditorConfig consiste in un formato di file per definire stili di codice e una collezione di plugin per editor testi che consentono agli editor di leggere il formato di stile e aderire a stili definiti. I file EditorConfig sono facilmente leggibili e funzionano bene con sistemi di controllo di versione.
 
-- Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [leggi di più...](https://github.com/prettier/eslint-config-prettier#installation)
+- Fate in modo che il vostro editor vi notifichi circa gli errori di stile di codice. Usate [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) con vostra configurazione esistente di ESLint. [leggi di più...](https://github.com/prettier/eslint-config-prettier#installation)
 
-- Consider using Git hooks.
-
-  _Perchè:_
-
-  > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [leggi di più...](http://githooks.com/)
-
-- Use Prettier with a precommit hook.
+- Considerate l'uso dei _Git hooks_.
 
   _Perchè:_
 
-  > While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play. Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) and on configuring `husky` [here](https://github.com/typicode/husky).
+  > Accrescono notevolmente la produttività di uno sviluppatore. Fate modifiche, confermate e portate sugli ambienti di staging o produzione senza paura di rompere la compilazione. [leggi di più...](http://githooks.com/)
+
+- Usate Prettier con un _hook_ prima del commit.
+
+  _Perchè:_
+
+  > Sebbene `prettier` per se stesso possa essere molto potente, non è molto porudttivo se eseguito semplicemente come una attività npm a se stante ogni volta per formattare il codice.Ecco dove `lint-staged` (e `husky`) entrano in gioco. Leggete di più sul come configurare `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) e `husky` [here](https://github.com/typicode/husky).
 
 <a name="logging"></a>
 
@@ -550,17 +550,17 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Logging](/images/logging.png)
 
-- Avoid client-side console logs in production
+- Evitare log lato console client in produzione.
 
   _Perchè:_
 
-  > Even though your build process can (should) get rid of them, make sure that your code style checker warns you about leftover console logs.
+  > Anche se il vostro processo di compilazione possa (dovrebbe) sbarazzarsene, assicuratevi che il vostri verificatore di stile di codice vi avvisi rispetto a log su console lasciati nel codice.
 
-- Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
+- Producete dei log di produzione leggibili. Idealmente utilizzare librerie di logging libraries in produzione (tipo [winston](https://github.com/winstonjs/winston) o
   [node-bunyan](https://github.com/trentm/node-bunyan)).
 
       _Perchè:_
-      > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [leggi di più...](https://blog.risingstack.com/node-js-logging-tutorial/)
+      > Rende l'identificazione dei problemi molto meno spiacevole con colorizzazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [leggi di più...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 <a name="api"></a>
 
@@ -570,50 +570,50 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![API](/images/api.png)
 
-### 9.1 API design
+### 9.1 Progettazione API
 
 _Perchè:_
 
-> Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
+> Cerchiamo di imporre lo sviluppo di interfacce _RESTFUL_ ben costruite, che possono essere consumate dai membri della squadra e i cleint in modo semplice e consistente.
 
 _Perchè:_
 
-> Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
+> La mancanza di consistenza e semplicità può accrescere enormemente i costi di integrazione e mantenimento. Ecco perchè `Progettazione API` è incluso in questo documento.
 
-- We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+- Seguite per la maggior parte una progettazione orientata alle risorse. Ci sono tre fattori principali: risorse, collezion e URL.
 
-  - A resource has data, gets nested, and there are methods that operate against it.
-  - A group of resources is called a collection.
-  - URL identifies the online location of resource or collection.
-
-  _Perchè:_
-
-  > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
-
-- use kebab-case for URLs.
-- use camelCase for parameters in the query string or resource fields.
-- use plural kebab-case for resource names in URLs.
-
-- Always use a plural nouns for naming a url pointing to a collection: `/users`.
+  - Una risorsa ha dati, viene annidata e ci sono metodi che operano su di essa.
+  - Un gruppo di risorse è chiamata collezione.
+  - URL identifica la locazione online di risorse o collezioni.
 
   _Perchè:_
 
-  > Basically, it reads better and keeps URLs consistent. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+  > Questa è una progettazione ben nota agli sviluppatori (i vostri principali consumantori di API). A parte la leggibilità e la facilità d'uso, consente di scrivere librerie generiche e connettori senza neppure sapere come sia fatta l'API stessa.
 
-- In the source code convert plurals to variables and properties with a List suffix.
+- usete il _kebab-case_ per gli URLs.
+- usate il _camelCase_ per parametri in _query string_ o campi che rappresentano uno risorsa.
+- usate il _kebab-case_ al plurale per nomi di risorse negli URL.
+
+- Usate sempre la forma plurale dei nomi per denominare un url che punta a una collezione: `/users`.
+
+  _Perchè:_
+
+  > Fondamentalmente risulta meglio leggibile e rende l'URL consistente. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
+- Nel codice sorgente convertite le forme plurali in varibili e le proprietà con un suffisso List.
 
   _Why_:
 
-  > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
+  > La forma plurale va bene negli URL ma nel codice sorgente è troppo debole e incline a errori.
 
-- Always use a singular concept that starts with a collection and ends to an identifier:
+- Usate sempre un concetto al singolare che parte da una collezione e finisce con un identificatore:
 
   ```
   /students/245743
   /airports/kjfk
   ```
 
-- Avoid URLs like this:
+- Evitare URL tipo questo:
 
   ```
   GET /blogs/:blogId/posts/:postId/summary
@@ -621,15 +621,15 @@ _Perchè:_
 
   _Perchè:_
 
-  > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
+  > Non punta a una risorsa ma a una proprietà. Si possono passare le proprietà come parametro per ridurre la propria risposta.
 
-- Keep verbs out of your resource URLs.
+- Mantenere i verbi al di fuori dei vostri URL di risorse.
 
   _Perchè:_
 
-  > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
+  > Se usate un verbo per ogni operazione su una risorsa presto avrete una enorme lista di URL e un modello non consistente che lo rende difficile da impaarare per gli sviluppatori. Inoltre i verbi si usano per altri scopi.
 
-- Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
+- Usate verbi per non-risorse. In questo caso, la vostra API non ritorna alcuna risosa, viceversa voi eseguite una operazione e ritornate il risultato. Questi **non sono** operazioni CRUD (creazione, recupero, aggiornamento e cancellazione):
 
   ```
   /translate?text=Hallo
@@ -637,59 +637,59 @@ _Perchè:_
 
   _Perchè:_
 
-  > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [leggi di più...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+  > Per le operazioni CRUD usiamo i metodi HTTP su URL di `risorse` o `collezioni` URLs. I verbi di cui stiamo parlando sono in realtà `Controllers`. In genere non ne svilupperete molti di questi. [leggi di più...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
-- The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
-
-  _Perchè:_
-
-  > This is a JavaScript project guideline, where the programming language for generating and parsing JSON is assumed to be JavaScript.
-
-- Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
+- Il corpo della richiesta o il tipo di risposta è JSON perntato seguite la forma `camelCase` per i nomi di proprietà per mantenere una consistenza.
 
   _Perchè:_
 
-  > Because your intention is to expose Resources, not your database schema details.
+  > Queste sono linee guida per un progetto Javascript, dove il linguaggio di programmazione per generare ed elaborare JSON si assume sia JavaScript.
 
-- Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
+- Anche se una risorsa rappresenta un concetto al singolare, simile a una istanza di un oggetto o un record di database, non dovreste usare il `nome_tabella` per un nome di risorsa il `nome_colonna` per una proprietà..
 
   _Perchè:_
 
-  > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
+  > Il vostro intendimento è di esporre risorse, non i dettagli dello schema del vostro database.
 
-- Explain the CRUD functionalities using HTTP methods:
+- Ancora una volta, non usate nomi nei vostri URL quando dovete nominare le vostre risorse e non cercate di spiegarne la loro funzionalità.
+
+  _Perchè:_
+
+  > Usate nomi solamente nei vostri URL di risorsa, evitate URL che finiscono con `/addNewUser` or `/updateUser`. Evitata inoltre di inviare operazioni su risorse come parametro.
+
+- Esprimente le funzionalità CRUD usando i metodi HTTP:
 
   _How:_
 
-  > `GET`: To retrieve a representation of a resource.
+  > `GET`: Per ottenere una rappresentazione di una risorsa.
 
-  > `POST`: To create new resources and sub-resources.
+  > `POST`: Per creare nuove risorse e sotto risorse.
 
-  > `PUT`: To update existing resources.
+  > `PUT`: Per aggiornare risorse esistenti.
 
-  > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone.
+  > `PATCH`: Per aggiornare risorse esistenti. Aggirna solo i campi che gli sono stati forniti lasciando gli altri invariati.
 
-  > `DELETE`: To delete existing resources.
+  > `DELETE`: Per eliminare risorse esistenti
 
-- For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
+- Per risorse annidate, usate la relazione tra loro nell'URL. Ad esempio usando `id` per collegare un dipendente a una ditta.
 
   _Perchè:_
 
-  > This is a natural way to make resources explorable.
+  > Questo è il modo naturale per rendere le risorse esplorabili.
 
-  _How:_
+  _Come:_
 
-  > `GET /schools/2/students ` , should get the list of all students from school 2.
+  > `GET /schools/2/students ` , dovrebbe ottenere la lista di tutti gli studenti dalla scuola 2.
 
-  > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
+  > `GET /schools/2/students/31` , dovrebbe ottenere i dettagli dello studente 31, che appartiene alla scuola 2.
 
-  > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
+  > `DELETE /schools/2/students/31` , dovrebbe eliminare lo studente 31, che appartiene alla scuola 2.
 
-  > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
+  > `PUT /schools/2/students/31` , dovrebbe aggiornare le info sullo studente 31, usate PUT solo su URL che rappresentano risorse, non collezioni.
 
-  > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
+  > `POST /schools` , dovrebbe creare una nuova schola e ritornare i dettagli della nuova scuola creata. Usate POS su URL che rappresentano una collezione.
 
-- Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
+- Usate un semplice numero ordinale per una versione con un prefisso `v` prefix (v1, v2). Spostate tutto alla sinistra nell'URL in modd che abbia Move it all the way to the left in the URL so that it has the highest scope:
 
   ```
   http://api.domain.com/v1/schools/3/students
