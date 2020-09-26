@@ -687,9 +687,9 @@ _Perchè:_
 
   > `PUT /schools/2/students/31` , dovrebbe aggiornare le info sullo studente 31, usate PUT solo su URL che rappresentano risorse, non collezioni.
 
-  > `POST /schools` , dovrebbe creare una nuova schola e ritornare i dettagli della nuova scuola creata. Usate POS su URL che rappresentano una collezione.
+  > `POST /schools` , dovrebbe creare una nuova scuola e ritornare i dettagli della nuova scuola creata. Usate POS su URL che rappresentano una collezione.
 
-- Usate un semplice numero ordinale per una versione con un prefisso `v` prefix (v1, v2). Spostate tutto alla sinistra nell'URL in modd che abbia Move it all the way to the left in the URL so that it has the highest scope:
+- Usate un semplice numero ordinale per una versione con un prefisso `v` prefix (v1, v2). Spostate tutto alla sinistra nell'URL in modo che abbia Move it all the way to the left in the URL so that it has the highest scope:
 
   ```
   http://api.domain.com/v1/schools/3/students
@@ -697,34 +697,34 @@ _Perchè:_
 
   _Perchè:_
 
-  > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+  > Quando le vostre API sono disponibili per terze parti, l'aggiornamento di API con alcune modifiche incompatiili con le versioni precedenti faranno sì che i prodotti o servizi che si basano su di esse non funzioneranno più. L'utilizzo di un versionamento nel vostro URL previene questa eventualità. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
-- Response messages must be self-descriptive. A good error message response might look something like this:
+- I messaggi di risposta devono essere auto descrittivi. Un buon messaggio di errore in risposta potrebbe essere tipo questo:
 
   ```json
   {
     "code": 1234,
-    "message": "Something bad happened",
-    "description": "More details"
+    "message": "E' successo qualcosa di brutto",
+    "description": "Maggiori dettagli"
   }
   ```
 
-  or for validation errors:
+  oppure per errori di validazione:
 
   ```json
   {
     "code": 2314,
-    "message": "Validation Failed",
+    "message": "Validazione fallita",
     "errors": [
       {
         "code": 1233,
         "field": "email",
-        "message": "Invalid email"
+        "message": "Email non valida"
       },
       {
         "code": 1234,
         "field": "password",
-        "message": "No password provided"
+        "message": "Nessuna password fornita"
       }
     ]
   }
@@ -732,115 +732,115 @@ _Perchè:_
 
   _Perchè:_
 
-  > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
+  > Gli sviluppatori fanno affidamento su messaggi di errore ben concepiti quando stanno cercando di risolvere il problema dopo che l'applicazione che hanno costruito usando la vostra API viene utilizzata dai loro utenti.
 
-  _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
+  \_Note: Mantenere i messaggi di eccezzione di sicurezza più generici possibile. Ad esempio invece di 'password errata' utilizzare 'utente o password errati' in modo che l'utente non possa dedurre che il nome utente sia corretto e la sola password sia sbagliata.
 
-- Use these status codes to send with your response to describe whether **everything worked**,
-  The **client app did something wrong** or The **API did something wrong**.
+- Usare questi codici di stato per inviare i vostri codici di risposta per descrivere che **tutto ha fuznionato**
+  L'**app client ha fatto qualcosa di errato** oppure l'**API ha fatto qualcosa di errato**.
 
       _Which ones:_
-      > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+      > `200 OK` la risposta rappresenta un successo per le richieste `GET`, `PUT` o `POST`.
 
-      > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+      > `201 Created` quando viene creata una nuova istanza. Quando si crea una nuova istanza usando un metodo  `POST` ritornare il codice di stato `201`.
 
-      > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
+      > `204 No Content` la risposta rappresenta un successo ma non c'è contenuto da inviare con la risposta. Usarlo quando una operazione di `DELETE` ha successo.
 
-      > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
+      > `304 Not Modified` la risposta è per minimizzare la info da trasferire quando il ricevente ne ha già una rappresentazione in cache.
 
-      > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
+      > `400 Bad Request` quando la richiesta non viene elaborata, come se il server non potesse capire cosa gli è stato chiesto.
 
-      > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+      > `401 Unauthorized` quando la richiesta è priva di credenziali e dovrebbe essere riproposta con le credenziali richieste.
 
-      > `403 Forbidden` means the server understood the request but refuses to authorize it.
+      > `403 Forbidden` il server ha compreso la richiesta ma si rifiuta di autorizzarla.
 
-      > `404 Not Found` indicates that the requested resource was not found.
+      > `404 Not Found` la risorsa richiesta non esiste
 
-      > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+      > `500 Internal Server Error` la richiesta è valida, ma il server non può esaudirla a causa di condizioni inaspettate.
 
       _Perchè:_
-      > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+      > La magggior parte dei fornitori di API usa uno piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contentgono un corpo con info aggiuntive. Ci sono altro 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando scegliete codici di stato che non sono molto comuni obbligherete gli sviluppatori dell'applicazione a consultare wikipedia per scoprire cosa state cercando di dirgli. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
-- Provide total numbers of resources in your response.
-- Accept `limit` and `offset` parameters.
+- Fornite il numero totale di risposte nella vostra risposta.
+- Accettate parametri di `limit` (limite) e `offset` (scostamento).
 
-- The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
-  ```
+- Il volume di dati che la risorsa espone dovrebbe essere tenuto in considerazione. Il consumatore dell'API non sempre necessita della piena rappresentazione di una risorsa. Usate un parametro di specifica di campi che riceve un elenco separato da virgola di campi che devono essere inclusi nella risposta:
+- ```
   GET /student?fields=id,name,age,class
   ```
-- Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+- Paginazioni, filtri, e oridnamento non devono essere supportati dall'inizio per tutte le risorse. Documentate quali risorse offrono filtro e ordinamento.
 
 <a name="api-security"></a>
 
-### 9.2 API security
+### 9.2 Sicurezza delle API
 
-These are some basic security best practices:
+Ci sono alcune migliori pratiche consigliate
 
-- Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
-
-  _Perchè:_
-
-  > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [leggi di più...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
-
-- Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
-
-- Authorization Code should be short-lived.
-
-- Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
-
-- Consider using Rate Limiting.
+- Non usate l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I token di autenticazione non devono esser trasmessi nell'URL: `GET /users/123?token=asdf....`
 
   _Perchè:_
 
-  > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
+  > I token o utente e password sono passati attraverso la rete in chiato (codificato in base64, che è una codifica reversibile), lo schema di autenticazione basica non è sicuro. [leggi di più...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-- Setting HTTP headers appropriately can help to lock down and secure your web application. [leggi di più...](https://github.com/helmetjs/helmet)
+- I token devono essere trasmessi usando l'intestazione di autorizzazione per ogni richiesta: `Authorization: Bearer xxxxxx, Extra yyyyy`.
 
-- Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
+- I codici di autorizzazione dovrebbero avere vita breve.
 
-- All the data exchanged with the REST API must be validated by the API.
+- Rifiutate qualsiasi richiesta non-TLS non rispondendo per evitare qualunque scambio di dati non sicuro. Rispondete a queste richieste con `403 Forbidden`.
 
-- Serialize your JSON.
-
-  _Perchè:_
-
-  > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
-
-- Validate the content-type and mostly use `application/*json` (Content-Type header).
+- Considerate l'adozione di limiti di utilizzo
 
   _Perchè:_
 
-  > For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
+  > Per proteggere le vostre API sia da minacce di bot che da qualcuno che chiami la vostra API migliaia di volte all'ora. Dovreste considerare l'implementazione di limiti di utilizzo ai primi stadi dello sviluppo.
 
-- Check the API Security Checklist Project. [leggi di più...](https://github.com/shieldfy/API-Security-Checklist)
+- L'appropriata impostazione delle intestazioni HTTP può aiutare a isolare e mettere in sicurezza la vostra applicazione web. [leggi di più...](https://github.com/helmetjs/helmet)
+
+- La vostra API dovrebbe convertire i dati ricevuti nella loro forma canonica o rifiutarli. Ritornate un `400 Bad Request` con dettagli circa gli errori per dati non corretti o mancanti.
+
+- Tutti id dati scambiati con API REST devono essere validati dall'API.
+
+- Serializzare il vostro JSON.
+
+  _Perchè:_
+
+  > Una preoccupazione chiave con i codificatori JSON è la prevenzione dell'esecuzione di codice Javascript arbitrario all'interno del browser oppure, se state usando node.js, sul server. E' vitale utilizzare un appropriato serializzatore JSON per codificare correttamente i dati forniti dall'utente per prevenire l'esecuzione di input fornito dall'utente nel browser.
+
+- Validate il content-type e per lo più utilizzate l'intestazione Content-Type `application/*json` .
+
+  _Perchè:_
+
+  > Ad esempio accettando il tipo mime `application/x-www-form-urlencoded` consente a un attaccante di creare un form e scatenare una semplice richiesta POST. Il server non dovrebbe mai dare per scontato il Content-Type. La mancanza di una intestazione Content-Type oppure una non attesa dovrebbe risultare in un rifiuto del contenuto da parte del server con una risposta `4XX`.
+
+- Verificate il "Progetto per la Lista delle Verifiche per la Sicurezza delle API". [leggi di più...](https://github.com/shieldfy/API-Security-Checklist)
 
 <a name="api-documentation"></a>
 
-### 9.3 API documentation
+### 9.3 Documentazione delle API
 
-- Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
-- Describe API authentication methods with a code sample.
-- Explaining The URL Structure (path only, no root URL) including The request type (Method).
+- Riempite la sezione `API Reference` in [README.md template](./README.sample.md) per l'API.
+- Descrivete i metodi di autenticazione dell'API con un esempio di codice.
+- Spiegate la struttura dell'URL (solo il percorso, non la radice dell'URL) includendo il tipo di richiesta (metodo).
 
-For each endpoint explain:
+Per ogni endpoing spiegate:
 
-- URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+- I parametri per l'URL, se esistono; specificateli in base la nome citato nella sezione URL:
 
   ```
-  Required: id=[integer]
-  Optional: photo_id=[alphanumeric]
+  Richieto: id=[integer]
+  Opzionale: photo_id=[alphanumeric]
   ```
 
-- If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+- Se il tipo di richiesta è POST, fornite esempi funzionanti. Le regole per i parametri di URL si applicano anche qui. Separate le sezioni tra Richieste e Opzionali.
 
-- Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+- Risposte di successo. Quale dovrebbe essere il codice di stato e ci sono anche dei dati da ritornare? Questo è utile quando a qualcuno occorre sapere cosa dovrebbero aspettarsi i propri callback:
 
   ```
   Code: 200
   Content: { id : 12 }
   ```
 
-- Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
+- Rispote di errore, la maggior parte degli endpoint hanno molti modi per fallire. Da accesso non autorizzato a parametri errati ecc. Tutto ciò dovrebbe essere documentato qui. Può sembrare ripetitivo, ma aiuta ad evitare che vengano fatte delle assunzioni. Ad esempio
 
   ```json
   {
@@ -850,19 +850,19 @@ For each endpoint explain:
   }
   ```
 
-- Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+- Usate strumenti di sviluppo di API. Se ne so molti open source con buona documentazione tipo [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 
-## 10. Licensing
+## 10. Licenza
 
 ![Licensing](/images/licensing.png)
 
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
+Assicuratevi di usare risorse per la quali avete il diritto di usarle. Se utilizzate librerie, ricordate di cercare se licenza MIT, Apache o BSD ma se le modificate, verificate anche i dettagli della licenza. Le immagini o i video sottoposte a copyright potrebbero causarvi problemi legali.
 
 ---
 
-Sources:
+Sorgenti:
 [RisingStack Engineering](https://blog.risingstack.com/),
 [Mozilla Developer Network](https://developer.mozilla.org/),
 [Heroku Dev Center](https://devcenter.heroku.com),
@@ -871,4 +871,4 @@ Sources:
 [Apigee](https://apigee.com/about/blog),
 [Wishtack](https://blog.wishtack.com)
 
-Icons by [icons8](https://icons8.com/)
+Icone di [icons8](https://icons8.com/)
