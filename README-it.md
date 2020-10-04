@@ -8,8 +8,8 @@
 
 # Linee guida di un progetto &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-> Se lviluppare un nuovo progetto è per voi come rotolarsi in un campo erboso, il mantenimento
-> è un potenziale oscuro incubo per qualcun altro
+> Se sviluppare un nuovo progetto è per voi come rotolarsi in un campo erboso, il mantenimento
+> è un potenziale oscuro incubo per qualcun altro.
 > Ecco un elenco delle linee guida che abbiamo trovato, scritto e raccolto che (pensiamo), possano
 > realmente ben funzionare con la maggior parte dei progetti qui a [elsewhen](https://www.elsewhen.com).
 > Se volete condividere una pratica ottimale, o pensate che qualcuna di queste linee guida debba essere rimossa, [fatecelo sapere](http://makeapullrequest.com).
@@ -50,13 +50,16 @@
 Ecco un insieme di regole da tenere a mente:
 
 - Eseguire il lavoro in un ramo di funzionalità.
+
   _Perchè:_
+
   > In questo modo tutto il lavoro viene fatto in isolamento su un ramo dedicato piuttosto che nel ramo principale. Vi consente di sottomettere delle richieste _pull_ multiple senza creare confusione. Potete iterare senza inquinare il ramo principale con codice potenzialmente instabile e non completato. [leggi di più...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+
 - Branch out from `develop`
 
   _Perchè:_
 
-  > In questo modo ci si può assicurare che il codice nel ramo principale possa essere qualsi sempre compilato senza problemi, e che possa essere principalmente usato per i rilasci (potrebbe essere una esagerazione per alcuni progetti).
+  > In questo modo ci si può assicurare che il codice nel ramo principale possa essere quasi sempre compilato senza problemi, e che possa essere principalmente usato per i rilasci (potrebbe essere una esagerazione per alcuni progetti).
 
 - Mai eseguire _push_ nei rami di `develop` o `master`. Eseguire una richiesta _pull_
 
@@ -64,20 +67,21 @@ Ecco un insieme di regole da tenere a mente:
 
   > Notifica i membri della squadra che una caratteristica è stata completata. Consente anche una facile revisione tra i propri pari del codice e una discussione della caratteristica proposta sui _forum_ dedicati.
 
-- Aggiornate il ramo `develop` locale ed eseguite un _rabase_ interattivo prima proporre la propria caratteristica ed eseguire una richiesta _pull_.
+- Aggiornate il ramo `develop` locale ed eseguite un _rebase_ interattivo prima proporre la propria caratteristica ed eseguire una richiesta _pull_.
 
   _Perchè:_
 
   > L'azione di _rebase_ integrerà i commit fatti localmente nei rami richiesti (`master` o `develop`) e all'inizio della storicizzazione senza creare un _merge commit_ (assumendo che non ci siano conflitti). Il risultato è una buona e pulita storicizzazione. [leggi di più ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-- Resolvete conflitti potenziali durante l'azione di *rebas+ e prima di eseguire una richiesta *pull\*.
+- Resolvete conflitti potenziali durante l'azione di _rebase_ e prima di eseguire una richiesta _pull_.
+
 - Eliminate i rami di caratteristiche locali e remoti dopo l'integrazione.
 
   _Perchè:_
 
   > Il non farlo sporcherà il vostro elenco di rami con rami morti. Assicura che possiate integrare il rano in (`master` o `develop`) una volta sola. I rami di caratteristica dovrebbero esistere solo se il lavoro è ancora in corso.
 
-- Prima di eseguire una richiesta _pull_, assicuratevi che il vostro ramo di caratteristica venga compilato con success e superi tutti i test (comresi quelli di stile di codice.
+- Prima di eseguire una richiesta _pull_, assicuratevi che il vostro ramo di caratteristica venga compilato con successo e superi tutti i test (compresi quelli di stile di codice).
 
   _Perchè:_
 
@@ -104,14 +108,16 @@ Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Fea
 - Per un nuovo progetto, inizializzare un deposito git nella directory del progetto. **Per le caratteristiche/modifiche successive questo passo dovrebbe essere ignorato**.
 
   ```sh
-  cd <project directory>
+  cd <directory del progetto>
   git init
   ```
 
 - Eseguire il _checkout_ di un nuovo ramo di caratteristica/risoluzione errore.
+
   ```sh
-  git checkout -b <branchname>
+  git checkout -b <nome ramo>
   ```
+
 - Eseguire le modifiche.
 
   ```sh
@@ -125,37 +131,51 @@ Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Fea
 
   > `git commit` lancerà un editor che vi consente di separare il soggetto dal corpo.
 
-  > Leggete di più in merito in _section 1.3_.
+  > Leggete di più in merito nella _section 1.3_.
 
   _Suggerimento:_
 
   > Potete invece usare `git add -p`, che potrebbe darvi la possibilità di rivedere tutte le modifiche introdotte una ad una e decidere se includerle in un _commit_ oppure no.
 
-- Sincronizzare con il deosito remoto per ottenere modifiche che altrimenti avreste perso.
+- Sincronizzare con il deposito remoto per ottenere modifiche che altrimenti avreste perso.
+
   ```sh
   git checkout develop
   git pull
   ```
+
   _Perchè:_
-  > Vi fornisce la possibilità di gestire i conflitti sulla propria macchina mentre si esegue la successiva azione di _rebase_ invece che creare una richiesta \*pull\*\* che contiene conflitti.
+
+  > Vi fornisce la possibilità di gestire i conflitti sulla propria macchina mentre si esegue la successiva azione di _rebase_ invece che creare una richiesta _pull_ che contiene conflitti.
+
 - Aggiornate il vostro ramo di caratteristica con le ultime modifiche da `develop` tramite _rebase_ interattivo.
+
   ```sh
   git checkout <branchname>
   git rebase -i --autosquash develop
   ```
+
   _Perchè:_
-  > Potete usare --autosquash to comprimere tutti i vostri _commit_ in un _commit_ singolo. Nessuno vuole molti _commit_ per una singola caratteristica in un ramo di sviluppo. [leggi di più...](https://robots.thoughtbot.com/autosquashing-git-commits)
-- Se non avete conflitti saltate questo passo. Se avete conflitti , [risolveteli](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) e continuate l'azione di _rebase._
+
+  > Potete usare `--autosquash` per comprimere tutti i vostri _commit_ in un _commit_ singolo. Nessuno vuole molti _commit_ per una singola caratteristica in un ramo di sviluppo. [leggi di più...](https://robots.thoughtbot.com/autosquashing-git-commits)
+
+- Se non avete conflitti saltate questo passo. Se avete conflitti, [risolveteli](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) e continuate l'azione di _rebase._
+
   ```sh
   git add <file1> <file2> ...
   git rebase --continue
   ```
+
 - Eseguite l'azione di _push_ del vostro ramo. L'azione di _rebase_ modificherà la storicizzazione, quindi dovrete usare `-f` per forzare le modifiche nel ramo remoto. Se qualcun altro sta lavorando sul vostro ramo, usare l'opzione meno distruttiva `--force-with-lease`.
+
   ```sh
   git push -f
   ```
+
   _Perchè:_
-  > Quando eseguite una azione di _rebase_, state modificando la storicizzazione del vostro ramo di caratteristiche. Come risultato, Git respingerà i normali `git push`. Dovrete invece usare l'opzione -f o --force flag. [leggi di più...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+
+  > Quando eseguite una azione di _rebase_, state modificando la storicizzazione del vostro ramo di caratteristiche. Come risultato, Git respingerà i normali `git push`. Dovrete invece usare l'opzione `-f` o `--force flag`. [leggi di più...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+
 - Eseguite una richiesta _pull_.
 - La richiesta _pull_ verrà accettata, incorporata e chiusa da un revisore.
 - Rimuovete il vostro ramo locale di caratteristica se avete finito.
@@ -164,7 +184,7 @@ Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Fea
   git branch -d <branchname>
   ```
 
-  to remove all branches which are no longer on remote
+  rimuovere tutti i rami che non sono più nel deposito remoto
 
   ```sh
   git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
@@ -180,7 +200,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Git è sufficientemente capace di considerare la prima riga del vostro messagio do _commit_ come il vostro sommario. In effetti se eseguite `git shortlog`, invece che `git log`, vedrete un lungo elenco di messaggi di _commit_, che contengono l'identificativo del commit e il solo sommario.
+  > Git è sufficientemente capace di considerare la prima riga del vostro messagio di _commit_ come il vostro sommario. In effetti se eseguite `git shortlog`, invece che `git log`, vedrete un lungo elenco di messaggi di _commit_, che contengono l'identificativo del commit e il solo sommario.
 
 - Limitate la riga dell'oggetto a 50 caratteri e la lunghezza della riga nel corpo a massimo 72 caratteri.
 
@@ -188,13 +208,13 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > I _commit_ dovrebbero essere più dettagliati e specifici possibile, non è il posto per essere prolissi. [leggi di più...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
-- Maiscole nella riga di oggetto.
+- Maiuscole nella riga di oggetto.
 - Non terminate la riga dell'oggetto con un punto.
 - Usete [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) nella riga dell'oggetto.
 
   _Perchè:_
 
-  > Invece che scrivere messaggi che dicono cosa ha fatto un committente, è meglio considerare questi messaggi come istruzioni per quello che dovrà essere fatto dopo che il _commit_ è applicato nel deposito. [leggi di più...](https://news.ycombinator.com/item?id=2079612)
+  > Invece che scrivere messaggi che dicono cosa ha fatto chi ha eseguito il commit, è meglio considerare questi messaggi come istruzioni per quello che dovrà essere fatto dopo che il _commit_ è applicato nel deposito. [leggi di più...](https://news.ycombinator.com/item?id=2079612)
 
 - Usare il corpo per spiegare **cosa** e **perchè** invece di **come**.
 
@@ -204,12 +224,13 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Documentazione](/images/documentation.png)
 
-- Usete questo [modello](./README.sample.md) ore `README.md`. Siate liberi di aggiungere sezioni non trattate.
-- Per progetti con più di un deposito, fornire colegamenti a essi nel rispettivi file `README.md` .
+- Usete questo [modello](./README.sample.md) o `README.md`. Siate liberi di aggiungere sezioni non trattate.
+- Per progetti con più di un deposito, fornire collegamenti a essi nei rispettivi file `README.md`.
 - Mantenere aggiornato `README.md` mano a mano che il progetto evolve.
 - Commentate il vostro codice. Cercate di renderlo il più chiaro possibile cosa intendete con ogni sezione principale.
 - Se esiste una discussione aperta su github o stackoverflow riguardo al codice o all'approccio che state usando, includete il collegamento nel vostro commento.
-- Non usate commenti come scusa per cattivo codiceMantenere il proprio codice pulito.
+- Non usate commenti come scusa per cattivo codice.
+- Mantenere il proprio codice pulito.
 - Non usare il codice pulito come scusa per non commentarlo.
 - Mantenete i commenti rilevanti mano a mano che il vostro codice evolve.
 
@@ -219,7 +240,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Environments](/images/laptop.png)
 
-- Definite ambienti `development`, `test` e `production` separati se serve.
+- Definite ambienti `development` (sviluppo), `test` (collaudo) e `production` (produzione) separati se serve.
 
   _Perchè:_
 
@@ -229,14 +250,16 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Avete token, password ed altre preziose informmazioni. La vostra configurazione dovrebbe essere correttamente separata dalle logighe interne dell'app come se la base di codice potesse essere resa pubblica in qualsiasi momento.
+  > Avete token, password e altre preziose informmazioni. La vostra configurazione dovrebbe essere correttamente separata dalle logiche interne dell'app come se la base di codice potesse essere resa pubblica in qualsiasi momento.
 
   _Come:_
 
-  > Usate file `.env` per conservare le vostre variabili ed aggiungeteli a `.gitignore` per escluderli. Eseguite un _commit_ di un `.env.example` che serva come guida per gli sviluppatori. Per la produzione, dovreste comunque impostare le vostre variabili nel modo standard. [leggi di più](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+  > Usate file `.env` per conservare le vostre variabili ed aggiungeteli a `.gitignore` per escluderli. Eseguite un _commit_ di un `.env.esempio` che serva come guida per gli sviluppatori. Per la produzione, dovreste comunque impostare le vostre variabili nel modo standard. [leggi di più](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 - E' raccomandato che si validino le variabili di ambiente prima che la vostra app venga lanciata.. [Guardate questo esempio](./configWithTest.sample.js) che usa `joi` per validare i valori passati.
+
   _Perchè:_
+
   > Potrebbe risparmiarvi ore passate a risolvere problemi.
 
 <a name="consistent-dev-environments"></a>
@@ -265,7 +288,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Vi può fornire un ambiente consistente lungo tutto il processo di lavoro. Senta tanto bisogno di armeggiare con dipendenze o configurazioni. [leggi di più...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+  > Vi può fornire un ambiente consistente lungo tutto il processo di lavoro. Senza tanto bisogno di armeggiare con dipendenze o configurazioni. [leggi di più...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
 - Usate moduli locali invece di quelli installati globalmente.
 
@@ -275,25 +298,25 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 <a name="consistent-dependencies"></a>
 
-### 3.2 Consistenza nella dipendenze:
+### 3.2 Consistenza nella dipendenze:\*\*\*\*
 
 - Assicuratevi che i membri della vostra squadra abbiano le stesse esatte vostre dipendenze.
 
   _Perchè:_
 
-  > Perchè volete che il codice si comporti come atteso ed in modo identico in qualsiasi macchina di sviluppo [leggi di più...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+  > Perchè volete che il codice si comporti come atteso e in modo identico in qualsiasi macchina di sviluppo [leggi di più...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
   _how:_
 
-  > Usete `package-lock.json` su `npm@5` o superiori
+  > Usate `package-lock.json` su `npm@5` o superiori
 
   _Non ho npm@5:_
 
-  > Come alternativa potreste usare `Yarn` e assicurarvi di citarlo nel `README.md`. Il vostro file di lock e `package.json` dovrebbero avere le stesse versioni dopo qualsiasi aggiornamento di ciascuna dipendenza. [leggi di più...](https://yarnpkg.com/en/)
+  > Come alternativa potreste usare `Yarn` e assicurarvi di citarlo nel `README.md`. I vostri file di lock e `package.json` dovrebbero avere le stesse versioni dopo qualsiasi aggiornamento di ciascuna dipendenza. [leggi di più...](https://yarnpkg.com/en/)
 
   _Non mi piace il name `Yarn`:_
 
-  > Peccato. Per versioni più vecchie di `npm`, usate `—save --save-exact` quando installate una nujova dipendenza e create `npm-shrinkwrap.json` prima della pubblicazione. [leggi di più...](https://docs.npmjs.com/files/package-locks)
+  > Peccato. Per versioni più vecchie di `npm`, usate `—save --save-exact` quando installate una nuova dipendenza e create `npm-shrinkwrap.json` prima della pubblicazione. [leggi di più...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
 
@@ -312,20 +335,20 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Più utilizzi in genere significa più collaboratori, il che in genere significa migliore manutenziole, e la conseguenza è che i bug vengono scoperti e corretti più velocemente.
+  > Più utilizzi in genere significa più collaboratori, il che in genere significa migliore manutenzione, e la conseguenza è che i bug vengono scoperti e corretti più velocemente.
 
 - Prima di usare una dipendenza, verificate se ha un rilascio di versione buona, matura e con un vasto numero di manutentori: `npm view async`. [leggi di più...](https://docs.npmjs.com/cli/view)
 
   _Perchè:_
 
-  > Avere un gran numero di sottomissioni da parte dei collaboratori non è così efficace snon ci sono manutentori che incorporano le correzioni e le patch con sufficiente velocità.
+  > Avere un gran numero di sottomissioni di codice da parte dei collaboratori non è così efficace se non ci sono manutentori che incorporano le correzioni e le patch con sufficiente velocità.
 
 - Se è necesaria una dipendenza poco conosciuta, discutetene con la squadra prima di usarla.
 - Assicuratevi sempre che la vostra app funzioni con le ultime versioni delle proprie dipendenze senza errori: `npm outdated`. [leggi di più...](https://docs.npmjs.com/cli/outdated)
 
   _Perchè:_
 
-  > Gli aggiornamenti delle dipendenze talvolta contengono modifiche che rompono l'app. Verificate sempre le loro note di rilascio quando vengono messi a disposizione gli aggiornamenti. A ggiornate le vostre dipendenze una ad una, il che facilita la risoluzione dei problemi se qualcosa dovesse andare storto. Usate uno strumento tipo [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+  > Gli aggiornamenti delle dipendenze talvolta contengono modifiche che rompono l'app. Verificate sempre le loro note di rilascio quando vengono messi a disposizione gli aggiornamenti. Aggiornate le vostre dipendenze una ad una, il che facilita la risoluzione dei problemi se qualcosa dovesse andare storto. Usate uno strumento tipo [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
 - Verificate se il pacchetto abbia delle vulnerabilità di sicurezza note con [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
@@ -341,7 +364,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Sebbene qualche volta il test dall'inizio alla fine in `produzione` possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che potreste non voler abilitare informazioni analitiche in una modalità `produzione` e inquinare il cruscotto di qualcuno con dati di test. L'altro esempio è che la vostra API potrebber avere dei parametri di limite in `produzione` e bloccare le vostre chiamate di test dopo un certo numero di richieste.
 
-- Posizionate i vostri file di test vicino ai moduli testati usando la convenzione nominale `*.test.js` o `*.spec.js`, tipo `moduleName.spec.js`.
+- Posizionate i vostri file di test vicino ai moduli testati usando la convenzione nominale `*.test.js` o `*.spec.js`, tipo `nomeModulo.spec.js`.
 
   _Perchè:_
 
@@ -359,7 +382,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Vorrete testare una logica di _business_ come unità separate. Dovete "minimizzare l'impatto della casualità e dei processi non deterministici sulla affidabilità del vostro codice". [leggi di più...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
-  > Una funzione pura è una funzione che ritorna sempre lo stesso risultato per lo stesso input. Al contrario una funzione impora è quella che potrebbe avere effetti collaterali o dipende da condizioni esterne per produrre un valore. Il che la rende meno prevedibile. [leggi di più...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+  > Una funzione pura è una funzione che ritorna sempre lo stesso risultato per lo stesso input. Al contrario una funzione impura è quella che potrebbe avere effetti collaterali o dipende da condizioni esterne per produrre un valore. Il che la rende meno prevedibile. [leggi di più...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 - Usate un verificatore di tipo statico
 
@@ -373,15 +396,15 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Non vorrete essere quelli che hanno causato una fallita compilazione in un ramo pronto per la produzione. Eseguite i vostri test prima della vostra azione di _rebase_ e prima di inviare il vostro ramo di caratteristica in un deposito remoto.
 
-- Documentate i vostri test includendo istruzioni nelle sezioni rilevandi del vostro file `README.md`.
+- Documentate i vostri test includendo istruzioni nelle sezioni rilevandt del vostro file `README.md`.
 
   _Perchè:_
 
-  > E' una nota utili che voi lasciate a disposizione degli altri sviluppatori o esperti DevOps q chiunque sia abbastanza fortunato da lavorare con il vostro codice.your code.
+  > E' una nota utile che voi lasciate a disposizione degli altri sviluppatori o esperti DevOps o chiunque sia abbastanza fortunato da lavorare con il vostro codice.
 
 <a name="structure-and-naming"></a>
 
-## 6. Struttura e Assengnazione dei Nomi
+## 6. Struttura e Assegnazione dei Nomi
 
 ![Structure and Naming](/images/folder-tree.png)
 
@@ -423,11 +446,11 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Costituisce un risparmio di tempo per gli altri sviluppatori o esperti DevOps nella vostra squadra.
 
-- Usete una cartella `./config` e non create file di configurazione diversi per i diversi ambienti.
+- Usate una cartella `./config` e non create file di configurazione diversi per i diversi ambienti.
 
   _Perchè:_
 
-  > Quando dividete un file di configurazione per diversi scopi (database, API eccetera) metteteli in una caratella con un nome molto riconoscibile tipo `config`. Ricordate di non generare diversi file di configurazione per diversi ambienti. Saranno necessari nuovi nome di ambiente per ogni deploy dell'app che state creando.
+  > Quando dividete un file di configurazione per diversi scopi (database, API eccetera) metteteli in una cartella con un nome molto riconoscibile tipo `config`. Ricordate di non generare diversi file di configurazione per diversi ambienti. Saranno necessari nuovi nomi di ambiente per ogni deploy dell'app che state creando.
   > I valori da usare nei file di configurazione dovrebbero essere forniti da variabili di ambiente. [leggi di più...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
 - Inserite i vostri script in una cartella `./scripts` . Compresi gli script `bash` e `node`.
@@ -440,7 +463,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Chiamatela come vi pare, anche `dist` va bene, ma assicuratevi di mantenere consistenza con la vostra squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, transpilato), o ivi spostato. I componenti della vostra squadra dovrebbero essere in grado di generare quello che generate voi, quindi non ha senso portare questi dati nel deposito remoto. A meno che non lo si voglia specificatamente.
+  > Chiamatela come vi pare, anche `dist` va bene, ma assicuratevi di mantenere consistenza con la vostra squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. I componenti della vostra squadra dovrebbero essere in grado di generare quello che generate voi, quindi non ha senso portare questi dati nel deposito remoto. A meno che non lo si voglia specificatamente.
 
 <a name="code-style"></a>
 
@@ -452,11 +475,11 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ### 7.1 Alcune linee guida sullo stile di codice
 
-- Useate una sintassi di secondo stadio o superiore (moderna) di Javascript per i vostri nuovi progetti. Per quelli vecchi restate consistenti con la sintassi esistente a meno che intendiate modernizzare il progetto.
+- Usate una sintassi di secondo stadio o superiore (moderna) di Javascript per i vostri nuovi progetti. Per quelli vecchi restate consistenti con la sintassi esistente a meno che intendiate modernizzare il progetto.
 
   _Perchè:_
 
-  > Questo dipende interamente da voi. Usiamo transpilatori per trarre vantaggio dalla nuova sintassi, è probabile che stage-2 diventi alla fine parte delle specifiche con poche minori revisioni.
+  > Questo dipende interamente da voi. Usiamo programmi per il _transpiling_ per trarre vantaggio dalla nuova sintassi, è probabile che _stage-2_ diventi alla fine parte delle specifiche con poche minori revisioni.
 
 - Includete verifiche di stile di codice nel vostro processo di compilazione.
 
@@ -468,15 +491,15 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Semplicemente noi preferiameo `eslint`, voi non siete obbligati. Supporta più regole e la possibilità di configurarle nonchè di aggiugnerne di personalizzate.
+  > Semplicemente noi preferiameo `eslint`, voi non siete obbligati. Supporta più regole e la possibilità di configurarle nonchè di aggiungerne di personalizzate.
 
-- Usiamo [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) per JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Usate lo stile di codice javascript richieto dal vostro progetto o dalla vostra squadra.
+- Usiamo [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) per JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Usate lo stile di codice javascript richiesto dal vostro progetto o dalla vostra squadra.
 
 - Usiamo [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) quando usiamo [FlowType](https://flow.org/).
 
   _Perchè:_
 
-  > Flow introduce poca sintassi, la quale deve seguire certe regole di stile di codice e possono essere verificate.
+  > _Flow_ introduce poca sintassi, la quale deve seguire certe regole di stile di codice e possono essere verificate.
 
 - Usate `.eslintignore` per escludere file o cartelle dalle verifiche di stile di codice.
 
@@ -484,17 +507,17 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Non dovete inquinare il vostro codice con commenti `eslint-disable` ogni volta che dovete escludere un paio di file dalla verifica di stile.
 
-- Rimuovete tutti i vostri commenti di disabilitazione di `eslint` prima di eseguire una richiesta **pull**
+- Rimuovete tutti i vostri commenti di disabilitazione di `eslint` prima di eseguire una richiesta _pull_
 
   _Perchè:_
 
   > E' normale disabilitare verifiche di stile mentre si lavora a un blocco di codice per focalizzarsi più sulla logica. Solo ricordate di rimuovere quei commenti `eslint-disable` e seguite le regole
 
 - A seconda della dimensione dell'attività usate commenti `//TODO:` oppure aprite un ticket.
-  W
+
   _Perchè:_
 
-  > In questo modo potete ricordare agli altri e a voi stessi di una piccola attività (tipo refattorizzare una funzione o aggiornare un commento). Per attività più complessi usate `//TODO(#3456)` che viene impostat da una regola di lint e dal numero del ticket aperto.
+  > In questo modo potete ricordare agli altri e a voi stessi di una piccola attività (tipo refattorizzare una funzione o aggiornare un commento). Per attività più complessi usate `//TODO(#3456)` che viene impostato da una regola di _lint_ e dal numero del ticket aperto.
 
 - Commentate sempre e mantenete i commenti in linea con le modifiche fino ad ora apportate al codice. Elminate i blocchi di codice commentati.
 
@@ -506,7 +529,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Anche se il vostro processo di compilazione potrebbe (dovrebbe) sbarazzarsi di questi, talvolta il vostro codice sorgente potrebbe essere affidato ad altra ditta/cliente e potrebbero non non trovarli divertenti.
+  > Anche se il vostro processo di compilazione potrebbe (dovrebbe) sbarazzarsi di questi, talvolta il vostro codice sorgente potrebbe essere affidato ad altra ditta/cliente e potrebbero non non trovarli così divertenti.
 
 - Rendete i vostri nomi ricercabili con distinzioni significative ed evitate abbreviazioni di nomi. Per le funzioni usate nomi lunghi e descrittivi. Un nome di funzione dovrebbe essere un verbo o una frase verbale, e deve comuncare le proprie intenzioni.
 
@@ -538,11 +561,11 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Accrescono notevolmente la produttività di uno sviluppatore. Fate modifiche, confermate e portate sugli ambienti di staging o produzione senza paura di rompere la compilazione. [leggi di più...](http://githooks.com/)
 
-- Usate Prettier con un _hook_ prima del commit.
+- Usate _Prettier_ con un _hook_ prima del commit.
 
   _Perchè:_
 
-  > Sebbene `prettier` per se stesso possa essere molto potente, non è molto porudttivo se eseguito semplicemente come una attività npm a se stante ogni volta per formattare il codice.Ecco dove `lint-staged` (e `husky`) entrano in gioco. Leggete di più sul come configurare `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) e `husky` [here](https://github.com/typicode/husky).
+  > Sebbene `prettier` per se stesso possa essere molto potente, non è molto produttivo se eseguito semplicemente come una attività npm a se stante ogni volta per formattare il codice. Ecco dove `lint-staged` (e `husky`) entrano in gioco. Leggete di più sul come configurare `lint-staged` [qui](https://github.com/okonet/lint-staged#configuration) e `husky` [here](https://github.com/typicode/husky).
 
 <a name="logging"></a>
 
@@ -554,13 +577,14 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Anche se il vostro processo di compilazione possa (dovrebbe) sbarazzarsene, assicuratevi che il vostri verificatore di stile di codice vi avvisi rispetto a log su console lasciati nel codice.
+  > Anche se il vostro processo di compilazione possa (dovrebbe) sbarazzarsene, assicuratevi che il vostro verificatore di stile di codice vi avvisi rispetto a log su console lasciati nel codice.
 
-- Producete dei log di produzione leggibili. Idealmente utilizzare librerie di logging libraries in produzione (tipo [winston](https://github.com/winstonjs/winston) o
+- Producete dei log di produzione leggibili. Idealmente utilizzare librerie di _logging_ in produzione (tipo [winston](https://github.com/winstonjs/winston) o
   [node-bunyan](https://github.com/trentm/node-bunyan)).
 
-      _Perchè:_
-      > Rende l'identificazione dei problemi molto meno spiacevole con colorizzazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [leggi di più...](https://blog.risingstack.com/node-js-logging-tutorial/)
+  _Perchè:_
+
+  > Rende l'identificazione dei problemi molto meno spiacevole con colorizzazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [leggi di più...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 <a name="api"></a>
 
@@ -574,13 +598,13 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 _Perchè:_
 
-> Cerchiamo di imporre lo sviluppo di interfacce _RESTFUL_ ben costruite, che possono essere consumate dai membri della squadra e i cleint in modo semplice e consistente.
+> Cerchiamo di imporre lo sviluppo di interfacce _RESTFUL_ ben costruite, che possono essere consumate dai membri della squadra e i client in modo semplice e consistente.
 
 _Perchè:_
 
 > La mancanza di consistenza e semplicità può accrescere enormemente i costi di integrazione e mantenimento. Ecco perchè `Progettazione API` è incluso in questo documento.
 
-- Seguite per la maggior parte una progettazione orientata alle risorse. Ci sono tre fattori principali: risorse, collezion e URL.
+- Seguite per la maggior parte una progettazione orientata alle risorse. Ci sono tre fattori principali: risorse, collezioni e URL.
 
   - Una risorsa ha dati, viene annidata e ci sono metodi che operano su di essa.
   - Un gruppo di risorse è chiamata collezione.
@@ -600,7 +624,7 @@ _Perchè:_
 
   > Fondamentalmente risulta meglio leggibile e rende l'URL consistente. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
-- Nel codice sorgente convertite le forme plurali in varibili e le proprietà con un suffisso List.
+- Nel codice sorgente convertite le forme plurali in variabili e le proprietà con un suffisso List.
 
   _Why_:
 
@@ -627,25 +651,25 @@ _Perchè:_
 
   _Perchè:_
 
-  > Se usate un verbo per ogni operazione su una risorsa presto avrete una enorme lista di URL e un modello non consistente che lo rende difficile da impaarare per gli sviluppatori. Inoltre i verbi si usano per altri scopi.
+  > Se usate un verbo per ogni operazione su una risorsa presto avrete una enorme lista di URL e un modello non consistente che lo rende difficile da imparare per gli sviluppatori. Inoltre i verbi si usano per altri scopi.
 
-- Usate verbi per non-risorse. In questo caso, la vostra API non ritorna alcuna risosa, viceversa voi eseguite una operazione e ritornate il risultato. Questi **non sono** operazioni CRUD (creazione, recupero, aggiornamento e cancellazione):
+- Usate verbi per non-risorse. In questo caso, la vostra API non ritorna alcuna risorsa, viceversa voi eseguite una operazione e ritornate il risultato. Queste **non sono** operazioni CRUD (creazione, recupero, aggiornamento e cancellazione):
 
   ```
-  /translate?text=Hallo
+  /translate?text=Hello
   ```
 
   _Perchè:_
 
-  > Per le operazioni CRUD usiamo i metodi HTTP su URL di `risorse` o `collezioni` URLs. I verbi di cui stiamo parlando sono in realtà `Controllers`. In genere non ne svilupperete molti di questi. [leggi di più...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+  > Per le operazioni CRUD usiamo i metodi HTTP su URL di `risorse` o `collezioni`. I verbi di cui stiamo parlando sono in realtà `Controllers`. In genere non ne svilupperete molti di questi. [leggi di più...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
-- Il corpo della richiesta o il tipo di risposta è JSON perntato seguite la forma `camelCase` per i nomi di proprietà per mantenere una consistenza.
+- Il corpo della richiesta o il tipo di risposta è JSON pertanto seguite la forma `camelCase` per i nomi di proprietà per mantenere una consistenza.
 
   _Perchè:_
 
   > Queste sono linee guida per un progetto Javascript, dove il linguaggio di programmazione per generare ed elaborare JSON si assume sia JavaScript.
 
-- Anche se una risorsa rappresenta un concetto al singolare, simile a una istanza di un oggetto o un record di database, non dovreste usare il `nome_tabella` per un nome di risorsa il `nome_colonna` per una proprietà..
+- Anche se una risorsa rappresenta un concetto al singolare, simile a una istanza di un oggetto o un record di database, non dovreste usare il `nome_tabella` per un nome di risorsa e il `nome_colonna` per una proprietà..
 
   _Perchè:_
 
@@ -655,7 +679,7 @@ _Perchè:_
 
   _Perchè:_
 
-  > Usate nomi solamente nei vostri URL di risorsa, evitate URL che finiscono con `/addNewUser` or `/updateUser`. Evitata inoltre di inviare operazioni su risorse come parametro.
+  > Usate nomi solamente nei vostri URL di risorsa, evitate URL che finiscono con `/addNewUser` or `/updateUser`. Evitate inoltre di inviare operazioni su risorse come parametro.
 
 - Esprimente le funzionalità CRUD usando i metodi HTTP:
 
@@ -687,9 +711,9 @@ _Perchè:_
 
   > `PUT /schools/2/students/31` , dovrebbe aggiornare le info sullo studente 31, usate PUT solo su URL che rappresentano risorse, non collezioni.
 
-  > `POST /schools` , dovrebbe creare una nuova scuola e ritornare i dettagli della nuova scuola creata. Usate POS su URL che rappresentano una collezione.
+  > `POST /schools` , dovrebbe creare una nuova scuola e ritornare i dettagli della nuova scuola creata. Usate POST su URL che rappresentano una collezione.
 
-- Usate un semplice numero ordinale per una versione con un prefisso `v` prefix (v1, v2). Spostate tutto alla sinistra nell'URL in modo che abbia Move it all the way to the left in the URL so that it has the highest scope:
+- Usate un semplice numero ordinale per una versione con un prefisso `v` (v1, v2). Spostate tutto alla sinistra nell'URL in modo che abbia l'ordine di identificazione maggiore:
 
   ```
   http://api.domain.com/v1/schools/3/students
@@ -734,12 +758,12 @@ _Perchè:_
 
   > Gli sviluppatori fanno affidamento su messaggi di errore ben concepiti quando stanno cercando di risolvere il problema dopo che l'applicazione che hanno costruito usando la vostra API viene utilizzata dai loro utenti.
 
-  \_Note: Mantenere i messaggi di eccezzione di sicurezza più generici possibile. Ad esempio invece di 'password errata' utilizzare 'utente o password errati' in modo che l'utente non possa dedurre che il nome utente sia corretto e la sola password sia sbagliata.
+- \_Note: Mantenere i messaggi di eccezzione di sicurezza più generici possibile. Ad esempio invece di 'password errata' utilizzare 'utente o password errati' in modo che l'utente non possa dedurre che il nome utente sia corretto e la sola password sia sbagliata.
 
-- Usare questi codici di stato per inviare i vostri codici di risposta per descrivere che **tutto ha fuznionato**
+- Usare questi codici di stato per inviare i vostri codici di risposta per descrivere che **tutto ha funzionato**
   L'**app client ha fatto qualcosa di errato** oppure l'**API ha fatto qualcosa di errato**.
 
-      _Which ones:_
+      _Quali sono:_
       > `200 OK` la risposta rappresenta un successo per le richieste `GET`, `PUT` o `POST`.
 
       > `201 Created` quando viene creata una nuova istanza. Quando si crea una nuova istanza usando un metodo  `POST` ritornare il codice di stato `201`.
@@ -759,15 +783,17 @@ _Perchè:_
       > `500 Internal Server Error` la richiesta è valida, ma il server non può esaudirla a causa di condizioni inaspettate.
 
       _Perchè:_
-      > La magggior parte dei fornitori di API usa uno piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contentgono un corpo con info aggiuntive. Ci sono altro 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando scegliete codici di stato che non sono molto comuni obbligherete gli sviluppatori dell'applicazione a consultare wikipedia per scoprire cosa state cercando di dirgli. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+      > La magggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contentgono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando scegliete codici di stato che non sono molto comuni obbligherete gli sviluppatori dell'applicazione a consultare wikipedia per scoprire cosa state cercando di dirgli. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 - Fornite il numero totale di risposte nella vostra risposta.
 - Accettate parametri di `limit` (limite) e `offset` (scostamento).
 
 - Il volume di dati che la risorsa espone dovrebbe essere tenuto in considerazione. Il consumatore dell'API non sempre necessita della piena rappresentazione di una risorsa. Usate un parametro di specifica di campi che riceve un elenco separato da virgola di campi che devono essere inclusi nella risposta:
-- ```
-  GET /student?fields=id,name,age,class
-  ```
+
+```
+GET /student?fields=id,name,age,class
+```
+
 - Paginazioni, filtri, e oridnamento non devono essere supportati dall'inizio per tutte le risorse. Documentate quali risorse offrono filtro e ordinamento.
 
 <a name="api-security"></a>
@@ -798,7 +824,7 @@ Ci sono alcune migliori pratiche consigliate
 
 - La vostra API dovrebbe convertire i dati ricevuti nella loro forma canonica o rifiutarli. Ritornate un `400 Bad Request` con dettagli circa gli errori per dati non corretti o mancanti.
 
-- Tutti id dati scambiati con API REST devono essere validati dall'API.
+- Tutti i dati scambiati con API REST devono essere validati dall'API.
 
 - Serializzare il vostro JSON.
 
@@ -822,16 +848,16 @@ Ci sono alcune migliori pratiche consigliate
 - Descrivete i metodi di autenticazione dell'API con un esempio di codice.
 - Spiegate la struttura dell'URL (solo il percorso, non la radice dell'URL) includendo il tipo di richiesta (metodo).
 
-Per ogni endpoing spiegate:
+Per ogni _endpoint_ spiegate:
 
-- I parametri per l'URL, se esistono; specificateli in base la nome citato nella sezione URL:
+- I parametri per l'URL, se esistono; specificateli in base al nome citato nella sezione URL:
 
   ```
-  Richieto: id=[integer]
+  Richiesto: id=[integer]
   Opzionale: photo_id=[alphanumeric]
   ```
 
-- Se il tipo di richiesta è POST, fornite esempi funzionanti. Le regole per i parametri di URL si applicano anche qui. Separate le sezioni tra Richieste e Opzionali.
+- Se il tipo di richiesta è POST, fornite esempi funzionanti. Le regole per i parametri di URL si applicano anche qui. Separate le sezioni tra Richiesto e Opzionale.
 
 - Risposte di successo. Quale dovrebbe essere il codice di stato e ci sono anche dei dati da ritornare? Questo è utile quando a qualcuno occorre sapere cosa dovrebbero aspettarsi i propri callback:
 
@@ -840,7 +866,7 @@ Per ogni endpoing spiegate:
   Content: { id : 12 }
   ```
 
-- Rispote di errore, la maggior parte degli endpoint hanno molti modi per fallire. Da accesso non autorizzato a parametri errati ecc. Tutto ciò dovrebbe essere documentato qui. Può sembrare ripetitivo, ma aiuta ad evitare che vengano fatte delle assunzioni. Ad esempio
+- Risposte di errore, la maggior parte degli _endpoint_ hanno molti modi per fallire. Da accesso non autorizzato a parametri errati ecc. Tutto ciò dovrebbe essere documentato qui. Può sembrare ripetitivo, ma aiuta ad evitare che vengano fatte delle assunzioni. Ad esempio
 
   ```json
   {
@@ -850,7 +876,7 @@ Per ogni endpoing spiegate:
   }
   ```
 
-- Usate strumenti di sviluppo di API. Se ne so molti open source con buona documentazione tipo [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+- Usate strumenti di sviluppo di API. Se ne sono molti open source con buona documentazione tipo [API Blueprint](https://apiblueprint.org/) e [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 
