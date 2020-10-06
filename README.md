@@ -563,7 +563,7 @@ _Why:_
     ```
 
     _Why:_
-    > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
 * The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
     
