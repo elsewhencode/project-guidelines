@@ -565,7 +565,7 @@ _为什么：_
     ```
 
     _为什么：_
-    > 因为对于 CRUD，我们在`资源`或`集合`URL上使用 HTTP 自己带的方法。我们所说的动词实际上是指`Controllers`。您通常不会开发这些东西。[更多请阅读...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    > 因为对于 CRUD，我们在`资源`或`集合`URL上使用 HTTP 自己带的方法。我们所说的动词实际上是指`Controllers`。您通常不会开发这些东西。[更多请阅读...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
 * 请求体或响应类型如果是JSON，那么请遵循`camelCase`规范为`JSON`属性命名来保持一致性。
 
