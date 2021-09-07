@@ -34,6 +34,7 @@ If you want to share a best practice, or think one of these guidelines should be
     - [API design](#api-design)
     - [API security](#api-security)
     - [API documentation](#api-documentation)
+- [Accessability](#a11y)
 - [Licensing](#licensing)
 
 <a name="git"></a>
@@ -47,6 +48,7 @@ There are a set of rules to keep in mind:
     
     _Why:_
     >Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+
 * Branch out from `develop`
     
     _Why:_
@@ -757,14 +759,43 @@ For each endpoint explain:
         "code": 401,
         "message" : "Authentication failed",
         "description" : "Invalid username or password"
-    }   
+    }
     ```
-
 
 * Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
+<a name="a11y"></a>
+## 10. Accessibility ([a11y](https://www.a11yproject.com/))
+![Accessibility](/images/accessibility.png)
+
+* Take the following steps **at the start of your project** to ensure an intentional level of accessibility is sustained:
+    _Why:_
+    > Web content is [accessibile by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start, rather than having to re-implement these features later.
+
+    * Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+        > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, eg logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
+
+    * Install an a11y linter:
+        - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+        - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+        - Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+
+        _Why:_
+        > A linter will automatically check that a basic level of accessibility is met by your project and is relatively easy to set up.
+
+    * Set up and use a11y testing using [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) or similar. If you're using storybook, do [this](https://storybook.js.org/blog/accessibility-testing-with-storybook/).
+
+        _Why:_
+        > Including a11y checks in your tests will help you to catch any changes that affect your projects accessibility and your audit score.
+
+    * Consider using an accessible design system such as [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) or [Material Design](https://material.io/design).
+        
+        _Why:_
+        > These components are highly accessible out of the box
+
+
 <a name="licensing"></a>
-## 10. Licensing
+## 11. Licensing
 ![Licensing](/images/licensing.png)
 
 Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
