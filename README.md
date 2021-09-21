@@ -33,7 +33,7 @@
   - [API design](#api-design)
   - [API security](#api-security)
   - [API documentation](#api-documentation)
-- [Accessability](#a11y)
+- [Accessibility](#a11y)
 - [Licensing](#licensing)
 
 <a name="git"></a>
@@ -860,52 +860,61 @@ For each endpoint explain:
 
 ![Accessibility](/images/accessibility.png)
 
-- Take the following steps **at the start of your project** to ensure an intentional level of accessibility is sustained:
+### 10.1 Laying accessibility practices in place
+
+Take the following steps **at the start of your project** to ensure an intentional level of accessibility is sustained:
+
+_Why:_
+
+> Web content is [accessibile by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start, rather than having to re-implement these features later.
+
+- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+
+  > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, eg logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
+
+- Install an a11y linter:
+
+  - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+  - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+  - Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+
   _Why:_
 
-  > Web content is [accessibile by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start, rather than having to re-implement these features later.
+  > A linter will automatically check that a basic level of accessibility is met by your project and is relatively easy to set up.
 
-  - Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+- Set up and use a11y testing using [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) or similar.
 
-    > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, eg logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
+- If you're using storybook, do [this](https://storybook.js.org/blog/accessibility-testing-with-storybook/).
 
-  - Install an a11y linter:
+  _Why:_
 
-    - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-    - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
-    - Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+  > Including a11y checks in your tests will help you to catch any changes that affect your projects accessibility and your audit score.
 
-    _Why:_
+- Consider using an accessible design system such as [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) or [Material Design](https://material.io/design).
 
-    > A linter will automatically check that a basic level of accessibility is met by your project and is relatively easy to set up.
+  _Why:_
 
-  - Set up and use a11y testing using [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) or similar. If you're using storybook, do [this](https://storybook.js.org/blog/accessibility-testing-with-storybook/).
+  > These components are highly accessible out of the box
 
-    _Why:_
+### 10.2 Basic accessibility rules to add to your project:
 
-    > Including a11y checks in your tests will help you to catch any changes that affect your projects accessibility and your audit score.
+- Ensure link names are accessible. Use aria-label to describe links
 
-  - Consider using an accessible design system such as [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) or [Material Design](https://material.io/design).
-    _Why:_
-    > These components are highly accessible out of the box
+  _Why:_
 
-- Basic accessibility rules to add to your project:
+  > Inaccessible link elements pose barriers to accessibility.[Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/link-name?application=AxeChrome#)
 
-  - Ensure link names are accessible. Use aria-label to describe links
+- Ensure lists are structured correctly and list elements are used semantically.
 
-    _Why:_
+  _Why:_
 
-    > Inaccessible link elements pose barriers to accessibility.[Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/link-name?application=AxeChrome#)
+  > Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/listitem?application=AxeChrome#)
 
-  - Ensure lists are structured correctly and list elements are used semantically.
+- Ensure heading order is semantically correct.
 
-    _Why:_
+  _Why:_
 
-    > Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/listitem?application=AxeChrome#)
-
-  - Ensure heading order is semantically correct.
-    _Why:_
-    > Headers convey structure of the page. When applied correctly the page becomes easier to navigate. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/heading-order?application=AxeChrome#)
+  > Headers convey structure of the page. When applied correctly the page becomes easier to navigate. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/heading-order?application=AxeChrome#)
 
 <a name="licensing"></a>
 
