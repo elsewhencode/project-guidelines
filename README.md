@@ -866,11 +866,11 @@ Take the following steps **at the start of your project** to ensure an intention
 
 _Why:_
 
-> Web content is [accessibile by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start, rather than having to re-implement these features later.
+> Web content is [accessible by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start rather than re-implement these features later.
 
-- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree on a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
 
-  > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, eg logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
+  > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, e.g. logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
 
 - Install an a11y linter:
 
@@ -894,7 +894,7 @@ _Why:_
 
   _Why:_
 
-  > These components are highly accessible out of the box
+  > These components are highly accessible out of the box.
 
 ### 10.2 Basic accessibility rules to add to your project:
 
@@ -910,7 +910,7 @@ _Why:_
 
   > Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/listitem?application=AxeChrome#)
 
-- Ensure heading order is semantically correct.
+- Ensure the heading order is semantically correct.
 
   _Why:_
 
