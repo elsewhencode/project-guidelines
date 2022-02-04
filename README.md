@@ -902,33 +902,33 @@ _Why:_
 
   _Why:_
 
-  > Inaccessible link elements pose barriers to accessibility.[Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/link-name)
+  > Inaccessible link elements pose barriers to accessibility.
 
 - Ensure lists are structured correctly and list elements are used semantically.
 
   _Why:_
 
-  > Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/listitem)
+  > Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list.
 
 - Ensure the heading order is semantically correct.
 
   _Why:_
 
-  > Headers convey the structure of the page. When applied correctly the page becomes easier to navigate. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.3/heading-order)
+  > Headers convey the structure of the page. When applied correctly the page becomes easier to navigate.
 
 - Ensure text elements have sufficient contrast against page background.
 
   _Why:_
 
-  > Some people with low vision experience low contrast, meaning that there aren't very many bright or dark areas. Everything tends to appear about the same brightness, which makes it hard to distinguish outlines, borders, edges, and details. Text that is too close in luminance (brightness) to the background can be hard to read. [Read more on this rule here](https://dequeuniversity.com/rules/axe/4.4/color-contrast-enhanced)
+  > Some people with low vision experience low contrast, meaning that there aren't very many bright or dark areas. Everything tends to appear about the same brightness, which makes it hard to distinguish outlines, borders, edges, and details. Text that is too close in luminance (brightness) to the background can be hard to read.
 
-- Provide alternative text for images .
+- Provide alternative text for images.
 
   _Why:_
 
-  > Screen readers have no way of translating an image into words that gets read to the user, even if the image only consists of text. As a result, it's necessary for images to have short, descriptive alt text so screen reader users clearly understand the image's contents and purpose.[Read more on this rule here](https://dequeuniversity.com/rules/axe/4.4/image-alt)
+  > Screen readers have no way of translating an image into words that gets read to the user, even if the image only consists of text. As a result, it's necessary for images to have short, descriptive alt text so screen reader users clearly understand the image's contents and purpose.
 
-More accessibility rules can be found [here](https://dequeuniversity.com/rules)
+More accessibility rules can be found [here](https://dequeuniversity.com/rules/axe).
 
 <a name="licensing"></a>
 
