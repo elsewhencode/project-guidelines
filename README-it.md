@@ -16,27 +16,27 @@
 
 <hr>
 
-- [Linee guida di un progetto &middot; ![PRs Welcome](http://makeapullrequest.com)](#linee-guida-di-un-progetto--img-srchttpsimgshieldsiobadgeprs-welcome-brightgreensvgstyleflat-square-altprs-welcome)
-  - [1. Git](#1-git)
-    - [1.1 Alcune regole di Git](#11-some-git-rules)
-    - [1.2 Flusso di lavoro di Git](#12-git-workflow)
-    - [1.3 Scrivere efficaci messaggi di commit](#13-writing-good-commit-messages)
-  - [2. Documentazione](#2-documentation)
-  - [3. Ambienti](#3-environments)
-    - [3.1 Ambienti di sviluppo consistenti:](#31-consistent-dev-environments)
-    - [3.2 Dipendenze consistenti:](#32-consistent-dependencies)
-  - [4. Dipendenze](#4-dependencies)
-  - [5. Collaudo](#5-testing)
-  - [6. Denominazioni e strutture](#6-structure-and-naming)
-  - [7. Stile di codice](#7-code-style)
-    - [7.1 Alcune linee guida di stile di codice](#71-some-code-style-guidelines)
-    - [7.2 Applicare uno standard nello stile di codice](#72-enforcing-code-style-standards)
-  - [8. Logging](#8-logging)
-  - [9. API](#9-api)
-    - [9.1 Progettazione API](#91-api-design)
-    - [9.2 Sicurezza API](#92-api-security)
-    - [9.3 Documentazione API](#93-api-documentation)
-  - [10. Gestione Licenze](#10-licensing)
+- [Git](#git)
+  - [Alcune regole di Git](#some-git-rules)
+  - [Flusso di lavoro di Git](#git-workflow)
+  - [Scrivere efficaci messaggi di commit](#writing-good-commit-messages)
+- [Documentazione](#documentation)
+- [Ambienti](#environments)
+  - [Ambienti di sviluppo consistenti:](#consistent-dev-environments)
+  - [Dipendenze consistenti](#consistent-dependencies)
+- [Dipendenze](#dependencies)
+- [Eseguire test](#testing)
+- [Denominazioni e strutture](#structure-and-naming)
+- [Stile di codice](#code-style)
+  - [Alcune linee guida di stile di codice](#some-code-style-guidelines)
+  - [Applicare uno standard nello stile di codice](#enforcing-code-style-standards)
+- [Logging](#logging)
+- [API](#api)
+  - [Progettazione API](#api-design)
+  - [Sicurezza API](#api-security)
+  - [Documentazione API](#api-documentation)
+- [Accessibilità](#a11y)
+- [Gestione Licenze](#licensing)
 
 <a name="git"></a>
 
@@ -45,77 +45,77 @@
 ![Git](/images/branching.png)
 <a name="some-git-rules"></a>
 
-### 1.1 Alcune regole Git
+### Alcune regole di Git
 
 Ecco un insieme di regole da tenere a mente:
 
-- Eseguire il lavoro in un ramo di funzionalità.
+- Eseguire il lavoro in un *branch* di funzionalità.
 
   _Perchè:_
 
-  > In questo modo tutto il lavoro viene fatto in isolamento su un ramo dedicato piuttosto che nel ramo principale. Vi consente di sottomettere delle richieste _pull_ multiple senza creare confusione. Potete iterare senza inquinare il ramo principale con codice potenzialmente instabile e non completato. [leggi di più...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+  > In questo modo tutto il lavoro viene fatto in isolamento su *branch* dedicato piuttosto che nel principale. Questo consente di sottomettere delle richieste _pull_ multiple senza creare confusione. E' possibile iterare senza inquinare il *branch master* con codice potenzialmente instabile e/o non completato. [maggiori informazioni...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
-- Branch out from `develop`
-
-  _Perchè:_
-
-  > In questo modo ci si può assicurare che il codice nel ramo principale possa essere quasi sempre compilato senza problemi, e che possa essere principalmente usato per i rilasci (potrebbe essere una esagerazione per alcuni progetti).
-
-- Mai eseguire _push_ nei rami di `develop` o `master`. Eseguire una richiesta _pull_
+- Creare *branch* da `develop`
 
   _Perchè:_
 
-  > Notifica i membri della squadra che una caratteristica è stata completata. Consente anche una facile revisione tra i propri pari del codice e una discussione della caratteristica proposta sui _forum_ dedicati.
+  > In questo modo ci si può assicurare che il codice in *master* possa essere quasi sempre compilato senza problemi, e che possa essere principalmente usato direttamente per i rilasci (potrebbe essere una esagerazione per alcuni progetti).
 
-- Aggiornate il ramo `develop` locale ed eseguite un _rebase_ interattivo prima proporre la propria caratteristica ed eseguire una richiesta _pull_.
-
-  _Perchè:_
-
-  > L'azione di _rebase_ integrerà i commit fatti localmente nei rami richiesti (`master` o `develop`) e all'inizio della storicizzazione senza creare un _merge commit_ (assumendo che non ci siano conflitti). Il risultato è una buona e pulita storicizzazione. [leggi di più ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
-
-- Resolvete conflitti potenziali durante l'azione di _rebase_ e prima di eseguire una richiesta _pull_.
-
-- Eliminate i rami di caratteristiche locali e remoti dopo l'integrazione.
+- Mai eseguire _push_ nei *branch* `develop` o `master`. Eseguire una richiesta _pull_
 
   _Perchè:_
 
-  > Il non farlo sporcherà il vostro elenco di rami con rami morti. Assicura che possiate integrare il rano in (`master` o `develop`) una volta sola. I rami di caratteristica dovrebbero esistere solo se il lavoro è ancora in corso.
+  > Notifica i membri della squadra che una funzionalità è stata completata. Consente anche una facile revisione tra i propri pari del codice e una discussione della funzionalità proposta sui _forum_ dedicati.
 
-- Prima di eseguire una richiesta _pull_, assicuratevi che il vostro ramo di caratteristica venga compilato con successo e superi tutti i test (compresi quelli di stile di codice).
-
-  _Perchè:_
-
-  > State per aggiungere il vostro codice a un ramo stabile. Se i test nel vostro ramo di caratteristica falliscono, ci sarà un'altra probabilità che la compilazione nel ramo di destinazione fallirà anch'essa. Inoltre, occorre applicare un controllo di stile di codice prima di eseguire una richiesta _pull_. Aggiunge leggibilità e riduce le possibilità che correzioni di formattazione vengano mescolate con le vere modifiche.
-
-- Usate [this](./.gitignore) il file `.gitignore`.
+- Aggiornare il *branch* `develop` locale ed eseguire un _rebase_ interattivo prima di proporre la propria funzionalità ed eseguire una richiesta _pull_.
 
   _Perchè:_
 
-  > Ha già un elenco di file di sistema che non dovrebbero essere inviati assieme al proprio codice in un deposito di codice remoto. Inoltre esclude cartelle e file di impostazioni per la maggior parte degli editor utilizzati, così come molte delle più comuni cartelle di dipendenze.
+  > L'azione di _rebase_ integrerà nei *branch* richiesti (`master` o `develop`) i commit fatti localmente all'inizio della storicizzazione senza creare un _merge commit_ (assumendo che non ci siano conflitti). Il risultato è una buona e pulita storicizzazione. [maggiori informazioni ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-- Proteggete i vostri rami di `develop` e `master`.
+- Risolvere conflitti potenziali durante l'azione di _rebase_ e prima di eseguire una richiesta _pull_.
+
+- Eliminare i *branch* di funzionalità locali e remoti dopo l'integrazione.
 
   _Perchè:_
 
-  > Protegge i vostri rami pronti per la produzione dal ricevere modifiche inattese e irreversibili. leggi di più... [Github](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html) and [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html)
+  > Il non farlo sporcherà il proprio elenco di *branch* con *branch* morti. Assicura che si possa integrare il *branch* in (`master` o `develop`) una volta sola. I *branch* di funzionalità dovrebbero esistere solo se il lavoro è ancora in corso.
+
+- Prima di eseguire una richiesta _pull_, assicuratevi che il proprio *branch* di funzionalità venga compilato con successo e superi tutti i test (compresi quelli di stile di codice).
+
+  _Perchè:_
+
+  > Si sta per aggiungere il proprio codice a un *branch* stabile. Se i test nel proprio *branch* di funzionalità falliscono, ci sarà un alta probabilità che la compilazione nel *branch* di destinazione fallirà anch'essa. Inoltre, occorre applicare un controllo di stile di codice prima di eseguire una richiesta _pull_. Aggiunge leggibilità e riduce le possibilità che correzioni di formattazione vengano mescolate con le vere modifiche.
+
+- Usare [questo file `.gitignore`](./.gitignore).
+
+  _Perchè:_
+
+  > Ha già un elenco di file di sistema che non dovrebbero essere inviati assieme al proprio codice in un *repository* remoto. Inoltre esclude cartelle e file di impostazione per la maggior parte degli editor utilizzati, così come molte delle più comuni cartelle di dipendenze.
+
+- Proteggere i propri *branch* di `develop` e `master`.
+
+  _Perchè:_
+
+  > Protegge i propri *branch* pronti per la produzione dal ricevere modifiche inattese e irreversibili, maggiori informazioni... [Github](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html) e [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html)
 
 <a name="git-workflow"></a>
 
 ### 1.2 Flusso di lavoro di Git
 
-Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) con [Rebase Interativo Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) ed alcuni elementi di [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (denominazioni e avere un ramo di sviluppo). I passi principali sono i seguenti:
+Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) con [Rebase Interativo](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) e alcuni elementi di [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (denominazioni e avere un *branch* di sviluppo). I passi principali sono i seguenti:
 
-- Per un nuovo progetto, inizializzare un deposito git nella directory del progetto. **Per le caratteristiche/modifiche successive questo passo dovrebbe essere ignorato**.
+- Per un nuovo progetto, inizializzare un *repository* git nella directory di progetto. **Per le funzionalità/modifiche successive questo passo dovrebbe essere ignorato**.
 
   ```sh
-  cd <directory del progetto>
+  cd <directory di progetto>
   git init
   ```
 
-- Eseguire il _checkout_ di un nuovo ramo di caratteristica/risoluzione errore.
+- Eseguire il _checkout_ di un nuovo *branch* di funzionalità/risoluzione *bug*.
 
   ```sh
-  git checkout -b <nome ramo>
+  git checkout -b <nome branch>
   ```
 
 - Eseguire le modifiche.
@@ -129,15 +129,15 @@ Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Fea
 
   > `git add <file1> <file2> ... ` - si dovrebbero aggiungere solo file che costituiscono una piccola e coerente modifica.
 
-  > `git commit` lancerà un editor che vi consente di separare il soggetto dal corpo.
+  > `git commit` lancerà un editor che consente di separare il soggetto dal corpo.
 
-  > Leggete di più in merito nella _section 1.3_.
+  > Si legga di più in merito nella _sezione 1.3_.
 
   _Suggerimento:_
 
-  > Potete invece usare `git add -p`, che potrebbe darvi la possibilità di rivedere tutte le modifiche introdotte una ad una e decidere se includerle in un _commit_ oppure no.
+  > Si può invece usare `git add -p`, che potrebbe dare la possibilità di rivedere tutte le modifiche introdotte una ad una e decidere se includerle nel _commit_ oppure no.
 
-- Sincronizzare con il deposito remoto per ottenere modifiche che altrimenti avreste perso.
+- Sincronizzare con il *repository* remoto per ottenere modifiche che altrimenti si sarebbero perso.
 
   ```sh
   git checkout develop
@@ -146,27 +146,27 @@ Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Fea
 
   _Perchè:_
 
-  > Vi fornisce la possibilità di gestire i conflitti sulla propria macchina mentre si esegue la successiva azione di _rebase_ invece che creare una richiesta _pull_ che contiene conflitti.
+  > Fornisce la possibilità di gestire i conflitti sulla propria macchina mentre si esegue la successiva azione di _rebase_ invece che creare una richiesta _pull_ che contiene conflitti.
 
-- Aggiornate il vostro ramo di caratteristica con le ultime modifiche da `develop` tramite _rebase_ interattivo.
+- Aggiornare il proprio *branch* di funzionalità con le ultime modifiche da `develop` tramite _rebase_ interattivo.
 
   ```sh
-  git checkout <branchname>
+  git checkout <nome branch>
   git rebase -i --autosquash develop
   ```
 
   _Perchè:_
 
-  > Potete usare `--autosquash` per comprimere tutti i vostri _commit_ in un _commit_ singolo. Nessuno vuole molti _commit_ per una singola caratteristica in un ramo di sviluppo. [leggi di più...](https://robots.thoughtbot.com/autosquashing-git-commits)
+  > Si può usare `--autosquash` per comprimere tutti i propri _commit_ in un _commit_ singolo. Nessuno vuole molti _commit_ per una singola funzionalità nel *branch* di sviluppo. [maggiori informazioni...](https://robots.thoughtbot.com/autosquashing-git-commits)
 
-- Se non avete conflitti saltate questo passo. Se avete conflitti, [risolveteli](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) e continuate l'azione di _rebase._
+- Se non si hanno conflitti saltare questo passo. Se si hanno conflitti, [risolverli](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) e continuate l'azione di _rebase._
 
   ```sh
   git add <file1> <file2> ...
   git rebase --continue
   ```
 
-- Eseguite l'azione di _push_ del vostro ramo. L'azione di _rebase_ modificherà la storicizzazione, quindi dovrete usare `-f` per forzare le modifiche nel ramo remoto. Se qualcun altro sta lavorando sul vostro ramo, usare l'opzione meno distruttiva `--force-with-lease`.
+- Eseguire l'azione di _push_ del proprio *branch*. L'azione di _rebase_ modificherà la storicizzazione, quindi si dovrà usare `-f` per forzare le modifiche nel *branch* remoto. Se qualcun altro sta lavorando sul proprio *branch*, usare l'opzione meno distruttiva `--force-with-lease`.
 
   ```sh
   git push -f
@@ -174,17 +174,17 @@ Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Fea
 
   _Perchè:_
 
-  > Quando eseguite una azione di _rebase_, state modificando la storicizzazione del vostro ramo di caratteristiche. Come risultato, Git respingerà i normali `git push`. Dovrete invece usare l'opzione `-f` o `--force flag`. [leggi di più...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+  > Quando si esegue una azione di _rebase_, si sta modificando la storicizzazione del proprio *branch* di funzionalità. Come risultato, Git respingerà i normali `git push`. Dovrà invece essere usata l'opzione `-f` o `--force flag`. [maggiori informazioni...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
-- Eseguite una richiesta _pull_.
+- Eseguire una richiesta _pull_.
 - La richiesta _pull_ verrà accettata, incorporata e chiusa da un revisore.
-- Rimuovete il vostro ramo locale di caratteristica se avete finito.
+- Rimuovere il proprio *branch* locale di funzionalità se completato.
 
   ```sh
   git branch -d <branchname>
   ```
 
-  rimuovere tutti i rami che non sono più nel deposito remoto
+  rimuovere tutti i rami che non sono più nel *repository* remoto
 
   ```sh
   git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
@@ -200,21 +200,21 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Git è sufficientemente capace di considerare la prima riga del vostro messagio di _commit_ come il vostro sommario. In effetti se eseguite `git shortlog`, invece che `git log`, vedrete un lungo elenco di messaggi di _commit_, che contengono l'identificativo del commit e il solo sommario.
+  > Git è in grado di considerare la prima riga del proprio messagio di _commit_ come sommario. In effetti se si esegue `git shortlog`, invece che `git log`, si vedrà un lungo elenco di messaggi di _commit_, che contengono l'identificativo del *commit* e il solo sommario.
 
-- Limitate la riga dell'oggetto a 50 caratteri e la lunghezza della riga nel corpo a massimo 72 caratteri.
+- Limitare la riga dell'oggetto a 50 caratteri e la lunghezza della riga nel corpo a massimo 72 caratteri.
 
   _Perchè:_
 
-  > I _commit_ dovrebbero essere più dettagliati e specifici possibile, non è il posto per essere prolissi. [leggi di più...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+  > I _commit_ dovrebbero essere più dettagliati e specifici possibile, non è il posto per essere prolissi. [maggiori informazioni...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
 - Maiuscole nella riga di oggetto.
-- Non terminate la riga dell'oggetto con un punto.
-- Usete [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) nella riga dell'oggetto.
+- Non terminare la riga dell'oggetto con un punto.
+- Usare [il modo imperativo](https://it.wikipedia.org/wiki/Imperativo) nella riga dell'oggetto.
 
   _Perchè:_
 
-  > Invece che scrivere messaggi che dicono cosa ha fatto chi ha eseguito il commit, è meglio considerare questi messaggi come istruzioni per quello che dovrà essere fatto dopo che il _commit_ è applicato nel deposito. [leggi di più...](https://news.ycombinator.com/item?id=2079612)
+  > Invece che scrivere messaggi che dicono cosa ha fatto chi ha eseguito il *commit*, è meglio considerare questi messaggi come istruzioni per quello che si andrà a fare dopo che il _commit_ è stato applicato nel *repository*. [maggiori informazioni...](https://news.ycombinator.com/item?id=2079612)
 
 - Usare il corpo per spiegare **cosa** e **perchè** invece di **come**.
 
@@ -224,15 +224,14 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Documentazione](/images/documentation.png)
 
-- Usete questo [modello](./README.sample.md) o `README.md`. Siate liberi di aggiungere sezioni non trattate.
-- Per progetti con più di un deposito, fornire collegamenti a essi nei rispettivi file `README.md`.
+- Usate questo [modello](./README.sample.md) per `README.md`. Si è liberi di aggiungere sezioni non trattate.
+- Per progetti con più di un *repository*, fornire collegamenti agli stessi nei rispettivi file `README.md`.
 - Mantenere aggiornato `README.md` mano a mano che il progetto evolve.
-- Commentate il vostro codice. Cercate di renderlo il più chiaro possibile cosa intendete con ogni sezione principale.
-- Se esiste una discussione aperta su github o stackoverflow riguardo al codice o all'approccio che state usando, includete il collegamento nel vostro commento.
-- Non usate commenti come scusa per cattivo codice.
-- Mantenere il proprio codice pulito.
-- Non usare il codice pulito come scusa per non commentarlo.
-- Mantenete i commenti rilevanti mano a mano che il vostro codice evolve.
+- Commentare il proprio codice. Cercate di renderlo il più chiaro possibile il proprio intendimento con ogni sezione principale.
+- Se esiste una discussione aperta su github o stackoverflow riguardo al codice o all'approccio che si sta usando, includere il collegamento nel proprio commento.
+- Non usare commenti come scusa per cattivo codice, mantenere il proprio codice pulito.
+- Non usare codice pulito come scusa per non commentarlo del tutto.
+- Mantenere i commenti rilevanti mano a mano che il proprio codice evolve.
 
 <a name="environments"></a>
 
@@ -240,83 +239,83 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Environments](/images/laptop.png)
 
-- Definite ambienti `development` (sviluppo), `test` (collaudo) e `production` (produzione) separati se serve.
+- Definire ambienti `development` (sviluppo), `test` (collaudo) e `production` (produzione) separati se serve.
 
   _Perchè:_
 
-  > Dati diversi, token, API, porte ecc... potrebbero essere necessari in ambienti diversi. Potreste volere un ambiente `development` isolato che chiami delle "false" API che forniscono dati predeterminati, rendendo i test sia manuali che automatici molto più facili. Oppure potreste voler abilitare Google Analytics solo in `production` e così via. [leggi di più...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+  > Dati diversi, *token*, API, porte ecc... potrebbero essere necessari in ambienti diversi. Si potrebbe volere un ambiente di sviluppo (`development`) isolato che chiami delle "false" API che forniscono dati predeterminati, rendendo i test sia manuali che automatici molto più facili. Oppure si portrebbe voler abilitare Google Analytics solo in ambiente di produzione (`production`) e così via. [maggiori informazioni...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
-- Caricate le vostre configurazioni di sviluppo specifiche da variabili di ambientee e non aggiungetele mai alla base di codice come costanti, [guardate questo esempio](./config.sample.js).
+- Caricare le proprie configurazioni di sviluppo specifiche da variabili di ambiente e non aggiungerle mai alla base di codice come costanti, [guardare questo esempio](./config.sample.js).
 
   _Perchè:_
 
-  > Avete token, password e altre preziose informmazioni. La vostra configurazione dovrebbe essere correttamente separata dalle logiche interne dell'app come se la base di codice potesse essere resa pubblica in qualsiasi momento.
+  > Si hanno *token*, password e altre preziose informmazioni lì dentro. La propria configurazione dovrebbe essere correttamente separata dalle logiche interne dell'app come se la base di codice potesse essere resa pubblica in qualsiasi momento.
 
   _Come:_
 
-  > Usate file `.env` per conservare le vostre variabili ed aggiungeteli a `.gitignore` per escluderli. Eseguite un _commit_ di un `.env.esempio` che serva come guida per gli sviluppatori. Per la produzione, dovreste comunque impostare le vostre variabili nel modo standard. [leggi di più](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+  > Usare file `.env` per conservare le proprie variabili e aggiungerli a `.gitignore` per escluderli. Eseguire un _commit_ di un `.env.esempio` che serva come guida per gli sviluppatori. Per la produzione, si dovrebbero comunque impostare le proprie variabili nel modo standard. [maggiori informazioni](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-- E' raccomandato che si validino le variabili di ambiente prima che la vostra app venga lanciata.. [Guardate questo esempio](./configWithTest.sample.js) che usa `joi` per validare i valori passati.
+- E' raccomandato che si validino le variabili di ambiente prima che la propria app venga lanciata. [Guardare questo esempio](./configWithTest.sample.js) che usa `joi` per validare i valori passati.
 
   _Perchè:_
 
-  > Potrebbe risparmiarvi ore passate a risolvere problemi.
+  > Potrebbe risparmiare ad altri ore passate a risolvere problemi.
 
 <a name="consistent-dev-environments"></a>
 
 ### 3.1 Ambienti di sviluppo consistenti:
 
-- Impostate la vostra versione di node in `engines` e `package.json`.
+- Impostare la propria versione di node in `engines` in `package.json`.
 
   _Perchè:_
 
-  > Consente agli altri di sapere su quale versione di node il progetto lavora. [leggi di più...](https://docs.npmjs.com/files/package.json#engines)
+  > Consente agli altri di sapere su quale versione di node il progetto lavora. [maggiori informazioni...](https://docs.npmjs.com/files/package.json#engines)
 
-- Inoltre usate `nvm` e create un `.nvmrc` in radice del vostro progetto. Non dimenticate di citarlo nella documentazione
+- Inoltre usare `nvm` e creare un file `.nvmrc` in radice del proprio progetto. Non dimenticare di citarlo nella documentazione.
 
   _Perchè:_
 
-  > Chiunque usi `nvm` piò semplicemente usare `nvm use` per passare alla versione di node adatta. [leggi di più...](https://github.com/creationix/nvm)
+  > Chiunque usi `nvm` piò semplicemente usare `nvm use` per passare alla versione di node adatta. [maggiori informazioni...](https://github.com/creationix/nvm)
 
-- E' una buona idea impostare uno stript `preinstall` che verifichi le versioni di node e npm.
+- E' una buona idea impostare uno stript di preinstallazione che verifichi le versioni di node e npm.
 
   _Perchè:_
 
   > Alcune dipendenze potrebbero fallire quando installate da versioni più nuove di npm.
 
-- Usate immagini Docker se potete.
+- Usare immagini Docker se possibile.
 
   _Perchè:_
 
-  > Vi può fornire un ambiente consistente lungo tutto il processo di lavoro. Senza tanto bisogno di armeggiare con dipendenze o configurazioni. [leggi di più...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+  > Può fornire un ambiente consistente lungo tutto il flusso di lavoro. Senza tanto bisogno di armeggiare con dipendenze o configurazioni. [maggiori informazioni...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
-- Usate moduli locali invece di quelli installati globalmente.
+- Usare moduli locali invece di quelli installati globalmente.
 
   _Perchè:_
 
-  > Vi consente di condividere il vostro equipaggiamento con il vostro collega invece di supporre che li abbia installati globalmente sul proprio sistema.
+  > Consente di condividere il proprio equipaggiamento con il collega invece di aspettarsi che li abbia installati globalmente sul proprio sistema.
 
 <a name="consistent-dependencies"></a>
 
 ### 3.2 Consistenza nella dipendenze:\*\*\*\*
 
-- Assicuratevi che i membri della vostra squadra abbiano le stesse esatte vostre dipendenze.
+- Assicurarsi che i membri della propria squadra abbiano le stesse esatte dipendenze.
 
   _Perchè:_
 
-  > Perchè volete che il codice si comporti come atteso e in modo identico in qualsiasi macchina di sviluppo [leggi di più...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+  > Perchè si vuole che il codice si comporti come atteso e in modo identico in qualsiasi macchina di sviluppo [maggiori informazioni...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
   _how:_
 
-  > Usate `package-lock.json` su `npm@5` o superiori
+  > Usare `package-lock.json` su `npm@5` o superiori
 
   _Non ho npm@5:_
 
-  > Come alternativa potreste usare `Yarn` e assicurarvi di citarlo nel `README.md`. I vostri file di lock e `package.json` dovrebbero avere le stesse versioni dopo qualsiasi aggiornamento di ciascuna dipendenza. [leggi di più...](https://yarnpkg.com/en/)
+  > Come alternativa si potrebbe usare `Yarn` e assicurarsi di citarlo nel `README.md`. I propri file di lock e `package.json` dovrebbero avere le stesse versioni dopo ogni aggiornamento di dipendenze. [maggiori informazioni...](https://yarnpkg.com/en/)
 
   _Non mi piace il name `Yarn`:_
 
-  > Peccato. Per versioni più vecchie di `npm`, usate `—save --save-exact` quando installate una nuova dipendenza e create `npm-shrinkwrap.json` prima della pubblicazione. [leggi di più...](https://docs.npmjs.com/files/package-locks)
+  > Peccato. Per versioni più vecchie di `npm`, usare `—save --save-exact` quando si installa una nuova dipendenza e creare `npm-shrinkwrap.json` prima della pubblicazione. [maggiori informazioni...](https://docs.npmjs.com/files/package-locks)
 
 <a name="dependencies"></a>
 
@@ -324,33 +323,34 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Github](/images/modules.png)
 
-- Tenete traccia dei vostri pacchetti attualmente disponibili: `npm ls --depth=0`. [leggi di più...](https://docs.npmjs.com/cli/ls)
-- Verificate se qualcuno dei vostri pacchetti è diventato irrilevante o inutilizzato: `depcheck`. [leggi di più...](https://www.npmjs.com/package/depcheck)
+- Tenere traccia dei propri pacchetti attualmente disponibili: es. `npm ls --depth=0`. [maggiori informazioni...](https://docs.npmjs.com/cli/ls)
+- Verificare se qualcuno dei propri pacchetti è diventato irrilevante o inutilizzato: `depcheck`. [maggiori informazioni...](https://www.npmjs.com/package/depcheck)
 
   _Perchè:_
 
-  > Potreste includere una libreria inutilizzata nel vostro codice aumentando la dimensione del pacchetto di produzione. Cercate le dipendenze inutilizzate e sbarazzatevene.
+  > Si potrebbe includere una libreria inutilizzata nel proprio codice aumentando la dimensione del pacchetto di produzione. Cercare le dipendenze inutilizzate e sbarazzarsene.
 
-- Prima di usare una dipendenza, verificate le statistiche degli scaricamenti per verificare se sia ampiamente utilizzata dalla comunità: `npm-stat`. [leggi di più...](https://npm-stat.com/)
-
-  _Perchè:_
-
-  > Più utilizzi in genere significa più collaboratori, il che in genere significa migliore manutenzione, e la conseguenza è che i bug vengono scoperti e corretti più velocemente.
-
-- Prima di usare una dipendenza, verificate se ha un rilascio di versione buona, matura e con un vasto numero di manutentori: `npm view async`. [leggi di più...](https://docs.npmjs.com/cli/view)
+- Prima di usare una dipendenza, verificare le statistiche degli scaricamenti per verificare se sia ampiamente utilizzata dalla comunità: `npm-stat`. [maggiori informazioni...](https://npm-stat.com/)
 
   _Perchè:_
 
-  > Avere un gran numero di sottomissioni di codice da parte dei collaboratori non è così efficace se non ci sono manutentori che incorporano le correzioni e le patch con sufficiente velocità.
+  > Più utilizzi in genere significa più collaboratori, il che in genere significa migliore manutenzione, e la conseguenza è che i *bug* vengono scoperti e corretti più velocemente.
 
-- Se è necesaria una dipendenza poco conosciuta, discutetene con la squadra prima di usarla.
-- Assicuratevi sempre che la vostra app funzioni con le ultime versioni delle proprie dipendenze senza errori: `npm outdated`. [leggi di più...](https://docs.npmjs.com/cli/outdated)
+- Prima di usare una dipendenza, verificate se ha una frequenza di rilascio di versione buona, matura e con un ampio numero di manutentori: `npm view async`. [maggiori informazioni...](https://docs.npmjs.com/cli/view)
 
   _Perchè:_
 
-  > Gli aggiornamenti delle dipendenze talvolta contengono modifiche che rompono l'app. Verificate sempre le loro note di rilascio quando vengono messi a disposizione gli aggiornamenti. Aggiornate le vostre dipendenze una ad una, il che facilita la risoluzione dei problemi se qualcosa dovesse andare storto. Usate uno strumento tipo [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+  > Avere un gran numero di sottomissioni di codice da parte dei collaboratori non è così efficace se non ci sono manutentori che incorporano le correzioni e *patch* con sufficiente velocità.
 
-- Verificate se il pacchetto abbia delle vulnerabilità di sicurezza note con [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+- Se è necesaria una dipendenza poco conosciuta, discuterne con la squadra prima di usarla.
+
+- Assicurarsi sempre che la propria app funzioni con le ultime versioni delle proprie dipendenze senza errori: `npm outdated`. [maggiori informazioni...](https://docs.npmjs.com/cli/outdated)
+
+  _Perchè:_
+
+  > Gli aggiornamenti delle dipendenze talvolta contengono modifiche che rompono l'app. Verificate sempre le loro note di rilascio quando vengono messi a disposizione gli aggiornamenti. Aggiornare le proprie dipendenze una ad una, il che facilita la risoluzione dei problemi se qualcosa dovesse andare storto. Usate uno strumento tipo [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+
+- Verificare se il pacchetto abbia delle vulnerabilità di sicurezza note con [Snyk](https://snyk.io/test?utm_source=risingstack_blog) as esempio.
 
 <a name="testing"></a>
 
@@ -358,49 +358,49 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Testing](/images/testing.png)
 
-- Se necessario abbiate un ambiente in modalità `test`.
+- Se necessario dotarsi di un ambiente in modalità `test`.
 
   _Perchè:_
 
-  > Sebbene qualche volta il test dall'inizio alla fine in `produzione` possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che potreste non voler abilitare informazioni analitiche in una modalità `produzione` e inquinare il cruscotto di qualcuno con dati di test. L'altro esempio è che la vostra API potrebber avere dei parametri di limite in `produzione` e bloccare le vostre chiamate di test dopo un certo numero di richieste.
+  > Sebbene qualche volta il test *end-to-end* in ambiente di produzione possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che si potrebbe non voler abilitare informazioni analitiche in modalità produzione) e inquinare il cruscotto di qualcuno con dati di test. Un altro esempio è che la propria API potrebber avere dei parametri di limite in produzione e bloccare le chiamate di test dopo un certo numero di richieste.
 
-- Posizionate i vostri file di test vicino ai moduli testati usando la convenzione nominale `*.test.js` o `*.spec.js`, tipo `nomeModulo.spec.js`.
-
-  _Perchè:_
-
-  > Non vorreste rovistare all'interno di una struttura di directory per trovare una unità di test. [leggi di più...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
-
-- Inserite i vostri file di test addizionali in una cartella di test separata per evitare confusione.
+- Posizionare i propri file di test vicino ai moduli testati usando la convenzione nominale `*.test.js` o `*.spec.js`, tipo `nomeModulo.spec.js`.
 
   _Perchè:_
 
-  > Alcuni file di test non sono particolarmente legati a specifici file di implementazione. Dovrete inserirli in una cartella che sia facile da trovare dagli altri sviluppatori: `__test__` Questo nome: `__test__` è anche uno standard ora e viene scelto dalla maggior parte delle infrastrutture di test di Javascript.
+  > Non si vorrà rovistare all'interno di una struttura di directory per trovare una unità di test. [maggiori informazioni...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-- Scrivete codice che si possa testare, evitate effetti collaterali, eliminate effetti collaterali, scrivete funzioni pure
+- Inserire i propri file di test addizionali in una cartella di test separata per evitare confusione.
 
   _Perchè:_
 
-  > Vorrete testare una logica di _business_ come unità separate. Dovete "minimizzare l'impatto della casualità e dei processi non deterministici sulla affidabilità del vostro codice". [leggi di più...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+  > Alcuni file di test non sono particolarmente legati a specifici file di implementazione. Si dovranno inserire in una cartella che sia facile da trovare per gli altri sviluppatori: `__test__`. Questo nome: `__test__` è anche uno standard ora e viene scelto dalla maggior parte delle infrastrutture di test di Javascript.
 
-  > Una funzione pura è una funzione che ritorna sempre lo stesso risultato per lo stesso input. Al contrario una funzione impura è quella che potrebbe avere effetti collaterali o dipende da condizioni esterne per produrre un valore. Il che la rende meno prevedibile. [leggi di più...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+- Scrivere codice che si possa testare, evitare effetti collaterali, eliminare effetti collaterali, scrivere funzioni pure
+
+  _Perchè:_
+
+  > Si vuole testare una logica di _business_ come unità separate. Si deve "minimizzare l'impatto della casualità e dei processi non deterministici sulla affidabilità del proprio codice". [maggiori informazioni...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+
+  > Una funzione pura è una funzione che ritorna sempre lo stesso risultato dato lo stesso input. Al contrario una funzione impura è quella che potrebbe avere effetti collaterali o dipende da condizioni esterne per produrre un valore. Il che la rende meno prevedibile. [maggiori informazioni...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 - Usate un verificatore di tipo statico
 
   _Perchè:_
 
-  > Talvolta dovreste aver bisogno di un verificatore di tipo statico. Porta un certo grado di affidabilità al vostro codice. [leggi di più...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+  > Talvolta si potrebbe aver bisogno di un verificatore di tipo statico. Porta un certo grado di affidabilità al proprio codice. [maggiori informazioni...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
-- Eseguire i test localmente prima di eseguire una richiesta _pull_ in `sviluppo`.
-
-  _Perchè:_
-
-  > Non vorrete essere quelli che hanno causato una fallita compilazione in un ramo pronto per la produzione. Eseguite i vostri test prima della vostra azione di _rebase_ e prima di inviare il vostro ramo di caratteristica in un deposito remoto.
-
-- Documentate i vostri test includendo istruzioni nelle sezioni rilevandt del vostro file `README.md`.
+- Eseguire i test localmente prima di eseguire una richiesta _pull_ nel *branch* di sviluppo (`develop`).
 
   _Perchè:_
 
-  > E' una nota utile che voi lasciate a disposizione degli altri sviluppatori o esperti DevOps o chiunque sia abbastanza fortunato da lavorare con il vostro codice.
+  > Non si vuole essere quello che ha causato una fallita compilazione in un *branch* pronto per la produzione. Eseguire i propri test prima della propria azione di _rebase_ e prima di inviare il proprio *branch* di funzionalità in un *repository* remoto.
+
+- Documentare i propri test includendo istruzioni nelle sezioni rilevanti del proprio file `README.md`.
+
+  _Perchè:_
+
+  > E' una nota utile che si lascia a disposizione degli altri sviluppatori o esperti DevOps o chiunque sia abbastanza fortunato da lavorare al codice.
 
 <a name="structure-and-naming"></a>
 
@@ -408,7 +408,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Structure and Naming](/images/folder-tree.png)
 
-- Organizzate i vostri file attorno a caratteristiche / pagine / componenti, non ruoli. Inoltre inserite i vostri file di testo vicino alla loro implementazione.
+- Organizzare i propri file attorno a funzionalità / pagine / componenti, non ruoli. Inoltre inserire i propri file di test vicino alla loro implementazione.
 
   **Cattivo**
 
@@ -438,32 +438,33 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Invece di un lungo elenco di file, creerete piccoli moduli che incapsulano una responsabilità compresi i propri test e così via. E' molto più facile navigarli e le cose si possono trovare a colpo d'occhio.
+  > Invece di un lungo elenco di file, si creeranno piccoli moduli che incapsulano una responsabilità compresi i test relativi e così via. E' molto più facile scorrerli e le cose si possono trovare a colpo d'occhio.
 
-- Inserite i vostri file di test aggiuntivi in cartelle di test separate per evitare confusione.
-
-  _Perchè:_
-
-  > Costituisce un risparmio di tempo per gli altri sviluppatori o esperti DevOps nella vostra squadra.
-
-- Usate una cartella `./config` e non create file di configurazione diversi per i diversi ambienti.
+- Inserire i propri file di test aggiuntivi in cartelle di test separate per evitare confusione.
 
   _Perchè:_
 
-  > Quando dividete un file di configurazione per diversi scopi (database, API eccetera) metteteli in una cartella con un nome molto riconoscibile tipo `config`. Ricordate di non generare diversi file di configurazione per diversi ambienti. Saranno necessari nuovi nomi di ambiente per ogni deploy dell'app che state creando.
-  > I valori da usare nei file di configurazione dovrebbero essere forniti da variabili di ambiente. [leggi di più...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+  > Costituisce un risparmio di tempo per gli altri sviluppatori o esperti DevOps nella prorpria squadra.
 
-- Inserite i vostri script in una cartella `./scripts` . Compresi gli script `bash` e `node`.
-
-  _Perchè:_
-
-  > E' molto probabile che finirete per avere più di uno script, per la produzione, lo sviluppo, alimentatori di database, sincronizzatori di database eccetera.
-
-- Piazzate il risultato delle compilazioni in una cartella `./build`. Aggiungete `build/` a `.gitignore`.
+- Usare una cartella `./config` e non creare file di configurazione diversi per i diversi ambienti.
 
   _Perchè:_
 
-  > Chiamatela come vi pare, anche `dist` va bene, ma assicuratevi di mantenere consistenza con la vostra squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. I componenti della vostra squadra dovrebbero essere in grado di generare quello che generate voi, quindi non ha senso portare questi dati nel deposito remoto. A meno che non lo si voglia specificatamente.
+  > Quando si divide un file di configurazione per diversi scopi (database, API eccetera) metteteli in una cartella con un nome molto riconoscibile tipo `config`. Ricordarsi di non generare diversi file di configurazione per diversi ambienti. 
+  Non sarebbe possibile scalarli in modo pulito, mano a mano che sono creati più sviluppi per l'app e saranno necessari nuovi nomi di ambiente per ogni distribuzione.
+  > I valori da usare nei file di configurazione dovrebbero essere forniti da variabili di ambiente. [maggiori informazioni...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+
+- Inserire i propri script in una cartella `./scripts` . Compresi gli script `bash` e `node`.
+
+  _Perchè:_
+
+  > E' molto probabile che si finisca per avere più di uno script, per la produzione, lo sviluppo, alimentazione di database, sincronizzazione di database eccetera.
+
+- Piazzare il risultato delle compilazioni in una cartella `./build`. Aggiungere `build/` a `.gitignore`.
+
+  _Perchè:_
+
+  > Denominarla a piacimento, anche `dist` va bene, ma assicurarsi di mantenere consistenza con la prorpria squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. Amche i componenti della prorpria squadra dovrebbero essere in grado di generarlo, quindi non ha senso portare questi dati nel *repository* remoto. A meno che non lo si voglia specificatamente.
 
 <a name="code-style"></a>
 
@@ -475,25 +476,25 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ### 7.1 Alcune linee guida sullo stile di codice
 
-- Usate una sintassi di secondo stadio o superiore (moderna) di Javascript per i vostri nuovi progetti. Per quelli vecchi restate consistenti con la sintassi esistente a meno che intendiate modernizzare il progetto.
+- Usate una sintassi di secondo stadio (*stage-2*) o superiore (moderna) di Javascript per i propri nuovi progetti. Per quelli vecchi restare consistenti con la sintassi esistente a meno che si intenda modernizzare il progetto.
 
   _Perchè:_
 
-  > Questo dipende interamente da voi. Usiamo programmi per il _transpiling_ per trarre vantaggio dalla nuova sintassi, è probabile che _stage-2_ diventi alla fine parte delle specifiche con poche minori revisioni.
+  > E' una scelta personale. Qui usiamo programmi per il _transpiling_ per trarre vantaggio dalla nuova sintassi, è probabile che _stage-2_ diventi alla fine parte delle specifiche con poche minori revisioni.
 
-- Includete verifiche di stile di codice nel vostro processo di compilazione.
-
-  _Perchè:_
-
-  > Interrompere la compilazione è un modo per imporre uno stile di codice. Vi evita di prenderlo sotto gamba. Fatelo sia per il codice della parte client che per quella server. [leggi di più...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
-
-- Usate [ESLint - Pluggable JavaScript linter](http://eslint.org/) per imporre lo stile di codice.
+- Includere verifiche di stile di codice nel proprio processo di compilazione.
 
   _Perchè:_
 
-  > Semplicemente noi preferiameo `eslint`, voi non siete obbligati. Supporta più regole e la possibilità di configurarle nonchè di aggiungerne di personalizzate.
+  > Rompere la compilazione è un modo per imporre uno stile di codice. Evita di prenderlo sotto gamba. Farlo sia per il codice della parte client che per quella server. [maggiori informazioni...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
-- Usiamo [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) per JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Usate lo stile di codice javascript richiesto dal vostro progetto o dalla vostra squadra.
+- Usare [ESLint - Pluggable JavaScript linter](http://eslint.org/) per imporre lo stile di codice.
+
+  _Perchè:_
+
+  > Semplicemente noi preferiameo `eslint`, ma gli altri non sono obbligati. Supporta più regole e la possibilità di configurarle nonchè di aggiungerne di personalizzate.
+
+- Usiamo [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) per JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Usate lo stile di codice javascript richiesto dal proprio progetto o dalla vostra squadra.
 
 - Usiamo [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) quando usiamo [FlowType](https://flow.org/).
 
@@ -501,43 +502,43 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > _Flow_ introduce poca sintassi, la quale deve seguire certe regole di stile di codice e possono essere verificate.
 
-- Usate `.eslintignore` per escludere file o cartelle dalle verifiche di stile di codice.
+- Usare `.eslintignore` per escludere file o cartelle dalle verifiche di stile di codice.
 
   _Perchè:_
 
-  > Non dovete inquinare il vostro codice con commenti `eslint-disable` ogni volta che dovete escludere un paio di file dalla verifica di stile.
+  > Non si deve inquinare il proprio codice con commenti `eslint-disable` ogni volta che si deve escludere un paio di file dalla verifica di stile.
 
-- Rimuovete tutti i vostri commenti di disabilitazione di `eslint` prima di eseguire una richiesta _pull_
-
-  _Perchè:_
-
-  > E' normale disabilitare verifiche di stile mentre si lavora a un blocco di codice per focalizzarsi più sulla logica. Solo ricordate di rimuovere quei commenti `eslint-disable` e seguite le regole
-
-- A seconda della dimensione dell'attività usate commenti `//TODO:` oppure aprite un ticket.
+- Rimuovere tutti i propri commenti di disabilitazione di `eslint` prima di eseguire una richiesta _pull_.
 
   _Perchè:_
 
-  > In questo modo potete ricordare agli altri e a voi stessi di una piccola attività (tipo refattorizzare una funzione o aggiornare un commento). Per attività più complessi usate `//TODO(#3456)` che viene impostato da una regola di _lint_ e dal numero del ticket aperto.
+  > E' normale disabilitare verifiche di stile mentre si lavora a un blocco di codice per focalizzarsi più sulla logica. Ricordarsi solo  di rimuovere quei commenti `eslint-disable` e seguite le regole.
 
-- Commentate sempre e mantenete i commenti in linea con le modifiche fino ad ora apportate al codice. Elminate i blocchi di codice commentati.
-
-  _Perchè:_
-
-  > Il vostro codice dovrebbe essere il più leggibile possibile, dovreste sbarazzarvi di ogni distrazione. Se rifattorizzate una funzione non commentate la vecchia, eliminatela.
-
-- Evitate commenti, log e attribuzione di nominativi irrilevanti o divertenti.
+- A seconda della dimensione dell'attività usare commenti `//TODO:` oppure aprire un ticket.
 
   _Perchè:_
 
-  > Anche se il vostro processo di compilazione potrebbe (dovrebbe) sbarazzarsi di questi, talvolta il vostro codice sorgente potrebbe essere affidato ad altra ditta/cliente e potrebbero non non trovarli così divertenti.
+  > In questo modo si può ricordare agli altri e a se stessi di una piccola attività (tipo rifattorizzare una funzione o aggiornare un commento). Per attività più complesse usate `//TODO(#3456)` che viene imposto da una regola di _lint_ e il numero è quello di un ticket aperto.
 
-- Rendete i vostri nomi ricercabili con distinzioni significative ed evitate abbreviazioni di nomi. Per le funzioni usate nomi lunghi e descrittivi. Un nome di funzione dovrebbe essere un verbo o una frase verbale, e deve comuncare le proprie intenzioni.
+- Commentare sempre il codice e mantenere i commenti in linea con le modifiche fino ad ora apportate. Elminare i blocchi di codice commentati.
+
+  _Perchè:_
+
+  > Il proprio codice dovrebbe essere il più leggibile possibile, ci si dovrebbe sbarazzare di ogni distrazione. Se si rifattorizza una funzione non commentare la vecchia ma eliminarla.
+
+- Evitare commenti, log e attribuzione di nominativi irrilevanti o divertenti.
+
+  _Perchè:_
+
+  > Anche se il proprio processo di compilazione potrebbe (dovrebbe) sbarazzarsi di questi, talvolta il proprio codice sorgente potrebbe essere affidato ad altra ditta/cliente e potrebbero non trovarli così divertenti.
+
+- Rendere i propri nomi ricercabili con distinzioni significative ed evitare abbreviazioni di nomi. Per le funzioni usare nomi lunghi e descrittivi. Un nome di funzione dovrebbe essere un verbo o una frase verbale, e deve comuncare le proprie intenzioni.
 
   _Perchè:_
 
   > Rende la lettura del codice sorgente più naturale.
 
-- Organizzate le vostre fuznoni in un file a seconda della regole di discesa. Funzioni di alto livello dovrebbero essere in testa e quelle di basso livello più in basso.
+- Organizzare le proprie fuznoni in un file a seconda della regole di discesa. Funzioni di alto livello dovrebbero essere in testa e quelle di basso livello più in basso.
 
   _Perchè:_
 
@@ -547,25 +548,25 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ### 7.2 Imporre standard di stile di codice
 
-- Usate un file [.editorconfig](http://editorconfig.org/) che aiuta gli sviluppatori a definire e mantenere stili di codice consistente tra i diversi editor e IDE usati nel progetto.
+- Usare un file [.editorconfig](http://editorconfig.org/) che aiuta gli sviluppatori a definire e mantenere stili di codice consistente tra i diversi editor e IDE usati nel progetto.
 
   _Perchè:_
 
-  > Il progetto EditorConfig consiste in un formato di file per definire stili di codice e una collezione di plugin per editor testi che consentono agli editor di leggere il formato di stile e aderire a stili definiti. I file EditorConfig sono facilmente leggibili e funzionano bene con sistemi di controllo di versione.
+  > Il progetto EditorConfig consiste in un file che descrive un formato per definire stili di codice e una collezione di plugin che consentono agli editor di leggere il file di formato e di aderire agli stili definiti. I file EditorConfig sono facilmente leggibili e funzionano bene con sistemi di controllo di versione.
 
-- Fate in modo che il vostro editor vi notifichi circa gli errori di stile di codice. Usate [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) con vostra configurazione esistente di ESLint. [leggi di più...](https://github.com/prettier/eslint-config-prettier#installation)
+- Fare in modo di essere notificati dal proprio editor circa gli errori di stile di codice. Usaee [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) con la propria configurazione esistente di ESLint. [maggiori informazioni...](https://github.com/prettier/eslint-config-prettier#installation)
 
-- Considerate l'uso dei _Git hooks_.
-
-  _Perchè:_
-
-  > Accrescono notevolmente la produttività di uno sviluppatore. Fate modifiche, confermate e portate sugli ambienti di staging o produzione senza paura di rompere la compilazione. [leggi di più...](http://githooks.com/)
-
-- Usate _Prettier_ con un _hook_ prima del commit.
+- Considerare l'uso di _Git hooks_.
 
   _Perchè:_
 
-  > Sebbene `prettier` per se stesso possa essere molto potente, non è molto produttivo se eseguito semplicemente come una attività npm a se stante ogni volta per formattare il codice. Ecco dove `lint-staged` (e `husky`) entrano in gioco. Leggete di più sul come configurare `lint-staged` [qui](https://github.com/okonet/lint-staged#configuration) e `husky` [here](https://github.com/typicode/husky).
+  > Accrescono notevolmente la produttività di uno sviluppatore. Fare modifiche, eseguire *commit* e portarle sugli ambienti di *staging* o produzione senza paura di rompere la compilazione. [maggiori informazioni...](http://githooks.com/)
+
+- Usare _Prettier_ con un _hook_ prima del *commit*.
+
+  _Perchè:_
+
+  > Sebbene `prettier` per se stesso possa essere molto potente, non è molto produttivo se eseguito semplicemente come una attività npm a se stante ogni volta per formattare il codice. Ecco dove `lint-staged` (e `husky`) entrano in gioco. Maggiori informazioni su come configurare `lint-staged` [qui](https://github.com/okonet/lint-staged#configuration) e `husky` [qui](https://github.com/typicode/husky).
 
 <a name="logging"></a>
 
@@ -573,18 +574,17 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Logging](/images/logging.png)
 
-- Evitare log lato console client in produzione.
+- Evitare log su console  lato client in produzione.
 
   _Perchè:_
 
-  > Anche se il vostro processo di compilazione possa (dovrebbe) sbarazzarsene, assicuratevi che il vostro verificatore di stile di codice vi avvisi rispetto a log su console lasciati nel codice.
+  > Anche se il processo di compilazione possa (dovrebbe) sbarazzarsene, assicurarsi che il proprio verificatore di stile di codice avvisi rispetto a log su console lasciati nel codice.
 
-- Producete dei log di produzione leggibili. Idealmente utilizzare librerie di _logging_ in produzione (tipo [winston](https://github.com/winstonjs/winston) o
-  [node-bunyan](https://github.com/trentm/node-bunyan)).
+- Produrre dei log di produzione leggibili. Idealmente utilizzare librerie di _logging_ in produzione (tipo [winston](https://github.com/winstonjs/winston) o [node-bunyan](https://github.com/trentm/node-bunyan)).
 
   _Perchè:_
 
-  > Rende l'identificazione dei problemi molto meno spiacevole con colorizzazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [leggi di più...](https://blog.risingstack.com/node-js-logging-tutorial/)
+  > Rende l'identificazione dei problemi molto meno sgradevole con colorizzazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [maggiori informazioni...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 <a name="api"></a>
 
@@ -598,39 +598,41 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 _Perchè:_
 
-> Cerchiamo di imporre lo sviluppo di interfacce _RESTFUL_ ben costruite, che possono essere consumate dai membri della squadra e i client in modo semplice e consistente.
+> Si cerca di imporre lo sviluppo di interfacce _RESTFUL_ ben costruite, che possono essere consumate dai membri della squadra e i *client* in modo semplice e consistente.
 
 _Perchè:_
 
-> La mancanza di consistenza e semplicità può accrescere enormemente i costi di integrazione e mantenimento. Ecco perchè `Progettazione API` è incluso in questo documento.
+> La mancanza di consistenza e semplicità può accrescere enormemente i costi di integrazione e mantenimento. Ecco perchè la progettazione API è inclusa in questo documento.
 
-- Seguite per la maggior parte una progettazione orientata alle risorse. Ci sono tre fattori principali: risorse, collezioni e URL.
+- Noi seguiamo per la maggior parte una progettazione orientata alle risorse. Ci sono tre fattori principali: risorse, collezioni e URL.
 
   - Una risorsa ha dati, viene annidata e ci sono metodi che operano su di essa.
   - Un gruppo di risorse è chiamata collezione.
-  - URL identifica la locazione online di risorse o collezioni.
+  - Un URL identifica la locazione *online* di risorse o collezioni.
 
   _Perchè:_
 
-  > Questa è una progettazione ben nota agli sviluppatori (i vostri principali consumantori di API). A parte la leggibilità e la facilità d'uso, consente di scrivere librerie generiche e connettori senza neppure sapere come sia fatta l'API stessa.
+  > Questa è una progettazione ben nota agli sviluppatori (i principali consumantori della propria API). A parte la leggibilità e la facilità d'uso, consente di scrivere librerie generiche e connettori senza neppure sapere come sia fatta l'API stessa.
 
-- usete il _kebab-case_ per gli URLs.
-- usate il _camelCase_ per parametri in _query string_ o campi che rappresentano uno risorsa.
-- usate il _kebab-case_ al plurale per nomi di risorse negli URL.
+- Usare il _kebab-case_ per gli URL.
 
-- Usate sempre la forma plurale dei nomi per denominare un url che punta a una collezione: `/users`.
+- Usare il _camelCase_ per parametri in _query string_ o campi che rappresentano una risorsa.
+
+- Usare il _kebab-case_ al plurale per nomi di risorse negli URL.
+
+- Usare sempre la forma plurale dei nomi per denominare un url che punta a una collezione: `/users`.
 
   _Perchè:_
 
-  > Fondamentalmente risulta meglio leggibile e rende l'URL consistente. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+  > Fondamentalmente risulta meglio leggibile e rende gli URL consistenti. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
-- Nel codice sorgente convertite le forme plurali in variabili e le proprietà con un suffisso List.
+- Nel codice sorgente convertire le forme plurali in variabili e le proprietà con un suffisso `List`.
 
   _Why_:
 
   > La forma plurale va bene negli URL ma nel codice sorgente è troppo debole e incline a errori.
 
-- Usate sempre un concetto al singolare che parte da una collezione e finisce con un identificatore:
+- Usare sempre un concetto al singolare che parte da una collezione e finisce con un identificatore:
 
   ```
   /students/245743
@@ -647,13 +649,13 @@ _Perchè:_
 
   > Non punta a una risorsa ma a una proprietà. Si possono passare le proprietà come parametro per ridurre la propria risposta.
 
-- Mantenere i verbi al di fuori dei vostri URL di risorse.
+- Mantenere i verbi al di fuori dei propri URL di risorse.
 
   _Perchè:_
 
-  > Se usate un verbo per ogni operazione su una risorsa presto avrete una enorme lista di URL e un modello non consistente che lo rende difficile da imparare per gli sviluppatori. Inoltre i verbi si usano per altri scopi.
+  > Se si usa un verbo per ogni operazione su una risorsa presto si avrà una enorme lista di URL e un modello non consistente che lo rende difficile da imparare per gli sviluppatori. Inoltre usiamo i verbi per altri scopi.
 
-- Usate verbi per non-risorse. In questo caso, la vostra API non ritorna alcuna risorsa, viceversa voi eseguite una operazione e ritornate il risultato. Queste **non sono** operazioni CRUD (creazione, recupero, aggiornamento e cancellazione):
+- Usare verbi per non-risorse. In questo caso, la propria API non ritorna alcuna risorsa; viceversa si esegue una operazione e si ritorna il risultato. Queste **non sono** operazioni CRUD (creazione, lettura, aggiornamento e cancellazione):
 
   ```
   /translate?text=Hello
@@ -661,41 +663,41 @@ _Perchè:_
 
   _Perchè:_
 
-  > Per le operazioni CRUD usiamo i metodi HTTP su URL di `risorse` o `collezioni`. I verbi di cui stiamo parlando sono in realtà `Controllers`. In genere non ne svilupperete molti di questi. [leggi di più...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+  > Per le operazioni CRUD usiamo i metodi HTTP su URL su risorse o collezioni. I verbi di cui si sta parlando sono in realtà `Controllers`. In genere non ne sviluppano molti di questi. [maggiori informazioni...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
-- Il corpo della richiesta o il tipo di risposta è JSON pertanto seguite la forma `camelCase` per i nomi di proprietà per mantenere una consistenza.
+- Il corpo della richiesta o il tipo di risposta è JSON pertanto seguire la forma `camelCase` per i nomi di proprietà per mantenere una consistenza.
 
   _Perchè:_
 
   > Queste sono linee guida per un progetto Javascript, dove il linguaggio di programmazione per generare ed elaborare JSON si assume sia JavaScript.
 
-- Anche se una risorsa rappresenta un concetto al singolare, simile a una istanza di un oggetto o un record di database, non dovreste usare il `nome_tabella` per un nome di risorsa e il `nome_colonna` per una proprietà..
+- Anche se una risorsa rappresenta un concetto al singolare, simile a una istanza di un oggetto o un record di database, non si dovrebbe usare il `nome_tabella` per un nome di risorsa e il `nome_colonna` per una proprietà.
 
   _Perchè:_
 
-  > Il vostro intendimento è di esporre risorse, non i dettagli dello schema del vostro database.
+  > L'intendimento è di esporre risorse, non i dettagli dello schema del proprio database.
 
-- Ancora una volta, non usate nomi nei vostri URL quando dovete nominare le vostre risorse e non cercate di spiegarne la loro funzionalità.
+- Ancora una volta, usare solo nomi nei propri URL quando si denominano le proprie risorse e non si cerchi di spiegarne la loro funzionalità.
 
   _Perchè:_
 
-  > Usate nomi solamente nei vostri URL di risorsa, evitate URL che finiscono con `/addNewUser` or `/updateUser`. Evitate inoltre di inviare operazioni su risorse come parametro.
+  > Usare nomi solamente nei propri URL di risorsa, evitare URL che finiscono con `/aggiungiNuovoUtente` o `/aggiornaUtente`. Evitare inoltre di inviare operazioni su risorse come parametro.
 
-- Esprimente le funzionalità CRUD usando i metodi HTTP:
+- Esprimere le funzionalità CRUD usando i metodi HTTP:
 
-  _How:_
+  _Come:_
 
-  > `GET`: Per ottenere una rappresentazione di una risorsa.
+  > `GET`: Per ottenere la rappresentazione di una risorsa.
 
   > `POST`: Per creare nuove risorse e sotto risorse.
 
   > `PUT`: Per aggiornare risorse esistenti.
 
-  > `PATCH`: Per aggiornare risorse esistenti. Aggirna solo i campi che gli sono stati forniti lasciando gli altri invariati.
+  > `PATCH`: Per aggiornare risorse esistenti. Aggiorna solo i campi che sono stati forniti lasciando gli altri invariati.
 
-  > `DELETE`: Per eliminare risorse esistenti
+  > `DELETE`: Per eliminare risorse esistenti.
 
-- Per risorse annidate, usate la relazione tra loro nell'URL. Ad esempio usando `id` per collegare un dipendente a una ditta.
+- Per risorse annidate, usare la relazione tra loro nell'URL. Ad esempio usare `id` per collegare un dipendente a una ditta.
 
   _Perchè:_
 
@@ -703,25 +705,25 @@ _Perchè:_
 
   _Come:_
 
-  > `GET /schools/2/students ` , dovrebbe ottenere la lista di tutti gli studenti dalla scuola 2.
+  > `GET /scuole/2/studenti `, dovrebbe ottenere la lista di tutti gli studenti dalla scuola 2.
 
-  > `GET /schools/2/students/31` , dovrebbe ottenere i dettagli dello studente 31, che appartiene alla scuola 2.
+  > `GET /scuole/2/studenti/31`, dovrebbe ottenere i dettagli dello studente 31, che appartiene alla scuola 2.
 
-  > `DELETE /schools/2/students/31` , dovrebbe eliminare lo studente 31, che appartiene alla scuola 2.
+  > `DELETE /scuole/2/studenti/31` , dovrebbe eliminare lo studente 31, che appartiene alla scuola 2.
 
-  > `PUT /schools/2/students/31` , dovrebbe aggiornare le info sullo studente 31, usate PUT solo su URL che rappresentano risorse, non collezioni.
+  > `PUT /scuole/2/studenti/31` , dovrebbe aggiornare le info sullo studente 31, usare PUT solo su URL che rappresentano risorse, non collezioni.
 
-  > `POST /schools` , dovrebbe creare una nuova scuola e ritornare i dettagli della nuova scuola creata. Usate POST su URL che rappresentano una collezione.
+  > `POST /scuole` , dovrebbe creare una nuova scuola e ritornare i dettagli della nuova scuola creata. Usare POST su URL che rappresentano una collezione.
 
-- Usate un semplice numero ordinale per una versione con un prefisso `v` (v1, v2). Spostate tutto alla sinistra nell'URL in modo che abbia l'ordine di identificazione maggiore:
+- Usare un semplice numero ordinale per una versione con un prefisso `v` (v1, v2). Spostare tutto alla sinistra nell'URL in modo che abbia l'ordine di identificazione maggiore:
 
   ```
-  http://api.domain.com/v1/schools/3/students
+  http://api.domain.com/v1/scuole/3/studenti
   ```
 
   _Perchè:_
 
-  > Quando le vostre API sono disponibili per terze parti, l'aggiornamento di API con alcune modifiche incompatiili con le versioni precedenti faranno sì che i prodotti o servizi che si basano su di esse non funzioneranno più. L'utilizzo di un versionamento nel vostro URL previene questa eventualità. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+  > Quando le proprie API sono disponibili per terze parti, l'aggiornamento di API con alcune modifiche incompatiili con le versioni precedenti faranno sì che i prodotti o servizi che si basano su di esse non funzioneranno più. L'utilizzo di un versionamento nel proprio URL previene questa eventualità. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 - I messaggi di risposta devono essere auto descrittivi. Un buon messaggio di errore in risposta potrebbe essere tipo questo:
 
@@ -760,41 +762,41 @@ _Perchè:_
 
 - \_Note: Mantenere i messaggi di eccezzione di sicurezza più generici possibile. Ad esempio invece di 'password errata' utilizzare 'utente o password errati' in modo che l'utente non possa dedurre che il nome utente sia corretto e la sola password sia sbagliata.
 
-- Usare questi codici di stato per inviare i vostri codici di risposta per descrivere che **tutto ha funzionato**
-  L'**app client ha fatto qualcosa di errato** oppure l'**API ha fatto qualcosa di errato**.
+- Usare questi codici di stato per inviare i propri codici di risposta per descrivere che **tutto ha funzionato**,
+  che l'**app *client* ha fatto qualcosa di errato** oppure l'**API ha fatto qualcosa di errato**.
 
       _Quali sono:_
       > `200 OK` la risposta rappresenta un successo per le richieste `GET`, `PUT` o `POST`.
 
-      > `201 Created` quando viene creata una nuova istanza. Quando si crea una nuova istanza usando un metodo  `POST` ritornare il codice di stato `201`.
+      > `201 Created` quando viene creata una nuova istanza. Quando si crea una nuova istanza usando un metodo `POST` ritornare il codice di stato `201`.
 
       > `204 No Content` la risposta rappresenta un successo ma non c'è contenuto da inviare con la risposta. Usarlo quando una operazione di `DELETE` ha successo.
 
       > `304 Not Modified` la risposta è per minimizzare la info da trasferire quando il ricevente ne ha già una rappresentazione in cache.
 
-      > `400 Bad Request` quando la richiesta non viene elaborata, come se il server non potesse capire cosa gli è stato chiesto.
+      > `400 Bad Request` quando la richiesta non viene elaborata, come se il *server* non potesse capire cosa gli è stato chiesto.
 
-      > `401 Unauthorized` quando la richiesta è priva di credenziali e dovrebbe essere riproposta con le credenziali richieste.
+      > `401 Unauthorized` quando la richiesta è priva di credenziali valide e dovrebbe essere riproposta con le credenziali richieste.
 
-      > `403 Forbidden` il server ha compreso la richiesta ma si rifiuta di autorizzarla.
+      > `403 Forbidden` il *server* ha compreso la richiesta ma si rifiuta di autorizzarla.
 
-      > `404 Not Found` la risorsa richiesta non esiste
+      > `404 Not Found` la risorsa richiesta non esiste.
 
-      > `500 Internal Server Error` la richiesta è valida, ma il server non può esaudirla a causa di condizioni inaspettate.
+      > `500 Internal *Server* Error` la richiesta è valida, ma il *server* non può esaudirla a causa di condizioni inaspettate.
 
       _Perchè:_
-      > La magggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contentgono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando scegliete codici di stato che non sono molto comuni obbligherete gli sviluppatori dell'applicazione a consultare wikipedia per scoprire cosa state cercando di dirgli. [leggi di più...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+      > La magggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contentgono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando si scelgono codici di stato che non sono molto comuni si obbligheranno gli sviluppatori ad abbandonare lo sviluppo della propria applicazione per consultare wikipedia per scoprire cosa gli si sta cercando di dire. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
-- Fornite il numero totale di risposte nella vostra risposta.
-- Accettate parametri di `limit` (limite) e `offset` (scostamento).
+- Fornire il numero totale di risposte nella risposta.
+- Accettare parametri di `limit` (limite) e `offset` (scostamento).
 
-- Il volume di dati che la risorsa espone dovrebbe essere tenuto in considerazione. Il consumatore dell'API non sempre necessita della piena rappresentazione di una risorsa. Usate un parametro di specifica di campi che riceve un elenco separato da virgola di campi che devono essere inclusi nella risposta:
+- Il volume di dati che la risorsa espone dovrebbe essere tenuto in considerazione. Il consumatore dell'API non sempre necessita della piena rappresentazione di una risorsa. Usare un parametro di specifica di campi che riceve un elenco separato da virgola di campi che devono essere inclusi nella risposta:
 
 ```
-GET /student?fields=id,name,age,class
+GET /studente?campi=id,nome,eta,classe
 ```
 
-- Paginazioni, filtri, e oridnamento non devono essere supportati dall'inizio per tutte le risorse. Documentate quali risorse offrono filtro e ordinamento.
+- Paginazioni, filtri, e ordinamento non devono essere supportati dall'inizio per tutte le risorse. Documentare quali risorse offrono filtro e ordinamento.
 
 <a name="api-security"></a>
 
@@ -802,62 +804,62 @@ GET /student?fields=id,name,age,class
 
 Ci sono alcune migliori pratiche consigliate
 
-- Non usate l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I token di autenticazione non devono esser trasmessi nell'URL: `GET /users/123?token=asdf....`
+- Non usate l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I *token* di autenticazione non devono esser trasmessi nell'URL: `GET /users/123?*token*=asdf....`
 
   _Perchè:_
 
-  > I token o utente e password sono passati attraverso la rete in chiato (codificato in base64, che è una codifica reversibile), lo schema di autenticazione basica non è sicuro. [leggi di più...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+  > I *token* o identificativo utente e password sono passati attraverso la rete in chiaro (codificato in base64, che è una codifica reversibile), lo schema di autenticazione basica non è sicuro. [maggiori informazioni...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-- I token devono essere trasmessi usando l'intestazione di autorizzazione per ogni richiesta: `Authorization: Bearer xxxxxx, Extra yyyyy`.
+- I *token* devono essere trasmessi usando l'intestazione di autorizzazione per ogni richiesta: `Authorization: Bearer xxxxxx, Extra yyyyy`.
 
 - I codici di autorizzazione dovrebbero avere vita breve.
 
-- Rifiutate qualsiasi richiesta non-TLS non rispondendo per evitare qualunque scambio di dati non sicuro. Rispondete a queste richieste con `403 Forbidden`.
+- Rifiutare qualsiasi richiesta non-TLS non rispondendo a qualunque richiesta HTTP per evitare scambio di dati non sicuro. Rispondere a queste richieste HTTP con `403 Forbidden`.
 
-- Considerate l'adozione di limiti di utilizzo
+- Considerare l'adozione di limiti di utilizzo
 
   _Perchè:_
 
-  > Per proteggere le vostre API sia da minacce di bot che da qualcuno che chiami la vostra API migliaia di volte all'ora. Dovreste considerare l'implementazione di limiti di utilizzo ai primi stadi dello sviluppo.
+  > Per proteggere le proprie API da minacce di bot che chiamano l'API migliaia di volte all'ora. Si considerari l'implementazione di limiti di utilizzo ai primi stadi dello sviluppo.
 
-- L'appropriata impostazione delle intestazioni HTTP può aiutare a isolare e mettere in sicurezza la vostra applicazione web. [leggi di più...](https://github.com/helmetjs/helmet)
+- L'appropriata impostazione delle intestazioni HTTP può aiutare a isolare e mettere in sicurezza la propria applicazione web. [maggiori informazioni...](https://github.com/helmetjs/helmet)
 
-- La vostra API dovrebbe convertire i dati ricevuti nella loro forma canonica o rifiutarli. Ritornate un `400 Bad Request` con dettagli circa gli errori per dati non corretti o mancanti.
+- La propria API dovrebbe convertire i dati ricevuti nella loro forma canonica o rifiutarli. Ritornare un `400 Bad Request` con dettagli circa gli errori per dati non corretti o mancanti.
 
 - Tutti i dati scambiati con API REST devono essere validati dall'API.
 
-- Serializzare il vostro JSON.
+- Serializzare il proprio JSON.
 
   _Perchè:_
 
-  > Una preoccupazione chiave con i codificatori JSON è la prevenzione dell'esecuzione di codice Javascript arbitrario all'interno del browser oppure, se state usando node.js, sul server. E' vitale utilizzare un appropriato serializzatore JSON per codificare correttamente i dati forniti dall'utente per prevenire l'esecuzione di input fornito dall'utente nel browser.
+  > Una preoccupazione chiave con i codificatori JSON è la prevenzione dell'esecuzione di codice Javascript arbitrario all'interno del browser oppure, se si sta usando node.js, sul *server*. E' vitale utilizzare un appropriato serializzatore JSON per codificare correttamente i dati forniti dall'utente per prevenire l'esecuzione di input fornito dall'utente nel browser.
 
-- Validate il content-type e per lo più utilizzate l'intestazione Content-Type `application/*json` .
+- Validare il Content-type e per lo più utilizzare l'intestazione Content-Type `application/*json`.
 
   _Perchè:_
 
-  > Ad esempio accettando il tipo mime `application/x-www-form-urlencoded` consente a un attaccante di creare un form e scatenare una semplice richiesta POST. Il server non dovrebbe mai dare per scontato il Content-Type. La mancanza di una intestazione Content-Type oppure una non attesa dovrebbe risultare in un rifiuto del contenuto da parte del server con una risposta `4XX`.
+  > Ad esempio accettando il tipo mime `application/x-www-form-urlencoded` si consente a un attaccante di creare un form e scatenare una semplice richiesta POST. Il *server* non dovrebbe mai dare per scontato il Content-Type. La mancanza di una intestazione Content-Type oppure una non attesa dovrebbe risultare in un rifiuto del contenuto da parte del *server* con una risposta `4XX`.
 
-- Verificate il "Progetto per la Lista delle Verifiche per la Sicurezza delle API". [leggi di più...](https://github.com/shieldfy/API-Security-Checklist)
+- Verificare il "Progetto per la Lista delle Verifiche per la Sicurezza delle API". [maggiori informazioni...](https://github.com/shieldfy/API-Security-Checklist)
 
 <a name="api-documentation"></a>
 
 ### 9.3 Documentazione delle API
 
-- Riempite la sezione `API Reference` in [README.md template](./README.sample.md) per l'API.
-- Descrivete i metodi di autenticazione dell'API con un esempio di codice.
-- Spiegate la struttura dell'URL (solo il percorso, non la radice dell'URL) includendo il tipo di richiesta (metodo).
+- Riempire la sezione `API Reference` in [README.md template](./README.sample.md) per l'API.
+- Descrivere i metodi di autenticazione dell'API con un esempio di codice.
+- Spiegare la struttura dell'URL (solo il percorso, non la radice dell'URL) includendo il tipo di richiesta (metodo).
 
-Per ogni _endpoint_ spiegate:
+Per ogni _endpoint_ spiegare:
 
-- I parametri per l'URL, se esistono; specificateli in base al nome citato nella sezione URL:
+- I parametri per l'URL, se esistono, specificarli in base al nome citato nella sezione URL:
 
   ```
-  Richiesto: id=[integer]
-  Opzionale: photo_id=[alphanumeric]
+  Richiesto: id=[intero]
+  Opzionale: photo_id=[alfanumerico]
   ```
 
-- Se il tipo di richiesta è POST, fornite esempi funzionanti. Le regole per i parametri di URL si applicano anche qui. Separate le sezioni tra Richiesto e Opzionale.
+- Se il tipo di richiesta è POST, fornire esempi funzionanti. Le regole per i parametri di URL si applicano anche qui. Separare le sezioni tra Richiesto e Opzionale.
 
 - Risposte di successo. Quale dovrebbe essere il codice di stato e ci sono anche dei dati da ritornare? Questo è utile quando a qualcuno occorre sapere cosa dovrebbero aspettarsi i propri callback:
 
@@ -871,20 +873,94 @@ Per ogni _endpoint_ spiegate:
   ```json
   {
     "code": 401,
-    "message": "Authentication failed",
-    "description": "Invalid username or password"
+    "message": "Autenticazione fallita",
+    "description": "Nome utente o password errati"
   }
   ```
 
-- Usate strumenti di sviluppo di API. Se ne sono molti open source con buona documentazione tipo [API Blueprint](https://apiblueprint.org/) e [Swagger](https://swagger.io/).
+- Usare strumenti di progettazione di API. Ce ne sono molti *open source* con buona documentazione tipo [API Blueprint](https://apiblueprint.org/) e [Swagger](https://swagger.io/).
 
 <a name="licensing"></a>
 
-## 10. Licenza
+## [Accessibiltà](https://www.a11yproject.com/)
+
+![Accessibilità](/images/accessibility.png)
+
+### 10.1 Mettere a punto metodi di di accessibilità
+
+Prendere le seguenti misure **all'inizio del proprio progetto** per assicurare che un livello di accessibilità sia intenzionalmente sostenuto:
+
+_Perchè:_
+
+> Il contenuto Web è [accessible in modalità predefinita](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).Questo concetto viene compromesso quando si costruiscono funzionalità complesse. E' molto più facile ridurre questo impatto tenendo in considerazione l'accessibilità dall'inizio invece che reimplementare queste funzionalità successivamente.
+
+- Disporsi per eseguire revisioni regolari usando [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) o l'[estensione di DevTools axe](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Condividere un punteggio minimo in base alle proprie specifiche di progetto. IL punteggo per entrambi gli strumenti è basato su [usare l'impatto di valutazione utente di axe](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+
+  > **Nota:** [alcune importanti verifiche](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) devono essere fatte manualmente, es. ordine logico delle tabulazioni. Gli strumenti qui sopra elencano questi test manuali/guidati assieme ai risultati automatizzati. Con axe si devono salvare i propri risultati automatizzati per vedere questi.
+
+- Installare an *linter a11y*:
+
+  - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+  - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+  - Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+
+  _Perchè:_
+
+  > Un linter verificherà automaticamente che un livello base di accessibilità sia raggiunto dal proprio progetto ed è relativamente facile da impostare.
+
+- Impostare e usare test a11y usando [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) o simili.
+
+- Se si sta usando storybook, fare [questo](https://storybook.js.org/blog/accessibility-testing-with-storybook/).
+
+  _Perchè:_
+
+  > Includere verifiche a11y nei propri test aiuterà a catturare qualsiasi modifica che abbia impatto sull'accessibilità del propri progetti e il proprio punteggio di revisione.
+
+- Considerare l'uso di un sistema di progettazione accessibile tipo [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) o [Material Design](https://material.io/design).
+
+  _Perchè:_
+
+  > Questi componenti sono altamente accessibili fuori dalla scatola.
+
+### 10.2 Alcune regole di accessibilità di base da aggiungere al proprio progetto:
+
+- Assicurarsi che i nomi dei link siano accessibili. Usare aria-label per descrivere i collegamenti.
+
+  _Perchè:_
+
+  > Elementi di collegamento inaccessibili pongono barriere all'accessibilità.
+
+- Assicurarsi che le liste siano strutturate correttamente e gli elementi della lista siano usati in modo semantico.
+
+  _Perchè:_
+
+  > Le liste devonmo avere elementi sia genitori che figli affinchè siano valide. I lettori di schermo informano gli utenti quando trovano una lista e quanti elementi ci sono in una lista.
+
+- Assicurarsi che l'ordine delle intestazioni sia semanticamente corretto.
+
+  _Perchè:_
+
+  > Le intestazioni veicolano la struttura della pagina. Quando applicate correttamente rendono la pagina più facile da navigare.
+
+- Assicurarsi che gli elementi di testo abbiano contrasto sufficiente rispetto allo sfondo della pagina.
+
+  _Perchè:_
+
+  > Alcune persone con impedimenti alla vista soffrono di un basso contrasto, il che vuol dire che non riescono a distinguere arre molto chiare o molto scure. Tutto tende ad apparire quasi della stessa luninosità, il che rende difficile distinguere strutture, cornici, margini e dettagli. Un testo troppo vicino in luminosità allo sfondo può essere difficile da leggere.
+
+- Fornire testo alternativo per le immagini.
+
+  _Perchè:_
+
+  > I lettori di schermo non hanno modo di tradurre un'immagine in parole che vengono lette all'utente, anche se l'immagine è composta solo da testo. Di conseguenza, è necessario che le immagini abbiano un testo alternativo (l'attributo `alt`) descrittivo in modo che gli utenti del lettore di schermo comprendano chiaramente i contenuti e lo scopo dell'immagine.
+
+Altre regole di accessibilità possono essere trovate [qui](https://dequeuniversity.com/rules/axe).
+
+## 11. Gestione Licenza
 
 ![Licensing](/images/licensing.png)
 
-Assicuratevi di usare risorse per la quali avete il diritto di usarle. Se utilizzate librerie, ricordate di cercare se licenza MIT, Apache o BSD ma se le modificate, verificate anche i dettagli della licenza. Le immagini o i video sottoposte a copyright potrebbero causarvi problemi legali.
+Assicurarsi di usare risorse per la quali si possiede il diritto di utilizzo. Se si utilizzano librerie, ricordarsi di cercare se licenza MIT, Apache o BSD ma se vengono modificate, verificare anche i dettagli della licenza. Le immagini o i video sottoposte a copyright potrebbero causare problemi legali.
 
 ---
 
