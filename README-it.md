@@ -104,7 +104,7 @@ Ecco un insieme di regole da tenere a mente:
 
 ### 1.2 Flusso di lavoro di Git
 
-Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) con [Rebase Interativo](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) e alcuni elementi di [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (denominazioni e avere un *branch* di sviluppo). I passi principali sono i seguenti:
+Per la maggior parte delle ragioni sopra esposte usiamo il flusso di lavoro [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) con [Rebase Interattivo](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) e alcuni elementi di [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (denominazioni e avere un *branch* di sviluppo). I passi principali sono i seguenti:
 
 - Per un nuovo progetto, inizializzare un *repository* git nella directory di progetto. **Per le funzionalità/modifiche successive questo passo dovrebbe essere ignorato**.
 
@@ -225,7 +225,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Documentazione](/images/documentation.png)
 
-- Usae questo [modello](./README.sample.md) per `README.md`. Si è liberi di aggiungere sezioni non trattate.
+- Usare questo [modello](./README.sample.md) per `README.md`. Si è liberi di aggiungere sezioni non trattate.
 - Per progetti con più di un *repository*, fornire collegamenti agli stessi nei rispettivi file `README.md`.
 - Mantenere aggiornato `README.md` mano a mano che il progetto evolve.
 - Commentare il proprio codice. Cercate di rendere il più chiaro possibile il proprio intendimento con ogni sezione principale.
@@ -276,7 +276,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Chiunque usi `nvm` piò semplicemente usare `nvm use` per passare alla versione di node adatta. [maggiori informazioni...](https://github.com/creationix/nvm)
+  > Chiunque usi `nvm` può semplicemente usare `nvm use` per passare alla versione di node adatta. [maggiori informazioni...](https://github.com/creationix/nvm)
 
 - E' una buona idea impostare uno script di preinstallazione che verifichi le versioni di node e npm.
 
@@ -306,7 +306,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Perchè si vuole che il codice si comporti come atteso e in modo identico in qualsiasi macchina di sviluppo [maggiori informazioni...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
-  _how:_
+  _Come:_
 
   > Usare `package-lock.json` su `npm@5` o superiori
 
@@ -314,7 +314,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Come alternativa si potrebbe usare `Yarn` e assicurarsi di citarlo nel `README.md`. I propri file di lock e `package.json` dovrebbero avere le stesse versioni dopo ogni aggiornamento di dipendenze. [maggiori informazioni...](https://yarnpkg.com/en/)
 
-  _Non mi piace il name `Yarn`:_
+  _Non mi piace il nome `Yarn`:_
 
   > Peccato. Per versioni più vecchie di `npm`, usare `—save --save-exact` quando si installa una nuova dipendenza e creare `npm-shrinkwrap.json` prima della pubblicazione. [maggiori informazioni...](https://docs.npmjs.com/files/package-locks)
 
@@ -343,7 +343,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Avere un gran numero di sottomissioni di codice da parte dei collaboratori non è così efficace se non ci sono manutentori che incorporano le correzioni e *patch* con sufficiente velocità.
 
-- Se è necesaria una dipendenza poco conosciuta, discuterne con la squadra prima di usarla.
+- Se è necessaria una dipendenza poco conosciuta, discuterne con la squadra prima di usarla.
 
 - Assicurarsi sempre che la propria app funzioni con le ultime versioni delle proprie dipendenze senza errori: `npm outdated`. [maggiori informazioni...](https://docs.npmjs.com/cli/outdated)
 
@@ -363,7 +363,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Sebbene qualche volta il test *end-to-end* in ambiente di produzione possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che si potrebbe non voler abilitare informazioni analitiche (in modalità produzione) e inquinare il cruscotto di qualcuno con dati di test. Un altro esempio è che la propria API potrebber avere dei parametri di limite in produzione e bloccare le chiamate di test dopo un certo numero di richieste.
+  > Sebbene qualche volta il test *end-to-end* in ambiente di produzione possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che si potrebbe non voler abilitare informazioni analitiche (in modalità produzione) e inquinare il cruscotto di qualcuno con dati di test. Un altro esempio è che la propria API potrebbero avere dei parametri di limite in produzione e bloccare le chiamate di test dopo un certo numero di richieste.
 
 - Posizionare i propri file di test vicino ai moduli testati usando la convenzione nominale `*.test.js` o `*.spec.js`, tipo `nomeModulo.spec.js`.
 
@@ -445,7 +445,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Costituisce un risparmio di tempo per gli altri sviluppatori o esperti DevOps nella prorpria squadra.
+  > Costituisce un risparmio di tempo per gli altri sviluppatori o esperti DevOps nella propria squadra.
 
 - Usare una cartella `./config` e non creare file di configurazione diversi per i diversi ambienti.
 
@@ -465,7 +465,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Denominarla a piacimento, anche `dist` va bene, ma assicurarsi di mantenere consistenza con la prorpria squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. Anche i componenti della propria squadra dovrebbero essere in grado di generarlo, quindi non ha senso portare questi dati nel *repository* remoto. A meno che non lo si voglia specificatamente.
+  > Denominarla a piacimento, anche `dist` va bene, ma assicurarsi di mantenere consistenza con la propria squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. Anche i componenti della propria squadra dovrebbero essere in grado di generarlo, quindi non ha senso portare questi dati nel *repository* remoto. A meno che non lo si voglia specificatamente.
 
 <a name="code-style"></a>
 
@@ -521,7 +521,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > In questo modo si può ricordare agli altri e a se stessi di una piccola attività (tipo rifattorizzare una funzione o aggiornare un commento). Per attività più complesse usare `//TODO(#3456)` che viene imposto da una regola di _lint_ e il numero è quello di un ticket aperto.
 
-- Commentare sempre il codice e mantenere i commenti in linea con le modifiche fino ad ora apportate. Elminare i blocchi di codice commentati.
+- Commentare sempre il codice e mantenere i commenti in linea con le modifiche fino ad ora apportate. Eliminare i blocchi di codice commentati.
 
   _Perchè:_
 
@@ -533,13 +533,13 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Anche se il proprio processo di compilazione potrebbe (dovrebbe) sbarazzarsi di questi, talvolta il proprio codice sorgente potrebbe essere affidato ad altra ditta/cliente e potrebbero non trovarli così divertenti.
 
-- Rendere i propri nomi ricercabili con distinzioni significative ed evitare abbreviazioni di nomi. Per le funzioni usare nomi lunghi e descrittivi. Un nome di funzione dovrebbe essere un verbo o una frase verbale, e deve comuncare le proprie intenzioni.
+- Rendere i propri nomi ricercabili con distinzioni significative ed evitare abbreviazioni di nomi. Per le funzioni usare nomi lunghi e descrittivi. Un nome di funzione dovrebbe essere un verbo o una frase verbale, e deve comunicare le proprie intenzioni.
 
   _Perchè:_
 
   > Rende la lettura del codice sorgente più naturale.
 
-- Organizzare le proprie fuznoni in un file a seconda della regole di discesa. Funzioni di alto livello dovrebbero essere in testa e quelle di basso livello più in basso.
+- Organizzare le proprie funzioni in un file a seconda della regole di discesa. Funzioni di alto livello dovrebbero essere in testa e quelle di basso livello più in basso.
 
   _Perchè:_
 
@@ -585,7 +585,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Rende l'identificazione dei problemi molto meno sgradevole con colorizzazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [maggiori informazioni...](https://blog.risingstack.com/node-js-logging-tutorial/)
+  > Rende l'identificazione dei problemi molto meno sgradevole con colorazioni, marcature temporali, registrazioni a un file oltre a quelle su console, anche la registrazione su file che ruota giornalmente. [maggiori informazioni...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 <a name="api"></a>
 
@@ -613,7 +613,7 @@ _Perchè:_
 
   _Perchè:_
 
-  > Questa è una progettazione ben nota agli sviluppatori (i principali consumantori della propria API). A parte la leggibilità e la facilità d'uso, consente di scrivere librerie generiche e connettori senza neppure sapere come sia fatta l'API stessa.
+  > Questa è una progettazione ben nota agli sviluppatori (i principali consumatori della propria API). A parte la leggibilità e la facilità d'uso, consente di scrivere librerie generiche e connettori senza neppure sapere come sia fatta l'API stessa.
 
 - Usare il _kebab-case_ per gli URL.
 
@@ -629,7 +629,7 @@ _Perchè:_
 
 - Nel codice sorgente convertire le forme plurali in variabili e le proprietà con un suffisso `List`.
 
-  _Why_:
+  _Perchè_:
 
   > La forma plurale va bene negli URL ma nel codice sorgente è troppo debole e incline a errori.
 
@@ -724,7 +724,7 @@ _Perchè:_
 
   _Perchè:_
 
-  > Quando le proprie API sono disponibili per terze parti, l'aggiornamento di API con alcune modifiche incompatiili con le versioni precedenti faranno sì che i prodotti o servizi che si basano su di esse non funzioneranno più. L'utilizzo di un versionamento nel proprio URL previene questa eventualità. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+  > Quando le proprie API sono disponibili per terze parti, l'aggiornamento di API con alcune modifiche incompatibili con le versioni precedenti faranno sì che i prodotti o servizi che si basano su di esse non funzioneranno più. L'utilizzo di un controllo di versione nel proprio URL previene questa eventualità. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 - I messaggi di risposta devono essere auto descrittivi. Un buon messaggio di errore in risposta potrebbe essere tipo questo:
 
@@ -761,7 +761,7 @@ _Perchè:_
 
   > Gli sviluppatori fanno affidamento su messaggi di errore ben concepiti quando stanno cercando di risolvere il problema dopo che l'applicazione che hanno costruito usando la vostra API viene utilizzata dai loro utenti.
 
-- \_Note: Mantenere i messaggi di eccezzione di sicurezza più generici possibile. Ad esempio invece di 'password errata' utilizzare 'utente o password errati' in modo che l'utente non possa dedurre che il nome utente sia corretto e la sola password sia sbagliata.
+- \_Nota: Mantenere i messaggi di eccezione di sicurezza più generici possibile. Ad esempio invece di 'password errata' utilizzare 'utente o password errati' in modo che l'utente non possa dedurre che il nome utente sia corretto e la sola password sia sbagliata.
 
 - Usare questi codici di stato per inviare i propri codici di risposta per descrivere che **tutto ha funzionato**,
   che l'**app *client* ha fatto qualcosa di errato** oppure l'**API ha fatto qualcosa di errato**.
@@ -788,7 +788,7 @@ _Perchè:_
 
     _Perchè:_
 
-    > La magggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contengono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando si scelgono codici di stato che non sono molto comuni si obbligheranno gli sviluppatori ad abbandonare lo sviluppo della propria applicazione per consultare wikipedia per scoprire cosa gli si sta cercando di dire. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > La maggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contengono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando si scelgono codici di stato che non sono molto comuni si obbligheranno gli sviluppatori ad abbandonare lo sviluppo della propria applicazione per consultare wikipedia per scoprire cosa gli si sta cercando di dire. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 - Fornire il numero totale di risorse nella risposta.
 - Accettare parametri di `limit` (limite) e `offset` (scostamento).
@@ -807,7 +807,7 @@ GET /studente?campi=id,nome,eta,classe
 
 Ci sono alcune migliori pratiche consigliate
 
-- Non usae l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I *token* di autenticazione non devono essere trasmessi nell'URL: `GET /users/123?*token*=asdf....`
+- Non usare l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I *token* di autenticazione non devono essere trasmessi nell'URL: `GET /users/123?*token*=asdf....`
 
   _Perchè:_
 
@@ -895,9 +895,9 @@ Prendere le seguenti misure **all'inizio del proprio progetto** per assicurare c
 
 _Perchè:_
 
-> Il contenuto Web è [accessible in modalità predefinita](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).Questo concetto viene compromesso quando si costruiscono funzionalità complesse. E' molto più facile ridurre questo impatto tenendo in considerazione l'accessibilità dall'inizio invece che reimplementare queste funzionalità successivamente.
+> Il contenuto Web è [accessibile in modalità predefinita](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).Questo concetto viene compromesso quando si costruiscono funzionalità complesse. E' molto più facile ridurre questo impatto tenendo in considerazione l'accessibilità dall'inizio invece che reimplementare queste funzionalità successivamente.
 
-- Disporsi per eseguire revisioni regolari usando [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) o l'[estensione di DevTools axe](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Condividere un punteggio minimo in base alle proprie specifiche di progetto. Il punteggo per entrambi gli strumenti è basato su [usare l'impatto di valutazione utente di axe](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+- Disporsi per eseguire revisioni regolari usando [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) o l'[estensione di DevTools axe](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Condividere un punteggio minimo in base alle proprie specifiche di progetto. Il punteggio per entrambi gli strumenti è basato su [usare l'impatto di valutazione utente di axe](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
 
   > **Nota:** [alcune importanti verifiche](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) devono essere fatte manualmente, es. ordine logico delle tabulazioni. Gli strumenti qui sopra elencano questi test manuali/guidati assieme ai risultati automatizzati. Con axe si devono salvare i propri risultati automatizzati per vedere questi.
 
@@ -937,7 +937,7 @@ _Perchè:_
 
   _Perchè:_
 
-  > Le liste devonmo avere elementi sia genitori che figli affinchè siano valide. I lettori di schermo informano gli utenti quando trovano una lista e quanti elementi ci sono in una lista.
+  > Le liste devono avere elementi sia genitori che figli affinchè siano valide. I lettori di schermo informano gli utenti quando trovano una lista e quanti elementi ci sono in una lista.
 
 - Assicurarsi che l'ordine delle intestazioni sia semanticamente corretto.
 
