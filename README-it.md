@@ -1,6 +1,7 @@
 [中文版](./README-zh.md)
 | [日本語版](./README-ja.md)
 | [한국어](./README-ko.md)
+| [Italiano](./README-it.md)
 | [Русский](./README-ru.md)
 | [Português](./README-pt-BR.md)
 
@@ -81,7 +82,7 @@ Ecco un insieme di regole da tenere a mente:
 
   > Il non farlo sporcherà il proprio elenco di *branch* con *branch* morti. Assicura che si possa integrare il *branch* in (`master` o `develop`) una volta sola. I *branch* di funzionalità dovrebbero esistere solo se il lavoro è ancora in corso.
 
-- Prima di eseguire una richiesta _pull_, assicuratevi che il proprio *branch* di funzionalità venga compilato con successo e superi tutti i test (compresi quelli di stile di codice).
+- Prima di eseguire una richiesta _pull_, assicurarsi che il proprio *branch* di funzionalità venga compilato con successo e superi tutti i test (compresi quelli di stile di codice).
 
   _Perchè:_
 
@@ -200,7 +201,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Git è in grado di considerare la prima riga del proprio messagio di _commit_ come sommario. In effetti se si esegue `git shortlog`, invece che `git log`, si vedrà un lungo elenco di messaggi di _commit_, che contengono l'identificativo del *commit* e il solo sommario.
+  > Git è in grado di considerare la prima riga del proprio messaggio di _commit_ come sommario. In effetti se si esegue `git shortlog` invece che `git log`, si vedrà un lungo elenco di messaggi di _commit_, che contengono l'identificativo del *commit* e il solo sommario.
 
 - Limitare la riga dell'oggetto a 50 caratteri e la lunghezza della riga nel corpo a massimo 72 caratteri.
 
@@ -224,10 +225,10 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ![Documentazione](/images/documentation.png)
 
-- Usate questo [modello](./README.sample.md) per `README.md`. Si è liberi di aggiungere sezioni non trattate.
+- Usae questo [modello](./README.sample.md) per `README.md`. Si è liberi di aggiungere sezioni non trattate.
 - Per progetti con più di un *repository*, fornire collegamenti agli stessi nei rispettivi file `README.md`.
 - Mantenere aggiornato `README.md` mano a mano che il progetto evolve.
-- Commentare il proprio codice. Cercate di renderlo il più chiaro possibile il proprio intendimento con ogni sezione principale.
+- Commentare il proprio codice. Cercate di rendere il più chiaro possibile il proprio intendimento con ogni sezione principale.
 - Se esiste una discussione aperta su github o stackoverflow riguardo al codice o all'approccio che si sta usando, includere il collegamento nel proprio commento.
 - Non usare commenti come scusa per cattivo codice, mantenere il proprio codice pulito.
 - Non usare codice pulito come scusa per non commentarlo del tutto.
@@ -249,7 +250,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Si hanno *token*, password e altre preziose informmazioni lì dentro. La propria configurazione dovrebbe essere correttamente separata dalle logiche interne dell'app come se la base di codice potesse essere resa pubblica in qualsiasi momento.
+  > Si hanno *token*, password e altre preziose informazioni lì dentro. La propria configurazione dovrebbe essere correttamente separata dalle logiche interne dell'app come se la base di codice potesse essere resa pubblica in qualsiasi momento.
 
   _Come:_
 
@@ -277,7 +278,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Chiunque usi `nvm` piò semplicemente usare `nvm use` per passare alla versione di node adatta. [maggiori informazioni...](https://github.com/creationix/nvm)
 
-- E' una buona idea impostare uno stript di preinstallazione che verifichi le versioni di node e npm.
+- E' una buona idea impostare uno script di preinstallazione che verifichi le versioni di node e npm.
 
   _Perchè:_
 
@@ -336,7 +337,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Più utilizzi in genere significa più collaboratori, il che in genere significa migliore manutenzione, e la conseguenza è che i *bug* vengono scoperti e corretti più velocemente.
 
-- Prima di usare una dipendenza, verificate se ha una frequenza di rilascio di versione buona, matura e con un ampio numero di manutentori: `npm view async`. [maggiori informazioni...](https://docs.npmjs.com/cli/view)
+- Prima di usare una dipendenza, verificare se ha una frequenza di rilascio di versione buona, matura e con un ampio numero di manutentori: `npm view async`. [maggiori informazioni...](https://docs.npmjs.com/cli/view)
 
   _Perchè:_
 
@@ -348,7 +349,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Gli aggiornamenti delle dipendenze talvolta contengono modifiche che rompono l'app. Verificate sempre le loro note di rilascio quando vengono messi a disposizione gli aggiornamenti. Aggiornare le proprie dipendenze una ad una, il che facilita la risoluzione dei problemi se qualcosa dovesse andare storto. Usate uno strumento tipo [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+  > Gli aggiornamenti delle dipendenze talvolta contengono modifiche che rompono l'app. Verificate sempre le loro note di rilascio quando vengono messi a disposizione gli aggiornamenti. Aggiornare le proprie dipendenze una ad una, il che facilita la risoluzione dei problemi se qualcosa dovesse andare storto. Usare uno strumento tipo [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
 
 - Verificare se il pacchetto abbia delle vulnerabilità di sicurezza note con [Snyk](https://snyk.io/test?utm_source=risingstack_blog) as esempio.
 
@@ -362,7 +363,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Sebbene qualche volta il test *end-to-end* in ambiente di produzione possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che si potrebbe non voler abilitare informazioni analitiche in modalità produzione) e inquinare il cruscotto di qualcuno con dati di test. Un altro esempio è che la propria API potrebber avere dei parametri di limite in produzione e bloccare le chiamate di test dopo un certo numero di richieste.
+  > Sebbene qualche volta il test *end-to-end* in ambiente di produzione possa sembrare sufficiente, ci sono alcune eccezioni: un esempio è che si potrebbe non voler abilitare informazioni analitiche (in modalità produzione) e inquinare il cruscotto di qualcuno con dati di test. Un altro esempio è che la propria API potrebber avere dei parametri di limite in produzione e bloccare le chiamate di test dopo un certo numero di richieste.
 
 - Posizionare i propri file di test vicino ai moduli testati usando la convenzione nominale `*.test.js` o `*.spec.js`, tipo `nomeModulo.spec.js`.
 
@@ -384,7 +385,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Una funzione pura è una funzione che ritorna sempre lo stesso risultato dato lo stesso input. Al contrario una funzione impura è quella che potrebbe avere effetti collaterali o dipende da condizioni esterne per produrre un valore. Il che la rende meno prevedibile. [maggiori informazioni...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-- Usate un verificatore di tipo statico
+- Usare un verificatore di tipo statico
 
   _Perchè:_
 
@@ -450,7 +451,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Quando si divide un file di configurazione per diversi scopi (database, API eccetera) metteteli in una cartella con un nome molto riconoscibile tipo `config`. Ricordarsi di non generare diversi file di configurazione per diversi ambienti. 
+  > Quando si divide un file di configurazione per diversi scopi (database, API eccetera) metterli in una cartella con un nome molto riconoscibile tipo `config`. Ricordarsi di non generare diversi file di configurazione per diversi ambienti. 
   Non sarebbe possibile scalarli in modo pulito, mano a mano che sono creati più sviluppi per l'app e saranno necessari nuovi nomi di ambiente per ogni distribuzione.
   > I valori da usare nei file di configurazione dovrebbero essere forniti da variabili di ambiente. [maggiori informazioni...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
@@ -464,7 +465,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Denominarla a piacimento, anche `dist` va bene, ma assicurarsi di mantenere consistenza con la prorpria squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. Amche i componenti della prorpria squadra dovrebbero essere in grado di generarlo, quindi non ha senso portare questi dati nel *repository* remoto. A meno che non lo si voglia specificatamente.
+  > Denominarla a piacimento, anche `dist` va bene, ma assicurarsi di mantenere consistenza con la prorpria squadra. Quello che finisce lì per la maggior parte è generato (assemblato, compilato, soggetto a _transpiling_), o ivi spostato. Anche i componenti della propria squadra dovrebbero essere in grado di generarlo, quindi non ha senso portare questi dati nel *repository* remoto. A meno che non lo si voglia specificatamente.
 
 <a name="code-style"></a>
 
@@ -476,7 +477,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 ### 7.1 Alcune linee guida sullo stile di codice
 
-- Usate una sintassi di secondo stadio (*stage-2*) o superiore (moderna) di Javascript per i propri nuovi progetti. Per quelli vecchi restare consistenti con la sintassi esistente a meno che si intenda modernizzare il progetto.
+- Usare una sintassi di secondo stadio (*stage-2*) o superiore (*modern*) di Javascript per i propri nuovi progetti. Per quelli vecchi restare consistenti con la sintassi esistente a meno che si intenda modernizzare il progetto.
 
   _Perchè:_
 
@@ -486,15 +487,15 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > Rompere la compilazione è un modo per imporre uno stile di codice. Evita di prenderlo sotto gamba. Farlo sia per il codice della parte client che per quella server. [maggiori informazioni...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+  > Rompere la compilazione è un modo per imporre uno stile di codice. Evita di prenderlo sotto gamba. Farlo sia per il codice della parte *client* che per quella *server*. [maggiori informazioni...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
 - Usare [ESLint - Pluggable JavaScript linter](http://eslint.org/) per imporre lo stile di codice.
 
   _Perchè:_
 
-  > Semplicemente noi preferiameo `eslint`, ma gli altri non sono obbligati. Supporta più regole e la possibilità di configurarle nonchè di aggiungerne di personalizzate.
+  > Semplicemente noi preferiamo `eslint`, ma gli altri non sono obbligati. Supporta più regole e la possibilità di configurarle nonchè di aggiungerne di personalizzate.
 
-- Usiamo [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) per JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Usate lo stile di codice javascript richiesto dal proprio progetto o dalla vostra squadra.
+- Usiamo [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) per JavaScript, [maggiori informazioni](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Usare lo stile di codice javascript richiesto dal proprio progetto o dalla propria squadra.
 
 - Usiamo [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) quando usiamo [FlowType](https://flow.org/).
 
@@ -512,13 +513,13 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   _Perchè:_
 
-  > E' normale disabilitare verifiche di stile mentre si lavora a un blocco di codice per focalizzarsi più sulla logica. Ricordarsi solo  di rimuovere quei commenti `eslint-disable` e seguite le regole.
+  > E' normale disabilitare verifiche di stile mentre si lavora a un blocco di codice per focalizzarsi più sulla logica. Ricordarsi solo  di rimuovere quei commenti `eslint-disable` e seguire le regole.
 
 - A seconda della dimensione dell'attività usare commenti `//TODO:` oppure aprire un ticket.
 
   _Perchè:_
 
-  > In questo modo si può ricordare agli altri e a se stessi di una piccola attività (tipo rifattorizzare una funzione o aggiornare un commento). Per attività più complesse usate `//TODO(#3456)` che viene imposto da una regola di _lint_ e il numero è quello di un ticket aperto.
+  > In questo modo si può ricordare agli altri e a se stessi di una piccola attività (tipo rifattorizzare una funzione o aggiornare un commento). Per attività più complesse usare `//TODO(#3456)` che viene imposto da una regola di _lint_ e il numero è quello di un ticket aperto.
 
 - Commentare sempre il codice e mantenere i commenti in linea con le modifiche fino ad ora apportate. Elminare i blocchi di codice commentati.
 
@@ -554,7 +555,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
   > Il progetto EditorConfig consiste in un file che descrive un formato per definire stili di codice e una collezione di plugin che consentono agli editor di leggere il file di formato e di aderire agli stili definiti. I file EditorConfig sono facilmente leggibili e funzionano bene con sistemi di controllo di versione.
 
-- Fare in modo di essere notificati dal proprio editor circa gli errori di stile di codice. Usaee [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) con la propria configurazione esistente di ESLint. [maggiori informazioni...](https://github.com/prettier/eslint-config-prettier#installation)
+- Fare in modo di essere notificati dal proprio editor circa gli errori di stile di codice. Usare [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) con la propria configurazione esistente di ESLint. [maggiori informazioni...](https://github.com/prettier/eslint-config-prettier#installation)
 
 - Considerare l'uso di _Git hooks_.
 
@@ -598,7 +599,7 @@ Avere buone linee guida per la creazione di _commit_ e osservarle rende molto pi
 
 _Perchè:_
 
-> Si cerca di imporre lo sviluppo di interfacce _RESTFUL_ ben costruite, che possono essere consumate dai membri della squadra e i *client* in modo semplice e consistente.
+> Si cerca di imporre lo sviluppo di interfacce _RESTful_ ben costruite, che possono essere consumate dai membri della squadra e i *client* in modo semplice e consistente.
 
 _Perchè:_
 
@@ -608,7 +609,7 @@ _Perchè:_
 
   - Una risorsa ha dati, viene annidata e ci sono metodi che operano su di essa.
   - Un gruppo di risorse è chiamata collezione.
-  - Un URL identifica la locazione *online* di risorse o collezioni.
+  - Un URL identifica la posizione *online* di risorse o collezioni.
 
   _Perchè:_
 
@@ -620,7 +621,7 @@ _Perchè:_
 
 - Usare il _kebab-case_ al plurale per nomi di risorse negli URL.
 
-- Usare sempre la forma plurale dei nomi per denominare un url che punta a una collezione: `/users`.
+- Usare sempre la forma plurale dei nomi per denominare un url che punta a una collezione: `/utenti`.
 
   _Perchè:_
 
@@ -635,21 +636,21 @@ _Perchè:_
 - Usare sempre un concetto al singolare che parte da una collezione e finisce con un identificatore:
 
   ```
-  /students/245743
-  /airports/kjfk
+  /studenti/245743
+  /aeroporti/kjfk
   ```
 
 - Evitare URL tipo questo:
 
   ```
-  GET /blogs/:blogId/posts/:postId/summary
+  GET /blogs/:blogId/posts/:postId/sommario
   ```
 
   _Perchè:_
 
   > Non punta a una risorsa ma a una proprietà. Si possono passare le proprietà come parametro per ridurre la propria risposta.
 
-- Mantenere i verbi al di fuori dei propri URL di risorse.
+- Escludere i verbi dai propri URL di risorse.
 
   _Perchè:_
 
@@ -658,7 +659,7 @@ _Perchè:_
 - Usare verbi per non-risorse. In questo caso, la propria API non ritorna alcuna risorsa; viceversa si esegue una operazione e si ritorna il risultato. Queste **non sono** operazioni CRUD (creazione, lettura, aggiornamento e cancellazione):
 
   ```
-  /translate?text=Hello
+  /traduci?testo=Ciao
   ```
 
   _Perchè:_
@@ -677,7 +678,7 @@ _Perchè:_
 
   > L'intendimento è di esporre risorse, non i dettagli dello schema del proprio database.
 
-- Ancora una volta, usare solo nomi nei propri URL quando si denominano le proprie risorse e non si cerchi di spiegarne la loro funzionalità.
+- Ancora una volta, usare solo nomi nei propri URL quando si denominano le proprie risorse non si cerchi di spiegarne la loro funzionalità.
 
   _Perchè:_
 
@@ -765,29 +766,31 @@ _Perchè:_
 - Usare questi codici di stato per inviare i propri codici di risposta per descrivere che **tutto ha funzionato**,
   che l'**app *client* ha fatto qualcosa di errato** oppure l'**API ha fatto qualcosa di errato**.
 
-      _Quali sono:_
-      > `200 OK` la risposta rappresenta un successo per le richieste `GET`, `PUT` o `POST`.
+    _Quali sono:_
 
-      > `201 Created` quando viene creata una nuova istanza. Quando si crea una nuova istanza usando un metodo `POST` ritornare il codice di stato `201`.
+    > `200 OK` la risposta rappresenta un successo per le richieste `GET`, `PUT` o `POST`.
 
-      > `204 No Content` la risposta rappresenta un successo ma non c'è contenuto da inviare con la risposta. Usarlo quando una operazione di `DELETE` ha successo.
+    > `201 Created` quando viene creata una nuova istanza. Quando si crea una nuova istanza usando un metodo `POST` ritornare il codice di stato `201`.
 
-      > `304 Not Modified` la risposta è per minimizzare la info da trasferire quando il ricevente ne ha già una rappresentazione in cache.
+    > `204 No Content` la risposta rappresenta un successo ma non c'è contenuto da inviare con la risposta. Usarlo quando una operazione di `DELETE` ha successo.
 
-      > `400 Bad Request` quando la richiesta non viene elaborata, come se il *server* non potesse capire cosa gli è stato chiesto.
+    > `304 Not Modified` la risposta è per minimizzare la info da trasferire quando il ricevente ne ha già una rappresentazione in cache.
 
-      > `401 Unauthorized` quando la richiesta è priva di credenziali valide e dovrebbe essere riproposta con le credenziali richieste.
+    > `400 Bad Request` quando la richiesta non viene elaborata, come se il *server* non potesse capire cosa gli è stato chiesto.
 
-      > `403 Forbidden` il *server* ha compreso la richiesta ma si rifiuta di autorizzarla.
+    > `401 Unauthorized` quando la richiesta è priva di credenziali valide e dovrebbe essere riproposta con le credenziali richieste.
 
-      > `404 Not Found` la risorsa richiesta non esiste.
+    > `403 Forbidden` il *server* ha compreso la richiesta ma si rifiuta di autorizzarla.
 
-      > `500 Internal *Server* Error` la richiesta è valida, ma il *server* non può esaudirla a causa di condizioni inaspettate.
+    > `404 Not Found` la risorsa richiesta non esiste.
 
-      _Perchè:_
-      > La magggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contentgono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando si scelgono codici di stato che non sono molto comuni si obbligheranno gli sviluppatori ad abbandonare lo sviluppo della propria applicazione per consultare wikipedia per scoprire cosa gli si sta cercando di dire. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    > `500 Internal *Server* Error` la richiesta è valida, ma il *server* non può esaudirla a causa di condizioni inaspettate.
 
-- Fornire il numero totale di risposte nella risposta.
+    _Perchè:_
+
+    > La magggior parte dei fornitori di API usa un piccolo sottoinsieme di codici di stato HTTP. Ad esempio l'api di Google GData usa solo 10 codici di stato, Netflix ne usa 9 e Digg solo 8. Naturalmente queste risposte contengono un corpo con info aggiuntive. Ci sono oltre 70 codici di stato HTTP. In ogni caso la maggior parte degli sviluppatori non li ha tutti memorizzati. Quindi quando si scelgono codici di stato che non sono molto comuni si obbligheranno gli sviluppatori ad abbandonare lo sviluppo della propria applicazione per consultare wikipedia per scoprire cosa gli si sta cercando di dire. [maggiori informazioni...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+
+- Fornire il numero totale di risorse nella risposta.
 - Accettare parametri di `limit` (limite) e `offset` (scostamento).
 
 - Il volume di dati che la risorsa espone dovrebbe essere tenuto in considerazione. Il consumatore dell'API non sempre necessita della piena rappresentazione di una risorsa. Usare un parametro di specifica di campi che riceve un elenco separato da virgola di campi che devono essere inclusi nella risposta:
@@ -804,7 +807,7 @@ GET /studente?campi=id,nome,eta,classe
 
 Ci sono alcune migliori pratiche consigliate
 
-- Non usate l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I *token* di autenticazione non devono esser trasmessi nell'URL: `GET /users/123?*token*=asdf....`
+- Non usae l'autenticazione basica a meno di avere una connessione sicura (HTTPS). I *token* di autenticazione non devono essere trasmessi nell'URL: `GET /users/123?*token*=asdf....`
 
   _Perchè:_
 
@@ -820,7 +823,7 @@ Ci sono alcune migliori pratiche consigliate
 
   _Perchè:_
 
-  > Per proteggere le proprie API da minacce di bot che chiamano l'API migliaia di volte all'ora. Si considerari l'implementazione di limiti di utilizzo ai primi stadi dello sviluppo.
+  > Per proteggere le proprie API da minacce di bot che chiamano l'API migliaia di volte all'ora. Si consideri l'implementazione di limiti di utilizzo ai primi stadi dello sviluppo.
 
 - L'appropriata impostazione delle intestazioni HTTP può aiutare a isolare e mettere in sicurezza la propria applicazione web. [maggiori informazioni...](https://github.com/helmetjs/helmet)
 
@@ -880,13 +883,13 @@ Per ogni _endpoint_ spiegare:
 
 - Usare strumenti di progettazione di API. Ce ne sono molti *open source* con buona documentazione tipo [API Blueprint](https://apiblueprint.org/) e [Swagger](https://swagger.io/).
 
-<a name="licensing"></a>
+<a name="a11y"></a>
 
 ## [Accessibiltà](https://www.a11yproject.com/)
 
 ![Accessibilità](/images/accessibility.png)
 
-### 10.1 Mettere a punto metodi di di accessibilità
+### 10.1 Mettere a punto metodi di accessibilità
 
 Prendere le seguenti misure **all'inizio del proprio progetto** per assicurare che un livello di accessibilità sia intenzionalmente sostenuto:
 
@@ -894,11 +897,11 @@ _Perchè:_
 
 > Il contenuto Web è [accessible in modalità predefinita](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).Questo concetto viene compromesso quando si costruiscono funzionalità complesse. E' molto più facile ridurre questo impatto tenendo in considerazione l'accessibilità dall'inizio invece che reimplementare queste funzionalità successivamente.
 
-- Disporsi per eseguire revisioni regolari usando [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) o l'[estensione di DevTools axe](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Condividere un punteggio minimo in base alle proprie specifiche di progetto. IL punteggo per entrambi gli strumenti è basato su [usare l'impatto di valutazione utente di axe](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+- Disporsi per eseguire revisioni regolari usando [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) o l'[estensione di DevTools axe](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Condividere un punteggio minimo in base alle proprie specifiche di progetto. Il punteggo per entrambi gli strumenti è basato su [usare l'impatto di valutazione utente di axe](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
 
   > **Nota:** [alcune importanti verifiche](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) devono essere fatte manualmente, es. ordine logico delle tabulazioni. Gli strumenti qui sopra elencano questi test manuali/guidati assieme ai risultati automatizzati. Con axe si devono salvare i propri risultati automatizzati per vedere questi.
 
-- Installare an *linter a11y*:
+- Installare un *linter a11y*:
 
   - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
   - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
@@ -946,7 +949,7 @@ _Perchè:_
 
   _Perchè:_
 
-  > Alcune persone con impedimenti alla vista soffrono di un basso contrasto, il che vuol dire che non riescono a distinguere arre molto chiare o molto scure. Tutto tende ad apparire quasi della stessa luninosità, il che rende difficile distinguere strutture, cornici, margini e dettagli. Un testo troppo vicino in luminosità allo sfondo può essere difficile da leggere.
+  > Alcune persone con impedimenti alla vista soffrono di un basso contrasto, il che vuol dire che non riescono a distinguere aree molto chiare o molto scure. Tutto tende ad apparire quasi della stessa luninosità, il che rende difficile distinguere strutture, cornici, margini e dettagli. Un testo troppo vicino in luminosità allo sfondo può essere difficile da leggere.
 
 - Fornire testo alternativo per le immagini.
 
@@ -960,7 +963,7 @@ Altre regole di accessibilità possono essere trovate [qui](https://dequeunivers
 
 ![Licensing](/images/licensing.png)
 
-Assicurarsi di usare risorse per la quali si possiede il diritto di utilizzo. Se si utilizzano librerie, ricordarsi di cercare se licenza MIT, Apache o BSD ma se vengono modificate, verificare anche i dettagli della licenza. Le immagini o i video sottoposte a copyright potrebbero causare problemi legali.
+Assicurarsi di usare risorse per la quali si possiede il diritto di utilizzo. Se si utilizzano librerie, ricordarsi di cercare se licenza MIT, Apache o BSD ma se vengono modificate, verificare anche i dettagli della licenza. Le immagini o i video sottoposti a copyright potrebbero causare problemi legali.
 
 ---
 
