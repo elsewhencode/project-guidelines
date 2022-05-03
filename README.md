@@ -3,6 +3,7 @@
 | [한국어](./README-ko.md)
 | [Русский](./README-ru.md)
 | [Português](./README-pt-BR.md)
+| [Italiana](./README-it.md)
 
 [<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
