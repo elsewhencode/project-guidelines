@@ -1,7 +1,7 @@
 [中文版](./README-zh.md)
 | [日本語版](./README-ja.md)
 | [한국어](./README-ko.md)
-| [Italiano](./README-it.md)
+| [English](./README.md)
 | [Русский](./README-ru.md)
 | [Português](./README-pt-BR.md)
 
