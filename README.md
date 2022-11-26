@@ -742,27 +742,27 @@ _Why:_
 - Use these status codes to send with your response to describe whether **everything worked**,
   The **client app did something wrong** or The **API did something wrong**.
 
-      _Which ones:_
-      > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+    _Which ones:_
+    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-      > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+    > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
 
-      > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
+    > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
 
-      > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
+    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
 
-      > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
+    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
 
-      > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
 
-      > `403 Forbidden` means the server understood the request but refuses to authorize it.
+    > `403 Forbidden` means the server understood the request but refuses to authorize it.
 
-      > `404 Not Found` indicates that the requested resource was not found.
+    > `404 Not Found` indicates that the requested resource was not found.
 
-      > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
 
-      _Why:_
-      > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+    _Why:_
+    > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 - Provide total numbers of resources in your response.
 - Accept `limit` and `offset` parameters.
