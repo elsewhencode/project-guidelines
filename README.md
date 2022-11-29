@@ -562,8 +562,8 @@ Having a good guideline for creating commits and sticking to it makes working wi
 - Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
   [node-bunyan](https://github.com/trentm/node-bunyan)).
 
-      _Why:_
-      > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
+  _Why:_
+  > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 <a name="api"></a>
 
