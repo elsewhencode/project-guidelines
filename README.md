@@ -32,6 +32,8 @@
     - [7.2 Enforcing code style standards](#72-enforcing-code-style-standards)
   - [8. Logging](#8-logging)
   - [9. Type safety](#9-type-safety)
+  - [10. API](#10-api)
+    - [10.1 API design](#101-api-design)
     - [10.2 API security](#102-api-security)
     - [10.3 API documentation](#103-api-documentation)
   - [11. Accessibility (a11y)](#11-accessibility-a11y)
@@ -965,7 +967,25 @@ _Why:_
 
   > These components are highly accessible out of the box.
 
+  - Consider using one of the headless component libraries below if you need to build your own components:
+
+    - [React Aria](https://react-spectrum.adobe.com/react-aria/)
+    - [Radix UI](https://www.radix-ui.com/)
+    - [AriaKit](https://ariakit.org/)
+
+- Manually test with assistive technologies such as [VoiceOver](https://bbc.github.io/accessibility-news-and-you/assistive-technology/testing-steps/voiceover-mac.html)
+
+  _Why:_
+
+  > Automated tests can only catch so much. Manual testing is the only way to ensure that your project is accessible to real users.
+
 ### 11.2 Some basic accessibility rules to add to your project
+
+- No ARIA is better than bad ARIA
+
+  _Why:_
+
+  > Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on their corresponding non-visual experiences. [read more](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)
 
 - Ensure link names are accessible. Use aria-label to describe links
 
