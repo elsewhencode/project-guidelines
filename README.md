@@ -10,32 +10,36 @@
 # Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 > While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
-> Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [elsewhen](https://www.elsewhen.com).
+> Here's a list of guidelines we've found, written and gathered that (we think) works really well with most projects here at [elsewhen](https://www.elsewhen.com).
 > If you want to share a best practice, or think one of these guidelines should be removed, [feel free to share it with us](http://makeapullrequest.com).
 
 <hr>
 
-- [Git](#git)
-  - [Some Git rules](#some-git-rules)
-  - [Git workflow](#git-workflow)
-  - [Writing good commit messages](#writing-good-commit-messages)
-- [Documentation](#documentation)
-- [Environments](#environments)
-  - [Consistent dev environments](#consistent-dev-environments)
-  - [Consistent dependencies](#consistent-dependencies)
-- [Dependencies](#dependencies)
-- [Testing](#testing)
-- [Structure and Naming](#structure-and-naming)
-- [Code style](#code-style)
-  - [Some code style guidelines](#code-style-check)
-  - [Enforcing code style standards](#enforcing-code-style-standards)
-- [Logging](#logging)
-- [API](#api)
-  - [API design](#api-design)
-  - [API security](#api-security)
-  - [API documentation](#api-documentation)
-- [Accessibility](#a11y)
-- [Licensing](#licensing)
+- [Project Guidelines ·](#project-guidelines--)
+  - [1. Git](#1-git)
+    - [1.1 Some Git rules](#11-some-git-rules)
+    - [1.2 Git workflow](#12-git-workflow)
+    - [1.3 Writing good commit messages](#13-writing-good-commit-messages)
+  - [2. Documentation](#2-documentation)
+  - [3. Environments](#3-environments)
+    - [3.1 Consistent dev environments](#31-consistent-dev-environments)
+    - [3.2 Consistent dependencies](#32-consistent-dependencies)
+  - [4. Dependencies](#4-dependencies)
+  - [5. Testing](#5-testing)
+  - [6. Structure and Naming](#6-structure-and-naming)
+  - [7. Code style](#7-code-style)
+    - [7.1 Some code style guidelines](#71-some-code-style-guidelines)
+    - [7.2 Enforcing code style standards](#72-enforcing-code-style-standards)
+  - [8. Logging](#8-logging)
+  - [9. Type safety](#9-type-safety)
+  - [10. API](#10-api)
+    - [10.1 API design](#101-api-design)
+    - [10.2 API security](#102-api-security)
+    - [10.3 API documentation](#103-api-documentation)
+  - [11. Accessibility (a11y)](#11-accessibility-a11y)
+    - [11.1 Laying accessibility practices in place](#111-laying-accessibility-practices-in-place)
+    - [11.2 Some basic accessibility rules to add to your project](#112-some-basic-accessibility-rules-to-add-to-your-project)
+  - [12. Licensing](#12-licensing)
 
 <a name="git"></a>
 
@@ -52,7 +56,7 @@ There are a set of rules to keep in mind:
 
   _Why:_
 
-  > Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+  > Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the main branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
 - Branch out from `develop`
 
@@ -111,9 +115,11 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
   ```
 
 - Checkout a new feature/bug-fix branch.
+
   ```sh
   git checkout -b <branchname>
   ```
+
 - Make Changes.
 
   ```sh
@@ -123,7 +129,7 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
 
   _Why:_
 
-  > `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change.
+  > `git add <file1> <file2> ...` - you should add only files that make up a small and coherent change.
 
   > `git commit` will start an editor which lets you separate the subject from the body.
 
@@ -134,30 +140,44 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
   > You could use `git add -p` instead, which will give you chance to review all of the introduced changes one by one, and decide whether to include them in the commit or not.
 
 - Sync with remote to get changes you’ve missed.
+
   ```sh
   git checkout develop
   git pull
   ```
+
   _Why:_
+
   > This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
+
 - Update your feature branch with latest changes from develop by interactive rebase.
+
   ```sh
   git checkout <branchname>
   git rebase -i --autosquash develop
   ```
+
   _Why:_
+
   > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
+
 - If you don’t have conflicts, skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) and continue rebase.
+
   ```sh
   git add <file1> <file2> ...
   git rebase --continue
   ```
+
 - Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
+
   ```sh
   git push -f
   ```
+
   _Why:_
+
   > When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. [read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+
 - Make a Pull Request.
 - Pull request will be accepted, merged and close by a reviewer.
 - Remove your local feature branch if you're done.
@@ -244,7 +264,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="consistent-dev-environments"></a>
 
-### 3.1 Consistent dev environments:
+### 3.1 Consistent dev environments
 
 - Set your node version in `engines` in `package.json`.
 
@@ -278,7 +298,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="consistent-dependencies"></a>
 
-### 3.2 Consistent dependencies:
+### 3.2 Consistent dependencies
 
 - Make sure your team members get the exact same dependencies as you.
 
@@ -288,15 +308,13 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
   _how:_
 
-  > Use `package-lock.json` on `npm@5` or higher
+  > Use `package-lock.json`
 
-  _I don't have npm@5:_
+  _Alternative package managers:_
 
-  > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [read more...](https://yarnpkg.com/en/)
-
-  _I don't like the name `Yarn`:_
-
-  > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
+  - [pnpm](https://pnpm.io/)
+  - [yarn](https://yarnpkg.com/)
+  - [bun](https://bun.sh/)
 
 <a name="dependencies"></a>
 
@@ -363,12 +381,6 @@ Having a good guideline for creating commits and sticking to it makes working wi
   > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
   > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
-
-- Use a static type checker
-
-  _Why:_
-
-  > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
 - Run tests locally before making any pull requests to `develop`.
 
@@ -567,13 +579,69 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 <a name="api"></a>
 
-## 9. API
+## 9. Type safety
+
+- Use [TypeScript](https://www.typescriptlang.org/) to ensure type safety across projects.
+
+  _Why:_
+
+  > TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Dynamically typed languages (such as JavaScript) allow for implicit type conversion, while statically typed languages (such as TypeScript) require explicit type declarations or better yet, inferred types - this refers to the ability of the TypeScript compiler to automatically deduce or guess the data types of variables based on the assigned values.
+
+  _Why_:
+
+  > Improved developer experience, better code quality, and fewer bugs by catching errors at development time rather than runtime.
+
+  _How:_
+
+  > Install TypeScript as a dev dependency in your project and use it to compile your code to JavaScript.
+
+  _How_:
+
+  - A starter [tsconfig](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) setup. [see more](https://www.totaltypescript.com/tsconfig-cheat-sheet)
+
+  ```json
+  {
+    "compilerOptions": {
+      /* Base Options: */
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "target": "es2022",
+      "allowJs": true,
+      "resolveJsonModule": true,
+      "moduleDetection": "force",
+      "isolatedModules": true,
+      /* Strictness */
+      "strict": true,
+      "noUncheckedIndexedAccess": true,
+      /* If transpiling with TypeScript: */
+      "moduleResolution": "NodeNext",
+      "module": "NodeNext",
+      "outDir": "dist",
+      "sourceMap": true,
+      /* AND if you're building for a library: */
+      "declaration": true,
+      /* AND if you're building for a library in a monorepo: */
+      "composite": true,
+      "declarationMap": true,
+      /* If NOT transpiling with TypeScript: */
+      "moduleResolution": "Bundler",
+      "module": "ESNext",
+      "noEmit": true,
+      /* If your code runs in the DOM: */
+      "lib": ["es2022", "dom", "dom.iterable"],
+      /* If your code doesn't run in the DOM: */
+      "lib": ["es2022"]
+    }
+  }
+  ```
+
+## 10. API
 
 <a name="api-design"></a>
 
 ![API](/images/api.png)
 
-### 9.1 API design
+### 10.1 API design
 
 _Why:_
 
@@ -682,7 +750,7 @@ _Why:_
 
   _How:_
 
-  > `GET /schools/2/students ` , should get the list of all students from school 2.
+  > `GET /schools/2/students` , should get the list of all students from school 2.
 
   > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
 
@@ -755,7 +823,7 @@ _Why:_
 
       > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
 
-      > `403 Forbidden` means the server understood the request but refuses to authorize it.
+      > `403 Forbidden` means the server understood the request but refused to authorize it.
 
       > `404 Not Found` indicates that the requested resource was not found.
 
@@ -764,18 +832,20 @@ _Why:_
       _Why:_
       > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
-- Provide total numbers of resources in your response.
+- Provide the total number of resources in your response.
 - Accept `limit` and `offset` parameters.
 
-- The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
+- The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma-separated list of fields to include:
+
   ```
   GET /students?fields=id,name,age,class
   ```
-- Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+
+- Pagination, filtering, and sorting don’t need to be supported from the start for all resources. Document those resources that offer filtering and sorting.
 
 <a name="api-security"></a>
 
-### 9.2 API security
+### 10.2 API security
 
 These are some basic security best practices:
 
@@ -819,22 +889,22 @@ These are some basic security best practices:
 
 <a name="api-documentation"></a>
 
-### 9.3 API documentation
+### 10.3 API documentation
 
-- Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
+- Fill in the `API Reference` section in [README.md template](./README.sample.md) for API.
 - Describe API authentication methods with a code sample.
 - Explaining The URL Structure (path only, no root URL) including The request type (Method).
 
 For each endpoint explain:
 
-- URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+- URL parameters if URL parameters exist, specify them in accordance with name mentioned in URL section:
 
   ```
   Required: id=[integer]
   Optional: photo_id=[alphanumeric]
   ```
 
-- If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+- If the request type is POST, provide working examples. URL parameter rules apply here too. Separate the section into Optional and Required.
 
 - Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
 
@@ -853,15 +923,15 @@ For each endpoint explain:
   }
   ```
 
-- Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+- Use API design tools, There are lots of open-source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 <a name="a11y"></a>
 
-## 10. Accessibility ([a11y](https://www.a11yproject.com/))
+## 11. Accessibility ([a11y](https://www.a11yproject.com/))
 
 ![Accessibility](/images/accessibility.png)
 
-### 10.1 Laying accessibility practices in place
+### 11.1 Laying accessibility practices in place
 
 Take the following steps **at the start of your project** to ensure an intentional level of accessibility is sustained:
 
@@ -869,7 +939,7 @@ _Why:_
 
 > Web content is [accessible by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start rather than re-implement these features later.
 
-- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree on a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree on a minimum score based on your project's requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
 
   > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, e.g. logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
 
@@ -897,7 +967,25 @@ _Why:_
 
   > These components are highly accessible out of the box.
 
-### 10.2 Some basic accessibility rules to add to your project:
+  - Consider using one of the headless component libraries below if you need to build your own components:
+
+    - [React Aria](https://react-spectrum.adobe.com/react-aria/)
+    - [Radix UI](https://www.radix-ui.com/)
+    - [AriaKit](https://ariakit.org/)
+
+- Manually test with assistive technologies such as [VoiceOver](https://bbc.github.io/accessibility-news-and-you/assistive-technology/testing-steps/voiceover-mac.html)
+
+  _Why:_
+
+  > Automated tests can only catch so much. Manual testing is the only way to ensure that your project is accessible to real users.
+
+### 11.2 Some basic accessibility rules to add to your project
+
+- No ARIA is better than bad ARIA
+
+  _Why:_
+
+  > Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on their corresponding non-visual experiences. [read more](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)
 
 - Ensure link names are accessible. Use aria-label to describe links
 
@@ -917,7 +1005,7 @@ _Why:_
 
   > Headers convey the structure of the page. When applied correctly the page becomes easier to navigate.
 
-- Ensure text elements have sufficient contrast against page background.
+- Ensure text elements have sufficient contrast against the page background.
 
   _Why:_
 
@@ -933,11 +1021,11 @@ More accessibility rules can be found [here](https://dequeuniversity.com/rules/a
 
 <a name="licensing"></a>
 
-## 11. Licensing
+## 12. Licensing
 
 ![Licensing](/images/licensing.png)
 
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
+Make sure you use resources that you have the right to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
 
 ---
 
