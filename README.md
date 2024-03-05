@@ -54,6 +54,12 @@ There are a set of rules to keep in mind:
 
   > Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
+- Name your feature branches consistently. Agree with your team on a naming convention such as `feat/[task-id]/descriptive-text`.
+
+  _Why:_
+
+  > Having a consistent naming convention helps communicate needed information across the team and keep branches organized.
+
 - Branch out from `develop`
 
   _Why:_
