@@ -20,7 +20,7 @@
 
 <hr>
 
-- [گیت/Git'](#git)
+- [گیت/Git](#git)
   - [برخی از قوانین Git](#some-git-rules)
   - [Git workflow](#git-workflow)
   - [Writing good commit messages](#writing-good-commit-messages)
