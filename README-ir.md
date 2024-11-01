@@ -47,7 +47,7 @@
 ## 1. گیت/Git
 
 <p align="right">
-  <img src="/images/branching.png" width="180" height="180">
+  <img src="/images/branching.png" width="135" height="135">
 </p>
 
 <a name="some-git-rules"></a>
