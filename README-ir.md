@@ -8,7 +8,7 @@
 
 [<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
-# Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+# دستورالعمل‌های پروژه &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 > وقتی که شروع و توسعه یک پروژه جدید برای شما شبیه به حرکت در یک میدان سبز و خالی (که هیچ ساختاری ندارد) است (استعاره از شروع کردن یک پروژه یا کار جدید از ابتدا و بدون هیچ محدودیت و ساختاری است)، نگهداری از آن می‌تواند کابوسی پیچیده و تاریک برای شخص دیگری باشد.
 > در اینجا لیستی از دستورالعمل‌ها آمده است که ما آن‌ها را پیدا کرده‌ایم، نوشته‌ایم و گردآوری کرده‌ایم و فکر می‌کنیم که برای اکثر پروژه‌های جاوااسکریپت در [elsewhen](https://www.elsewhen.com) به خوبی عمل می‌کند.
@@ -17,7 +17,7 @@
 <hr>
 
 - [Git](#git)
-  - [Some Git rules](#some-git-rules)
+  - [برخی از قوانین Git](#some-git-rules)
   - [Git workflow](#git-workflow)
   - [Writing good commit messages](#writing-good-commit-messages)
 - [Documentation](#documentation)
@@ -45,7 +45,7 @@
 ![Git](/images/branching.png)
 <a name="some-git-rules"></a>
 
-### 1.1 Some Git rules
+### 1.1 برخی از قوانین Git
 
 مجموعه‌ای از قوانین وجود دارد که باید آن‌ها را به خاطر داشته باشید:
 
@@ -92,11 +92,11 @@
 
   > این فایل از قبل دارای لیستی از فایل‌های سیستمی است که نباید همراه با کد شما به مخزن remote ارسال شوند. علاوه بر این، پوشه‌ها و فایل‌های تنظیمات برای بیشتر ویرایشگرهای مورد استفاده و همچنین پوشه‌های dependency رایج را نیز مستثنی می‌کند.
 
-- Protect your `develop` and `master` branch.
+- از برنچ‌های `develop` و `master` محافظت کنید.
 
   _چرا:_
 
-  > It protects your production-ready branches from receiving unexpected and irreversible changes. read more... [GitHub](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html) and [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html)
+  > این کار از برنچ‌های آماده برای production در برابر دریافت تغییرات غیرمنتظره و غیرقابل بازگشت محافظت می‌کند. توضیحات بیشتر ... [GitHub](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html) and [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html)
 
 <a name="git-workflow"></a>
 
