@@ -3,6 +3,7 @@
 | [한국어](./README-ko.md)
 | [РУССКИЙ](./README-ru.md)
 | [ENGLISH](./README.md)
+| [Persian/فارسی](./README-ir.md)
 
 [<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
@@ -135,34 +136,42 @@ Devido a maioria dos motivos listados acima, nos usamos [Feature-branch-workflow
   > Você poderia usar `git add -p`, o que te daria a chance de revisar todas as mudanças introduzidas, uma a uma, e decidir se inclui ou não naquele commit.
 
 - Sincronize com as ultimas alterações no repositório remoto.
+
   ```sh
   git checkout develop
   git pull
   ```
+
   _Por que?_
+
   > Isso vai permitir que você lide com os conflitos na sua máquina local enquanto você faz o rebase (posteriormente) ao invés de criar um pull request com conflitos.
 
 - Atualize sua feature branch com as ultimas alterações da develop usando rebase iterativo.
+
   ```sh
   git checkout <branchname>
   git rebase -i --autosquash develop
   ```
 
   _Por que?_
+
   > Você pode usar --autosquash para comprimir todos os seus commits em um único commit. Ninguém quer commits de desenvolvimento de uma feature na develop. [Leia mais sobre...](https://robots.thoughtbot.com/autosquashing-git-commits)
 
 - Se você não tem conflitos, pule esse passo. Se você tem conflitos, [resolva-os](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) e continue onrebase.
+
   ```sh
   git add <file1> <file2> ...
   git rebase --continue
   ```
 
 - Push sua branch. Rebase vai alterar a história, então você precisa usar `-f` para forçar a mudança no branch remoto. Se tem mais alguém trabalhando na mesma branch, use o comando `--force-with-lease`.
+
   ```sh
   git push -f
   ```
 
   _Por que?_
+
   > Quando você faz rebase, você está mudando a história na sua feature branch. Então o git ira rejeitar seu `git push`. Para passar por isso você precisa usar -f ou --force flag. [Leia mais sobre...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
 - Abra um Pull Request.
@@ -378,7 +387,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   > As vezes você vai precisar de checagem de tipo estática. O que também aumenta a regidibilidade e legibilidade do seu código. [Leia mais sobre...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
-- Rode os testes localmente antes de abrir um pull request para  `develop`.
+- Rode os testes localmente antes de abrir um pull request para `develop`.
 
   _Por que?_
 
@@ -398,34 +407,35 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
 - Organize seus arquivos considerando feature / páginas / componentes. E também, coloque os arquivos de teste próximos à implementação..
 
-    **Ruim**
+  **Ruim**
 
-    ```
-    .
-    ├── controllers
-    |   ├── product.js
-    |   └── user.js
-    ├── models
-    |   ├── product.js
-    |   └── user.js
-    ```
+  ```
+  .
+  ├── controllers
+  |   ├── product.js
+  |   └── user.js
+  ├── models
+  |   ├── product.js
+  |   └── user.js
+  ```
 
-    **Bom**
+  **Bom**
 
-    ```
-    .
-    ├── product
-    |   ├── index.js
-    |   ├── product.js
-    |   └── product.test.js
-    ├── user
-    |   ├── index.js
-    |   ├── user.js
-    |   └── user.test.js
-    ```
+  ```
+  .
+  ├── product
+  |   ├── index.js
+  |   ├── product.js
+  |   └── product.test.js
+  ├── user
+  |   ├── index.js
+  |   ├── user.js
+  |   └── user.test.js
+  ```
 
-    _Por que?_
-    > Ao invés de uma longa lista de arquivos você estará criando pequenos modulos encapsulando responsabilidades e seus respectivos testes. Fica muito mais fácil de se navegar e as coisas podem ser facilmente encontradas.
+  _Por que?_
+
+  > Ao invés de uma longa lista de arquivos você estará criando pequenos modulos encapsulando responsabilidades e seus respectivos testes. Fica muito mais fácil de se navegar e as coisas podem ser facilmente encontradas.
 
 - Use uma pasta com o nome `./config` e **não** crie arquivos de configuração diferente para cada ambiente.
 
@@ -526,7 +536,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > O EditorConfig consiste em um arquivo para edição de estilo de código e declaração de plugins para habilitar o editor a ler os arquivos em um determinado formato e  formatá-los de acordo com o esperado. EditorConfig são fáceis de ler e funcionam muito bem com sistemas de controle de versão.
+  > O EditorConfig consiste em um arquivo para edição de estilo de código e declaração de plugins para habilitar o editor a ler os arquivos em um determinado formato e formatá-los de acordo com o esperado. EditorConfig são fáceis de ler e funcionam muito bem com sistemas de controle de versão.
 
 - Configure seu editor para alertar sobre erros de estilo de código. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) e [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) com seu arquivo ESLint já existente. [Leia mais sobre...](https://github.com/prettier/eslint-config-prettier#installation)
 
@@ -540,7 +550,7 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
   _Por que?_
 
-  > O `prettier` por si só pode ser bem poderoso porém, não é muito produtivo rodar uma npm task sozinha toda hora só para formatar o código. É então que o `lint-staged` (e o `husky`) entram em ação. Leia mais sobre como configurar o  `lint-staged` [aqui](https://github.com/okonet/lint-staged#configuration) e sobre o  `husky` [aqui](https://github.com/typicode/husky).
+  > O `prettier` por si só pode ser bem poderoso porém, não é muito produtivo rodar uma npm task sozinha toda hora só para formatar o código. É então que o `lint-staged` (e o `husky`) entram em ação. Leia mais sobre como configurar o `lint-staged` [aqui](https://github.com/okonet/lint-staged#configuration) e sobre o `husky` [aqui](https://github.com/typicode/husky).
 
 <a name="logging"></a>
 
@@ -572,11 +582,11 @@ Ter um bom padrão para criar commits e se atentar a ele faz com que trabalhar c
 
 _Por que?_
 
-  > Queremos promover o desenvolvimento de RESTful interfaces bem construídas, fazendo com que o consumo por clientes e pelo time seja simples e consistente.
+> Queremos promover o desenvolvimento de RESTful interfaces bem construídas, fazendo com que o consumo por clientes e pelo time seja simples e consistente.
 
 _Por que?_
 
-  > Falta de consistência e simplicidade podem aumentar de forma expressiva os custos de manutenção e integração. E por isso `API design` está nesse documento.
+> Falta de consistência e simplicidade podem aumentar de forma expressiva os custos de manutenção e integração. E por isso `API design` está nesse documento.
 
 - Devemos seguir o padrão orientado a recursos. O qual tem 3 principais fatore: recursos, coleções, e URLs.
 
@@ -701,9 +711,9 @@ _Por que?_
 
   ```json
   {
-    "code": 1234,
-    "message": "Algo de errado aconteceu",
-    "description": "Mais detalhes"
+  	"code": 1234,
+  	"message": "Algo de errado aconteceu",
+  	"description": "Mais detalhes"
   }
   ```
 
@@ -711,20 +721,20 @@ _Por que?_
 
   ```json
   {
-    "code": 2314,
-    "message": "Validação Falhou",
-    "errors": [
-      {
-        "code": 1233,
-        "field": "email",
-        "message": "Email inválido"
-      },
-      {
-        "code": 1234,
-        "field": "password",
-        "message": "Senha em branco"
-      }
-    ]
+  	"code": 2314,
+  	"message": "Validação Falhou",
+  	"errors": [
+  		{
+  			"code": 1233,
+  			"field": "email",
+  			"message": "Email inválido"
+  		},
+  		{
+  			"code": 1234,
+  			"field": "password",
+  			"message": "Senha em branco"
+  		}
+  	]
   }
   ```
 
@@ -732,10 +742,10 @@ _Por que?_
 
   > Desenvolvedores dependem de erros bem descritivos em momentos críticos quando eles estão com dificuldades resolvendo problemas da aplicação que eles construíram usando sua API.
 
-    _Nota: Mantenha mensagens relacionadas a exceções de segurança o mais genéricas possível. Por exemplo, ao invés de 'Senha incorreta', você pode responder dizendo 'Usuário ou senha inválidos' para que não vaze informações sobre dados corretos que não deveriam ser conhecido por terceiros._
+  _Nota: Mantenha mensagens relacionadas a exceções de segurança o mais genéricas possível. Por exemplo, ao invés de 'Senha incorreta', você pode responder dizendo 'Usuário ou senha inválidos' para que não vaze informações sobre dados corretos que não deveriam ser conhecido por terceiros._
 
 - Use códigos de status para enviar e descrever suas respostas ao invés de **tudo funcionou corretamente**,
-   **App do cliente fez algo errado** ou A **API fez algo errado**.
+  **App do cliente fez algo errado** ou A **API fez algo errado**.
 
   _Quais?_ > `200 OK` resposta de sucesso para requisições `GET`, `PUT` ou `POST`.
 
@@ -838,12 +848,11 @@ Para cada `endpoint` explique:
   ```
 
 - Mensagens de erro, a maioria dos `endpoints` possuem várias maneiras de falhar. De acesso negado à parâmetros errados e etc. Todos devem ser listados. Pode parecer repetitivo, mas ajuda a previnir que desenvolvedores tentem prever o que vai acontecer. Por exemplo
--
-  ```json
+- ```json
   {
-    "code": 403,
-    "message": "Authentication failed",
-    "description": "Invalid username or password"
+  	"code": 403,
+  	"message": "Authentication failed",
+  	"description": "Invalid username or password"
   }
   ```
 

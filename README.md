@@ -4,6 +4,7 @@
 | [Русский](./README-ru.md)
 | [Português](./README-pt-BR.md)
 | [Italiana](./README-it.md)
+| [Persian/فارسی](./README-ir.md)
 
 [<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
@@ -706,9 +707,9 @@ _Why:_
 
   ```json
   {
-    "code": 1234,
-    "message": "Something bad happened",
-    "description": "More details"
+  	"code": 1234,
+  	"message": "Something bad happened",
+  	"description": "More details"
   }
   ```
 
@@ -716,20 +717,20 @@ _Why:_
 
   ```json
   {
-    "code": 2314,
-    "message": "Validation Failed",
-    "errors": [
-      {
-        "code": 1233,
-        "field": "email",
-        "message": "Invalid email"
-      },
-      {
-        "code": 1234,
-        "field": "password",
-        "message": "No password provided"
-      }
-    ]
+  	"code": 2314,
+  	"message": "Validation Failed",
+  	"errors": [
+  		{
+  			"code": 1233,
+  			"field": "email",
+  			"message": "Invalid email"
+  		},
+  		{
+  			"code": 1234,
+  			"field": "password",
+  			"message": "No password provided"
+  		}
+  	]
   }
   ```
 
@@ -847,9 +848,9 @@ For each endpoint explain:
 
   ```json
   {
-    "code": 401,
-    "message": "Authentication failed",
-    "description": "Invalid username or password"
+  	"code": 401,
+  	"message": "Authentication failed",
+  	"description": "Invalid username or password"
   }
   ```
 
