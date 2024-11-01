@@ -6,7 +6,7 @@
 | [Italiana](./README-it.md)
 | [Persian/فارسی](./README-ir.md)
 
-[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
+[<img src="./images/elsewhen-logo.png" width="180" height="180" align="right">](https://www.elsewhen.com/)
 
 # دستورالعمل‌های پروژه &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
@@ -16,7 +16,7 @@
 
 <hr>
 
-- [Git](#git)
+- [گیت/Git'](#git)
   - [برخی از قوانین Git](#some-git-rules)
   - [Git workflow](#git-workflow)
   - [Writing good commit messages](#writing-good-commit-messages)
@@ -40,7 +40,7 @@
 
 <a name="git"></a>
 
-## 1. Git
+## 1. گیت/Git
 
 ![Git](/images/branching.png)
 <a name="some-git-rules"></a>
