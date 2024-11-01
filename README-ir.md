@@ -6,7 +6,11 @@
 | [Italiana](./README-it.md)
 | [Persian/فارسی](./README-ir.md)
 
-[<img src="./images/elsewhen-logo.png" width="180" height="180" align="right">](https://www.elsewhen.com/)
+<p align="right">
+  <a href="https://www.elsewhen.com/">
+    <img src="./images/elsewhen-logo.png" width="180" height="180">
+  </a>
+</p>
 
 # دستورالعمل‌های پروژه &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
@@ -42,7 +46,10 @@
 
 ## 1. گیت/Git
 
-![Git](/images/branching.png)
+<p align="right">
+  <img src="/images/branching.png" width="180" height="180">
+</p>
+
 <a name="some-git-rules"></a>
 
 ### 1.1 برخی از قوانین Git
