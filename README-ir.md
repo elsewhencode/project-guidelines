@@ -24,7 +24,7 @@
 
 - [گیت/Git](#git)
   - [برخی از قوانین Git](#some-git-rules)
-  - [Git workflow](#git-workflow)
+  - [گردش‌کار گیت/Git workflow](#git-workflow)
   - [Writing good commit messages](#writing-good-commit-messages)
 - [Documentation](#documentation)
 - [Environments](#environments)
@@ -109,22 +109,22 @@
 
 <a name="git-workflow"></a>
 
-### 1.2 Git workflow
+### 1.2 گردش‌کار گیت/Git workflow
 
-Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follows:
+به خاطر دلایل ذکرشده در بالا، ما از [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) همراه با [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) و برخی عناصر [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (نام‌گذاری و داشتن یک develop branch). استفاده می‌کنیم. مراحل اصلی به شرح زیر هستند:
 
-- For a new project, initialize a git repository in the project directory. **For subsequent features/changes this step should be ignored**.
+- برای یک پروژه جدید، یک مخزن گیت (Git repository) را در پوشه پروژه مقداردهی اولیه کنید. **برای ویژگی‌ها/تغییرات بعدی، این مرحله باید نادیده گرفته شود.**
 
   ```sh
   cd <project directory>
   git init
   ```
 
-- Checkout a new feature/bug-fix branch.
+- یک شاخه جدید برای توسعه یک feature یا رفع یک bug ایجاد کنید و به آن منتقل شوید.
   ```sh
   git checkout -b <branchname>
   ```
-- Make Changes.
+- تغییری در آن ایجاد کنید.
 
   ```sh
   git add <file1> <file2> ...
@@ -133,50 +133,50 @@ Because of most of the reasons above, we use [Feature-branch-workflow](https://w
 
   _چرا:_
 
-  > `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change.
+  > `git add <file1> <file2> ... ` - شما باید فقط فایل‌هایی را اضافه کنید که یک تغییر کوچک و منسجم را تشکیل می‌دهند.
 
-  > `git commit` will start an editor which lets you separate the subject from the body.
+  > `git commit` این دستور یک ویرایشگر باز می‌کند که به شما اجازه می‌دهد subject را از body جدا کنید.
 
-  > Read more about it in _section 1.3_.
+  > بیشتر درباره آن در _بخش 1.3_ بخوانید.
 
-  _Tip:_
+  _نکته:_
 
-  > You could use `git add -p` instead, which will give you chance to review all of the introduced changes one by one, and decide whether to include them in the commit or not.
+  > می‌توانید به جای آن از دستور `git add -p` استفاده کنید که به شما این امکان را می‌دهد تمام تغییرات اعمال‌شده را یک به یک بررسی کنید و تصمیم بگیرید که آیا آنها را در کامیت وارد کنید یا نه.
 
-- Sync with remote to get changes you’ve missed.
+- با مخزن remote همگام‌سازی کنید تا تغییراتی که از دست داده‌اید را دریافت کنید.
   ```sh
   git checkout develop
   git pull
   ```
   _چرا:_
-  > This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
-- Update your feature branch with latest changes from develop by interactive rebase.
+  > این کار به شما فرصت می‌دهد که با conflictها در سیستم خود در حین rebasing برخورد کنید، به جای اینکه یک درخواست Pull Request ایجاد کنید که حاوی conflictها باشد.
+- برنچ feature خود را با استفاده از interactive rebase با آخرین تغییرات از برنچ develop به‌روزرسانی کنید.
   ```sh
   git checkout <branchname>
   git rebase -i --autosquash develop
   ```
   _چرا:_
-  > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [توضیحات بیشتر ...](https://robots.thoughtbot.com/autosquashing-git-commits)
-- If you don’t have conflicts, skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) and continue rebase.
+  > می‌توانید از `--autosquash` استفاده کنید تا تمام کامیت‌های خود را به یک کامیت ترکیب کنید. هیچ‌کس نمی‌خواهد برای یک ویژگی در شاخه develop چندین کامیت داشته باشد. [توضیحات بیشتر ...](https://robots.thoughtbot.com/autosquashing-git-commits)
+- اگر conflicts ندارید، این مرحله را رد کنید. در غیراینصورت، [آنها را حل کنید](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) و rebase را ادامه دهید.
   ```sh
   git add <file1> <file2> ...
   git rebase --continue
   ```
-- Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
+- برنچ خود را push کنید. rebase تاریخچه را تغییر می‌دهد، بنابراین باید از `-f` برای اجبار تغییرات به برنچ remote استفاده کنید. اگر شخص دیگری روی برنچ شما کار می‌کند، از گزینه کمتر مخرب `--force-with-lease` استفاده کنید.
   ```sh
   git push -f
   ```
   _چرا:_
-  > When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. [توضیحات بیشتر ...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
-- Make a Pull Request.
-- Pull request will be accepted, merged and close by a reviewer.
-- Remove your local feature branch if you're done.
+  > وقتی که rebase انجام می‌دهید، تاریخچه برنچ feature خود را تغییر می‌دهید. در نتیجه، گیت `git push` معمولی را رد می‌کند. به جای آن باید از فلگ `-f` یا `--force` استفاده کنید. [توضیحات بیشتر ...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+- یک درخواست Pull Request ایجاد کنید.
+- درخواست Pull Request توسط یک بررسی کننده پذیرفته، ادغام و بسته خواهد شد.
+- در صورت اتمام کار، برنچ feature محلی/local خود را حذف کنید.
 
   ```sh
   git branch -d <branchname>
   ```
 
-  to remove all branches which are no longer on remote
+  تمام برنچ‌های local را که در مخزن remote وجود ندارند را حذف کنید. (این کار باعث می‌شود که برنچ‌های که دیگر وجود ندارند، از مخزن local حذف شوند، در نتیجه محیط توسعه شما تمیز و مرتب‌ باقی می‌ماند.)
 
   ```sh
   git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
