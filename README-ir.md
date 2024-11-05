@@ -26,7 +26,7 @@
   - [برخی از قوانین Git](#some-git-rules)
   - [گردش‌کار گیت/Git workflow](#git-workflow)
   - [نگارش بهتر متن کامیت‌ها](#writing-good-commit-messages)
-- [Documentation](#documentation)
+- [مستندات](#documentation)
 - [Environments](#environments)
   - [Consistent dev environments](#consistent-dev-environments)
   - [Consistent dependencies](#consistent-dependencies)
@@ -212,18 +212,20 @@
 
 <a name="documentation"></a>
 
-## 2. Documentation
+## 2. مستندات
 
-![Documentation](/images/documentation.png)
+<p align="right">
+  <img src="/images/documentation.png" alt="Documentation" width="128" height="128">
+</p>
 
-- Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
-- For projects with more than one repository, provide links to them in their respective `README.md` files.
-- Keep `README.md` updated as a project evolves.
-- Comment your code. Try to make it as clear as possible what you are intending with each major section.
-- If there is an open discussion on GitHub or stackoverflow about the code or approach you're using, include the link in your comment.
-- Don't use comments as an excuse for a bad code. Keep your code clean.
-- Don't use clean code as an excuse to not comment at all.
-- Keep comments relevant as your code evolves.
+- از این [قالب](./README.sample.md) برای فایل `README.md` استفاده کنید؛ اگر بخش‌هایی وجود دارد که پوشش داده نشده‌اند، با خیال راحت آن‌ها را اضافه کنید.
+- رای پروژه‌هایی که بیش از یک مخزن (repository) دارند، لینک به مخازن دیگر را در فایل‌های `README.md` مربوطه قرار دهید..
+- با پیشرفت پروژه، فایل `README.md` را به‌روز نگه دارید.
+- کد خود را کامنت‌گذاری کنید. سعی کنید با هر بخش اصلی کد، به‌وضوح توضیح دهید که قصد دارید چه کاری انجام دهید.
+- اگر درباره کد یا روش مورد استفاده شما در گیت‌هاب یا استک‌اورفلو بحثی باز وجود دارد، لینک آن را در کامنت خود بگنجانید.
+- از کامنت‌ها به‌عنوان توجیهی برای کد ضعیف استفاده نکنید. کد خود را تمیز نگه دارید.
+- از کد تمیز به‌عنوان بهانه‌ای برای عدم کامنت‌گذاری استفاده نکنید.
+- با پیشرفت کد، کامنت‌ها را نیز متناسب به‌روز نگه دارید.
 
 <a name="environments"></a>
 
