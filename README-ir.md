@@ -28,7 +28,7 @@
   - [نگارش بهتر متن کامیت‌ها](#writing-good-commit-messages)
 - [مستندات](#documentation)
 - [متغیرهای محیطی/Environments](#environments)
-  - [Consistent dev environments](#consistent-dev-environments)
+  - [ایجاد محیط‌های توسعه‌ی یکپارچه/Consistent dev environments](#consistent-dev-environments)
   - [Consistent dependencies](#consistent-dependencies)
 - [Dependencies](#dependencies)
 - [Testing](#testing)
@@ -260,37 +260,37 @@
 
   > <a name="consistent-dev-environments"></a>
 
-### 3.1 Consistent dev environments:
+### 3.1 ایجاد محیط‌های توسعه‌ی یکپارچه/Consistent dev environments:
 
-- Set your node version in `engines` in `package.json`.
-
-  _چرا:_
-
-  > It lets others know the version of node the project works on. [توضیحات بیشتر ...](https://docs.npmjs.com/files/package.json#engines)
-
-- Additionally, use `nvm` and create a `.nvmrc` in your project root. Don't forget to mention it in the documentation.
+- نسخه‌ی Node خود را در بخش `engines` در فایل `package.json` تنظیم کنید..
 
   _چرا:_
 
-  > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [توضیحات بیشتر ...](https://github.com/creationix/nvm)
+  > این کار به دیگران اطلاع می‌دهد که پروژه با کدام نسخه‌ی Node کار می‌کند. [توضیحات بیشتر ...](https://docs.npmjs.com/files/package.json#engines)
 
-- It's a good idea to setup a `preinstall` script that checks node and npm versions.
-
-  _چرا:_
-
-  > Some dependencies may fail when installed by newer versions of npm.
-
-- Use Docker image if you can.
+- همچنین از `nvm` استفاده کنید و یک فایل `.nvmrc` در ریشه‌ی پروژه‌ی خود ایجاد کنید. فراموش نکنید که به آن در مستندات اشاره کنید.
 
   _چرا:_
 
-  > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [توضیحات بیشتر ...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+  > هر کسی که از `nvm` استفاده می‌کند، می‌تواند به سادگی با اجرای کامند `nvm use` به نسخه‌ی مناسب Node سوئیچ کند. [توضیحات بیشتر ...](https://github.com/creationix/nvm)
 
-- Use local modules instead of using globally installed modules.
+- تنظیم یک اسکریپت `preinstall` که نسخه‌های Node و npm را بررسی کند، ایده‌ی خوبی است.
 
   _چرا:_
 
-  > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
+  > برخی وابستگی‌ها/dependencies ممکن است در صورت نصب توسط نسخه‌های جدیدتر npm با خطا مواجه شوند.
+
+- در صورت امکان از Docker استفاده کنید.
+
+  _چرا:_
+
+  > این کار می‌تواند یک محیط سازگار در کل فرآیند کاری شما فراهم کند، بدون نیاز به تنظیمات یا وابستگی‌های پیچیده. [توضیحات بیشتر ...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+
+- از پکیج‌های محلی/local به‌جای پکیج‌های نصب‌شده به‌صورت گلوبالی/globally استفاده کنید.
+
+  _چرا:_
+
+  > این کار به شما اجازه می‌دهد پکیج‌های خود را با همکارانتان به اشتراک بگذارید، به جای اینکه انتظار داشته باشید آن‌ها را به‌صورت گلوبالی روی سیستم خود نصب کرده باشند.
 
 <a name="consistent-dependencies"></a>
 
