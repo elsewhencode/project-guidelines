@@ -27,7 +27,7 @@
   - [گردش‌کار گیت/Git workflow](#git-workflow)
   - [نگارش بهتر متن کامیت‌ها](#writing-good-commit-messages)
 - [مستندات](#documentation)
-- [Environments](#environments)
+- [متغیرهای محیطی/Environments](#environments)
   - [Consistent dev environments](#consistent-dev-environments)
   - [Consistent dependencies](#consistent-dependencies)
 - [Dependencies](#dependencies)
@@ -229,32 +229,36 @@
 
 <a name="environments"></a>
 
-## 3. Environments
+## 3. متغیرهای محیطی/Environments
 
-![Environments](/images/laptop.png)
+<p align="right">
+  <img src="/images/laptop.png" alt="Environments" width="128" height="128">
+</p>
 
-- Define separate `development`, `test` and `production` environments if needed.
-
-  _چرا:_
-
-  > Different data, tokens, APIs, ports etc... might be needed in different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manual testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [توضیحات بیشتر ...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
-
-- Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
+- در صورت نیاز، environmentهای جداگانه‌ای برای `development`، `test` و `production` تعریف کنید.
 
   _چرا:_
 
-  > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
+  > در محیط‌ها (environments) مختلف ممکن است data، tokens، APIs، ports و... متفاوتی نیاز باشند. ممکن است بخواهید یک حالت `development` ایزوله داشته باشید که به APIهای جعلی متصل می‌شود و داده‌های قابل پیش‌بینی برمی‌گرداند، که این کار هم آزمایش‌های خودکار و هم آزمایش‌های دستی را بسیار ساده‌تر می‌کند. یا شاید بخواهید Google Analytics را فقط در محیط `production` فعال کنید و به همین ترتیب.
+  > [توضیحات بیشتر ...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
-  _How:_
+- پیکربندی‌های مختص هر محیط اجرایی را از متغیرهای محیطی (environment variables) بارگذاری کنید و هرگز آن‌ها را به‌عنوان مقادیر ثابت در کد قرار ندهید. [به این نمونه نگاه کنید](./config.sample.js).
 
-  > `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example` which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
-  > [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
-
-- It’s recommended to validate environment variables before your app starts. [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
   _چرا:_
-  > It may save others from hours of troubleshooting.
 
-<a name="consistent-dev-environments"></a>
+  > در این فایل‌ها ممکن است tokens، passwords و دیگر اطلاعات ارزشمند وجود داشته باشند. پیکربندی/کانفیگ شما باید به‌درستی از بخش‌های داخلی برنامه جدا باشد، به گونه‌ای که کد در هر لحظه ممکن است عمومی شود.
+
+  _چگونه:_
+
+  > فایل‌های `.env` را برای ذخیره متغیرهای خود استفاده کنید و آن‌ها را به `.gitignore` اضافه کنید تا از مخزن مستثنی شوند. در عوض، یک فایل `.env.example` کامیت کنید که به‌عنوان راهنما برای توسعه‌دهندگان عمل کند. برای محیط production، باید همچنان متغیرهای محیطی را به روش استاندارد تنظیم کنید. [بیشتر بخوانید](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+
+- توصیه می‌شود قبل از شروع برنامه، متغیرهای محیطی را اعتبارسنجی کنید. [این نمونه را مشاهده کنید](./configWithTest.sample.js) که از `joi` برای اعتبارسنجی مقادیر ارائه‌شده استفاده می‌کند.
+
+  _چرا:_
+
+  > این کار می‌تواند دیگران را از ساعت‌ها مشکل‌یابی/troubleshooting نجات دهد.
+
+  > <a name="consistent-dev-environments"></a>
 
 ### 3.1 Consistent dev environments:
 
@@ -298,7 +302,7 @@
 
   > Because you want the code to behave as expected and identical in any development machine [توضیحات بیشتر ...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
-  _how:_
+  _چگونه:_
 
   > Use `package-lock.json` on `npm@5` or higher
 
@@ -485,7 +489,7 @@
 
   > We simply prefer `eslint`, you don't have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.
 
-- We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
+- We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [بیشتر بخوانید](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
 
 - We use [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
 
@@ -674,7 +678,7 @@ _چرا:_
 
 - Explain the CRUD functionalities using HTTP methods:
 
-  _How:_
+  _چگونه:_
 
   > `GET`: To retrieve a representation of a resource.
 
@@ -692,7 +696,7 @@ _چرا:_
 
   > This is a natural way to make resources explorable.
 
-  _How:_
+  _چگونه:_
 
   > `GET /schools/2/students ` , should get the list of all students from school 2.
 
