@@ -25,7 +25,7 @@
 - [گیت/Git](#git)
   - [برخی از قوانین Git](#some-git-rules)
   - [گردش‌کار گیت/Git workflow](#git-workflow)
-  - [Writing good commit messages](#writing-good-commit-messages)
+  - [نگارش بهتر متن کامیت‌ها](#writing-good-commit-messages)
 - [Documentation](#documentation)
 - [Environments](#environments)
   - [Consistent dev environments](#consistent-dev-environments)
@@ -184,31 +184,31 @@
 
 <a name="writing-good-commit-messages"></a>
 
-### 1.3 Writing good commit messages
+### 1.3 نگارش بهتر متن کامیت‌ها
 
-Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+داشتن یک راهنمای مناسب برای ایجاد کامیت‌ها و پایبندی به آن، کار با گیت و همکاری با دیگران را بسیار آسان‌تر می‌کند. در اینجا چند قانون کلی وجود دارد:([منبع](https://chris.beams.io/posts/git-commit/#seven-rules)):
 
-- Separate the subject from the body with a newline between the two.
-
-  _چرا:_
-
-  > Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only.
-
-- Limit the subject line to 50 characters and Wrap the body at 72 characters.
-
-  _why_
-
-  > Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [توضیحات بیشتر ...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
-
-- Capitalize the subject line.
-- Do not end the subject line with a period.
-- Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line.
+- موضوع (subject) را از بدنه (body) جدا کنید و بین این دو یک خط خالی قرار دهید.
 
   _چرا:_
 
-  > Rather than writing messages that say what a committer has done. It's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [توضیحات بیشتر ...](https://news.ycombinator.com/item?id=2079612)
+  > گیت به اندازه کافی هوشمند است که خط اول پیام کامیت شما را به‌عنوان خلاصه تشخیص دهد. در واقع، اگر به‌جای استفاده از git log از git shortlog استفاده کنید، یک لیست طولانی از پیام‌های کامیت خواهید دید که شامل شناسه کامیت و تنها خلاصه پیام است.
 
-- Use the body to explain **what** and **why** as opposed to **how**.
+- طول خط موضوع (subject) را به ۵۰ کاراکتر محدود کنید و بدنه پیام را در ۷۲ کاراکتر بشکنید.
+
+  _چرا:_
+
+  > کامیت‌ها تا حد ممکن باید جزئی و متمرکز باشند؛ نیازی به طولانی‌نویسی در آن‌ها نیست. [توضیحات بیشتر ...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+
+- حرف اول موضوع (subject) را با عبارت بزرگ (Capitalize) شروع کنید.
+- موضوع (subject) را با نقطه تمام نکنید.
+- از [وجه امری](https://en.wikipedia.org/wiki/Imperative_mood) در موضوع (subject) استفاده کنید.
+
+  _چرا:_
+
+  > به جای نوشتن پیام‌هایی که فقط بیانگر/توصیف‌کننده کاری است که کامیت‌کننده انجام داده، بهتر است این پیام‌ها را به عنوان دستورالعمل‌هایی در نظر بگیرید که بیان می‌کنند پس از اعمال کامیت در مخزن، چه چیزی قرار است انجام شود. (توضیح مترجم: پیام‌های کامیت باید بر نتیجه و هدف تمرکز کنند، نه صرفاً بر عملیات انجام‌شده.) [توضیحات بیشتر ...](https://news.ycombinator.com/item?id=2079612)
+
+- از قسمت بدنه (body) برای توضیح **چه کاری** و **چرا** انجام شده، استفاده کنید، نه **چگونگی** انجام آن.
 
 <a name="documentation"></a>
 
@@ -615,7 +615,7 @@ _چرا:_
 
 - In the source code convert plurals to variables and properties with a List suffix.
 
-  _Why_:
+  _چرا:_:
 
   > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
 
