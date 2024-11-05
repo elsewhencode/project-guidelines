@@ -29,7 +29,7 @@
 - [مستندات](#documentation)
 - [متغیرهای محیطی/Environments](#environments)
   - [ایجاد محیط‌های توسعه‌ی یکپارچه/Consistent dev environments](#consistent-dev-environments)
-  - [Consistent dependencies](#consistent-dependencies)
+  - [وابستگی‌های یکسان و هماهنگ/Consistent dependencies](#consistent-dependencies)
 - [Dependencies](#dependencies)
 - [Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
@@ -219,7 +219,7 @@
 </p>
 
 - از این [قالب](./README.sample.md) برای فایل `README.md` استفاده کنید؛ اگر بخش‌هایی وجود دارد که پوشش داده نشده‌اند، با خیال راحت آن‌ها را اضافه کنید.
-- رای پروژه‌هایی که بیش از یک مخزن (repository) دارند، لینک به مخازن دیگر را در فایل‌های `README.md` مربوطه قرار دهید..
+- برای پروژه‌هایی که بیش از یک مخزن (repository) دارند، لینک به مخازن دیگر را در فایل‌های `README.md` مربوطه قرار دهید..
 - با پیشرفت پروژه، فایل `README.md` را به‌روز نگه دارید.
 - کد خود را کامنت‌گذاری کنید. سعی کنید با هر بخش اصلی کد، به‌وضوح توضیح دهید که قصد دارید چه کاری انجام دهید.
 - اگر درباره کد یا روش مورد استفاده شما در گیت‌هاب یا استک‌اورفلو بحثی باز وجود دارد، لینک آن را در کامنت خود بگنجانید.
@@ -239,7 +239,7 @@
 
   _چرا:_
 
-  > در محیط‌ها (environments) مختلف ممکن است data، tokens، APIs، ports و... متفاوتی نیاز باشند. ممکن است بخواهید یک حالت `development` ایزوله داشته باشید که به APIهای جعلی متصل می‌شود و داده‌های قابل پیش‌بینی برمی‌گرداند، که این کار هم آزمایش‌های خودکار و هم آزمایش‌های دستی را بسیار ساده‌تر می‌کند. یا شاید بخواهید Google Analytics را فقط در محیط `production` فعال کنید و به همین ترتیب.
+  > در محیط‌ها (environments) مختلف ممکن است data، tokens، APIs، ports و... متفاوتی نیاز باشند. ممکن است بخواهید یک حالت `development` ایزوله داشته باشید که به APIهای جعلی متصل می‌شود و داده‌های قابل پیش‌بینی برمی‌گرداند، که این کار هم تست‌های خودکار و هم تست‌های دستی را بسیار ساده‌تر می‌کند. یا شاید بخواهید Google Analytics را فقط در محیط `production` فعال کنید و به همین ترتیب.
   > [توضیحات بیشتر ...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 - پیکربندی‌های مختص هر محیط اجرایی را از متغیرهای محیطی (environment variables) بارگذاری کنید و هرگز آن‌ها را به‌عنوان مقادیر ثابت در کد قرار ندهید. [به این نمونه نگاه کنید](./config.sample.js).
@@ -294,25 +294,25 @@
 
 <a name="consistent-dependencies"></a>
 
-### 3.2 Consistent dependencies:
+### 3.2 وابستگی‌های یکسان و هماهنگ/Consistent dependencies:
 
-- Make sure your team members get the exact same dependencies as you.
+- اطمینان حاصل کنید که اعضای تیم دقیقاً همان وابستگی‌ها (dependencies) را مانند شما دریافت کنند.
 
   _چرا:_
 
-  > Because you want the code to behave as expected and identical in any development machine [توضیحات بیشتر ...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+  > زیرا می‌خواهید که کد، در هر محیط توسعه‌ای به همان شکل مورد انتظار عمل کند و یکسان باشد. [توضیحات بیشتر ...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
   _چگونه:_
 
-  > Use `package-lock.json` on `npm@5` or higher
+  > از `package-lock.json` در نسخه 5 از `npm` یا بالاتر، استفاده کنید.
 
-  _I don't have npm@5:_
+  _من npm@5 ندارم:_
 
-  > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [توضیحات بیشتر ...](https://yarnpkg.com/en/)
+  > در این صورت می‌توانید از `Yarn` استفاده کنید و اطمینان حاصل کنید که این موضوع را در فایل `README.md`. پس از هر به‌روزرسانی وابستگی‌ها، lock file و `package.json` باید نسخه‌های یکسانی داشته باشند. [توضیحات بیشتر ...](https://yarnpkg.com/en/)
 
-  _I don't like the name `Yarn`:_
+  _من اسم `Yarn` را دوست ندارم:_
 
-  > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [توضیحات بیشتر ...](https://docs.npmjs.com/files/package-locks)
+  > متأسفانه انتخاب دیگری ندارید. برای نسخه‌های قدیمی‌تر `npm`, هنگام نصب وابستگی جدید از `—save --save-exact` استفاده کنید و قبل از انتشار پروژه، فایل `npm-shrinkwrap.json` ایجاد کنید. [توضیحات بیشتر ...](https://docs.npmjs.com/files/package-locks) (توضیحات مترجم: انتخاب‌های دیگر نظیر استفاده از`pnpm` و غیره دارید)
 
 <a name="dependencies"></a>
 
