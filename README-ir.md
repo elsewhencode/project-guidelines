@@ -32,7 +32,7 @@
   - [وابستگی‌های یکسان و هماهنگ/Consistent dependencies](#consistent-dependencies)
 - [وابستگی‌ها/Dependencies](#dependencies)
 - [تست کردن/Testing](#testing)
-- [Structure and Naming](#structure-and-naming)
+- [ساختار و نام‌گذاری/Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
   - [Some code style guidelines](#code-style-check)
   - [Enforcing code style standards](#enforcing-code-style-standards)
@@ -404,13 +404,15 @@
 
 <a name="structure-and-naming"></a>
 
-## 6. Structure and Naming
+## 6. ساختار و نام‌گذاری/Structure and Naming
 
-![Structure and Naming](/images/folder-tree.png)
+<p align="right">
+  <img src="/images/folder-tree.png" alt="Structure and Naming" width="128" height="128">
+</p>
 
-- Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
+- فایل‌های خود را بر اساس ویژگی‌های محصول / صفحات / کامپوننت‌ها سازمان‌دهی کنید، نه بر اساس نقش‌ها. همچنین فایل‌های تست را در کنار آن‌ها قرار دهید.
 
-  **Bad**
+  **بد**
 
   ```
   .
@@ -422,7 +424,7 @@
   |   └── user.js
   ```
 
-  **Good**
+  **خوب**
 
   ```
   .
@@ -438,32 +440,33 @@
 
   _چرا:_
 
-  > Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
+  > به جای داشتن لیست طولانی از فایل‌ها، ماژول‌های کوچک ایجاد کنید که هر کدام یک مسئولیت خاص را دربرمی‌گیرند، از جمله تست آن‌ها و موارد دیگر. این کار باعث می‌شود دسترسی به فایل‌ها ساده‌تر شده و بتوانید به سرعت و با یک نگاه فایل‌های مورد نظر را پیدا کنید.
 
-- Put your additional test files to a separate test folder to avoid confusion.
-
-  _چرا:_
-
-  > It is a time saver for other developers or DevOps experts in your team.
-
-- Use a `./config` folder and don't make different config files for different environments.
+- فایل‌های تست اضافی خود را در یک پوشه‌ی جداگانه به نام test قرار دهید تا از سردرگمی جلوگیری شود.
 
   _چرا:_
 
-  > When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly, as more deploys of the app are created, new environment names are necessary.
-  > Values to be used in config files should be provided by environment variables. [توضیحات بیشتر ...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+  > این کار برای سایر توسعه‌دهندگان یا کارشناسان DevOps تیم شما موجب صرفه‌جویی در زمان می‌شود.
 
-- Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
-
-  _چرا:_
-
-  > It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronization and so on.
-
-- Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
+- از یک پوشه به نام `./config` برای تنظیمات استفاده کنید و فایل‌های پیکربندی جداگانه برای محیط‌ها (environments) مختلف ایجاد نکنید.
 
   _چرا:_
 
-  > Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to.
+  > مانی که یک فایل کانفیگ را برای اهداف مختلف (مانند پایگاه داده، API و غیره) تجزیه می‌کنید، قرار دادن آن‌ها در پوشه‌ای با نام مشخص مانند `config` منطقی است. فقط به خاطر داشته باشید که برای محیط‌های مختلف فایل‌های جداگانه نسازید، زیرا با افزایش استقرارهای برنامه، نام‌های محیط جدیدی مورد نیاز می‌شود و مدیریت آن پیچیده خواهد شد.
+
+  > مقادیر مورد استفاده در فایل‌های کانفیگ باید از طریق متغیرهای محیطی (environment variables) فراهم شوند. [توضیحات بیشتر ...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+
+- اسکریپت‌های خود را در یک پوشه به نام `./scripts` قرار دهید. این شامل اسکریپت‌های `bash` و `node` است.
+
+  _چرا:_
+
+  > احتمالاً به بیش از یک اسکریپت نیاز خواهید داشت، مانند production build, development build, database feeders, database synchronization و غیره.
+
+- خروجی بیلد خود را در یک پوشه به نام `./build` قرار دهید. `build/` را به `.gitignore` اضافه کنید.
+
+  _چرا:_
+
+  > نام‌گذاری آن به سلیقه شما بستگی دارد، `dist` نیز گزینه خوبی است. اما با تیم خود این نام‌گذاری را هماهنگ کنید. فایل‌هایی که در این پوشه قرار می‌گیرند معمولاً تولید شده‌اند (bundled, compiled, transpiled) یا به این پوشه منتقل شده‌اند. چیزی که می‌توانید تولید کنید، هم‌تیمی‌های شما نیز باید قادر به تولید آن باشند؛ بنابراین نیازی به ارسال آن‌ها به مخزن ریموت نیست، مگر اینکه هدف خاصی داشته باشید.
 
 <a name="code-style"></a>
 
