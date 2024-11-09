@@ -31,7 +31,7 @@
   - [ایجاد محیط‌های توسعه‌ی یکپارچه/Consistent dev environments](#consistent-dev-environments)
   - [وابستگی‌های یکسان و هماهنگ/Consistent dependencies](#consistent-dependencies)
 - [وابستگی‌ها/Dependencies](#dependencies)
-- [Testing](#testing)
+- [تست کردن/Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
   - [Some code style guidelines](#code-style-check)
@@ -352,53 +352,55 @@
 
 <a name="testing"></a>
 
-## 5. Testing
+## 5. تست کردن/Testing
 
-![Testing](/images/testing.png)
+<p align="right">
+  <img src="/images/testing.png" alt="testing" width="128" height="128">
+</p>
 
-- Have a `test` mode environment if needed.
-
-  _چرا:_
-
-  > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests.
-
-- Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`.
+- در صورت نیاز، یک environment به نام `test` (برای حالت تست) ایجاد کنید.
 
   _چرا:_
 
-  > You don't want to dig through a folder structure to find a unit test. [توضیحات بیشتر ...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+  > گاهی تست end to end در حالت `production` ممکن است کافی به نظر برسد، اما در موارد خاص نیاز به محیط تست جداگانه‌ای وجود دارد. مثلاً ممکن است نخواهید اطلاعات تحلیلی در حالت `production` فعال شود و داشبورد افراد را با داده‌های تست آلوده کنید. (توضیحات مترجم: چون داده‌های تستی ممکن است اطلاعات واقعی را تحت تأثیر قرار دهد، مثلا باعث شلوغی و ایجاد داده‌های غیرضروری شوند و یا مانع از درک دقیق اطلاعات واقعی توسط کاربران یا تیم تحلیل شوند.) مثال دیگر این است که ممکن است API شما در حالت تولید محدودیت‌ تعداد درخواست (rate limit) داشته باشد و پس از تعداد مشخصی درخواست، فراخوانی APIها توسط تست را مسدود کند.
 
-- Put your additional test files into a separate test folder to avoid confusion.
-
-  _چرا:_
-
-  > Some test files don't particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: `__test__` folder. This name: `__test__` is also standard now and gets picked up by most JavaScript testing frameworks.
-
-- Write testable code, avoid side effects, extract side effects, write pure functions
+- فایل‌های تست خود را در کنار ماژول‌های مورد آزمایش با استفاده از الگوی نام‌گذاری خاصی `*.test.js` یا `*.spec.js` قرار دهید، مانند `moduleName.spec.js`.
 
   _چرا:_
 
-  > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [توضیحات بیشتر ...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+  > برای پیدا کردن یک تست واحد، در ساختار پوشه‌ها جستجو و پیمایش نکنید. [توضیحات بیشتر ...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-  > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable. [توضیحات بیشتر ...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
-
-- Use a static type checker
+- برای جلوگیری از سردرگمی، فایل‌های تست اضافی خود را پر یک پوشه جداگانه قرار دهید.
 
   _چرا:_
 
-  > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [توضیحات بیشتر ...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+  > برخی از فایل‌های تست مستقیماً به فایل پیاده‌سازی خاصی مرتبط نیستند. باید این فایل‌ها را در پوشه‌ای قرار دهید که احتمالاً توسط سایر توسعه‌دهندگان به راحتی یافت شود: پوشه `__test__`. این نام `__test__` هم اکنون یک استاندارد است و توسط اکثر فریم‌ورک‌های تست جاوااسکریپت تشخیص داده می‌شود.
 
-- Run tests locally before making any pull requests to `develop`.
-
-  _چرا:_
-
-  > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to a remote repository.
-
-- Document your tests including instructions in the relevant section of your `README.md` file.
+- کد قابل تست بنویسید، از اثرات جانبی (side effect) خودداری کنید، اثرات جانبی را جدا کنید، و توابع خالص (pure functions) بنویسید.
 
   _چرا:_
 
-  > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
+  > هر بخش از منطق کسب‌وکار (business logic) باید به صورت مستقل و جداگانه مورد آزمایش و تست قرار گیرد تا مطمئن شوید که هر قسمت به درستی کار می‌کند. باید "تأثیر عوامل تصادفی یا فرآیندهای غیرقابل‌پیش‌بینی را در کد به حداقل برسانید" [توضیحات بیشتر ...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
+
+  > یک تابع خالص (pure function) تابعی است که همیشه برای ورودی یکسان، خروجی یکسانی را باز می‌گرداند. برعکس، یک تابع ناخالص (impure function) تابعی است که ممکن است اثرات جانبی داشته باشد یا برای تولید یک مقدار به شرایط خارجی وابسته باشد، که این امر باعث می‌شود کمتر قابل پیش‌بینی باشد. [توضیحات بیشتر ...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+
+- از یک static type checker استفاده کنید
+
+  _چرا:_
+
+  > گاهی ممکن است به یک Static type checker نیاز داشته باشید. این ابزارها، سطحی از قابلیت اطمینان را برای کد شما به ارمغان می‌آورند. [توضیحات بیشتر ...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+
+- قبل از آنکه درخواست pull request به برنچ `develop` را ارسال کنید، تست‌ها را به‌صورت locally اجرا کنید.
+
+  _چرا:_
+
+  > قطعاً نمی‌خواهید کسی باشید که باعث شکست فرایند بیلد برنچ آماده‌ی production شده است. تست‌های خود را پس از `rebase` و پیش از ارسال به شاخه feature-branch به مخزن ریموت اجرا کنید.
+
+- تست‌های خود را از جمله دستورالعمل‌های مربوطه در بخش مناسب فایل `README.md` پروژه را مستندسازی کنید.
+
+  _چرا:_
+
+  > این مستندات مانند یک یادداشت راهنما است که برای توسعه‌دهندگان دیگر، کارشناسان DevOps، یا تیم تضمین کیفیت (QA) و هر کسی که با کد شما کار می‌کند، مفید خواهد بود.
 
 <a name="structure-and-naming"></a>
 
