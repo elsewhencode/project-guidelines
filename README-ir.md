@@ -30,7 +30,7 @@
 - [متغیرهای محیطی/Environments](#environments)
   - [ایجاد محیط‌های توسعه‌ی یکپارچه/Consistent dev environments](#consistent-dev-environments)
   - [وابستگی‌های یکسان و هماهنگ/Consistent dependencies](#consistent-dependencies)
-- [Dependencies](#dependencies)
+- [وابستگی‌ها/Dependencies](#dependencies)
 - [Testing](#testing)
 - [Structure and Naming](#structure-and-naming)
 - [Code style](#code-style)
@@ -316,37 +316,39 @@
 
 <a name="dependencies"></a>
 
-## 4. Dependencies
+## 4. وابستگی‌ها/Dependencies
 
-![Github](/images/modules.png)
+<p align="right">
+  <img src="/images/modules.png" alt="modules" width="128" height="128">
+</p>
 
-- Keep track of your currently available packages: e.g., `npm ls --depth=0`. [توضیحات بیشتر ...](https://docs.npmjs.com/cli/ls)
-- See if any of your packages have become unused or irrelevant: `depcheck`. [توضیحات بیشتر ...](https://www.npmjs.com/package/depcheck)
-
-  _چرا:_
-
-  > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
-
-- Before using a dependency, check its download statistics to see if it is heavily used by the community: `npm-stat`. [توضیحات بیشتر ...](https://npm-stat.com/)
+- بر روی پکیج‌های فعلی خود را که در حال حاضر در دسترس هستند، پیگیری و نظارت کنید: به عنوان مثال، از دستور `npm ls --depth=0` استفاده کنید. (توضیحات مترجم: با استفاده از دستور `npm ls --depth=0` در محیط خط فرمان، می‌توانید فهرستی از پکیج‌های سطح اول (بدون نمایش وابستگی‌های زیرمجموعه‌ای) را مشاهده کنید. این کار به شما کمک می‌کند تا بدانید چه بسته‌هایی در حال حاضر در پروژه‌تان نصب هستند و از وضعیت آن‌ها مطلع باشید.) [توضیحات بیشتر ...](https://docs.npmjs.com/cli/ls)
+- بررسی کنید آیا هیچ‌یک از پکیج‌های شما بی‌استفاده یا نامربوط (غیرضروری یا غیرکاربردی) شده‌اند: با استفاده از ابزار `depcheck` [توضیحات بیشتر ...](https://www.npmjs.com/package/depcheck)
 
   _چرا:_
 
-  > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
+  > ممکن است یک کتابخانه بی‌استفاده را در کد خود داشته باشید که باعث افزایش حجم نهایی برنامه شود. وابستگی‌های بی‌استفاده را پیدا کرده و حذف کنید.
 
-- Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [توضیحات بیشتر ...](https://docs.npmjs.com/cli/view)
-
-  _چرا:_
-
-  > Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
-
-- If a less known dependency is needed, discuss it with the team before using it.
-- Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [توضیحات بیشتر ...](https://docs.npmjs.com/cli/outdated)
+- قبل از استفاده از یک وابستگی، آمار دانلود آن را بررسی کنید تا ببینید آیا توسط جامعه به‌طور گسترده‌ای استفاده می‌شود یا خیر: با استفاده از ابزار `npm-stat`. [توضیحات بیشتر ...](https://npm-stat.com/)
 
   _چرا:_
 
-  > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+  > استفاده بیشتر (از پکیج‌ها) معمولاً به معنای داشتن تعداد بیشتری از مشارکت‌کنندگان است که اغلب منجر به نگهداری بهتر می‌شود و همه این‌ها باعث می‌شود که باگ‌ها سریع‌تر کشف و اصلاحات سریع‌تر توسعه داده شوند.
 
-- Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+- پیش از استفاده از یک وابستگی، بررسی کنید که آیا آن وابستگی نسخه‌های منظم و پایداری ارائه می‌دهد و تعداد زیادی نگهدارندگان (maintainers) دارد یا نه. به عنوان مثال، می‌توانید از دستور `npm view async` استفاده کنید. [توضیحات بیشتر ...](https://docs.npmjs.com/cli/view)
+
+  _چرا:_
+
+  > داشتن تعداد زیادی از مشارکت‌کنندگان زمانی مؤثر است که نگهدارندگان بتوانند اصلاحات و تغییرات را به سرعت merge کنند.
+
+- اگر به وابستگی کمتر شناخته شده‌ای (غیرمشهور) نیاز دارید، قبل از استفاده از آن، با تیم خود مشورت کنید.
+- همیشه مطمئن شوید که برنامه شما با آخرین نسخه از وابستگی‌هایش بدون هیچگونه مشکلی/خرابی کار می‌کند: از دستور `npm outdated` استفاده کنید. [توضیحات بیشتر ...](https://docs.npmjs.com/cli/outdated)
+
+  _چرا:_
+
+  > بروزرسانی‌ وابستگی‌ها (dependencies) گاهی شامل تغییرات مخرب می‌شوند. هر زمان که بروزرسانی‌ها نمایش داده می‌شوند، حتماً release note ها را بررسی کنید. وابستگی‌های (dependencies) خود را یکی‌یکی بروزرسانی کنید، زیرا اگر مشکلی پیش بیاید، عیب‌یابی آن آسان‌تر خواهد بود. از ابزارهای کاربردی مانند موارد زیر استفاده کنید: [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
+
+- بررسی کنید که آیا بسته موردنظر مشکلات امنیتی شناخته‌شده‌ای دارد یا خیر؛ به عنوان مثال، با استفاده از [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 <a name="testing"></a>
 
