@@ -35,7 +35,7 @@
 - [ساختار و نام‌گذاری/Structure and Naming](#structure-and-naming)
 - [سبک کدنویسی/Code style](#code-style)
   - [برخی از دستورالعمل‌های code style](#code-style-check)
-  - [Enforcing code style standards](#enforcing-code-style-standards)
+  - [اعمال استانداردهای سبک کدنویسی](#enforcing-code-style-standards)
 - [Logging](#logging)
 - [API](#api)
   - [API design](#api-design)
@@ -550,27 +550,27 @@
 
 <a name="enforcing-code-style-standards"></a>
 
-### 7.2 Enforcing code style standards
+### 7.2 اعمال استانداردهای سبک کدنویسی
 
-- Use a [.editorconfig](http://editorconfig.org/) file which helps developers define and maintain consistent coding styles between different editors and IDEs on the project.
-
-  _چرا:_
-
-  > The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
-
-- Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [توضیحات بیشتر ...](https://github.com/prettier/eslint-config-prettier#installation)
-
-- Consider using Git hooks.
+- از فایل [.editorconfig](http://editorconfig.org/) استفاده کنید که به توسعه‌دهندگان کمک می‌کند تا سبک‌های کدنویسی یکسانی را بین ویرایشگرها و IDEهای مختلف پروژه تعریف و حفظ کنند.
 
   _چرا:_
 
-  > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [توضیحات بیشتر ...](http://githooks.com/)
+  > پروژه EditorConfig شامل یک فرمت فایل برای تعریف سبک‌ و استال‌های کدنویسی است که شامل مجموعه‌ای از افزونه‌ها برای ویرایشگرهای متنی است، که به ویرایشگرها این امکان را می‌دهد تا فرمت فایل را بخوانند و از استایل‌های تعریف‌شده پیروی کنند. فایل‌های EditorConfig خوانا هستند و به‌خوبی با سیستم‌های کنترل نسخه کار می‌کنند.
 
-- Use Prettier with a precommit hook.
+- ویرایشگر خود را طوری تنظیم کنید که به شما در مورد خطاهای سبک کدنویسی اطلاع دهد. از [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) و [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) همراه با پیکربندی ESLint خود استفاده کنید. [توضیحات بیشتر ...](https://github.com/prettier/eslint-config-prettier#installation)
+
+- استفاده از Git hooks را مدنظر قرار دهید.
 
   _چرا:_
 
-  > While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play. Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) and on configuring `husky` [here](https://github.com/typicode/husky).
+  > استفاده از Git hooks به‌طور قابل‌توجهی بهره‌وری توسعه‌دهندگان را افزایش می‌دهد. با اعمال تغییرات، انجام commit و ارسال (push) به محیط‌های staging یا production، بدون نگرانی از خراب شدن build برنامه، می‌توانید با اطمینان بیشتری کار کنید. [توضیحات بیشتر ...](http://githooks.com/)
+
+- از Prettier همراه با یک precommit hook استفاده کنید.
+
+  _چرا:_
+
+  > اگرچه `prettier` به‌خودی‌خود قدرتمند است، اجرای دستی آن به‌عنوان یک تسک npm برای قالب‌بندی کد چندان کارآمد نیست. در اینجا `lint-staged` (و `husky`) وارد عمل می‌شوند. درباره پیکربندی `lint-staged` [اینجا](https://github.com/okonet/lint-staged#configuration) و پیکربندی `husky` [اینجا](https://github.com/typicode/husky) بیشتر بخوانید..
 
 <a name="logging"></a>
 
