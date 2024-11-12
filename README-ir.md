@@ -578,17 +578,17 @@
 
 ![Logging](/images/logging.png)
 
-- Avoid client-side console logs in production
+- از استفاده از console.log در سمت کلاینت در محیط production خودداری کنید.
 
   _چرا:_
 
-  > Even though your build process can (should) get rid of them, make sure that your code style checker warns you about leftover console logs.
+  > حتی اگر فرآیند build برنامه شما می‌تواند (و باید) آن‌ لاگ‌ها را حذف کند، اطمینان حاصل کنید که ابزار بررسی استایل کدنویسی شما درباره‌ی باقی‌مانده‌های console.log هشدار می‌دهد.
 
-- Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
-  [node-bunyan](https://github.com/trentm/node-bunyan)).
+- برای تولید لاگ‌های خوانا در محیط production، بهتر است از کتابخانه‌های logging مناسب (مانند [winston](https://github.com/winstonjs/winston) یا [node-bunyan](https://github.com/trentm/node-bunyan)) استفاده کنید.
 
-      _چرا:_
-      > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [توضیحات بیشتر ...](https://blog.risingstack.com/node-js-logging-tutorial/)
+  _چرا:_
+
+  > این کار عیب‌یابی را آسان‌تر و دلپذیرتر می‌کند، چون می‌توانید از قابلیت‌هایی مانند رنگ‌بندی، افزودن زمان به لاگ‌ها، ثبت لاگ‌ها در فایل علاوه بر کنسول و حتی ثبت لاگ‌ها در فایل‌هایی که به‌صورت روزانه ایجاد و بایگانی می‌شوند، استفاده کنید. [توضیحات بیشتر ...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 <a name="api"></a>
 
