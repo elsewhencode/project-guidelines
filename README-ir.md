@@ -33,8 +33,8 @@
 - [وابستگی‌ها/Dependencies](#dependencies)
 - [تست کردن/Testing](#testing)
 - [ساختار و نام‌گذاری/Structure and Naming](#structure-and-naming)
-- [Code style](#code-style)
-  - [Some code style guidelines](#code-style-check)
+- [سبک کدنویسی/Code style](#code-style)
+  - [برخی از دستورالعمل‌های code style](#code-style-check)
   - [Enforcing code style standards](#enforcing-code-style-standards)
 - [Logging](#logging)
 - [API](#api)
@@ -452,9 +452,9 @@
 
   _چرا:_
 
-  > مانی که یک فایل کانفیگ را برای اهداف مختلف (مانند پایگاه داده، API و غیره) تجزیه می‌کنید، قرار دادن آن‌ها در پوشه‌ای با نام مشخص مانند `config` منطقی است. فقط به خاطر داشته باشید که برای محیط‌های مختلف فایل‌های جداگانه نسازید، زیرا با افزایش استقرارهای برنامه، نام‌های محیط جدیدی مورد نیاز می‌شود و مدیریت آن پیچیده خواهد شد.
+> زمانی که یک فایل کانفیگ را برای اهداف مختلف (مانند پایگاه داده، API و غیره) تجزیه می‌کنید، قرار دادن آن‌ها در پوشه‌ای با نام مشخص مانند `config` منطقی است. فقط به خاطر داشته باشید که برای محیط‌های مختلف فایل‌های جداگانه نسازید، زیرا با افزایش استقرارهای برنامه، نام‌های محیط جدیدی مورد نیاز می‌شود و مدیریت آن پیچیده خواهد شد.
 
-  > مقادیر مورد استفاده در فایل‌های کانفیگ باید از طریق متغیرهای محیطی (environment variables) فراهم شوند. [توضیحات بیشتر ...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+> مقادیر مورد استفاده در فایل‌های کانفیگ باید از طریق متغیرهای محیطی (environment variables) فراهم شوند. [توضیحات بیشتر ...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
 - اسکریپت‌های خود را در یک پوشه به نام `./scripts` قرار دهید. این شامل اسکریپت‌های `bash` و `node` است.
 
@@ -470,81 +470,83 @@
 
 <a name="code-style"></a>
 
-## 7. Code style
+## 7. سبک کدنویسی/Code style
 
-![Code style](/images/code-style.png)
+<p align="right">
+  <img src="/images/code-style.png" alt="Code style" width="128" height="128">
+</p>
 
 <a name="code-style-check"></a>
 
-### 7.1 Some code style guidelines
+### 7.1 برخی از اصول code style
 
-- Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
-
-  _چرا:_
-
-  > This is all up to you. We use transpilers to use advantages of new syntax. stage-2 is more likely to eventually become part of the spec with only minor revisions.
-
-- Include code style check in your build process.
+- برای پروژه‌های جدید از سینتکس جاوااسکریپت مدرن (استیج ۲ و بالاتر) استفاده کنید. برای پروژه‌های قدیمی، با سینتکس موجود سازگار بمانید مگر اینکه قصد به‌روزرسانی آن را داشته باشید.
 
   _چرا:_
 
-  > Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously. Do it for both client and server-side code. [توضیحات بیشتر ...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+  > این موضوع به تصمیم شما بستگی دارد. ما از مبدل‌ها (ترنسپایلرها) برای بهره‌گیری از مزایای سینتکس جدید استفاده می‌کنیم. استیج ۲ با تغییرات جزئی احتمالا بخشی از استاندارد خواهد شد.
 
-- Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
-
-  _چرا:_
-
-  > We simply prefer `eslint`, you don't have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.
-
-- We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [بیشتر بخوانید](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
-
-- We use [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
+- اطمینان حاصل کنید که بررسی سبک کدنویسی (code style) به عنوان بخشی از فرآیند build پروژه انجام شود. (تا هماهنگی و استاندارد بودن کدها در تمام مراحل توسعه حفظ شود.)
 
   _چرا:_
 
-  > Flow introduces few syntaxes that also need to follow certain code style and be checked.
+  > متوقف کردن build برنامه یکی از روش‌های اعمال سبک کدنویسی در کد است. این کار از بی‌توجهی به سبک کدنویسی جلوگیری می‌کند. این روش را برای کد سمت client و server اجرا کنید. [توضیحات بیشتر ...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
-- Use `.eslintignore` to exclude files or folders from code style checks.
-
-  _چرا:_
-
-  > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
-
-- Remove any of your `eslint` disable comments before making a Pull Request.
+- برای اعمال سبک کدنویسی از [ESLint - ابزار بررسی سبک کدنویسی جاوااسکریپت](http://eslint.org/) استفاده کنید.
 
   _چرا:_
 
-  > It's normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those `eslint-disable` comments and follow the rules.
+  > ما `eslint` را ترجیح می‌دهیم، اما شما می‌توانید انتخاب دیگری داشته باشید. این ابزار قوانین بیشتری را پشتیبانی می‌کند، همچنین قابلیت تنظیم و افزودن قوانین سفارشی را دارد.
 
-- Depending on the size of the task use `//TODO:` comments or open a ticket.
+- ما از [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) برای جاوااسکریپت استفاده می‌کنیم، [بیشتر بخوانید](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). از کد استایلی که پروژه یا تیم شما نیاز دارد استفاده کنید (تا کدهایتان با استانداردهای تعیین‌شده هماهنگ باشند).
 
-  _چرا:_
-
-  > So then you can remind yourself and others about a small task (like refactoring a function or updating a comment). For larger tasks use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
-
-- Always comment and keep them relevant as code changes. Remove commented blocks of code.
+- ما هنگام استفاده از [FlowType](https://flow.org/) از [قوانین بررسی سبک تایپ Flow برای ESLint](https://github.com/gajus/eslint-plugin-flowtype) استفاده می‌کنیم..
 
   _چرا:_
 
-  > Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
+  > Flow سینتکس‌های جدیدی را معرفی می‌کند که نیاز به رعایت سبک کدنویسی خاصی دارند و باید بررسی شوند.
 
-- Avoid irrelevant or funny comments, logs or naming.
-
-  _چرا:_
-
-  > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
-
-- Make your names search-able with meaningful distinctions avoid shortened names. For functions use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
+- از فایل `.eslintignore` برای مستثنی کردن فایل‌ها یا پوشه‌ها از بررسی کد استایل استفاده کنید.
 
   _چرا:_
 
-  > It makes it more natural to read the source code.
+  > برای مستثنی کردن چند فایل از بررسی سبک کدنویسی، لازم نیست کدتان را با کامنت‌های `eslint-disable` شلوغ کنید.
 
-- Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
+- قبل از ارسال یک Pull Request، تمام کامنت‌های `eslint-disable` خود را حذف کنید.
 
   _چرا:_
 
-  > It makes it more natural to read the source code.
+  > طبیعی است که هنگام کار بر روی یک بخش از کد، برای تمرکز بیشتر روی منطق، بررسی سبک را غیرفعال کنید. فقط به خاطر داشته باشید که کامنت‌های `eslint-disable` را حذف کرده و قوانین را رعایت کنید.
+
+- بسته به حجم و اندازه کار، از کامنت‌های `//TODO:` استفاده کنید یا یک تیکت باز کنید.
+
+  _چرا:_
+
+  > استفاده از کامنت‌های `//TODO:` به شما و همکارانتان کمک می‌کند تا وظایف کوچک مانند بازنویسی یک تابع یا به‌روزرسانی یک توضیح را به خاطر بسپارید. برای وظایف بزرگ‌تر، از فرمت `//TODO(#3456)` استفاده کنید که توسط قوانین lint اعمال می‌شود، که شماره‌ی داخل پرانتز به یک تیکت باز اشاره دارد.
+
+- همیشه کامنت‌ها را به‌روز و مرتبط با تغییرات کد نگه دارید. بخش‌های کامنت‌شده کد را حذف کنید.
+
+  _چرا:_
+
+  > کد شما باید تا حد ممکن خوانا باشد؛ هر چیزی که حواس را پرت می‌کند، حذف کنید. اگر یک تابع را بازنویسی کردید، تابع قدیمی را فقط کامنت نکنید، بلکه آن را حذف کنید.
+
+- از کامنت‌ها، لاگ‌ها یا نام‌های نامرتبط یا طنزآمیز پرهیز کنید.
+
+  _چرا:_
+
+  > اگرچه در فرآیند build برنامه آن‌ شوخی‌ها ممکن است (و بهتر است بگویم باید) حذف شود، اما گاهی source code شما به شرکت یا مشتری دیگری منتقل می‌شود که ممکن است آن‌ها چنین شوخی‌هایی را نپسندند.
+
+- نام‌ها را به گونه‌ای انتخاب کنید که قابل جست‌وجو و دارای تفاوت‌های معنادار باشند و از نام‌های کوتاه‌شده و مخفف بپرهیزید. برای توابع، از نام‌های طولانی و توصیفی استفاده کنید. نام تابع باید یک فعل یا عبارت فعلی باشد و هدف آن را به وضوح بیان کند.
+
+  _چرا:_
+
+  > این کار (استفاده از نام‌های کامل و توصیفی) باعث می‌شود کد خواناتر و درک آن راحت‌تر و ساده‌تر شود.
+
+- توابع خود را در فایل بر اساس «قانون نزولی» (Step-down Rule) سازمان‌دهی کنید؛ به این صورت که توابع سطح بالاتر در بالای فایل و توابع سطح پایین‌تر در زیر آن‌ها قرار گیرند.
+
+  _چرا:_
+
+  > این کار کد را خواناتر و درک آن بهتر می‌کند
 
 <a name="enforcing-code-style-standards"></a>
 
