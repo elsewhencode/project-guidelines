@@ -1,5 +1,3 @@
-<div dir="rtl" align="right">
-
 [中文版](./README-zh.md)
 | [日本語版](./README-ja.md)
 | [한국어](./README-ko.md)
@@ -8,11 +6,9 @@
 | [Italiana](./README-it.md)
 | [Persian/فارسی](./README-ir.md)
 
-<p align="right">
-  <a href="https://www.elsewhen.com/">
-    <img src="./images/elsewhen-logo.png" width="180" height="180">
-  </a>
-</p>
+<div dir="rtl" align="right">
+
+[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
 
 # دستورالعمل‌های پروژه &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
@@ -48,10 +44,7 @@
 
 ## 1. گیت/Git
 
-<p align="right">
-  <img src="/images/branching.png" width="135" height="135">
-</p>
-
+![Git](/images/branching.png)
 <a name="some-git-rules"></a>
 
 ### 1.1 برخی از قوانین Git
@@ -214,9 +207,7 @@
 
 ## 2. مستندات
 
-<p align="right">
-  <img src="/images/documentation.png" alt="Documentation" width="128" height="128">
-</p>
+![Documentation](/images/documentation.png)
 
 - از این [قالب](./README.sample.md) برای فایل `README.md` استفاده کنید؛ اگر بخش‌هایی وجود دارد که پوشش داده نشده‌اند، با خیال راحت آن‌ها را اضافه کنید.
 - برای پروژه‌هایی که بیش از یک مخزن (repository) دارند، لینک به مخازن دیگر را در فایل‌های `README.md` مربوطه قرار دهید..
@@ -231,9 +222,7 @@
 
 ## 3. متغیرهای محیطی/Environments
 
-<p align="right">
-  <img src="/images/laptop.png" alt="Environments" width="128" height="128">
-</p>
+![Environments](/images/laptop.png)
 
 - در صورت نیاز، environmentهای جداگانه‌ای برای `development`، `test` و `production` تعریف کنید.
 
@@ -318,9 +307,7 @@
 
 ## 4. وابستگی‌ها/Dependencies
 
-<p align="right">
-  <img src="/images/modules.png" alt="modules" width="128" height="128">
-</p>
+![Github](/images/modules.png)
 
 - بر روی پکیج‌های فعلی خود را که در حال حاضر در دسترس هستند، پیگیری و نظارت کنید: به عنوان مثال، از دستور `npm ls --depth=0` استفاده کنید. (توضیحات مترجم: با استفاده از دستور `npm ls --depth=0` در محیط خط فرمان، می‌توانید فهرستی از پکیج‌های سطح اول (بدون نمایش وابستگی‌های زیرمجموعه‌ای) را مشاهده کنید. این کار به شما کمک می‌کند تا بدانید چه بسته‌هایی در حال حاضر در پروژه‌تان نصب هستند و از وضعیت آن‌ها مطلع باشید.) [توضیحات بیشتر ...](https://docs.npmjs.com/cli/ls)
 - بررسی کنید آیا هیچ‌یک از پکیج‌های شما بی‌استفاده یا نامربوط (غیرضروری یا غیرکاربردی) شده‌اند: با استفاده از ابزار `depcheck` [توضیحات بیشتر ...](https://www.npmjs.com/package/depcheck)
@@ -354,9 +341,7 @@
 
 ## 5. تست کردن/Testing
 
-<p align="right">
-  <img src="/images/testing.png" alt="testing" width="128" height="128">
-</p>
+![Testing](/images/testing.png)
 
 - در صورت نیاز، یک environment به نام `test` (برای حالت تست) ایجاد کنید.
 
@@ -406,9 +391,7 @@
 
 ## 6. ساختار و نام‌گذاری/Structure and Naming
 
-<p align="right">
-  <img src="/images/folder-tree.png" alt="Structure and Naming" width="128" height="128">
-</p>
+![Structure and Naming](/images/folder-tree.png)
 
 - فایل‌های خود را بر اساس ویژگی‌های محصول / صفحات / کامپوننت‌ها سازمان‌دهی کنید، نه بر اساس نقش‌ها. همچنین فایل‌های تست را در کنار آن‌ها قرار دهید.
 
@@ -472,9 +455,7 @@
 
 ## 7. سبک کدنویسی/Code style
 
-<p align="right">
-  <img src="/images/code-style.png" alt="Code style" width="128" height="128">
-</p>
+![Code style](/images/code-style.png)
 
 <a name="code-style-check"></a>
 
