@@ -108,72 +108,124 @@
 
 - برای یک پروژه جدید، یک مخزن گیت (Git repository) را در پوشه پروژه مقداردهی اولیه کنید. **برای ویژگی‌ها/تغییرات بعدی، این مرحله باید نادیده گرفته شود.**
 
-  ```sh
-  cd <project directory>
-  git init
-  ```
+<div dir="ltr" align="left">
+
+```sh
+cd <project directory>
+git init
+```
+
+</div>
 
 - یک شاخه جدید برای توسعه یک feature یا رفع یک bug ایجاد کنید و به آن منتقل شوید.
-  ```sh
-  git checkout -b <branchname>
-  ```
+
+<div dir="ltr" align="left">
+
+```sh
+git checkout -b <branchname>
+```
+
+</div>
+
 - تغییری در آن ایجاد کنید.
 
-  ```sh
-  git add <file1> <file2> ...
-  git commit
-  ```
+<div dir="ltr" align="left">
 
-  _چرا:_
+```sh
+git add <file1> <file2> ...
+git commit
+```
 
-  > `git add <file1> <file2> ... ` - شما باید فقط فایل‌هایی را اضافه کنید که یک تغییر کوچک و منسجم را تشکیل می‌دهند.
+</div>
 
-  > دستور `git commit` یک ویرایشگر باز می‌کند که به شما اجازه می‌دهد مقادیر subject را از body در کامیت خود از هم جدا کنید.
+_چرا:_
 
-  > در _بخش 1.3_ بیشتر درباره آن بخوانید.
+> `git add <file1> <file2> ... ` - شما باید فقط فایل‌هایی را اضافه کنید که یک تغییر کوچک و منسجم را تشکیل می‌دهند.
 
-  _نکته:_
+> دستور `git commit` یک ویرایشگر باز می‌کند که به شما اجازه می‌دهد مقادیر subject را از body در کامیت خود از هم جدا کنید.
 
-  > می‌توانید به جای آن از دستور `git add -p` استفاده کنید که به شما این امکان را می‌دهد تمام تغییرات اعمال‌شده را یک به یک بررسی کنید و تصمیم بگیرید که آیا آنها را در کامیت وارد کنید یا نه.
+> در _بخش 1.3_ بیشتر درباره آن بخوانید.
+
+_نکته:_
+
+> می‌توانید به جای آن از دستور `git add -p` استفاده کنید که به شما این امکان را می‌دهد تمام تغییرات اعمال‌شده را یک به یک بررسی کنید و تصمیم بگیرید که آیا آنها را در کامیت وارد کنید یا نه.
 
 - با مخزن remote همگام‌سازی کنید تا تغییراتی که از دست داده‌اید را دریافت کنید.
-  ```sh
-  git checkout develop
-  git pull
-  ```
-  _چرا:_
-  > این کار به شما فرصت می‌دهد که با conflictها در سیستم خود در حین rebasing برخورد کنید، به جای اینکه یک درخواست Pull Request ایجاد کنید که حاوی conflictها باشد.
+
+<div dir="ltr" align="left">
+
+```sh
+git checkout develop
+git pull
+```
+
+</div>
+
+_چرا:_
+
+> این کار به شما فرصت می‌دهد که با conflictها در سیستم خود در حین rebasing برخورد کنید، به جای اینکه یک درخواست Pull Request ایجاد کنید که حاوی conflictها باشد.
+
 - برنچ feature خود را با استفاده از interactive rebase با آخرین تغییرات از برنچ develop به‌روزرسانی کنید.
-  ```sh
-  git checkout <branchname>
-  git rebase -i --autosquash develop
-  ```
-  _چرا:_
-  > می‌توانید از `--autosquash` استفاده کنید تا تمام کامیت‌های خود را به یک کامیت ترکیب کنید. هیچ‌کس نمی‌خواهد برای یک ویژگی در شاخه develop چندین کامیت داشته باشد. [توضیحات بیشتر ...](https://robots.thoughtbot.com/autosquashing-git-commits)
+
+<div dir="ltr" align="left">
+
+```sh
+git checkout <branchname>
+git rebase -i --autosquash develop
+```
+
+</div>
+
+_چرا:_
+
+> می‌توانید از `--autosquash` استفاده کنید تا تمام کامیت‌های خود را به یک کامیت ترکیب کنید. هیچ‌کس نمی‌خواهد برای یک ویژگی در شاخه develop چندین کامیت داشته باشد. [توضیحات بیشتر ...](https://robots.thoughtbot.com/autosquashing-git-commits)
+
 - اگر conflicts ندارید، این مرحله را رد کنید. در غیراینصورت، [آنها را حل کنید](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) و rebase را ادامه دهید.
-  ```sh
-  git add <file1> <file2> ...
-  git rebase --continue
-  ```
+
+<div dir="ltr" align="left">
+
+```sh
+git add <file1> <file2> ...
+git rebase --continue
+```
+
+</div>
+
 - برنچ خود را push کنید. rebase تاریخچه را تغییر می‌دهد، بنابراین باید از `-f` برای اجبار تغییرات به برنچ remote استفاده کنید. اگر شخص دیگری روی برنچ شما کار می‌کند، از گزینه کمتر مخرب `--force-with-lease` استفاده کنید.
-  ```sh
-  git push -f
-  ```
-  _چرا:_
-  > وقتی که rebase انجام می‌دهید، تاریخچه برنچ feature خود را تغییر می‌دهید. در نتیجه، گیت `git push` معمولی را رد می‌کند. به جای آن باید از فلگ `-f` یا `--force` استفاده کنید. [توضیحات بیشتر ...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+
+<div dir="ltr" align="left">
+
+```sh
+git push -f
+```
+
+</div>
+
+_چرا:_
+
+> وقتی که rebase انجام می‌دهید، تاریخچه برنچ feature خود را تغییر می‌دهید. در نتیجه، گیت `git push` معمولی را رد می‌کند. به جای آن باید از فلگ `-f` یا `--force` استفاده کنید. [توضیحات بیشتر ...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+
 - یک درخواست Pull Request ایجاد کنید.
 - درخواست Pull Request توسط یک بررسی کننده پذیرفته، ادغام و بسته خواهد شد.
 - در صورت اتمام کار، برنچ feature محلی/local خود را حذف کنید.
 
-  ```sh
-  git branch -d <branchname>
-  ```
+<div dir="ltr" align="left">
 
-  تمام برنچ‌های local را که در مخزن remote وجود ندارند را حذف کنید. (این کار باعث می‌شود که برنچ‌های که دیگر وجود ندارند، از مخزن local حذف شوند، در نتیجه محیط توسعه شما تمیز و مرتب‌ باقی می‌ماند.)
+```sh
+git branch -d <branchname>
+```
 
-  ```sh
-  git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
-  ```
+</div>
+
+تمام برنچ‌های local را که در مخزن remote وجود ندارند را حذف کنید. (این کار باعث می‌شود که برنچ‌های که دیگر وجود ندارند، از مخزن local حذف شوند، در نتیجه محیط توسعه شما تمیز و مرتب‌ باقی می‌ماند.)
+
+<div dir="ltr" align="left">
+
+```sh
+git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+```
+
+</div>
 
 <a name="writing-good-commit-messages"></a>
 
@@ -397,33 +449,41 @@
 
   **بد**
 
-  ```
-  .
-  ├── controllers
-  |   ├── product.js
-  |   └── user.js
-  ├── models
-  |   ├── product.js
-  |   └── user.js
-  ```
+<div dir="ltr" align="left">
 
-  **خوب**
+```
+.
+├── controllers
+|   ├── product.js
+|   └── user.js
+├── models
+|   ├── product.js
+|   └── user.js
+```
 
-  ```
-  .
-  ├── product
-  |   ├── index.js
-  |   ├── product.js
-  |   └── product.test.js
-  ├── user
-  |   ├── index.js
-  |   ├── user.js
-  |   └── user.test.js
-  ```
+</div>
 
-  _چرا:_
+**خوب**
 
-  > به جای داشتن لیست طولانی از فایل‌ها، ماژول‌های کوچک ایجاد کنید که هر کدام یک مسئولیت خاص را دربرمی‌گیرند، از جمله تست آن‌ها و موارد دیگر. این کار باعث می‌شود دسترسی به فایل‌ها ساده‌تر شده و بتوانید به سرعت و با یک نگاه فایل‌های مورد نظر را پیدا کنید.
+<div dir="ltr" align="left">
+
+```
+.
+├── product
+|   ├── index.js
+|   ├── product.js
+|   └── product.test.js
+├── user
+|   ├── index.js
+|   ├── user.js
+|   └── user.test.js
+```
+
+</div>
+
+_چرا:_
+
+> به جای داشتن لیست طولانی از فایل‌ها، ماژول‌های کوچک ایجاد کنید که هر کدام یک مسئولیت خاص را دربرمی‌گیرند، از جمله تست آن‌ها و موارد دیگر. این کار باعث می‌شود دسترسی به فایل‌ها ساده‌تر شده و بتوانید به سرعت و با یک نگاه فایل‌های مورد نظر را پیدا کنید.
 
 - فایل‌های تست اضافی خود را در یک پوشه‌ی جداگانه به نام test قرار دهید تا از سردرگمی جلوگیری شود.
 
@@ -617,20 +677,28 @@ _چرا:_
 
 - همیشه از مفاهیم مفرد استفاده کنید که با یک مجموعه شروع شده و به یک شناسه ختم می‌شوند:
 
-  ```
-  /students/245743
-  /airports/kjfk
-  ```
+<div dir="ltr" align="left">
+
+```
+/students/245743
+/airports/kjfk
+```
+
+</div>
 
 - از تولید URLهایی مانند زیر اجتناب کنید:
 
-  ```
-  GET /blogs/:blogId/posts/:postId/summary
-  ```
+<div dir="ltr" align="left">
 
-  _چرا:_
+```
+GET /blogs/:blogId/posts/:postId/summary
+```
 
-  > این URL به جای ارجاع به یک منبع (resource)، به یک ویژگی (property) اشاره می‌کند. شما می‌توانید ویژگی مورد نظر را به‌عنوان یک پارامتر در درخواست ارسال کنید تا پاسخ دریافتی مختصرتر و بهینه‌تر باشد.
+</div>
+
+_چرا:_
+
+> این URL به جای ارجاع به یک منبع (resource)، به یک ویژگی (property) اشاره می‌کند. شما می‌توانید ویژگی مورد نظر را به‌عنوان یک پارامتر در درخواست ارسال کنید تا پاسخ دریافتی مختصرتر و بهینه‌تر باشد.
 
 - افعال را از URLهای منابع خود حذف کنید.
 
@@ -640,13 +708,17 @@ _چرا:_
 
 - از افعال برای موارد غیر منبع (non-resources) استفاده کنید. در این حالت، API شما هیچ منبعی برنمی‌گرداند. در عوض، یک عملیات را اجرا کرده و نتیجه را برمی‌گرداند. این‌ها عملیات CRUD (ایجاد، بازیابی، به‌روزرسانی و حذف) **نیستند**:
 
-  ```
-  /translate?text=Hallo
-  ```
+<div dir="ltr" align="left">
 
-  _چرا:_
+```
+/translate?text=Hallo
+```
 
-  > زیرا برای CRUD ما از متدهای HTTP بر روی URLهای `resource` یا `collection` استفاده می‌کنیم. افعالی که درباره آن‌ها صحبت می‌کنیم در واقع کنترلرها `Controllers` هستند. شما معمولاً تعداد زیادی از این‌ها را توسعه نمی‌دهید. [توضیحات بیشتر ...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
+</div>
+
+_چرا:_
+
+> زیرا برای CRUD ما از متدهای HTTP بر روی URLهای `resource` یا `collection` استفاده می‌کنیم. افعالی که درباره آن‌ها صحبت می‌کنیم در واقع کنترلرها `Controllers` هستند. شما معمولاً تعداد زیادی از این‌ها را توسعه نمی‌دهید. [توضیحات بیشتر ...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
 - اگر بدنه درخواست (request body) یا پاسخ (response) از نوع `JSON` است، لطفاً برای نام‌گذاری پراپرتی‌های JSON از `camelCase` پیروی کنید تا یکپارچگی و سازگاری حفظ شود.
 
@@ -700,50 +772,62 @@ _چرا:_
 
 - برای نسخه‌دهی، از یک شماره ترتیبی ساده با پیشوند `v` استفاده کنید (مانند v1، v2) و آن را تا حد امکان در ابتدای URL قرار دهید تا دامنه بالاتری را (برای تاثیرگذاری) داشته باشد:
 
-  ```
-  http://api.domain.com/v1/schools/3/students
-  ```
+<div dir="ltr" align="left">
 
-  _چرا:_
+```
+http://api.domain.com/v1/schools/3/students
+```
 
-  > وقتی APIهای شما به‌طور عمومی برای سایر اشخاص ثالث در دسترس هستند، اعمال تغییرات ناسازگار (breaking changes)، می‌تواند باعث اختلال در عملکرد محصولات یا خدماتی شود که از APIهای شما استفاده می‌کنند. استفاده از نسخه‌بندی در URL می‌تواند از بروز چنین مشکلاتی جلوگیری کند. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+</div>
+
+_چرا:_
+
+> وقتی APIهای شما به‌طور عمومی برای سایر اشخاص ثالث در دسترس هستند، اعمال تغییرات ناسازگار (breaking changes)، می‌تواند باعث اختلال در عملکرد محصولات یا خدماتی شود که از APIهای شما استفاده می‌کنند. استفاده از نسخه‌بندی در URL می‌تواند از بروز چنین مشکلاتی جلوگیری کند. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 - پیام‌های پاسخ (Response) باید خودتوضیح‌دهنده باشند، به‌طوری‌که گیرنده بتواند به‌راحتی مفهوم آن‌ها را درک کند. یک پیام خطای مناسب ممکن است شبیه به این باشد:
 
-  ```json
-  {
-  	"code": 1234,
-  	"message": "Something bad happened",
-  	"description": "More details"
-  }
-  ```
+<div dir="ltr" align="left">
 
-  یا برای خطاهای اعتبارسنجی:
+```json
+{
+	"code": 1234,
+	"message": "Something bad happened",
+	"description": "More details"
+}
+```
 
-  ```json
-  {
-  	"code": 2314,
-  	"message": "Validation Failed",
-  	"errors": [
-  		{
-  			"code": 1233,
-  			"field": "email",
-  			"message": "Invalid email"
-  		},
-  		{
-  			"code": 1234,
-  			"field": "password",
-  			"message": "No password provided"
-  		}
-  	]
-  }
-  ```
+</div>
 
-  _چرا:_
+یا برای خطاهای اعتبارسنجی:
 
-  > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
+<div dir="ltr" align="left">
 
-  _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
+```json
+{
+	"code": 2314,
+	"message": "Validation Failed",
+	"errors": [
+		{
+			"code": 1233,
+			"field": "email",
+			"message": "Invalid email"
+		},
+		{
+			"code": 1234,
+			"field": "password",
+			"message": "No password provided"
+		}
+	]
+}
+```
+
+</div>
+
+_چرا:_
+
+> developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
+
+_Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
 
 - Use these status codes to send with your response to describe whether **everything worked**,
   The **client app did something wrong** or The **API did something wrong**.
@@ -774,9 +858,15 @@ _چرا:_
 - Accept `limit` and `offset` parameters.
 
 - The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
-  ```
-  GET /students?fields=id,name,age,class
-  ```
+
+<div dir="ltr" align="left">
+
+```
+GET /students?fields=id,name,age,class
+```
+
+</div>
+
 - Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
 
 <a name="api-security"></a>
@@ -835,29 +925,41 @@ For each endpoint explain:
 
 - URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
 
-  ```
-  Required: id=[integer]
-  Optional: photo_id=[alphanumeric]
-  ```
+<div dir="ltr" align="left">
+
+```
+Required: id=[integer]
+Optional: photo_id=[alphanumeric]
+```
+
+</div>
 
 - If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
 
 - Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
 
-  ```
-  Code: 200
-  Content: { id : 12 }
-  ```
+<div dir="ltr" align="left">
+
+```
+Code: 200
+Content: { id : 12 }
+```
+
+</div>
 
 - Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
 
-  ```json
-  {
-  	"code": 401,
-  	"message": "Authentication failed",
-  	"description": "Invalid username or password"
-  }
-  ```
+<div dir="ltr" align="left">
+
+```json
+{
+	"code": 401,
+	"message": "Authentication failed",
+	"description": "Invalid username or password"
+}
+```
+
+</div>
 
 - Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
