@@ -1,4 +1,4 @@
-<div dir="rtl" aligh="right">
+<div dir="rtl" align="right">
 
 [中文版](./README-zh.md)
 | [日本語版](./README-ja.md)
@@ -38,7 +38,7 @@
   - [اعمال استانداردهای سبک کدنویسی](#enforcing-code-style-standards)
 - [Logging](#logging)
 - [API](#api)
-  - [API design](#api-design)
+  - [طراحی API](#api-design)
   - [API security](#api-security)
   - [API documentation](#api-documentation)
 - [Accessibility](#a11y)
@@ -598,50 +598,50 @@
 
 ![API](/images/api.png)
 
-### 9.1 API design
+### 9.1 طراحی API
 
 _چرا:_
 
-> Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
+> هدف این است که رابط‌های RESTfulی طراحی کنیم که منطقی و ساده باشند تا اعضای تیم و مشتریان بتوانند به‌سادگی و به‌صورت یکنواخت از آن‌ها استفاده کنند.
 
 _چرا:_
 
-> Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
+> نبود هماهنگی و سادگی می‌تواند هزینه‌های یکپارچه‌سازی و نگهداری را به طور چشمگیری افزایش دهد؛ به همین دلیل طراحی `API` در این داکیومنت گنجانده شده است.
 
-- We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+- ما عمدتاً از طراحی مبتنی بر منابع (Resource-Oriented Design) پیروی می‌کنیم که سه عنصر اصلی دارد: منابع (Resource)، مجموعه‌ها (Collection) و URLها.
 
-  - A resource has data, gets nested, and there are methods that operate against it.
-  - A group of resources is called a collection.
-  - URL identifies the online location of resource or collection.
-
-  _چرا:_
-
-  > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
-
-- use kebab-case for URLs.
-- use camelCase for parameters in the query string or resource fields.
-- use plural kebab-case for resource names in URLs.
-
-- Always use a plural nouns for naming a url pointing to a collection: `/users`.
+  - یک منبع شامل داده‌هایی است که می‌تواند به صورت تو در تو (nested) سازمان‌دهی شود و متدهایی برای عملیات روی آن وجود دارد.
+  - گروهی از منابع، یک مجموعه نامیده می‌شود.
+  - آدرس اینترنتی (URL) که مکان آنلاین یک منبع یا مجموعه را مشخص می‌کند.
 
   _چرا:_
 
-  > Basically, it reads better and keeps URLs consistent. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+  > این یک طراحی بسیار شناخته‌شده برای توسعه‌دهندگان است (که اصلی‌ترین مصرف‌کنندگان API هستند). علاوه بر خوانایی و سهولت استفاده، این روش به ما اجازه می‌دهد کتابخانه‌ها و connectorهای عمومی بنویسیم بدون این‌که نیاز به شناخت جزئیات خاص هر API داشته باشیم.
 
-- In the source code convert plurals to variables and properties with a List suffix.
+- برای URL‌ها از kebab-case استفاده کنید.
+- برای پارامترهای query string یا فیلدهای منابع از camelCase استفاده کنید.
+- از اسامی جمع به صورت kebab-case برای نام منابع در URLها استفاده کنید.
+
+- همیشه از اسامی جمع برای نامگذاری URLهایی که به یک مجموعه اشاره دارند استفاده کنید: `/users`.
+
+  _چرا:_
+
+  > اساساً، این کار خوانایی را بهتر کرده و URLها را هماهنگ نگه می‌دارد. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
+- در سورس کد، اسامی جمع را به متغیرها و پراپرتی‌ها با پسوند «List» تبدیل کنید.
 
   _چرا:_:
 
-  > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
+  > استفاده از اسامی جمع در URL مناسب است، اما در سورس کد ممکن است نامحسوس و مستعد خطا باشد.
 
-- Always use a singular concept that starts with a collection and ends to an identifier:
+- همیشه از مفاهیم مفرد استفاده کنید که با یک مجموعه شروع شده و به یک شناسه ختم می‌شوند:
 
   ```
   /students/245743
   /airports/kjfk
   ```
 
-- Avoid URLs like this:
+- از تولید URLهایی مانند زیر اجتناب کنید:
 
   ```
   GET /blogs/:blogId/posts/:postId/summary
@@ -649,15 +649,15 @@ _چرا:_
 
   _چرا:_
 
-  > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
+  > این URL به جای ارجاع به یک منبع (resource)، به یک ویژگی (property) اشاره می‌کند. شما می‌توانید ویژگی مورد نظر را به‌عنوان یک پارامتر در درخواست ارسال کنید تا پاسخ دریافتی مختصرتر و بهینه‌تر باشد.
 
-- Keep verbs out of your resource URLs.
+- افعال را از URLهای منابع خود حذف کنید.
 
   _چرا:_
 
-  > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
+  > زیرا اگر برای هر عملیات resource از یک فعل استفاده کنید، به زودی با لیستی بزرگ از URLها مواجه خواهید شد که الگوی ثابتی ندارند و یادگیری را برای توسعه‌دهندگان دشوار می‌کنند. علاوه بر این، ما از افعال برای چیز دیگری استفاده می‌کنیم.
 
-- Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
+- از افعال برای موارد غیر منبع (non-resources) استفاده کنید. در این حالت، API شما هیچ منبعی برنمی‌گرداند. در عوض، یک عملیات را اجرا کرده و نتیجه را برمی‌گرداند. این‌ها عملیات CRUD (ایجاد، بازیابی، به‌روزرسانی و حذف) **نیستند**:
 
   ```
   /translate?text=Hallo
@@ -665,59 +665,59 @@ _چرا:_
 
   _چرا:_
 
-  > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [توضیحات بیشتر ...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
+  > زیرا برای CRUD ما از متدهای HTTP بر روی URLهای `resource` یا `collection` استفاده می‌کنیم. افعالی که درباره آن‌ها صحبت می‌کنیم در واقع کنترلرها `Controllers` هستند. شما معمولاً تعداد زیادی از این‌ها را توسعه نمی‌دهید. [توضیحات بیشتر ...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
-- The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
-
-  _چرا:_
-
-  > This is a JavaScript project guideline, where the programming language for generating and parsing JSON is assumed to be JavaScript.
-
-- Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
+- اگر بدنه درخواست (request body) یا پاسخ (response) از نوع `JSON` است، لطفاً برای نام‌گذاری پراپرتی‌های JSON از `camelCase` پیروی کنید تا یکپارچگی و سازگاری حفظ شود.
 
   _چرا:_
 
-  > Because your intention is to expose Resources, not your database schema details.
+  > این یک راهنما و دستورالعمل برای پروژه JavaScript است، که فرض بر این است که زبان برنامه‌نویسی مورد استفاده برای تولید و تجزیه JSON، جاوااسکریپت می‌باشد.
 
-- Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
+- با وجود اینکه یک منبع (resource) مفهومی یکتا و مفرد است که مشابه با یک نمونه شیء یا رکورد پایگاه داده است، شما نباید از نام جدول (`table_name`) برای نام‌گذاری منبع و از نام ستون (`column_name`) برای پراپرتی‌های منبع استفاده کنید. به عبارت دیگر، نام‌گذاری منابع و پراپرتی‌های آن‌ها نباید مستقیماً از ساختار پایگاه داده مشتق شود؛ بلکه باید بر اساس مفاهیم و نیازهای دامنه‌ی کاربرد طراحی شود تا از وابستگی به جزئیات پیاده‌سازی جلوگیری شود.
 
   _چرا:_
 
-  > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
+  > زیرا هدف شما نمایش منابع است، نه جزئیات ساختار پایگاه داده.
 
-- Explain the CRUD functionalities using HTTP methods:
+- دوباره تکرار می‌کنم، فقط از اسم‌ها در URL خود هنگام نام‌گذاری منابع استفاده کنید و سعی نکنید عملکرد آن‌ها را توضیح دهید.
+
+  _چرا:_
+
+  > فقط از اسامی در URLهای منبع استفاده کنید و از نوشتن مواردی مانند `/addNewUser` یا `/updateUser` خودداری کنید. همچنین از ارسال عملیات منابع به‌عنوان پارامتر اجتناب کنید.
+
+- عملکردهای CRUD را با استفاده از متدهای HTTP توضیح دهید:
 
   _چگونه:_
 
-  > `GET`: To retrieve a representation of a resource.
+  > `GET`: برای دریافت از یک resource استفاده می‌شود.
 
-  > `POST`: To create new resources and sub-resources.
+  > `POST`: برای ایجاد منابع (resources) جدید و زیرمنابع (sub-resources) به کار می‌رود.
 
-  > `PUT`: To update existing resources.
+  > `PUT`: برای به‌روزرسانی منابع موجود استفاده می‌شود.
 
-  > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone.
+  > `PATCH`: برای به‌روزرسانی جزئی منابع موجود به کار می‌رود؛ به‌طوری‌که فقط فیلدهای ارائه‌شده را به‌روزرسانی کرده و سایر فیلدها را بدون تغییر باقی می‌گذارد.
 
-  > `DELETE`: To delete existing resources.
+  > `DELETE`: برای حذف منابع موجود استفاده می‌شود.
 
-- For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
+- برای منابع تو در تو (Nested Resources)، توصیه می‌شود رابطه بین آن‌ها را در ساختار URL منعکس کنید. به‌عنوان مثال، برای نمایش ارتباط بین یک کارمند و شرکت مربوطه، می‌توانید از شناسه‌ها (`id`) در URL استفاده کنید.
 
   _چرا:_
 
-  > This is a natural way to make resources explorable.
+  > این روش دسترسی به منابع مرتبط را آسان‌تر می‌کند.
 
   _چگونه:_
 
-  > `GET /schools/2/students ` , should get the list of all students from school 2.
+  > `GET /schools/2/students ` , این درخواست باید لیست تمام دانش‌آموزان مدرسه با شناسه ۲ را برگرداند.
 
-  > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
+  > `GET /schools/2/students/31` , این درخواست باید جزئیات دانش‌آموز با شناسه ۳۱ را که متعلق به مدرسه ۲ است، برگرداند.
 
-  > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
+  > `DELETE /schools/2/students/31` , این درخواست باید دانش‌آموز با شناسه ۳۱ را که متعلق به مدرسه ۲ است، حذف کند.
 
-  > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
+  > `PUT /schools/2/students/31` , این درخواست باید اطلاعات دانش‌آموز با شناسه ۳۱ را که متعلق به مدرسه ۲ است، به‌روزرسانی کند.
 
-  > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
+  > `POST /schools` , باید یک مدرسه جدید ایجاد کرده و جزئیات مدرسه تازه ایجاد شده را برگرداند. از POST بر روی URLهای مجموعه استفاده کنید.
 
-- Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
+- برای نسخه‌دهی، از یک شماره ترتیبی ساده با پیشوند `v` استفاده کنید (مانند v1، v2) و آن را تا حد امکان در ابتدای URL قرار دهید تا دامنه بالاتری را (برای تاثیرگذاری) داشته باشد:
 
   ```
   http://api.domain.com/v1/schools/3/students
@@ -725,9 +725,9 @@ _چرا:_
 
   _چرا:_
 
-  > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+  > وقتی APIهای شما به‌طور عمومی برای سایر اشخاص ثالث در دسترس هستند، اعمال تغییرات ناسازگار (breaking changes)، می‌تواند باعث اختلال در عملکرد محصولات یا خدماتی شود که از APIهای شما استفاده می‌کنند. استفاده از نسخه‌بندی در URL می‌تواند از بروز چنین مشکلاتی جلوگیری کند. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
-- Response messages must be self-descriptive. A good error message response might look something like this:
+- پیام‌های پاسخ (Response) باید خودتوضیح‌دهنده باشند، به‌طوری‌که گیرنده بتواند به‌راحتی مفهوم آن‌ها را درک کند. یک پیام خطای مناسب ممکن است شبیه به این باشد:
 
   ```json
   {
@@ -737,7 +737,7 @@ _چرا:_
   }
   ```
 
-  or for validation errors:
+  یا برای خطاهای اعتبارسنجی:
 
   ```json
   {
