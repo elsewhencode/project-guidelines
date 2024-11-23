@@ -40,7 +40,7 @@
   - [طراحی API](#api-design)
   - [امنیت ای‌پی‌آی/API security](#api-security)
   - [مستندسازی ای‌پی‌آی/API documentation](#api-documentation)
-- [Accessibility](#a11y)
+- [دسترس‌پذیری/Accessibility](#a11y)
 - [Licensing](#licensing)
 
 <a name="git"></a>
@@ -898,79 +898,81 @@ Content: { id : 12 }
 
 <a name="a11y"></a>
 
-## 10. Accessibility ([a11y](https://www.a11yproject.com/))
+## 10. دسترس‌پذیری/Accessibility ([a11y](https://www.a11yproject.com/))
 
-![Accessibility](/images/accessibility.png)
+<p align="right">
+  <img src="/images/accessibility.png" alt="Accessibility" width="128" height="128">
+</p>
 
-### 10.1 Laying accessibility practices in place
+### 10.1 پیاده‌سازی روش‌های دسترسی‌پذیری
 
-Take the following steps **at the start of your project** to ensure an intentional level of accessibility is sustained:
-
-_چرا:_
-
-> Web content is [accessible by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start rather than re-implement these features later.
-
-- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree on a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
-
-> **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, e.g. logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
-
-- Install an a11y linter:
-
-  - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-  - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
-  - Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+برای اطمینان از حفظ سطح مشخصی از دسترسی‌پذیری، **از ابتدای پروژه خود** مراحل زیر را انجام دهید:
 
 _چرا:_
 
-> A linter will automatically check that a basic level of accessibility is met by your project and is relatively easy to set up.
+> محتوای وب [به‌طور پیش‌فرض دسترسی‌پذیر](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)است. ما این ویژگی را زمانی به خطر می‌اندازیم که امکانات پیچیده ایجاد می‌کنیم. در نظر گرفتن دسترسی‌پذیری از ابتدا بسیار آسان‌تر از بازپیاده‌سازی این ویژگی‌ها در آینده است تا تأثیر آن را کاهش دهیم.
 
-- Set up and use a11y testing using [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) or similar.
+- با استفاده از ابزارهایی مانند [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) برای [دسترسی‌پذیری](https://web.dev/lighthouse-accessibility/) یا افزونه [axe DevTools](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US)برنامه‌ریزی‌هایی را جهت انجام ممیزی‌های منظم انجام دهید. بر اساس نیازهای پروژه خود، بر روی یک امتیاز حداقلی توافق کنید. امتیازدهی در این ابزارها بر اساس [ارزیابی تأثیر کاربر در axe](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules) می‌باشد.
 
-- If you're using storybook, do [this](https://storybook.js.org/blog/accessibility-testing-with-storybook/).
+> **نکته:** [برخی بررسی‌های مهم](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) باید به‌صورت دستی انجام شوند، مانند ترتیب منطقی تب‌ها. ابزارهای فوق این موارد را به عنوان تست‌های دستی یا راهنمایی‌شده در کنار نتایج خودکار فهرست می‌کنند. در axe باید نتایج خودکار خود را ذخیره کنید تا این موارد را مشاهده کنید.
 
-_چرا:_
+- یک Linter مرتبط با دسترس‌پذیری نصب کنید:
 
-> Including a11y checks in your tests will help you to catch any changes that affect your projects accessibility and your audit score.
-
-- Consider using an accessible design system such as [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) or [Material Design](https://material.io/design).
-
-_چرا:_
-
-> These components are highly accessible out of the box.
-
-### 10.2 Some basic accessibility rules to add to your project:
-
-- Ensure link names are accessible. Use aria-label to describe links
+  - در React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+  - در Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+  - در Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
 
 _چرا:_
 
-> Inaccessible link elements pose barriers to accessibility.
+> یک لینتر به‌طور خودکار بررسی می‌کند که سطح پایه‌ای از دسترسی‌پذیری در پروژه شما رعایت شده است و راه‌اندازی آن نسبتاً آسان است.
 
-- Ensure lists are structured correctly and list elements are used semantically.
+- با استفاده از [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) یا ابزارهای مشابه، تست‌های دسترسی‌پذیری را راه‌اندازی و اجرا کنید.
 
-_چرا:_
-
-> Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list.
-
-- Ensure the heading order is semantically correct.
+- اگر از Storybook استفاده می‌کنید، این [راهنما](https://storybook.js.org/blog/accessibility-testing-with-storybook/) را دنبال کنید.
 
 _چرا:_
 
-> Headers convey the structure of the page. When applied correctly the page becomes easier to navigate.
+> گنجاندن بررسی‌های دسترس‌پذیری در تست‌ها به شما کمک می‌کند تا هر تغییری که بر دسترس‌پذیری پروژه و امتیاز ممیزی تأثیر می‌گذارد، شناسایی کنید.
 
-- Ensure text elements have sufficient contrast against page background.
-
-_چرا:_
-
-> Some people with low vision experience low contrast, meaning that there aren't very many bright or dark areas. Everything tends to appear about the same brightness, which makes it hard to distinguish outlines, borders, edges, and details. Text that is too close in luminance (brightness) to the background can be hard to read.
-
-- Provide alternative text for images.
+- از یک دیزان سیستم دسترسی‌پذیر مانند [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) یا [Material Design](https://material.io/design) استفاده کنید.
 
 _چرا:_
 
-> Screen readers have no way of translating an image into words that gets read to the user, even if the image only consists of text. As a result, it's necessary for images to have short, descriptive alt text so screen reader users clearly understand the image's contents and purpose.
+> این کامپوننت‌ها به صورت پیش‌فرض از سطح بالایی از دسترس‌پذیری برخوردار هستند.
 
-More accessibility rules can be found [here](https://dequeuniversity.com/rules/axe).
+### 10.2 برخی از قوانین پایه دسترس‌پذیری که باید به پروژه خود اضافه کنید:
+
+- اطمینان حاصل کنید که نام لینک‌ها دسترس‌پذیر هستند. از aria-label برای توصیف لینک‌ها استفاده کنید.
+
+_چرا:_
+
+> لینک‌هایی که غیرقابل دسترس می‌باشند، برای دسترس‌پذیری موانعی ایجاد می‌کنند.
+
+- اطمینان حاصل کنید که لیست‌ها به‌درستی ساختاربندی شده باشند و عناصر لیست به صورت معنایی استفاده شده‌اند.
+
+_چرا:_
+
+> لیست‌ها باید دارای عناصر والد و عناصر فرزند باشند تا معتبر باشند. صفحه‌خوان‌ها (Screen Readers) به کاربران اطلاع می‌دهند که وقتی به یک لیست می‌رسند، لیست شامل چند آیتم است.
+
+- اطمینان حاصل کنید که ترتیب سرفصل‌ها (Heading Order) از نظر معنایی صحیح است.
+
+_چرا:_
+
+> سرفصل‌ها ساختار صفحه را منتقل می‌کنند. هنگامی که به درستی اعمال شوند، پیمایش صفحه آسان‌تر می‌شود.
+
+- اطمینان حاصل کنید که عناصر متنی دارای کنتراست کافی با پس‌زمینه‌ی صفحه هستند.
+
+_چرا:_
+
+> برخی افراد با بینایی کم، کنتراست پایین را تجربه می‌کنند؛ به این معنی که تفاوت زیادی بین مناطق روشن و تاریک وجود ندارد. همه چیز تقریباً با همان میزان روشنایی ظاهر می‌شود، که تشخیص خطوط، حاشیه‌ها، لبه‌ها و جزئیات را دشوار می‌کند. متنی که از نظر روشنایی بسیار نزدیک به پس‌زمینه باشد، ممکن است سخت خوانده شود.
+
+- برای تصاویر، متن جایگزین (Alt Text) ارائه دهید.
+
+_چرا:_
+
+> صفحه‌خوان‌ها نمی‌توانند تصاویر را به کلماتی تبدیل کنند که برای کاربر خوانده شود، حتی اگر تصویر فقط شامل متن باشد. در نتیجه، ضروری است که تصاویر دارای متن جایگزین کوتاه و توصیفی باشند تا کاربران صفحه‌خوان به‌وضوح محتوای تصویر و هدف آن را درک کنند.
+
+قوانین بیشتری درباره دسترس‌پذیری را می‌توانید [اینجا](https://dequeuniversity.com/rules/axe) پیدا کنید.
 
 <a name="licensing"></a>
 
