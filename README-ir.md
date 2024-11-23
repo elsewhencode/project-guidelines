@@ -827,11 +827,8 @@ _چرا:_
 > زیرا توکن یا شناسه کاربری و رمز عبور به صورت متن ساده (clear text) در شبکه ارسال می‌شوند (اگرچه به صورت Base64 کدگذاری شده است، اما Base64 یک کدگذاری برگشت‌پذیر است). بنابراین، روش احراز هویت پایه ایمن نیست. [توضیحات بیشتر ...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
 - توکن‌ها باید با استفاده از هدر Authorization در هر درخواست منتقل شوند: `Authorization: Bearer xxxxxx, Extra yyyyy`.
-
 - کدهای Authorization باید مدت‌زمان کوتاهی معتبر باشند.
-
 - هرگونه درخواست بدون TLS را رد کنید. به درخواست‌های HTTP (بدون TSL) پاسخ ندهید تا از تبادل داده‌های ناامن جلوگیری شود. اگر پاسخ می‌دهید، از کد وضعیت `403 Forbidden` استفاده کنید.
-
 - استفاده از نرخ محدودیت (Rate Limiting) را در نظر بگیرید.
 
 _چرا:_
@@ -839,11 +836,8 @@ _چرا:_
 > برای حفاظت از API در برابر تهدیدات بات‌هایی که ممکن است هزاران بار در ساعت API شما را فراخوانی می‌کنند. باید محدودیت نرخ (rate limit) را از همان مراحل اولیه پیاده‌سازی مد نظر قرار دهید.
 
 - تنظیم مناسب هدرهای HTTP می‌تواند به ایمن‌سازی برنامه وب شما کمک کند. [توضیحات بیشتر ...](https://github.com/helmetjs/helmet)
-
 - API شما باید داده‌های دریافت‌شده را به فرم استانداردشان تبدیل کند یا آن‌ها را رد کند. در صورت وجود داده‌های نادرست یا ناقص، کد وضعیت 400 Bad Request را همراه با جزئیات خطا در پاسخ بازگردانید.
-
 - تمام داده‌های مبادله‌شده با REST API باید توسط خود API اعتبارسنجی شوند.
-
 - JSON خود را سریالایز (Serialize) کنید.
 
 _چرا:_
@@ -876,7 +870,6 @@ Optional: photo_id=[alphanumeric]
 ```
 
 - اگر نوع درخواست POST است، نمونه‌های کاربردی ارائه دهید. قوانین پارامترهای URL در اینجا نیز اعمال می‌شوند. این بخش را به دو دسته اختیاری و الزامی تقسیم کنید.
-
 - پاسخ موفقیت‌آمیز (Success Response)، کد وضعیت (Status Code) چه باید باشد و آیا داده‌ای در پاسخ بازگردانده می‌شود یا خیر؟ این اطلاعات زمانی مفید است که کاربران نیاز دارند بدانند چه چیزی از پاسخ دریافت خواهند کرد:
 
 ```
@@ -917,17 +910,15 @@ _چرا:_
 > **نکته:** [برخی بررسی‌های مهم](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) باید به‌صورت دستی انجام شوند، مانند ترتیب منطقی تب‌ها. ابزارهای فوق این موارد را به عنوان تست‌های دستی یا راهنمایی‌شده در کنار نتایج خودکار فهرست می‌کنند. در axe باید نتایج خودکار خود را ذخیره کنید تا این موارد را مشاهده کنید.
 
 - یک Linter مرتبط با دسترس‌پذیری نصب کنید:
-
-  - در React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-  - در Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
-  - در Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+  - در ری‌اکت: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+  - در انگولار: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+  - در ویو: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
 
 _چرا:_
 
 > یک لینتر به‌طور خودکار بررسی می‌کند که سطح پایه‌ای از دسترسی‌پذیری در پروژه شما رعایت شده است و راه‌اندازی آن نسبتاً آسان است.
 
 - با استفاده از [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) یا ابزارهای مشابه، تست‌های دسترسی‌پذیری را راه‌اندازی و اجرا کنید.
-
 - اگر از Storybook استفاده می‌کنید، این [راهنما](https://storybook.js.org/blog/accessibility-testing-with-storybook/) را دنبال کنید.
 
 _چرا:_
@@ -986,7 +977,7 @@ _چرا:_
 
 ---
 
-Sources:
+منابع:
 [RisingStack Engineering](https://blog.risingstack.com/),
 [Mozilla Developer Network](https://developer.mozilla.org/),
 [Heroku Dev Center](https://devcenter.heroku.com),
