@@ -41,7 +41,7 @@
   - [امنیت ای‌پی‌آی/API security](#api-security)
   - [مستندسازی ای‌پی‌آی/API documentation](#api-documentation)
 - [دسترس‌پذیری/Accessibility](#a11y)
-- [Licensing](#licensing)
+- [مجوزدهی/Licensing](#licensing)
 
 <a name="git"></a>
 
@@ -976,11 +976,13 @@ _چرا:_
 
 <a name="licensing"></a>
 
-## 11. Licensing
+## 11. مجوزدهی/Licensing
 
-![Licensing](/images/licensing.png)
+<p align="right">
+  <img src="/images/licensing.png" alt="Licensing" width="135" height="135">
+</p>
 
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
+اطمینان حاصل کنید که از منابعی استفاده می‌کنید که حق استفاده از آن‌ها را دارید. اگر از کتابخانه‌ها استفاده می‌کنید، به مجوزهای MIT، Apache یا BSD توجه کنید، اما اگر این کتابخانه‌ها را تغییر می‌دهید، حتماً جزئیات مجوز را بررسی کنید. استفاده از تصاویر و ویدئوهای دارای حق کپی‌رایت (Copyrighted) ممکن است مشکلات قانونی ایجاد کند.
 
 ---
 
