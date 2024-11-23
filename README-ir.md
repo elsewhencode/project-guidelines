@@ -38,8 +38,8 @@
 - [ثبت وقایع/Logging](#logging)
 - [ای‌پی‌آی/API](#api)
   - [طراحی API](#api-design)
-  - [API security](#api-security)
-  - [API documentation](#api-documentation)
+  - [امنیت ای‌پی‌آی/API security](#api-security)
+  - [مستندسازی ای‌پی‌آی/API documentation](#api-documentation)
 - [Accessibility](#a11y)
 - [Licensing](#licensing)
 
@@ -775,117 +775,116 @@ _چرا:_
 
 _چرا:_
 
-> developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
+> توسعه‌دهندگان در زمان‌های بحرانی که در حال عیب‌یابی و حل مشکلات پس از انتشار برنامه‌هایی که با استفاده از APIهای شما ساخته‌اند و در دست کاربران قرار گرفته‌اند، به خطاهای خوب و خوش‌طراحی‌شده وابسته هستند.
 
-_Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
+_توجه: پیام‌های استثنا مربوط به امنیت را تا حد ممکن عمومی و ساده نگه دارید. به عنوان مثال، به جای اینکه بنویسید «رمز عبور اشتباه است»، می‌توانید پیام «نام کاربری یا رمز عبور نامعتبر است» را بازگردانید. این کار باعث می‌شود که به‌طور ناخودآگاه به کاربر اطلاع ندهید که نام کاربری درست است و تنها رمز عبور اشتباه است._
 
-- Use these status codes to send with your response to describe whether **everything worked**,
-  The **client app did something wrong** or The **API did something wrong**.
+- از این کدهای وضعیت (status codes) برای ارسال همراه با پاسخ‌های خود استفاده کنید تا مشخص کنید آیا **همه چیز درست انجام شده است یا خیر**، آیا **کلاینت اشتباهی انجام داده** یا **مشکل از API بوده است**.
 
-      _Which ones:_
-      > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+      _کدام یک:_
+      > پاسخ `200 OK` نشان‌دهنده موفقیت برای درخواست‌های `GET`, `PUT` یا `POST` است.
 
-      > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+      > کد `201 Created` برای زمانی است که یک نمونه جدید ایجاد می‌شود. ایجاد یک نمونه جدید با استفاده از متد `POST` کد وضعیت `201` را برمی‌گرداند.
 
-      > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
+      > پاسخ `204 No Content` نشان‌دهنده موفقیت است، اما محتوایی برای ارسال در پاسخ وجود ندارد. از آن در زمانی استفاده کنید که عملیات `DELETE` با موفقیت انجام شده است.
 
-      > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
+      > پاسخ `304 Not Modified` برای به حداقل رساندن انتقال اطلاعات زمانی که گیرنده قبلاً نسخه‌های کش‌شده را دارد، استفاده می‌شود.
 
-      > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
+      > کد `400 Bad Request` برای زمانی است که درخواست پردازش نشده است، زیرا سرور نمی‌تواند بفهمد که مشتری چه چیزی درخواست کرده است.
 
-      > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+      > کد `401 Unauthorized` برای زمانی است که درخواست فاقد اعتبارنامه‌های معتبر است و باید با اعتبارنامه‌های مورد نیاز دوباره ارسال شود.
 
-      > `403 Forbidden` means the server understood the request but refuses to authorize it.
+      > کد `403 Forbidden` به این معنی است که سرور درخواست را فهمیده است، اما از اعطای مجوز خودداری می‌کند.
 
-      > `404 Not Found` indicates that the requested resource was not found.
+      > کد `404 Not Found` نشان می‌دهد که منبع درخواستی پیدا نشده است.
 
-      > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+      > کد `500 Internal Server Error` نشان می‌دهد که درخواست معتبر است، اما سرور به دلیل برخی شرایط غیرمنتظره نمی‌تواند آن را انجام دهد.
 
       _چرا:_
-      > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+      > بیشتر ارائه‌دهندگان API از تعداد کمی از کدهای وضعیت HTTP استفاده می‌کنند. برای مثال، API سرویس Google GData تنها از ۱۰ کد وضعیت، Netflix از ۹ کد، و Digg تنها از ۸ کد وضعیت استفاده می‌کنند. البته، این پاسخ‌ها معمولاً شامل بدنه‌ای هستند که اطلاعات بیشتری را ارائه می‌دهد. در کل، بیش از ۷۰ کد وضعیت HTTP وجود دارد. اما اکثر توسعه‌دهندگان همه این ۷۰ کد را به خاطر ندارند.بنابراین، اگر شما کدهای وضعیتی را انتخاب کنید که خیلی رایج نیستند، توسعه‌دهندگان مجبور می‌شوند به جای ادامه کار روی برنامه خود، وقتشان را صرف جستجو در ویکی‌پدیا کنند تا متوجه شوند شما چه چیزی را سعی دارید به آن‌ها بگویید. [توضیحات بیشتر ...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
-- Provide total numbers of resources in your response.
-- Accept `limit` and `offset` parameters.
+- تعداد کل منابع/دیتا را در پاسخ (response) خود اعلام کنید.
+- پارامترهای `limit` و `offset` را بپذیرید.
 
-- The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
+- مقدار داده‌ای که یک منبع در پاسخ ارائه می‌دهد نیز باید مورد توجه قرار گیرد. مصرف‌کننده API همیشه به تمام اطلاعات مربوط به یک منبع نیاز ندارد. از پارامتر fields استفاده کنید که لیستی از فیلدها را به صورت جدا شده با کاما دریافت می‌کند تا مشخص کند کدام فیلدها در پاسخ گنجانده شوند:
 
 ```
 GET /students?fields=id,name,age,class
 ```
 
-- Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+- پشتیبانی از صفحه‌بندی (pagination)، فیلتر کردن (filtering) و مرتب‌سازی (sorting) نیازی نیست از ابتدا برای همه منابع (resourceها) فعال باشد. منابعی که این قابلیت را دارند، باید به طور مستند (از طریق Document) مشخص شوند.
 
 <a name="api-security"></a>
 
-### 9.2 API security
+### 9.2 امنیت ای‌پی‌آی/API security
 
-These are some basic security best practices:
+این موارد برخی از بهترین روش‌های امنیتی پایه هستند:
 
-- Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
-
-_چرا:_
-
-> Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [توضیحات بیشتر ...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
-
-- Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
-
-- Authorization Code should be short-lived.
-
-- Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
-
-- Consider using Rate Limiting.
+- از احراز هویت پایه (Basic Authentication) استفاده نکنید، مگر اینکه از یک اتصال امن (HTTPS) استفاده کنید. توکن‌های احراز هویت نباید در URL منتقل شوند: `GET /users/123?token=asdf....`
 
 _چرا:_
 
-> To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
+> زیرا توکن یا شناسه کاربری و رمز عبور به صورت متن ساده (clear text) در شبکه ارسال می‌شوند (اگرچه به صورت Base64 کدگذاری شده است، اما Base64 یک کدگذاری برگشت‌پذیر است). بنابراین، روش احراز هویت پایه ایمن نیست. [توضیحات بیشتر ...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-- Setting HTTP headers appropriately can help to lock down and secure your web application. [توضیحات بیشتر ...](https://github.com/helmetjs/helmet)
+- توکن‌ها باید با استفاده از هدر Authorization در هر درخواست منتقل شوند: `Authorization: Bearer xxxxxx, Extra yyyyy`.
 
-- Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
+- کدهای Authorization باید مدت‌زمان کوتاهی معتبر باشند.
 
-- All the data exchanged with the REST API must be validated by the API.
+- هرگونه درخواست بدون TLS را رد کنید. به درخواست‌های HTTP (بدون TSL) پاسخ ندهید تا از تبادل داده‌های ناامن جلوگیری شود. اگر پاسخ می‌دهید، از کد وضعیت `403 Forbidden` استفاده کنید.
 
-- Serialize your JSON.
-
-_چرا:_
-
-> A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
-
-- Validate the content-type and mostly use `application/*json` (Content-Type header).
+- استفاده از نرخ محدودیت (Rate Limiting) را در نظر بگیرید.
 
 _چرا:_
 
-> For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
+> برای حفاظت از API در برابر تهدیدات بات‌هایی که ممکن است هزاران بار در ساعت API شما را فراخوانی می‌کنند. باید محدودیت نرخ (rate limit) را از همان مراحل اولیه پیاده‌سازی مد نظر قرار دهید.
 
-- Check the API Security Checklist Project. [توضیحات بیشتر ...](https://github.com/shieldfy/API-Security-Checklist)
+- تنظیم مناسب هدرهای HTTP می‌تواند به ایمن‌سازی برنامه وب شما کمک کند. [توضیحات بیشتر ...](https://github.com/helmetjs/helmet)
+
+- API شما باید داده‌های دریافت‌شده را به فرم استانداردشان تبدیل کند یا آن‌ها را رد کند. در صورت وجود داده‌های نادرست یا ناقص، کد وضعیت 400 Bad Request را همراه با جزئیات خطا در پاسخ بازگردانید.
+
+- تمام داده‌های مبادله‌شده با REST API باید توسط خود API اعتبارسنجی شوند.
+
+- JSON خود را سریالایز (Serialize) کنید.
+
+_چرا:_
+
+> یکی از نگرانی‌های اصلی کار با JSON، جلوگیری از اجرای کدهای جاوااسکریپت دلخواه از remote در مرورگر است... یا اگر از node.js در سمت سرور استفاده می‌کنید. بسیار مهم و حیاتی است که از یک سریالایزر JSON مناسب استفاده کنید تا داده‌های ورودی کاربر به درستی کدگذاری شوند و از اجرای داده‌های ورودی کاربر در مرورگر جلوگیری شود.
+
+- نوع محتوا (Content-Type) را اعتبارسنجی کنید و بیشتر از `application/*json` (هدر Content-Type) استفاده کنید.
+
+_چرا:_
+
+> به عنوان مثال، پذیرش نوع `application/x-www-form-urlencoded` به مهاجم اجازه می‌دهد یک فرم ایجاد کند و یک درخواست POST ساده ارسال کند. سرور هرگز نباید نوع محتوا (Content-Type) را فرض کند. عدم وجود هدر Content-Type یا وجود یک Content-Type غیرمنتظره باید منجر به رد محتوا توسط سرور با یک پاسخ `4XX` شود.
+
+- پروژه API Security Checklist را بررسی کنید. [توضیحات بیشتر ...](https://github.com/shieldfy/API-Security-Checklist)
 
 <a name="api-documentation"></a>
 
-### 9.3 API documentation
+### 9.3 مستندسازی ای‌پی‌آی/API documentation
 
-- Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
-- Describe API authentication methods with a code sample.
-- Explaining The URL Structure (path only, no root URL) including The request type (Method).
+- بخش `API Reference` را در [README.md template](./README.sample.md) برای API پر کنید.
+- روش‌های احراز هویت API را با یک نمونه کد توضیح دهید.
+- ساختار URL (فقط path بدون root URL) را به همراه نوع درخواست (Method) شرح دهید.
 
-For each endpoint explain:
+برای هر Endpoint، موارد زیر را توضیح دهید:
 
-- URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+- اگر پارامترهای URL وجود دارند، آن‌ها را مطابق با نام ذکر شده در بخش URL مشخص کنید:
 
 ```
 Required: id=[integer]
 Optional: photo_id=[alphanumeric]
 ```
 
-- If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+- اگر نوع درخواست POST است، نمونه‌های کاربردی ارائه دهید. قوانین پارامترهای URL در اینجا نیز اعمال می‌شوند. این بخش را به دو دسته اختیاری و الزامی تقسیم کنید.
 
-- Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+- پاسخ موفقیت‌آمیز (Success Response)، کد وضعیت (Status Code) چه باید باشد و آیا داده‌ای در پاسخ بازگردانده می‌شود یا خیر؟ این اطلاعات زمانی مفید است که کاربران نیاز دارند بدانند چه چیزی از پاسخ دریافت خواهند کرد:
 
 ```
 Code: 200
 Content: { id : 12 }
 ```
 
-- Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
+- پاسخ خطا (Error Response)، بیشتر endpointها ممکن است به روش‌های مختلفی شکست بخورند. از دسترسی غیرمجاز گرفته تا پارامترهای اشتباه و غیره. تمامی این موارد باید در این بخش لیست شوند. ممکن است تکراری به نظر برسد، اما از ایجاد فرضیات جلوگیری می‌کند. به عنوان مثال:
 
 ```json
 {
@@ -895,7 +894,7 @@ Content: { id : 12 }
 }
 ```
 
-- Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+- از ابزارهای طراحی API استفاده کنید؛ ابزارهای متن‌باز زیادی برای مستندسازی خوب وجود دارند، مانند [API Blueprint](https://apiblueprint.org/) و [Swagger](https://swagger.io/).
 
 <a name="a11y"></a>
 
